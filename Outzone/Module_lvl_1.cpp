@@ -35,6 +35,8 @@ bool Module_lvl_1::Start()
 		graphics = App->textures->Load("level1.png");
 		audio_lvl_1 = App->audio->Load("1st_Level_Theme.ogg");
 
+		App->player->Enable();
+
 		Mix_FadeInMusicPos(audio_lvl_1, 1, 2000, 1);
 		Mix_PlayMusic(audio_lvl_1, -1);
 

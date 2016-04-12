@@ -7,28 +7,26 @@
 #include"ModuleRender.h"
 ModulePlayer::ModulePlayer()
 {
+
+	graphics = NULL;
+	current_animation = NULL;
+
 	position.x = 100;
 	position.y = 220;
 
-	// idle animation (arcade sprite sheet)
-	idle.PushBack({7, 14, 60, 90});
-	idle.PushBack({95, 15, 60, 89});
-	idle.PushBack({184, 14, 60, 90});
-	idle.PushBack({276, 11, 60, 93});
-	idle.PushBack({366, 12, 60, 92});
-	idle.speed = 0.2f;
+	idle.PushBack({ 32, 0, 26, 35 });
 
-	// walk forward animation (arcade sprite sheet)
+	//walk left animation
 
-	//forward.frames.PushBack({9, 136, 53, 83});
-	forward.PushBack({78, 131, 60, 88});
-	forward.PushBack({162, 128, 64, 92});
-	forward.PushBack({259, 128, 63, 90});
-	forward.PushBack({352, 128, 54, 91});
-	forward.PushBack({432, 131, 50, 89});
-	forward.speed = 0.1f;
-
-	// TODO 4: Make ryu walk backwards with the correct animations
+	left.PushBack({ 32, 0, 26, 35 });
+	left.PushBack({ 118, 0, 28, 35 });
+	left.PushBack({ 0, 0, 29, 32});
+	left.PushBack({ 32, 0, 26, 35 });
+	left.PushBack({ 58, 0, 29, 35 });
+	left.PushBack({ 87, 0, 28, 35 });
+	left.loop = true;
+	left.speed = 0.2f;
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -39,32 +37,46 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("ryu.png"); // arcade version
+	graphics = App->textures->Load("Sprite_sheet_main.png"); 
 	return ret;
 }
+
+bool ModulePlayer::CleanUp()
+{
+	LOG("Unloading player");
+
+	App->textures->Unload(graphics);
+
+	return true;
+}
+
 
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	Animation* current_animation = &idle;
+	current_animation = &idle;
+	int speed = 2;
 
-	int speed = 4;
-
-	if(App->input->keyboard[SDL_SCANCODE_S] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_DOWN)
 	{
-		current_animation = &forward;
-		position.y += speed;
-		
+		position.x -= speed;
+		if (current_animation != &left)
+		{
+			down.Reset();
+			current_animation = &left;
+		}
 	}
-	else if (App->input->keyboard[SDL_SCANCODE_W] == 1){
-		current_animation = &forward;
-		position.y -= speed;
+
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_DOWN)
+	{
+		position.x += speed;
 	}
+	
 
 	// Draw everything --------------------------------------
-	SDL_Rect r = current_animation->GetCurrentFrame();
-
-	App->render->Blit(graphics, position.x, position.y - r.h, &r);
+	
+	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
 	return UPDATE_CONTINUE;
 }
+
