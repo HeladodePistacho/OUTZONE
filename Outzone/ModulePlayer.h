@@ -24,10 +24,12 @@ public:
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation up;
+	Animation up_left;
 	Animation down;
+	Animation down_left;
 	Animation left;
 	Animation right;
-	iPoint position;
+	fPoint position;
 
 };
 

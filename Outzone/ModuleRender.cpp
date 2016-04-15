@@ -8,6 +8,7 @@
 #include "SDL/include/SDL.h"
 
 
+
 ModuleRender::ModuleRender() : Module()
 {
 	camera.x = camera.y = 0;
@@ -53,7 +54,7 @@ update_status ModuleRender::PreUpdate()
 update_status ModuleRender::Update()	
 {
 	
-	int speed = 100;
+	int speed = 1;
 
 	if (App->input->keyboard[SDL_SCANCODE_UP] == 1 && camera.y < escalated_screen){
 		camera.y += speed;

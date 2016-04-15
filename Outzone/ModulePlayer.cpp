@@ -25,7 +25,19 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 58, 0, 29, 35 });
 	left.PushBack({ 87, 0, 28, 35 });
 	left.loop = true;
-	left.speed = 0.2f;
+	left.speed = 0.15f;
+
+	up_left.PushBack({ 0, 37, 28, 35 });
+	up_left.PushBack({ 32, 37, 28, 35 });
+	up_left.PushBack({ 63, 38, 28, 35 });
+	up_left.PushBack({ 32, 37, 28, 35 });
+	up_left.PushBack({ 0, 37, 28, 35 });
+	up_left.PushBack({ 95, 36, 27, 35 });
+	up_left.PushBack({ 127, 37, 25, 35 });
+	up_left.PushBack({ 95, 36, 27, 35 });
+	up_left.loop = true;
+	up_left.speed = 0.22f;
+
 	
 }
 
@@ -55,9 +67,9 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	current_animation = &idle;
-	int speed = 2;
+	float speed = 1.0f;
 
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN)
 	{
 		position.x -= speed;
 		if (current_animation != &left)
@@ -66,8 +78,18 @@ update_status ModulePlayer::Update()
 			current_animation = &left;
 		}
 	}
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN && App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN)
+	{
+		position.x -= speed / 4;
+		position.y -= speed;
+		if (current_animation != &up_left)
+		{
+			down.Reset();
+			current_animation = &up_left;
+		}
+	}
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN)
 	{
 		position.x += speed;
 	}
