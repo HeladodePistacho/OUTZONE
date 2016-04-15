@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "Module_lvl_1.h"
 #include "Module_lvl_2.h"
+#include "ModulePlayer.h"
 #include "SDL/include/SDL.h"
 
 
@@ -54,14 +55,6 @@ update_status ModuleRender::PreUpdate()
 update_status ModuleRender::Update()	
 {
 	
-	int speed = 1;
-
-	if (App->input->keyboard[SDL_SCANCODE_UP] == 1 && camera.y < escalated_screen){
-		camera.y += speed;
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1 && camera.y > 0)
-		camera.y -= speed;
 
 	return update_status::UPDATE_CONTINUE;
 }
