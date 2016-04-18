@@ -50,7 +50,7 @@ update_status Module_lvl_1::Update()
 	if (IsEnabled() == true){
 	
 		// Draw everything --------------------------------------
-		App->render->Blit(graphics, 0, -3570, &background, 0.75f); // lvl 1 background
+		App->render->Blit(graphics, 0, -3570-background.y*2.5f, &background, 0.75f); // lvl 1 background
 		
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
