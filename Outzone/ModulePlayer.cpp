@@ -1,11 +1,11 @@
-#include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "Module_lvl_1.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
-#include"ModuleRender.h"
+#include "ModuleRender.h"
+#include "ModuleCollision.h"
 ModulePlayer::ModulePlayer()
 {
 
@@ -90,7 +90,13 @@ ModulePlayer::ModulePlayer()
 	down_right.loop = true;
 	down_right.speed = 0.22f;
 
-
+	//shotgun movement
+	shotgun_walk.PushBack({0,322,29,37});
+	shotgun_walk.PushBack({33,322,30,36});
+	shotgun_walk.PushBack({65,322,30,36});
+	shotgun_walk.PushBack({98,322,30,38});
+	shotgun_walk.loop = true;
+	shotgun_walk.speed = 0.22f;
 
 }
 
@@ -101,9 +107,10 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
-	bool ret = true;
 	graphics = App->textures->Load("character_sprites.png");
-	return ret;
+	LOG("Player Collider added");
+	body = App->collision->AddCollider({ position.x, position.y, 30, 40 },COLLIDER_PLAYER,this);
+	return true;
 }
 
 bool ModulePlayer::CleanUp()
@@ -262,10 +269,12 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-
+	//Update Player Collider Position-----------------------
+	
+	//body->SetPos(position.x, position.y);
+	
 
 	// Draw everything --------------------------------------
-
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	return UPDATE_CONTINUE;

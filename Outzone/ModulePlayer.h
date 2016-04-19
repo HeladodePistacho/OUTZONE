@@ -3,10 +3,10 @@
 
 #include "Module.h"
 #include "Animation.h"
-#include "Globals.h"
 #include "p2Point.h"
 
 struct SDL_Texture;
+struct Collider;
 
 class ModulePlayer : public Module
 {
@@ -21,6 +21,7 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
+	Collider* body;
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation up;
@@ -31,9 +32,9 @@ public:
 	Animation down_left;
 	Animation left;
 	Animation down;
-	//Animation right;
+	Animation shotgun_walk;
 	fPoint position;
-
+	void OnCollision(Collider&, Collider&);
 };
 
 #endif

@@ -9,7 +9,8 @@
 #include "ModulePlayer.h"
 #include "Module_Welcome.h"
 #include "Module_Congrats.h"
-#include"ModuleChangeScene.h"
+#include "ModuleChangeScene.h"
+#include "ModuleCollision.h"
 
 Application::Application()
 {
@@ -24,6 +25,7 @@ Application::Application()
 	modules[8] = change_scene = new ModuleChangeScene();
 	modules[9] = welcome = new Module_Welcome();
 	modules[10] = congrats = new Module_Congrats();
+	modules[11] = collision = new ModuleCollision();
 }	
 
 Application::~Application()
