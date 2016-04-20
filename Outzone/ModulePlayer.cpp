@@ -127,24 +127,17 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	current_animation = &idle;
-	float speed = 2;
-
-
-
+	float speed = 2.0f;
 
 	//right down
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN){
-		if (position.x < 210 && position.y < 280)
+		
+		if (position.x < 210)
 		{
-			position.y += speed / 1.5f;
+			if (position.y <= last_position + 65){ position.y += speed;}
 			position.x += speed / 1.5f;
 		}
-		else if (position.x < 210){
-			position.x += speed;
-		}
-		else if (position.y < 280){
-			position.y += speed;
-		}
+
 		if (current_animation != &down_right)
 		{
 			idle.Reset();
@@ -154,20 +147,25 @@ update_status ModulePlayer::Update()
 
 	//right up
 	else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN){
-		if (position.y < 210) {
-			App->lvl_1->background.y -= speed / 2;
-			if (position.x < 210){
+		
+		if (position.y <= last_position)
+		{
+			if (position.x <= 210)
+			{
 				position.x += speed / 1.5f;
 			}
+			position.y -= speed;
+			App->render->camera.y += speed * 2;
+			last_position = position.y;
 		}
-		else if (position.x < 210 && position.y < 280){
-			position.y -= speed / 1.5f;
-			position.x += speed / 1.5f;
-		}
-		else if (position.y < 280){
+		else {
+			if (position.x <= 210)
+			{
+				position.x += speed / 1.5f;
+			}
 			position.y -= speed;
 		}
-		else position.y -= speed;
+
 		if (current_animation != &up_right)
 		{
 			idle.Reset();
@@ -176,18 +174,14 @@ update_status ModulePlayer::Update()
 	}
 
 	//left down
-	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN){
-		if (position.x > 0 && position.y < 280)
+	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN && App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN)
+	{
+		if (position.x > 0)
 		{
-			position.y += speed / 1.5f;
+			if (position.y <= last_position + 65){ position.y += speed; }
 			position.x -= speed / 1.5f;
 		}
-		else if (position.x > 0){
-			position.x -= speed;
-		}
-		else if (position.y < 280){
-			position.y += speed;
-		}
+
 		if (current_animation != &down_left)
 		{
 			idle.Reset();
@@ -196,21 +190,28 @@ update_status ModulePlayer::Update()
 	}
 
 	//left up
-	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN){
-		if (position.y <= 220) {
-			App->lvl_1->background.y -= speed / 2;
-			if (position.x > 0){
+	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN)
+	{
+
+		if (position.y <= last_position) 
+		{
+			if (position.x >= 0)
+			{
 				position.x -= speed / 1.5f;
 			}
+			position.y -= speed;
+			App->render->camera.y += speed * 2;
+			last_position = position.y;
 		}
-		else if (position.x > 0 && position.y < 280){
-			position.y -= speed / 1.5f;
-			position.x -= speed / 1.5f;
-		}
-		else if (position.y < 280){
+		else {
+			if (position.x >= 0)
+			{
+				position.x -= speed / 1.5f;
+			}
 			position.y -= speed;
 		}
-		else position.y -= speed;
+
+
 		if (current_animation != &up_left)
 		{
 			idle.Reset();
@@ -246,21 +247,31 @@ update_status ModulePlayer::Update()
 	//up
 	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN)
 	{
-		if (position.y <= 220) {
-			App->lvl_1->background.y -= speed / 2;
+		
+
+		if (position.y <= last_position){
+			position.y -= speed;
+			App->render->camera.y += speed * 2;
+			last_position = position.y;
 		}
-		else(position.y -= speed);
+		else position.y -= speed;
 
 		if (current_animation != &up)
 		{
 			idle.Reset();
 			current_animation = &up;
 		}
+
+
 	}
 	//down
 	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN)
 	{
-		if (position.y < 280){ position.y += speed; }
+		if (position.y <= last_position + 65)
+		{ 
+			position.y += speed;
+			
+		}
 
 		if (current_animation != &down)
 		{
