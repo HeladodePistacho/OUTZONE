@@ -9,12 +9,6 @@
 ModulePlayer::ModulePlayer()
 {
 
-	graphics = NULL;
-	current_animation = NULL;
-
-	position.x = 100;
-	position.y = 220;
-
 	idle.PushBack({ 32, 0, 26, 35 });
 
 	//WALKING ANIMATIONS
@@ -57,11 +51,11 @@ ModulePlayer::ModulePlayer()
 	down.loop = true;
 	down.speed = 0.22f;
 	//1,5,2,3,4
-	up.PushBack({ 2, 156, 29, 39 });//1
-	up.PushBack({ 120, 156, 29, 39 });//5
-	up.PushBack({ 32, 156, 29, 39 });//2
-	up.PushBack({ 62, 156, 29, 39 });//3
-	up.PushBack({ 92, 156, 29, 38 });//4
+	up.PushBack({ 2, 156, 29, 39 });
+	up.PushBack({ 120, 156, 29, 39 });
+	up.PushBack({ 32, 156, 29, 39 });
+	up.PushBack({ 62, 156, 29, 39 });
+	up.PushBack({ 92, 156, 29, 38 });
 	up.loop = true;
 	up.speed = 0.22f;
 
@@ -73,12 +67,12 @@ ModulePlayer::ModulePlayer()
 	up_right.loop = true;
 	up_right.speed = 0.22f;
 
-	right.PushBack({ 36, 236, 29, 38 });//2
-	right.PushBack({ 6, 237, 27, 38 });//1
-	right.PushBack({ 129, 238, 27, 37 });//5
-	right.PushBack({ 68, 238, 29, 35 });//3
-	right.PushBack({ 6, 237, 27, 38 });//1
-	right.PushBack({ 98, 237, 29, 36 });//4
+	right.PushBack({ 36, 236, 29, 38 });
+	right.PushBack({ 6, 237, 27, 38 });
+	right.PushBack({ 129, 238, 27, 37 });
+	right.PushBack({ 68, 238, 29, 35 });
+	right.PushBack({ 6, 237, 27, 38 });
+	right.PushBack({ 98, 237, 29, 36 });
 	right.loop = true;
 	right.speed = 0.22f;
 
@@ -97,33 +91,39 @@ ModulePlayer::ModulePlayer()
 	shotgun_walk.PushBack({98,322,30,38});
 	shotgun_walk.loop = true;
 	shotgun_walk.speed = 0.22f;
-
 }
 
 ModulePlayer::~ModulePlayer()
 {}
 
-// Load assets
+
 bool ModulePlayer::Start()
 {
-	LOG("Loading player textures");
+	LOG("Loading player ");
+	//Reset position
+	position.x = 100;
+	position.y = 220;
+	//Add collider
+	body = App->collision->AddCollider({ position.x, position.y, 30, 40 }, COLLIDER_PLAYER, this);
+	//Load character sprites
 	graphics = App->textures->Load("character_sprites.png");
-	LOG("Player Collider added");
-	body = App->collision->AddCollider({ position.x, position.y, 30, 40 },COLLIDER_PLAYER,this);
+	
+
 	return true;
 }
 
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
-
+	//Delete the collider
+	App->collision->EraseCollider(body);
+	//Delete character sprites
 	App->textures->Unload(graphics);
 
 	return true;
 }
 
 
-// Update: draw background
 update_status ModulePlayer::Update()
 {
 	current_animation = &idle;
@@ -258,6 +258,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 	//down
+	
 	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN)
 	{
 		if (position.y < 280){ position.y += speed; }
@@ -270,9 +271,9 @@ update_status ModulePlayer::Update()
 	}
 
 	//Update Player Collider Position-----------------------
-	
-	//body->SetPos(position.x, position.y);
-	
+	if (IsEnabled()){
+		body->SetPos(position.x, position.y);
+	}
 
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));

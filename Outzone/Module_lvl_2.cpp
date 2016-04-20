@@ -7,6 +7,7 @@
 #include "ModuleChangeScene.h"
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
+#include "ModuleCollision.h"
 
 Module_lvl_2::Module_lvl_2()
 {
@@ -28,10 +29,11 @@ bool Module_lvl_2::Start()
 	LOG("Loading background assets");
 	graphics = App->textures->Load("level2.png");
 	audio_lvl_2 = App->audio->Load("2nd_Level_Theme.ogg");
-
 	Mix_FadeInMusic(audio_lvl_2, 1, 500);
 	Mix_PlayMusic(audio_lvl_2, -1);
-	
+	//Enable Collisions
+	App->collision->Enable();
+	App->player->Enable();
 	return true;
 }
 
@@ -51,6 +53,9 @@ update_status Module_lvl_2::Update()
 bool Module_lvl_2::CleanUp()
 {
 	LOG("Unloading lvl 2 stage");
+	//Disable Collisions
+	App->collision->Disable();
+	App->player->Disable();
 	App->render->escalated_screen = 0;
 	Mix_FadeOutMusic(500);
 	return true;
