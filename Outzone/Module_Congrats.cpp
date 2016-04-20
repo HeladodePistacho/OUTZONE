@@ -43,6 +43,6 @@ update_status Module_Congrats::Update()
 
 bool Module_Congrats::CleanUp()
 {
-	LOG("Unloading lvl 1 stage");
+	LOG("Unloading Congrats");
 	return true;
 }
