@@ -11,6 +11,7 @@
 #include "Module_Congrats.h"
 #include "ModuleChangeScene.h"
 #include "ModuleCollision.h"
+#include "ModuleParticles.h"
 
 Application::Application()
 {
@@ -26,6 +27,7 @@ Application::Application()
 	modules[9] = welcome = new Module_Welcome();
 	modules[10] = congrats = new Module_Congrats();
 	modules[11] = collision = new ModuleCollision();
+	modules[12] = particles = new ModuleParticles();
 }	
 
 Application::~Application()

@@ -77,6 +77,7 @@
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleChangeScene.h" />
     <ClInclude Include="ModuleCollision.h" />
+    <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="Module_Congrats.h" />
     <ClInclude Include="Module_lvl_1.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -95,6 +96,7 @@
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleChangeScene.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
+    <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="Module_Congrats.cpp" />
     <ClCompile Include="Module_lvl_1.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
