@@ -29,13 +29,13 @@ bool Module_lvl_2::Start()
 	LOG("Loading background assets");
 	graphics = App->textures->Load("level2.png");
 	audio_lvl_2 = App->audio->Load("2nd_Level_Theme.ogg");
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 	App->render->camera.y = 0;
 	App->player->position = { 110, 220 };
 
-=======
->>>>>>> origin/master
+//=======
+//>>>>>>> origin/master
 	Mix_FadeInMusic(audio_lvl_2, 1, 500);
 	Mix_PlayMusic(audio_lvl_2, -1);
 	//Enable Collisions

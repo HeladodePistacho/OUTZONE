@@ -131,10 +131,10 @@ update_status ModulePlayer::Update()
 
 	//right down
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN){
-		
+
 		if (position.x < 210)
 		{
-			if (position.y <= last_position + 65){ position.y += speed;}
+			if (position.y <= last_position + 65){ position.y += speed; }
 			position.x += speed / 1.5f;
 		}
 
@@ -147,7 +147,7 @@ update_status ModulePlayer::Update()
 
 	//right up
 	else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN){
-		
+
 		if (position.y <= last_position)
 		{
 			if (position.x <= 210)
@@ -193,7 +193,7 @@ update_status ModulePlayer::Update()
 	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN)
 	{
 
-		if (position.y <= last_position) 
+		if (position.y <= last_position)
 		{
 			if (position.x >= 0)
 			{
@@ -247,7 +247,7 @@ update_status ModulePlayer::Update()
 	//up
 	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN)
 	{
-		
+
 
 		if (position.y <= last_position){
 			position.y -= speed;
@@ -265,13 +265,12 @@ update_status ModulePlayer::Update()
 
 	}
 	//down
-	
 	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN)
 	{
 		if (position.y <= last_position + 65)
-		{ 
+		{
 			position.y += speed;
-			
+
 		}
 
 		if (current_animation != &down)
