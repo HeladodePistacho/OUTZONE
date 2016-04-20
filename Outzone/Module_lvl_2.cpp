@@ -29,6 +29,9 @@ bool Module_lvl_2::Start()
 	graphics = App->textures->Load("level2.png");
 	audio_lvl_2 = App->audio->Load("2nd_Level_Theme.ogg");
 
+	App->render->camera.y = 0;
+	App->player->position = { 110, 220 };
+
 	Mix_FadeInMusic(audio_lvl_2, 1, 500);
 	Mix_PlayMusic(audio_lvl_2, -1);
 	

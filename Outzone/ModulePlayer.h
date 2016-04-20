@@ -34,7 +34,10 @@ public:
 	Animation down;
 	Animation shotgun_walk;
 	fPoint position;
+
 	void OnCollision(Collider&, Collider&);
+
+	int last_position = 220;
 };
 
 #endif

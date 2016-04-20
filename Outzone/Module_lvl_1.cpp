@@ -67,6 +67,7 @@ bool Module_lvl_1::CleanUp()
 {
 	LOG("Unloading lvl 1 stage");
 	Mix_FadeOutMusic(500);
+
 	
 	App->render->escalated_screen = SCREEN_SIZE * App->lvl_2->map_size * 1.25f;
 	return true;
