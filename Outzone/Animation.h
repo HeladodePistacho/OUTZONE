@@ -42,6 +42,11 @@ public:
 		current_frame = 0;
 	}
 
+	void Set_frame(unsigned int position)
+	{
+		current_frame = position;
+	}
+
 };
 
 #endif

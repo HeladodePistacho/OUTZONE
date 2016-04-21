@@ -10,7 +10,9 @@
 ModulePlayer::ModulePlayer()
 {
 
-	idle.PushBack({ 32, 0, 26, 35 });
+	idle.PushBack({ 32, 0, 26, 35 });	//left
+	
+	
 
 	//WALKING ANIMATIONS
 
@@ -60,11 +62,12 @@ ModulePlayer::ModulePlayer()
 	up.loop = true;
 	up.speed = 0.22f;
 
-	up_right.PushBack({ 6, 196, 28, 38 });
-	up_right.PushBack({ 36, 196, 28, 39 });
-	up_right.PushBack({ 66, 196, 30, 40 });
-	up_right.PushBack({ 92, 196, 30, 40 });
-	up_right.PushBack({ 128, 196, 30, 40 });
+	up_right.PushBack({ 67, 199, 23, 35 });
+	up_right.PushBack({ 35, 197, 25, 37 });
+	up_right.PushBack({ 6, 198, 24, 36 });
+	up_right.PushBack({ 93, 198, 27, 36 });
+	up_right.PushBack({ 35, 197, 25, 37 });
+	up_right.PushBack({ 129, 197, 22, 37 });
 	up_right.loop = true;
 	up_right.speed = 0.22f;
 
@@ -129,22 +132,34 @@ update_status ModulePlayer::Update()
 {
 	current_animation = &idle;
 	float speed = 2.0f;
+	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
+	{
+		shotgun = true;
+	}
 
 	//right down
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN){
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN)
+	{
 
-		if (position.y <= last_position + 65)
-		{
-			if (position.x <= 210){ position.x += speed / 1.5f; }
-			position.y += speed;
-		}
-		else if (position.x <= 210) {position.x += speed / 1.5f;}
+			if (position.y <= last_position + 65)
+			{
+				if (position.x <= 210){ position.x += speed / 1.5f; }
+				position.y += speed;
+			}
+			else if (position.x <= 210) { position.x += speed / 1.5f; }
 
-		if (current_animation != &down_right)
-		{
-			idle.Reset();
-			current_animation = &down_right;
-		}
+			if (shotgun == false){
+				if (current_animation != &down_right)
+				{
+					idle.Reset();
+					current_animation = &down_right;
+				}
+			}
+			else if(current_animation != &shotgun_walk)
+			{
+				idle.Set_frame(1);
+				current_animation = &shotgun_walk;
+			}
 	}
 
 	//right up
@@ -167,11 +182,17 @@ update_status ModulePlayer::Update()
 			}
 			position.y -= speed;
 		}
-
-		if (current_animation != &up_right)
+		if (shotgun == false){
+			if (current_animation != &up_right)
+			{
+				idle.Reset();
+				current_animation = &up_right;
+			}
+		}
+		else if (current_animation != &shotgun_walk)
 		{
-			idle.Reset();
-			current_animation = &up_right;
+			idle.Set_frame(1);
+			current_animation = &shotgun_walk;
 		}
 	}
 
@@ -186,10 +207,17 @@ update_status ModulePlayer::Update()
 		}
 		else if (position.x >= 0) { position.x -= speed / 1.5f; }
 
-		if (current_animation != &down_left)
+		if (shotgun == false){
+			if (current_animation != &down_left)
+			{
+				idle.Reset();
+				current_animation = &down_left;
+			}
+		}
+		else if (current_animation != &shotgun_walk)
 		{
-			idle.Reset();
-			current_animation = &down_left;
+			idle.Set_frame(1);
+			current_animation = &shotgun_walk;
 		}
 	}
 
@@ -215,11 +243,18 @@ update_status ModulePlayer::Update()
 			position.y -= speed;
 		}
 
-
-		if (current_animation != &up_left)
+		if (shotgun == false)
 		{
-			idle.Reset();
-			current_animation = &up_left;
+			if (current_animation != &up_left)
+			{
+				idle.Reset();
+				current_animation = &up_left;
+			}
+		}
+		else if (current_animation != &shotgun_walk)
+		{
+			idle.Set_frame(1);
+			current_animation = &shotgun_walk;
 		}
 	}
 
@@ -228,10 +263,18 @@ update_status ModulePlayer::Update()
 		if (position.x < 210){
 			position.x += speed;
 		}
-		if (current_animation != &right)
+
+		if (shotgun == false){
+			if (current_animation != &right)
+			{
+				idle.Reset();
+				current_animation = &right;
+			}
+		}
+		else if (current_animation != &shotgun_walk)
 		{
-			idle.Reset();
-			current_animation = &right;
+			idle.Set_frame(1);
+			current_animation = &shotgun_walk;
 		}
 	}
 
@@ -241,10 +284,17 @@ update_status ModulePlayer::Update()
 			position.x -= speed;
 		}
 
-		if (current_animation != &left)
+		if (shotgun == false){
+			if (current_animation != &left)
+			{
+				idle.Reset();
+				current_animation = &left;
+			}
+		}
+		else if (current_animation != &shotgun_walk)
 		{
-			idle.Reset();
-			current_animation = &left;
+			idle.Set_frame(1);
+			current_animation = &shotgun_walk;
 		}
 	}
 
@@ -260,10 +310,17 @@ update_status ModulePlayer::Update()
 		}
 		else position.y -= speed;
 
-		if (current_animation != &up)
+		if (shotgun == false){
+			if (current_animation != &up)
+			{
+				idle.Reset();
+				current_animation = &up;
+			}
+		}
+		else if (current_animation != &shotgun_walk)
 		{
-			idle.Reset();
-			current_animation = &up;
+			idle.Set_frame(1);
+			current_animation = &shotgun_walk;
 		}
 
 
@@ -277,10 +334,18 @@ update_status ModulePlayer::Update()
 
 		}
 
-		if (current_animation != &down)
+
+		if (shotgun == false){
+			if (current_animation != &down)
+			{
+				idle.Reset();
+				current_animation = &down;
+			}
+		}
+		else if (current_animation != &shotgun_walk)
 		{
-			idle.Reset();
-			current_animation = &down;
+			idle.Set_frame(1);
+			current_animation = &shotgun_walk;
 		}
 	}
 

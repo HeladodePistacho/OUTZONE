@@ -35,6 +35,7 @@ public:
 	Animation down;
 	Animation shotgun_walk;
 	fPoint position;
+	bool shotgun = false;
 	bool destroyed = false;
 
 	int last_position = 220;
