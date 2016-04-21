@@ -17,7 +17,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-
+	void OnCollision(Collider* c1, Collider* c2);
 
 public:
 
@@ -35,8 +35,7 @@ public:
 	Animation down;
 	Animation shotgun_walk;
 	fPoint position;
-
-	void OnCollision(Collider&, Collider&);
+	bool destroyed = false;
 
 	int last_position = 220;
 };

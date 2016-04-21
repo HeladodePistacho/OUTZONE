@@ -6,6 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
+#include "ModuleChangeScene.h"
 ModulePlayer::ModulePlayer()
 {
 
@@ -292,5 +293,16 @@ update_status ModulePlayer::Update()
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	return UPDATE_CONTINUE;
+}
+
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
+{
+	if (c1 == body && destroyed == false && App->change_scene->IsFading() == false)
+	{
+		App->change_scene->ChangeScene((Module*)App->lvl_1, (Module*)App->welcome);
+
+		//Add particles
+		destroyed = true;
+	}
 }
 
