@@ -57,10 +57,17 @@ update_status Module_lvl_2::Update()
 bool Module_lvl_2::CleanUp()
 {
 	LOG("Unloading lvl 2 stage");
+	
+	//Disable Music
+	Mix_FadeOutMusic(500);
+	
 	//Disable Collisions
 	App->collision->Disable();
 	App->player->Disable();
+	
+	//Disable Textures
+	App->textures->Disable();
 	App->render->escalated_screen = 0;
-	Mix_FadeOutMusic(500);
+
 	return true;
 }

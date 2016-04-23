@@ -81,11 +81,14 @@ update_status Module_lvl_1::Update()
 bool Module_lvl_1::CleanUp()
 {
 	LOG("Unloading lvl 1 stage");
+	//DisableMusic
 	Mix_FadeOutMusic(500);
 
 	//Disable Collisions
 	App->collision->Disable();
 	App->player->Disable();
+
+	//Disable Textures
 	App->textures->Disable();
 	App->render->escalated_screen = SCREEN_SIZE * App->lvl_2->map_size * 1.25f;
 	return true;

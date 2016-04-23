@@ -22,6 +22,7 @@ bool Module_Congrats::Start()
 {
 	LOG("Loading background assets");
 	graphics = App->textures->Load("Congrats_Screen.png");
+	App->render->camera.y = 0;
 
 	return true;
 }
@@ -44,5 +45,6 @@ update_status Module_Congrats::Update()
 bool Module_Congrats::CleanUp()
 {
 	LOG("Unloading Congrats");
+	App->textures->Disable();
 	return true;
 }
