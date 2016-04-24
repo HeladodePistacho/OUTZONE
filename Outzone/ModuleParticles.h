@@ -54,7 +54,16 @@ public:
 	
 
 	//Laser
+	//Laser fires
 	Particle laser_north_fire;
+	Particle laser_east_fire;
+	Particle laser_south_fire;
+	Particle laser_west_fire;
+	//Laser bullets
+	Particle laser_north_bullet;
+	Particle laser_east_bullet;
+	Particle laser_south_bullet;
+	Particle laser_west_bullet;
 };
 
 #endif // __MODULEPARTICLES_H__

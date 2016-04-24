@@ -23,11 +23,13 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	graphics = App->textures->Load("Particles_sprites.png");
 
-	//SHOOTGUN
-	//Shootgun Fire
+	//SHOTGUN
+	
+	//Shotgun Fire
 	shotgun_fire.anim.PushBack({2,68,38,18});
 	shotgun_fire.life = 50;
-	//Shootgun lvl 1
+	
+	//Shotgun lvl 1
 	//left
 	shotgun_left.anim.PushBack({20,51,10,15});
 	shotgun_left.speed.y -= 5;
@@ -41,9 +43,34 @@ bool ModuleParticles::Start()
 	shotgun_right.speed.x += 2;
 
 	//LASER
-	//north laser
+	
+	//Laser fires
+	//north fire
 	laser_north_fire.anim.PushBack({ 112, 26, 16, 18 });
 	laser_north_fire.life = 50;
+	//east fire
+	laser_east_fire.anim.PushBack({157,37,18,16});
+	laser_east_fire.life = 50;
+	//south fire
+	laser_south_fire.anim.PushBack({ 112, 45, 16, 18 });
+	laser_south_fire.life = 50;
+	//west fire
+	laser_west_fire.anim.PushBack({72,35,18,17});
+	laser_west_fire.life = 50;
+	
+	//Laser bullets
+	//north bullet
+	laser_north_bullet.anim.PushBack({117,6,6,18});
+	laser_north_bullet.speed.y -= 5;
+	//east bullet
+	laser_east_bullet.anim.PushBack({177,40,18,6});
+	laser_east_bullet.speed.x += 5;
+	//south bullet
+	laser_south_bullet.anim.PushBack({ 117, 6, 6, 18 });
+	laser_south_bullet.speed.y += 5;
+	//west bullet
+	laser_west_bullet.anim.PushBack({ 177, 40, 18, 6 });
+	laser_west_bullet.speed.x -= 5;
 
 
 

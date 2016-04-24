@@ -135,7 +135,7 @@ update_status ModulePlayer::Update()
 	float speed = 2.0f;
 	//AFK
 	if (shotgun)current_animation = &shotgun_AFK;
-	else current_animation = &idle;
+	else current_animation = &idle; 
 	
 	
 	//Movement
@@ -273,6 +273,11 @@ update_status ModulePlayer::Update()
 				idle.Reset();
 				current_animation = &right;
 			}
+			//laser shot
+			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
+				App->particles->AddParticle(App->particles->laser_east_fire, position.x + 28, position.y+5, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->laser_east_bullet, position.x + 28, position.y + 8, COLLIDER_PLAYER_SHOT);
+			}
 		}
 		else if (current_animation != &shotgun_walk)
 		{
@@ -292,6 +297,11 @@ update_status ModulePlayer::Update()
 			{
 				idle.Reset();
 				current_animation = &left;
+			}
+			//laser shot
+			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
+				App->particles->AddParticle(App->particles->laser_west_fire, position.x-18, position.y, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->laser_west_bullet, position.x - 18, position.y+5, COLLIDER_PLAYER_SHOT);
 			}
 		}
 		else if (current_animation != &shotgun_walk)
@@ -319,9 +329,10 @@ update_status ModulePlayer::Update()
 				idle.Reset();
 				current_animation = &up;
 			}
-			//laser shoot
+			//laser shot
 			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
-				App->particles->AddParticle(App->particles->laser_north_fire, position.x+13, position.y - 18, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT);
 			}
 		}
 		else if (current_animation != &shotgun_walk)
@@ -350,6 +361,11 @@ update_status ModulePlayer::Update()
 				idle.Reset();
 				current_animation = &down;
 			}
+			//laser shot
+			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
+				App->particles->AddParticle(App->particles->laser_south_fire, position.x, position.y + 24, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->laser_south_bullet, position.x+5, position.y + 24, COLLIDER_PLAYER_SHOT);
+			}
 		}
 		else if (current_animation != &shotgun_walk)
 		{
@@ -359,7 +375,8 @@ update_status ModulePlayer::Update()
 	}
 
 	//Weapons
-
+	//AFK laser shot
+	if (current_animation == &idle&&App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN)App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE);
 	//change weapon
 	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
 	{
@@ -367,7 +384,7 @@ update_status ModulePlayer::Update()
 		else shotgun = true;
 	}
 	
-	//shootgun shoot
+	//shotgun lvl 1 shoot
 	if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN&&shotgun){
 
 		App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE);
