@@ -47,6 +47,8 @@ bool Application::Init()
 	lvl_1->Disable();
 	lvl_2->Disable();
 	congrats->Disable();
+	collision->Disable();
+
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 

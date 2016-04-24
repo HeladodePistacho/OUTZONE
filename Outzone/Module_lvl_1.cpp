@@ -43,23 +43,34 @@ bool Module_lvl_1::Start()
 		App->collision->Enable();
 
 		//Colliders
-		App->collision->AddCollider({ 0, 3410, 95, 195 }, COLLIDER_WALL);//blue ship
-		App->collision->AddCollider({ 178, 3429, 62, 116 }, COLLIDER_WALL);//blue ship
-		App->collision->AddCollider({ 130, 2882, 29, 27 }, COLLIDER_WALL);//column
-		App->collision->AddCollider({ 194, 2882, 30, 21 }, COLLIDER_WALL);//column
-		App->collision->AddCollider({ 0, 2689, 31, 28 }, COLLIDER_WALL);//column
-		App->collision->AddCollider({ 160, 2536, 32, 20 }, COLLIDER_WALL);//column
-		App->collision->AddCollider({ 0, 2215, 123, 144 }, COLLIDER_WALL);//turret wall
-		App->collision->AddCollider({ 0, 2354, 28, 36 }, COLLIDER_WALL);//turret wall
-		App->collision->AddCollider({ 199, 2216, 41, 141 }, COLLIDER_WALL);//turret wall
-		App->collision->AddCollider({ 0, 1932, 56, 137 }, COLLIDER_WALL);//turret wall 2(pipiru)
-		App->collision->AddCollider({ 137, 1930, 103, 138 }, COLLIDER_WALL);//turret wall 2
-		App->collision->AddCollider({ 65, 1857, 30, 27 }, COLLIDER_WALL);//column
-		App->collision->AddCollider({ 193, 1826, 30, 27 }, COLLIDER_WALL);//column
-		App->collision->AddCollider({ 0, 1790, 31, 29 }, COLLIDER_WALL);//column
-		App->collision->AddCollider({ 96, 1699, 32, 36 }, COLLIDER_WALL);//column
-		App->collision->AddCollider({ 0, 465, 91, 55 }, COLLIDER_WALL);//boss wall
-		App->collision->AddCollider({ 165, 465, 75, 64 }, COLLIDER_WALL);//boss wall
+		App->collision->AddCollider({ 48, -152, 47, 210}, COLLIDER_WALL);//blue ship left
+		App->collision->AddCollider({ 0, -162, 48, 230 }, COLLIDER_WALL);//blue ship left
+		App->collision->AddCollider({ 181, -132, 59, 86 }, COLLIDER_WALL);//blue ship right
+		App->collision->AddCollider({ 178, -55, 62, 34 }, COLLIDER_WALL);//blue ship right
+		App->collision->AddCollider({ 230, -12, 10, 20 }, COLLIDER_WALL);//blue ship right
+		App->collision->AddCollider({ 200, -21, 42, 12 }, COLLIDER_WALL);//blue ship right
+
+		App->collision->AddCollider({ 160, -1074, 32, 62 }, COLLIDER_WALL);//column
+		App->collision->AddCollider({ 0, -914, 32, 62 }, COLLIDER_WALL);//column
+		App->collision->AddCollider({ 191, -786, 32, 62 }, COLLIDER_WALL);//column
+		App->collision->AddCollider({ 128, -722, 32, 62 }, COLLIDER_WALL);//column
+		App->collision->AddCollider({ 63, -1747, 32, 62 }, COLLIDER_WALL);//column
+		App->collision->AddCollider({ 193, -1779, 32, 62 }, COLLIDER_WALL);//column
+		App->collision->AddCollider({ 0, -1811, 32, 62 }, COLLIDER_WALL);//column
+		App->collision->AddCollider({ 96, -1908, 32, 62 }, COLLIDER_WALL);//column
+
+		App->collision->AddCollider({ 0, -1350, 30, 178 }, COLLIDER_WALL);//turret wall
+		App->collision->AddCollider({ 30, -1350, 77, 142 }, COLLIDER_WALL);//turret wall
+		App->collision->AddCollider({ 107, -1338, 16, 130 }, COLLIDER_WALL);
+		App->collision->AddCollider({ 200, -1354, 40, 142 }, COLLIDER_WALL);//turret wall
+		App->collision->AddCollider({ 0, -1640, 39, 140 }, COLLIDER_WALL);//turret wall 2(pipiru)
+		App->collision->AddCollider({ 39, -1626, 18, 130 }, COLLIDER_WALL);
+		App->collision->AddCollider({ 134, -1642, 103, 144 }, COLLIDER_WALL);//turret wall 2
+
+		App->collision->AddCollider({ 0, -3128, 29, 81 }, COLLIDER_WALL);//boss wall
+		App->collision->AddCollider({ 29, -3116, 46, 61 }, COLLIDER_WALL);//boss wall
+		App->collision->AddCollider({ 184, -3116, 46, 61 }, COLLIDER_WALL);//boss wall
+		App->collision->AddCollider({ 230, -3128, 14, 78 }, COLLIDER_WALL);//boss wall
 
 
 	return true;
@@ -72,7 +83,9 @@ update_status Module_lvl_1::Update()
 	if (IsEnabled() == true){
 	
 		// Draw everything --------------------------------------
-		App->render->Blit(graphics, 0, -3570-background.y*2.5f, &background, 0.75f); // lvl 1 background
+		App->render->Blit(graphics, 0, -3570, &background); // lvl 1 background
+		
+
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
 			App->change_scene->ChangeScene(App->lvl_2, App->lvl_1, 1.0f);
 		}
