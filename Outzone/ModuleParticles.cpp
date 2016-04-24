@@ -21,42 +21,31 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("rtype/particles.png");
+	graphics = App->textures->Load("Particles_sprites.png");
 
-	// Explosion particle
-	explosion.anim.PushBack({274, 296, 33, 30});
-	explosion.anim.PushBack({313, 296, 33, 30});
-	explosion.anim.PushBack({346, 296, 33, 30});
-	explosion.anim.PushBack({382, 296, 33, 30});
-	explosion.anim.PushBack({419, 296, 33, 30});
-	explosion.anim.PushBack({457, 296, 33, 30});
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
+	//SHOOTGUN
+	//Shootgun Fire
+	shotgun_fire.anim.PushBack({2,68,38,18});
+	shotgun_fire.life = 50;
+	//Shootgun lvl 1
+	//left
+	shotgun_left.anim.PushBack({20,51,10,15});
+	shotgun_left.speed.y -= 5;
+	shotgun_left.speed.x -= 2;
+	//mid
+	shotgun_mid.anim.PushBack({5,51,10,16});
+	shotgun_mid.speed.y -= 5;
+	//right
+	shotgun_right.anim.PushBack({35,51,9,15});
+	shotgun_right.speed.y -= 5;
+	shotgun_right.speed.x += 2;
 
-	// TODO 2: Create the template for a new particle "laser"
+	//LASER
+	//north laser
+	laser_north_fire.anim.PushBack({ 112, 26, 16, 18 });
+	laser_north_fire.life = 50;
 
-	laser.anim.PushBack({ 200, 121, 32, 12 });
-	laser.anim.PushBack({ 232, 120, 32, 12 });
-	laser.anim.loop = true;
-	laser.anim.speed = 0.3f;
-	laser.speed.x += 3;
-	laser.life = 2000;
 
-	laser_diagonal.anim.PushBack({ 200, 121, 32, 12 });
-	laser_diagonal.anim.PushBack({ 232, 120, 32, 12 });
-	laser_diagonal.anim.loop = true;
-	laser_diagonal.anim.speed = 0.3f;
-	laser_diagonal.speed.x += 2;
-	laser_diagonal.speed.y += 2;
-	laser_diagonal.life = 2000;
-
-	laser_diagonal2.anim.PushBack({ 200, 121, 32, 12 });
-	laser_diagonal2.anim.PushBack({ 232, 120, 32, 12 });
-	laser_diagonal2.anim.loop = true;
-	laser_diagonal2.anim.speed = 0.3f;
-	laser_diagonal2.speed.x += 2;
-	laser_diagonal2.speed.y -= 2;
-	laser_diagonal2.life = 2000;
 
 	return true;
 }
@@ -118,8 +107,6 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 	active[last_particle++] = p;
 }
 
-// -------------------------------------------------------------
-// -------------------------------------------------------------
 
 Particle::Particle()
 {

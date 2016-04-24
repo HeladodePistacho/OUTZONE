@@ -23,8 +23,15 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	Collider* body;
+	
+	
+	//ANIMATIONS
+	//Current animation
 	Animation* current_animation = nullptr;
+	//AFK
 	Animation idle;
+	Animation shotgun_AFK;
+	//Movement
 	Animation up;
 	Animation up_right;
 	Animation right;
@@ -34,6 +41,7 @@ public:
 	Animation left;
 	Animation down;
 	Animation shotgun_walk;
+
 	fPoint position;
 	bool shotgun = false;
 	bool destroyed = false;

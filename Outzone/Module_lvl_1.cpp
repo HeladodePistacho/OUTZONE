@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleCollision.h"
+#include "ModuleParticles.h"
 
 Module_lvl_1::Module_lvl_1()
 {
@@ -31,6 +32,8 @@ bool Module_lvl_1::Start()
 	LOG("Loading lvl 1 stage");
 		//Load Background
 		graphics = App->textures->Load("level1.png");
+		//Enable Particles
+		App->particles->Enable();
 		//Init Audio
 		audio_lvl_1 = App->audio->Load("1st_Level_Theme.ogg");
 		Mix_FadeInMusicPos(audio_lvl_1, 1, 2000, 1);

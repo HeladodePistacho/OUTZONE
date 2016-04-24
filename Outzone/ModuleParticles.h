@@ -45,10 +45,16 @@ private:
 
 public:
 
-	Particle explosion;
-	Particle laser;
-	Particle laser_diagonal;
-	Particle laser_diagonal2;
+	//Shotgun
+	Particle shotgun_fire;
+	//Shotgun lvl 1
+	Particle shotgun_left;
+	Particle shotgun_mid;
+	Particle shotgun_right;
+	
+
+	//Laser
+	Particle laser_north_fire;
 };
 
 #endif // __MODULEPARTICLES_H__

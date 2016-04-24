@@ -7,11 +7,13 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleChangeScene.h"
+#include "ModuleParticles.h"
 ModulePlayer::ModulePlayer()
 {
 
-	idle.PushBack({ 32, 0, 26, 35 });	//left
-	
+	//AFK
+	idle.PushBack({ 2, 156, 29, 39 });	//stoped
+	shotgun_AFK.PushBack({ 0, 322, 29, 37 });
 	
 
 	//WALKING ANIMATIONS
@@ -130,15 +132,16 @@ bool ModulePlayer::CleanUp()
 
 update_status ModulePlayer::Update()
 {
-	current_animation = &idle;
 	float speed = 2.0f;
-	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
-	{
-		shotgun = true;
-	}
+	//AFK
+	if (shotgun)current_animation = &shotgun_AFK;
+	else current_animation = &idle;
+	
+	
+	//Movement
 
 	//right down
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT&&App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
 	{
 
 			if (position.y <= last_position + 65)
@@ -163,7 +166,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//right up
-	else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN){
+	else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT&&App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT){
 
 		if (position.y <= last_position)
 		{
@@ -197,7 +200,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//left down
-	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN && App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN)
+	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 	{
 		
 		if (position.y <= last_position + 65)
@@ -222,7 +225,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//left up
-	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN&&App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN)
+	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT&&App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 	{
 
 		if (position.y <= last_position)
@@ -259,7 +262,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//right
-	else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN){
+	else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT){
 		if (position.x < 210){
 			position.x += speed;
 		}
@@ -279,7 +282,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//left
-	else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN){
+	else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT){
 		if (position.x > 0){
 			position.x -= speed;
 		}
@@ -299,7 +302,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//up
-	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN)
+	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
 	{
 
 
@@ -316,17 +319,23 @@ update_status ModulePlayer::Update()
 				idle.Reset();
 				current_animation = &up;
 			}
+			//laser shoot
+			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
+				App->particles->AddParticle(App->particles->laser_north_fire, position.x+13, position.y - 18, COLLIDER_NONE);
+			}
 		}
 		else if (current_animation != &shotgun_walk)
 		{
 			idle.Set_frame(1);
 			current_animation = &shotgun_walk;
 		}
+		
 
 
 	}
+	
 	//down
-	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN)
+	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
 	{
 		if (position.y <= last_position + 65)
 		{
@@ -347,6 +356,24 @@ update_status ModulePlayer::Update()
 			idle.Set_frame(1);
 			current_animation = &shotgun_walk;
 		}
+	}
+
+	//Weapons
+
+	//change weapon
+	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
+	{
+		if(shotgun)shotgun = false;
+		else shotgun = true;
+	}
+	
+	//shootgun shoot
+	if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN&&shotgun){
+
+		App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE);
+		App->particles->AddParticle(App->particles->shotgun_left, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shotgun_mid, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shotgun_right, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT);
 	}
 
 	//Update Player Collider Position-----------------------
