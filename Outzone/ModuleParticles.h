@@ -5,13 +5,18 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "ModuleCollision.h"
+
 
 #define MAX_ACTIVE_PARTICLES 100
 
 struct SDL_Texture;
+struct Collider;
+enum COLLIDER_TYPE;
 
 struct Particle
 {
+	Collider* collider = nullptr;
 	Animation anim;
 	uint fx = 0;
 	iPoint position;
@@ -22,6 +27,7 @@ struct Particle
 
 	Particle();
 	Particle(const Particle& p);
+	~Particle();
 	bool Update();
 };
 
@@ -35,7 +41,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	void AddParticle(const Particle& particle, int x, int y, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay = 0);
 
 private:
 
@@ -56,13 +62,21 @@ public:
 	//Laser
 	//Laser fires
 	Particle laser_north_fire;
+	Particle laser_north_east_fire;
+	Particle laser_north_west_fire;
 	Particle laser_east_fire;
 	Particle laser_south_fire;
+	Particle laser_south_east_fire;
+	Particle laser_south_west_fire;
 	Particle laser_west_fire;
 	//Laser bullets
 	Particle laser_north_bullet;
+	Particle laser_north_east_bullet;
+	Particle laser_north_west_bullet;
 	Particle laser_east_bullet;
 	Particle laser_south_bullet;
+	Particle laser_south_east_bullet;
+	Particle laser_south_west_bullet;
 	Particle laser_west_bullet;
 };
 

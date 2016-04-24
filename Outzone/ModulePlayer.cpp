@@ -157,6 +157,11 @@ update_status ModulePlayer::Update()
 					idle.Reset();
 					current_animation = &down_right;
 				}
+				//laser shot
+				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
+					App->particles->AddParticle(App->particles->laser_south_east_fire, position.x+14, position.y+18, COLLIDER_NONE);
+					App->particles->AddParticle(App->particles->laser_south_east_bullet, position.x+14, position.y+18, COLLIDER_PLAYER_SHOT);
+				}
 			}
 			else if(current_animation != &shotgun_walk)
 			{
@@ -191,6 +196,11 @@ update_status ModulePlayer::Update()
 				idle.Reset();
 				current_animation = &up_right;
 			}
+			//laser shot
+			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
+				App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT);
+			}
 		}
 		else if (current_animation != &shotgun_walk)
 		{
@@ -215,6 +225,11 @@ update_status ModulePlayer::Update()
 			{
 				idle.Reset();
 				current_animation = &down_left;
+			}
+			//laser shot
+			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
+				App->particles->AddParticle(App->particles->laser_south_west_fire, position.x-15, position.y + 13, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x-13, position.y + 13, COLLIDER_PLAYER_SHOT);
 			}
 		}
 		else if (current_animation != &shotgun_walk)
@@ -246,12 +261,18 @@ update_status ModulePlayer::Update()
 			position.y -= speed;
 		}
 
+
 		if (shotgun == false)
 		{
 			if (current_animation != &up_left)
 			{
 				idle.Reset();
 				current_animation = &up_left;
+			}
+			//laser shot
+			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
+				App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT);
 			}
 		}
 		else if (current_animation != &shotgun_walk)
@@ -409,8 +430,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == body && destroyed == false && App->change_scene->IsFading() == false)
 	{
 		App->change_scene->ChangeScene((Module*)App->lvl_1, (Module*)App->welcome);
-
-		//Add particles
 		destroyed = true;
 	}
 }
