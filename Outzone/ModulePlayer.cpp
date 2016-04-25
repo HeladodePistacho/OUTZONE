@@ -137,9 +137,10 @@ update_status ModulePlayer::Update()
 	if (shotgun)current_animation = &shotgun_AFK;
 	else current_animation = &idle; 
 	
-	
 	//Movement
 
+	if (IsEnabled()){
+	
 	//right down
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT&&App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
 	{
@@ -271,8 +272,8 @@ update_status ModulePlayer::Update()
 			}
 			//laser shot
 			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN){
-				App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE);
-				App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->laser_north_west_fire, position.x, position.y, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->laser_north_west_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT);
 			}
 		}
 		else if (current_animation != &shotgun_walk)
@@ -415,7 +416,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//Update Player Collider Position-----------------------
-	if (IsEnabled()){
+	
 		body->SetPos(position.x, position.y);
 	}
 
@@ -427,12 +428,23 @@ update_status ModulePlayer::Update()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
+
+
 	if (c1 == body && destroyed == false && App->change_scene->IsFading() == false)
 	{
-
-		App->particles->AddParticle(App->particles->dead_explosion, position.x, position.y, COLLIDER_NONE);
-		App->change_scene->ChangeScene((Module*)App->lvl_1, (Module*)App->lvl_1);
 		destroyed = true;
+		App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT);
+		App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
+		
+		
 	}
 }
 
+void ModulePlayer::Reset()
+{
+	position = { 110, 220 };
+	last_position = position.y;
+	App->render->camera.y = 0;
+	shotgun = false;
+	destroyed = false;
+}

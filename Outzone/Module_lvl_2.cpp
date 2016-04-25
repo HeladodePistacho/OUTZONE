@@ -6,6 +6,7 @@
 #include "Module_lvl_2.h"
 #include "ModuleChangeScene.h"
 #include "ModuleInput.h"
+#include "ModuleParticles.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
 
@@ -30,14 +31,14 @@ bool Module_lvl_2::Start()
 	graphics = App->textures->Load("level2.png");
 	audio_lvl_2 = App->audio->Load("2nd_Level_Theme.ogg");
 
-	App->render->camera.y = 0;
-	App->player->position = { 110, 220 };
-	App->player->last_position = App->player->position.y;
+	
 	Mix_FadeInMusic(audio_lvl_2, 1, 500);
 	Mix_PlayMusic(audio_lvl_2, -1);
 	//Enable Collisions
 	App->collision->Enable();
 	App->player->Enable();
+	App->player->Reset();
+	App->particles->Enable();
 	return true;
 }
 
@@ -65,6 +66,9 @@ bool Module_lvl_2::CleanUp()
 	App->collision->Disable();
 	App->player->Disable();
 	
+	//Disable Particles
+	App->particles->Disable();
+
 	//Disable Textures
 	App->textures->Disable();
 	App->render->escalated_screen = 0;

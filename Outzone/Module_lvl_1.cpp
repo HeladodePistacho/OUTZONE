@@ -39,8 +39,11 @@ bool Module_lvl_1::Start()
 		Mix_FadeInMusicPos(audio_lvl_1, 1, 2000, 1);
 		Mix_PlayMusic(audio_lvl_1, -1);
 		//Enable Collisions
+
 		App->player->Enable();
 		App->collision->Enable();
+		App->player->Reset();
+		
 
 		//Colliders
 		App->collision->AddCollider({ 48, -152, 47, 210}, COLLIDER_WALL);//blue ship left
@@ -103,6 +106,8 @@ bool Module_lvl_1::CleanUp()
 	//Disable Collisions
 	App->collision->Disable();
 	App->player->Disable();
+	//disable particles
+	App->particles->Disable();
 
 	//Disable Textures
 	App->textures->Disable();

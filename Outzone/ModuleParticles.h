@@ -69,14 +69,27 @@ public:
 	Particle laser_south_east_fire;
 	Particle laser_south_west_fire;
 	Particle laser_west_fire;
+
 	//Laser bullets
+	//north
 	Particle laser_north_bullet;
+	Particle laser_north_east_up_bullet;
 	Particle laser_north_east_bullet;
+	Particle laser_north_east_down_bullet;
+	Particle laser_north_west_up_bullet;
 	Particle laser_north_west_bullet;
+	Particle laser_north_west_down_bullet;
+	//east
 	Particle laser_east_bullet;
+	//south
 	Particle laser_south_bullet;
+	Particle laser_south_east_up_bullet;
 	Particle laser_south_east_bullet;
+	Particle laser_south_east_down_bullet;
+	Particle laser_south_west_up_bullet;
 	Particle laser_south_west_bullet;
+	Particle laser_south_west_down_bullet;
+	//west
 	Particle laser_west_bullet;
 
 	//character explosion
