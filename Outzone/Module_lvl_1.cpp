@@ -7,6 +7,7 @@
 #include "ModuleChangeScene.h"
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
+#include "ModuleEnemies.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 
@@ -42,6 +43,7 @@ bool Module_lvl_1::Start()
 
 		App->player->Enable();
 		App->collision->Enable();
+		App->enemies->Enable();
 		App->player->Reset();
 		
 
@@ -75,6 +77,9 @@ bool Module_lvl_1::Start()
 		App->collision->AddCollider({ 184, -3116, 46, 61 }, COLLIDER_WALL);//boss wall
 		App->collision->AddCollider({ 230, -3128, 14, 78 }, COLLIDER_WALL);//boss wall
 
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, 220);
+
+
 
 	return true;
 }
@@ -106,8 +111,10 @@ bool Module_lvl_1::CleanUp()
 	//Disable Collisions
 	App->collision->Disable();
 	App->player->Disable();
+
 	//disable particles
 	App->particles->Disable();
+	App->enemies->Disable();
 
 	//Disable Textures
 	App->textures->Disable();

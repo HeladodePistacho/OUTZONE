@@ -10,6 +10,7 @@
 #include "Module_Welcome.h"
 #include "Module_Congrats.h"
 #include "ModuleChangeScene.h"
+#include "ModuleEnemies.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 
@@ -28,6 +29,7 @@ Application::Application()
 	modules[10] = congrats = new Module_Congrats();
 	modules[11] = collision = new ModuleCollision();
 	modules[12] = particles = new ModuleParticles();
+	modules[13] = enemies = new ModuleEnemies();
 }	
 
 Application::~Application()

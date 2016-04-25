@@ -71,12 +71,15 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="ENEMY_Basic_Robot.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleChangeScene.h" />
     <ClInclude Include="ModuleCollision.h" />
+    <ClInclude Include="ModuleEnemies.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="Module_Congrats.h" />
     <ClInclude Include="Module_lvl_1.h" />
@@ -88,14 +91,18 @@
     <ClInclude Include="Module_lvl_2.h" />
     <ClInclude Include="Module_Welcome.h" />
     <ClInclude Include="p2Point.h" />
+    <ClInclude Include="Path.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="ENEMY_Basic_Robot.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleChangeScene.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
+    <ClCompile Include="ModuleEnemies.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="Module_Congrats.cpp" />
     <ClCompile Include="Module_lvl_1.cpp" />
