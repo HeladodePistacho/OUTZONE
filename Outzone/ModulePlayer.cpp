@@ -429,7 +429,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == body && destroyed == false && App->change_scene->IsFading() == false)
 	{
-		App->change_scene->ChangeScene((Module*)App->lvl_1, (Module*)App->welcome);
+
+		App->particles->AddParticle(App->particles->dead_explosion, position.x, position.y, COLLIDER_NONE);
+		App->change_scene->ChangeScene((Module*)App->lvl_1, (Module*)App->lvl_1);
 		destroyed = true;
 	}
 }

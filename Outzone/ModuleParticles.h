@@ -78,6 +78,10 @@ public:
 	Particle laser_south_east_bullet;
 	Particle laser_south_west_bullet;
 	Particle laser_west_bullet;
+
+	//character explosion
+	Particle dead_explosion;
+
 };
 
 #endif // __MODULEPARTICLES_H__

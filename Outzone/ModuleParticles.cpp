@@ -112,6 +112,18 @@ bool ModuleParticles::Start()
 	laser_west_bullet.speed.x -= 5;
 	laser_west_bullet.life = 1200;
 
+	//character explosion
+	dead_explosion.anim.PushBack({ 0, 116, 125, 125 });
+	dead_explosion.anim.PushBack({ 250, 116, 125, 125 });
+	dead_explosion.anim.PushBack({ 125, 116, 125, 125 });
+	dead_explosion.anim.PushBack({ 0, 241, 125, 125 });
+	dead_explosion.anim.PushBack({ 125, 241, 125, 125 });
+	dead_explosion.anim.PushBack({ 0, 366, 125, 125 });
+	dead_explosion.anim.PushBack({ 125, 366, 125, 125 });
+	dead_explosion.anim.PushBack({ 0, 491, 125, 125 });
+	dead_explosion.anim.PushBack({ 125, 491, 125, 125 });
+	dead_explosion.anim.loop = false;
+	dead_explosion.anim.speed = 0.22f;
 
 
 	return true;
