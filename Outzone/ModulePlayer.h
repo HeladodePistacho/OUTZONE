@@ -21,9 +21,20 @@ public:
 	void Reset();
 
 public:
-
+	//TEXTURES
 	SDL_Texture* graphics = nullptr;
+	//COLLIDER
 	Collider* body;
+	
+	//TIME DATA
+	//Laser Weapon
+	Uint32 laser_fire_rate;
+	//Shotgun Weapon
+	Uint32 shotgun_fire_rate;
+	//Miliseconds since the init
+	Uint32 current_time;
+	//Miliseconds since the last timed action
+	Uint32 last_time;
 	
 	
 	//ANIMATIONS
@@ -43,10 +54,14 @@ public:
 	Animation down;
 	Animation shotgun_walk;
 
+	//PLAYER DATA
+	//Coordenades
 	fPoint position;
+	//Weapon Equiped
 	bool shotgun = false;
+	//Live state
 	bool destroyed = false;
-
+	//??
 	int last_position = 220;
 };
 

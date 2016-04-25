@@ -13,23 +13,12 @@ ModuleParticles::ModuleParticles()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
-}
-
-ModuleParticles::~ModuleParticles()
-{}
-
-// Load assets
-bool ModuleParticles::Start()
-{
-	LOG("Loading particles");
-	graphics = App->textures->Load("Particles_sprites.png");
-
 	//SHOTGUN
-	
+
 	//Shotgun Fire
 	shotgun_fire.anim.PushBack({ 0, 65, 36, 16 });
-	shotgun_fire.life = 50;
-	
+	shotgun_fire.life = 15;
+
 	//Shotgun lvl 1
 	//left
 	shotgun_left.anim.PushBack({ 18, 48, 8, 13 });
@@ -47,33 +36,33 @@ bool ModuleParticles::Start()
 	shotgun_right.life = 1200;
 
 	//LASER
-	
+
 	//Laser fires
 	//north fire
 	laser_north_fire.anim.PushBack({ 110, 23, 14, 16 });
 	laser_north_fire.life = 50;
 	//north east fire
-	laser_north_east_fire.anim.PushBack({131,25,16,14});
+	laser_north_east_fire.anim.PushBack({ 131, 25, 16, 14 });
 	laser_north_east_fire.life = 50;
 	//north west fire
-	laser_north_west_fire.anim.PushBack({92,26,14,13});
+	laser_north_west_fire.anim.PushBack({ 92, 26, 14, 13 });
 	laser_north_west_fire.life = 50;
 	//east fire
-	laser_east_fire.anim.PushBack({155,32,16,15});
+	laser_east_fire.anim.PushBack({ 155, 32, 16, 15 });
 	laser_east_fire.life = 50;
 	//south fire
 	laser_south_fire.anim.PushBack({ 110, 42, 14, 16 });
 	laser_south_fire.life = 50;
 	//south east fire
-	laser_south_east_fire.anim.PushBack({131,42,15,14});
+	laser_south_east_fire.anim.PushBack({ 131, 42, 15, 14 });
 	laser_south_east_fire.life = 50;
 	//south west fire
-	laser_south_west_fire.anim.PushBack({88,43,15,15});
+	laser_south_west_fire.anim.PushBack({ 88, 43, 15, 15 });
 	laser_south_west_fire.life = 50;
 	//west fire
-	laser_west_fire.anim.PushBack({70,32,16,15});
+	laser_west_fire.anim.PushBack({ 70, 32, 16, 15 });
 	laser_west_fire.life = 50;
-	
+
 	//Laser bullets
 	//north bullet
 	laser_north_bullet.anim.PushBack({ 115, 3, 4, 16 });
@@ -105,16 +94,16 @@ bool ModuleParticles::Start()
 	laser_north_west_bullet.life = 1200;
 
 	//north west up bullet
-	laser_north_west_bullet.anim.PushBack({ 167, 50, 14, 9 });
-	laser_north_west_bullet.speed.y = -5;
-	laser_north_west_bullet.speed.x = -3;
-	laser_north_west_bullet.life = 1200;
+	laser_north_west_up_bullet.anim.PushBack({ 167, 50, 14, 9 });
+	laser_north_west_up_bullet.speed.y = -5;
+	laser_north_west_up_bullet.speed.x = -3;
+	laser_north_west_up_bullet.life = 1200;
 
 	//north west down bullet
-	laser_north_west_bullet.anim.PushBack({ 130, 62, 9, 14 });
-	laser_north_west_bullet.speed.y = -3;
-	laser_north_west_bullet.speed.x = -5;
-	laser_north_west_bullet.life = 1200;
+	laser_north_west_down_bullet.anim.PushBack({ 130, 62, 9, 14 });
+	laser_north_west_down_bullet.speed.y = -3;
+	laser_north_west_down_bullet.speed.x = -5;
+	laser_north_west_down_bullet.life = 1200;
 
 	//east bullet
 	laser_east_bullet.anim.PushBack({ 175, 37, 16, 4 });
@@ -133,16 +122,16 @@ bool ModuleParticles::Start()
 	laser_south_east_bullet.life = 1200;
 
 	//south east up bullet
-	laser_south_east_bullet.anim.PushBack({ 130, 62, 9, 14 });
-	laser_south_east_bullet.speed.y = 3;
-	laser_south_east_bullet.speed.x = 5;
-	laser_south_east_bullet.life = 1200;
+	laser_south_east_up_bullet.anim.PushBack({ 130, 62, 9, 14 });
+	laser_south_east_up_bullet.speed.y = 3;
+	laser_south_east_up_bullet.speed.x = 5;
+	laser_south_east_up_bullet.life = 1200;
 
 	//south east down bullet
-	laser_south_east_bullet.anim.PushBack({ 167, 50, 14, 9 });
-	laser_south_east_bullet.speed.y = 5;
-	laser_south_east_bullet.speed.x = 3;
-	laser_south_east_bullet.life = 1200;
+	laser_south_east_down_bullet.anim.PushBack({ 167, 50, 14, 9 });
+	laser_south_east_down_bullet.speed.y = 5;
+	laser_south_east_down_bullet.speed.x = 3;
+	laser_south_east_down_bullet.life = 1200;
 
 	//south west bullet
 	laser_south_west_bullet.anim.PushBack({ 149, 8, 12, 12 });
@@ -151,24 +140,24 @@ bool ModuleParticles::Start()
 	laser_south_west_bullet.life = 1200;
 
 	//south west up bullet
-	laser_south_west_bullet.anim.PushBack({ 167, 18, 14, 9 });
-	laser_south_west_bullet.speed.y = 3;
-	laser_south_west_bullet.speed.x = -5;
-	laser_south_west_bullet.life = 1200;
+	laser_south_west_up_bullet.anim.PushBack({ 167, 18, 14, 9 });
+	laser_south_west_up_bullet.speed.y = 3;
+	laser_south_west_up_bullet.speed.x = -5;
+	laser_south_west_up_bullet.life = 1200;
 
 	//south west down bullet
-	laser_south_west_bullet.anim.PushBack({ 132, 4, 9, 14 });
-	laser_south_west_bullet.speed.y = 5;
-	laser_south_west_bullet.speed.x = -3;
-	laser_south_west_bullet.life = 1200;
+	laser_south_west_down_bullet.anim.PushBack({ 132, 4, 9, 14 });
+	laser_south_west_down_bullet.speed.y = 5;
+	laser_south_west_down_bullet.speed.x = -3;
+	laser_south_west_down_bullet.life = 1200;
 
 	//west bullet
 	laser_west_bullet.anim.PushBack({ 175, 37, 16, 4 });
 	laser_west_bullet.speed.x -= 6;
 	laser_west_bullet.life = 1200;
 
-	//character explosion
 
+	//character explosion
 	dead_explosion.anim.PushBack({ 0, 116, 125, 125 });
 	dead_explosion.anim.PushBack({ 250, 116, 125, 125 });
 	dead_explosion.anim.PushBack({ 125, 116, 125, 125 });
@@ -180,13 +169,19 @@ bool ModuleParticles::Start()
 	dead_explosion.anim.PushBack({ 125, 491, 125, 125 });
 	dead_explosion.anim.loop = false;
 	dead_explosion.anim.speed = 0.15f;
-	
+}
 
+ModuleParticles::~ModuleParticles()
+{}
+
+bool ModuleParticles::Start()
+{
+	LOG("Loading particles");
+	graphics = App->textures->Load("Particles_sprites.png");
 
 	return true;
 }
 
-// Unload assets
 bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
@@ -204,7 +199,6 @@ bool ModuleParticles::CleanUp()
 	return true;
 }
 
-// Update: draw background
 update_status ModuleParticles::Update()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
