@@ -5,6 +5,7 @@
 ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
 {
 
+
 	walk.PushBack({ 109, 176, 27, 32 });
 
 	original_position = position;
@@ -20,3 +21,4 @@ void ENEMY_Basic_Robot::Move()
 
 	position = original_position + path.GetCurrentSpeed(&animation);
 }
+

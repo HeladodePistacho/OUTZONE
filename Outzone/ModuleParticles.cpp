@@ -169,6 +169,18 @@ ModuleParticles::ModuleParticles()
 	dead_explosion.anim.PushBack({ 125, 491, 125, 125 });
 	dead_explosion.anim.loop = false;
 	dead_explosion.anim.speed = 0.15f;
+
+	//enemie explosion
+	basic_robot_explosion.anim.PushBack({ 9, 647, 44, 43 });
+	basic_robot_explosion.anim.PushBack({ 53, 647, 44, 43 });
+	basic_robot_explosion.anim.PushBack({ 95, 647, 44, 43 });
+	basic_robot_explosion.anim.PushBack({ 140, 647, 44, 43 });
+	basic_robot_explosion.anim.PushBack({ 184, 647, 44, 43 });
+	basic_robot_explosion.anim.PushBack({ 9, 690, 44, 43 });
+	basic_robot_explosion.anim.PushBack({ 53, 690, 44, 43 });
+	basic_robot_explosion.anim.PushBack({ 97, 890, 44, 43 });
+	basic_robot_explosion.anim.loop = false;
+
 }
 
 ModuleParticles::~ModuleParticles()

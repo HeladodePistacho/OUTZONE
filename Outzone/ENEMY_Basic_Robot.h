@@ -2,12 +2,12 @@
 #define __BASIC_ROBOT_H__
 
 #include "Enemy.h"
+#include "ModuleParticles.h"
 #include "Path.h"
 
 class ENEMY_Basic_Robot : public Enemy
 {
 private:
-
 	Animation walk;
 	Path path;
 	iPoint original_position;

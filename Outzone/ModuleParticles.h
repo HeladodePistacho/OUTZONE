@@ -95,6 +95,9 @@ public:
 	//character explosion
 	Particle dead_explosion;
 
+	//enemie basic robot explosion
+	Particle basic_robot_explosion;
+
 };
 
 #endif // __MODULEPARTICLES_H__
