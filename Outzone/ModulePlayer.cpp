@@ -460,11 +460,27 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == body && destroyed == false && App->change_scene->IsFading() == false)
 	{
-		destroyed = true;
-		App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT);
-		App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
-		
-		
+		if (c2->type == COLLIDER_ENEMY)
+		{
+			destroyed = true;
+			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT);
+			App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
+		}
+
+		if (c2->type == COLLIDER_WALL)
+		{
+			if (c1->rect.y >= c2->rect.y && c1->rect.y + c1->rect.h >= c2->rect.y + c2->rect.h)
+			{
+				position.x = c2->rect.x + c2->rect.w;
+				
+
+			}
+			else if(c1->rect.x >= c2->rect.x || c1->rect.x + c1->rect.w <= c2->rect.x + c2->rect.w)
+			{
+				position.y = c2->rect.y + c2->rect.h;
+			}
+		}
+
 	}
 }
 
@@ -476,3 +492,6 @@ void ModulePlayer::Reset()
 	shotgun = false;
 	destroyed = false;
 }
+
+
+//216,33
