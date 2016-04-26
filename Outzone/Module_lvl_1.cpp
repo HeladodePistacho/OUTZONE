@@ -77,7 +77,7 @@ bool Module_lvl_1::Start()
 		App->collision->AddCollider({ 184, -3116, 46, 61 }, COLLIDER_WALL);//boss wall
 		App->collision->AddCollider({ 230, -3128, 14, 78 }, COLLIDER_WALL);//boss wall
 
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, 220);
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 100, -100);
 
 
 
