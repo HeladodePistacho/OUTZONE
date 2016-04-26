@@ -42,7 +42,7 @@ public:
 	bool CleanUp();
 
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay = 0);
-
+	void ModuleParticles::OnCollision(Collider*, Collider*);
 private:
 
 	SDL_Texture* graphics = nullptr;
@@ -91,6 +91,9 @@ public:
 	Particle laser_south_west_down_bullet;
 	//west
 	Particle laser_west_bullet;
+
+	//laser impact
+	Particle laser_impact;
 
 	//character explosion
 	Particle dead_explosion;

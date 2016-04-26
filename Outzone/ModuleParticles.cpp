@@ -156,6 +156,14 @@ ModuleParticles::ModuleParticles()
 	laser_west_bullet.speed.x -= 6;
 	laser_west_bullet.life = 1200;
 
+	//laser impact
+	laser_impact.anim.PushBack({ 216, 33, 20, 17 });
+	laser_impact.anim.PushBack({ 236, 33, 20, 17 });
+	laser_impact.anim.PushBack({ 262, 33, 22, 16 });
+	laser_impact.anim.PushBack({ 289, 33, 23, 16 });
+	laser_impact.anim.PushBack({ 319, 33, 20, 17 });
+	laser_impact.anim.loop = false;
+	laser_impact.anim.speed = 0.20f;
 
 	//character explosion
 	dead_explosion.anim.PushBack({ 0, 116, 125, 125 });
@@ -296,4 +304,3 @@ bool Particle::Update()
 
 	return ret;
 }
-
