@@ -50,7 +50,7 @@ bool Module_lvl_1::Start()
 		//Colliders
 		App->collision->AddCollider({ 0, -152, 95, 195}, COLLIDER_WALL);//blue ship left
 		App->collision->AddCollider({ 0, -162, 48, 50 }, COLLIDER_WALL);//blue ship left
-		App->collision->AddCollider({ 181, -132, 59, 86 }, COLLIDER_WALL);//blue ship right
+		App->collision->AddCollider({ 178, -132, 59, 86 }, COLLIDER_WALL);//blue ship right
 		App->collision->AddCollider({ 178, -55, 62, 34 }, COLLIDER_WALL);//blue ship right
 		App->collision->AddCollider({ 230, -12, 10, 20 }, COLLIDER_WALL);//blue ship right
 		App->collision->AddCollider({ 200, -21, 42, 12 }, COLLIDER_WALL);//blue ship right

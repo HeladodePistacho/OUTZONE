@@ -144,7 +144,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			
 			if (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT)
 			{
-				App->particles->AddParticle(App->particles->basic_robot_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->basic_robot_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE,UNDEFINED);
 			}
 
 			
