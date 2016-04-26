@@ -42,7 +42,7 @@ public:
 	bool CleanUp();
 
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay = 0);
-	void ModuleParticles::OnCollision(Collider*, Collider*);
+	void OnCollision(Collider*, Collider*);
 private:
 
 	SDL_Texture* graphics = nullptr;

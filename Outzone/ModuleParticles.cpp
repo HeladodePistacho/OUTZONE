@@ -304,3 +304,4 @@ bool Particle::Update()
 
 	return ret;
 }
+void ModuleParticles::OnCollision(Collider*, Collider*){}
