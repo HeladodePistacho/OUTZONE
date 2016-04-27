@@ -147,14 +147,14 @@ update_status ModulePlayer::Update()
 	float speed = 2.0f;
 	//AFK
 	if (shotgun)current_animation = &shotgun_AFK;
-	else current_animation = &idle; 
-	
+	else current_animation = &idle;
+
 	//MOVEMENT
 	if (IsEnabled()){
 
-	//right down
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
-	{
+		//right down
+		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+		{
 
 			if (position.y <= last_position + 65)
 			{
@@ -171,280 +171,280 @@ update_status ModulePlayer::Update()
 				}
 				//laser shot
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-					App->particles->AddParticle(App->particles->laser_south_east_fire, position.x+14, position.y+18, COLLIDER_NONE,LASER_FIRE);
-					App->particles->AddParticle(App->particles->laser_south_east_bullet, position.x+14, position.y+18, COLLIDER_PLAYER_SHOT,LASER_SHOT);
+					App->particles->AddParticle(App->particles->laser_south_east_fire, position.x + 14, position.y + 18, COLLIDER_NONE, LASER_FIRE);
+					App->particles->AddParticle(App->particles->laser_south_east_bullet, position.x + 14, position.y + 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 					last_time = current_time;
 				}
 			}
-			else if(current_animation != &shotgun_walk)
+			else if (current_animation != &shotgun_walk)
 			{
 				idle.Set_frame(1);
 				current_animation = &shotgun_walk;
 			}
-	}
+		}
 
-	//right up
-	else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT){
+		//right up
+		else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT){
 
-		if (position.y <= last_position)
-		{
-			if (position.x <= 210)
+			if (position.y <= last_position)
 			{
-				position.x += speed / 1.5f;
+				if (position.x <= 210)
+				{
+					position.x += speed / 1.5f;
+				}
+				position.y -= speed;
+				App->render->camera.y += speed * 2;
+				last_position = position.y;
 			}
-			position.y -= speed;
-			App->render->camera.y += speed * 2;
-			last_position = position.y;
-		}
-		else {
-			if (position.x <= 210)
+			else {
+				if (position.x <= 210)
+				{
+					position.x += speed / 1.5f;
+				}
+				position.y -= speed;
+			}
+			if (shotgun == false){
+				if (current_animation != &up_right)
+				{
+					idle.Reset();
+					current_animation = &up_right;
+				}
+				//laser shot
+				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+					App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE, LASER_FIRE);
+					App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					last_time = current_time;
+				}
+			}
+			else if (current_animation != &shotgun_walk)
 			{
-				position.x += speed / 1.5f;
+				idle.Set_frame(1);
+				current_animation = &shotgun_walk;
 			}
-			position.y -= speed;
 		}
-		if (shotgun == false){
-			if (current_animation != &up_right)
+
+		//left down
+		else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+		{
+
+			if (position.y <= last_position + 65)
 			{
-				idle.Reset();
-				current_animation = &up_right;
+				if (position.x > 0){ position.x -= speed / 1.5f; }
+				position.y += speed;
 			}
-			//laser shot
-			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE,LASER_FIRE);
-				App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT,LASER_SHOT);
-				last_time = current_time;
+			else if (position.x >= 0) { position.x -= speed / 1.5f; }
+
+			if (shotgun == false){
+				if (current_animation != &down_left)
+				{
+					idle.Reset();
+					current_animation = &down_left;
+				}
+				//laser shot
+				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+					App->particles->AddParticle(App->particles->laser_south_west_fire, position.x - 15, position.y + 13, COLLIDER_NONE, LASER_FIRE);
+					App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x - 13, position.y + 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					last_time = current_time;
+				}
 			}
-		}
-		else if (current_animation != &shotgun_walk)
-		{
-			idle.Set_frame(1);
-			current_animation = &shotgun_walk;
-		}
-	}
-
-	//left down
-	else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
-	{
-		
-		if (position.y <= last_position + 65)
-		{
-			if (position.x > 0){ position.x -= speed / 1.5f; }
-			position.y += speed;
-		}
-		else if (position.x >= 0) { position.x -= speed / 1.5f; }
-
-		if (shotgun == false){
-			if (current_animation != &down_left)
+			else if (current_animation != &shotgun_walk)
 			{
-				idle.Reset();
-				current_animation = &down_left;
-			}
-			//laser shot
-			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_south_west_fire, position.x-15, position.y + 13, COLLIDER_NONE,LASER_FIRE);
-				App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x-13, position.y + 13, COLLIDER_PLAYER_SHOT,LASER_SHOT);
-				last_time = current_time;
+				idle.Set_frame(1);
+				current_animation = &shotgun_walk;
 			}
 		}
-		else if (current_animation != &shotgun_walk)
-		{
-			idle.Set_frame(1);
-			current_animation = &shotgun_walk;
-		}
-	}
 
-	//left up
-	else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
-	{
-		
-		if (position.y <= last_position)
+		//left up
+		else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
 		{
-			if (position.x >= 0)
+
+			if (position.y <= last_position)
 			{
-				position.x -= speed / 1.5f;
+				if (position.x >= 0)
+				{
+					position.x -= speed / 1.5f;
+				}
+				position.y -= speed;
+				App->render->camera.y += speed * 2;
+				last_position = position.y;
 			}
-			position.y -= speed;
-			App->render->camera.y += speed * 2;
-			last_position = position.y;
-		}
-		else {
-			if (position.x >= 0)
+			else {
+				if (position.x >= 0)
+				{
+					position.x -= speed / 1.5f;
+				}
+				position.y -= speed;
+			}
+			if (shotgun == false)
 			{
-				position.x -= speed / 1.5f;
+				if (current_animation != &up_left)
+				{
+					idle.Reset();
+					current_animation = &up_left;
+				}
+				//laser shot
+				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+					App->particles->AddParticle(App->particles->laser_north_west_fire, position.x, position.y - 13, COLLIDER_NONE, LASER_FIRE);
+					App->particles->AddParticle(App->particles->laser_north_west_bullet, position.x + 2, position.y - 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					last_time = current_time;
+				}
 			}
-			position.y -= speed;
-		}
-		if (shotgun == false)
-		{
-			if (current_animation != &up_left)
+			else if (current_animation != &shotgun_walk)
 			{
-				idle.Reset();
-				current_animation = &up_left;
-			}
-			//laser shot
-			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_south_west_fire, position.x - 15, position.y + 13, COLLIDER_NONE,LASER_FIRE);
-				App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x - 13, position.y + 13, COLLIDER_PLAYER_SHOT,LASER_SHOT);
-				last_time = current_time;
+				idle.Set_frame(1);
+				current_animation = &shotgun_walk;
 			}
 		}
-		else if (current_animation != &shotgun_walk)
-		{
-			idle.Set_frame(1);
-			current_animation = &shotgun_walk;
-		}
-	}
 
 
-	//right
-	else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT){
-		if (position.x < 210){
-			position.x += speed;
-		}
+		//right
+		else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT){
+			if (position.x < 210){
+				position.x += speed;
+			}
 
-		if (shotgun == false){
-			if (current_animation != &right)
+			if (shotgun == false){
+				if (current_animation != &right)
+				{
+					idle.Reset();
+					current_animation = &right;
+				}
+				//laser shot
+				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+					App->particles->AddParticle(App->particles->laser_east_fire, position.x + 28, position.y + 5, COLLIDER_NONE, LASER_FIRE);
+					App->particles->AddParticle(App->particles->laser_east_bullet, position.x + 28, position.y + 8, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					last_time = current_time;
+				}
+			}
+			else if (current_animation != &shotgun_walk)
 			{
-				idle.Reset();
-				current_animation = &right;
-			}
-			//laser shot
-			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_east_fire, position.x + 28, position.y+5, COLLIDER_NONE,LASER_FIRE);
-				App->particles->AddParticle(App->particles->laser_east_bullet, position.x + 28, position.y + 8, COLLIDER_PLAYER_SHOT,LASER_SHOT);
-				last_time = current_time;
+				idle.Set_frame(1);
+				current_animation = &shotgun_walk;
 			}
 		}
-		else if (current_animation != &shotgun_walk)
-		{
-			idle.Set_frame(1);
-			current_animation = &shotgun_walk;
-		}
-	}
 
-	//left
-	else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT){
-		if (position.x > 0){
-			position.x -= speed;
-		}
+		//left
+		else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT){
+			if (position.x > 0){
+				position.x -= speed;
+			}
 
-		if (shotgun == false){
-			if (current_animation != &left)
+			if (shotgun == false){
+				if (current_animation != &left)
+				{
+					idle.Reset();
+					current_animation = &left;
+				}
+				//laser shot
+				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+					App->particles->AddParticle(App->particles->laser_west_fire, position.x - 18, position.y, COLLIDER_NONE, LASER_FIRE);
+					App->particles->AddParticle(App->particles->laser_west_bullet, position.x - 18, position.y + 5, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					last_time = current_time;
+				}
+			}
+			else if (current_animation != &shotgun_walk)
 			{
-				idle.Reset();
-				current_animation = &left;
-			}
-			//laser shot
-			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_west_fire, position.x-18, position.y, COLLIDER_NONE,LASER_FIRE);
-				App->particles->AddParticle(App->particles->laser_west_bullet, position.x - 18, position.y+5, COLLIDER_PLAYER_SHOT,LASER_SHOT);
-				last_time = current_time;
+				idle.Set_frame(1);
+				current_animation = &shotgun_walk;
 			}
 		}
-		else if (current_animation != &shotgun_walk)
+
+		//up
+		else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
 		{
-			idle.Set_frame(1);
-			current_animation = &shotgun_walk;
-		}
-	}
-
-	//up
-	else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
-	{
 
 
-		if (position.y <= last_position){
-			position.y -= speed;
-			App->render->camera.y += speed * 2;
-			last_position = position.y;
-		}
-		else position.y -= speed;
+			if (position.y <= last_position){
+				position.y -= speed;
+				App->render->camera.y += speed * 2;
+				last_position = position.y;
+			}
+			else position.y -= speed;
 
-		if (shotgun == false){
-			if (current_animation != &up)
+			if (shotgun == false){
+				if (current_animation != &up)
+				{
+					idle.Reset();
+					current_animation = &up;
+				}
+				//laser shot
+				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+					App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE, LASER_FIRE);
+					App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					last_time = current_time;
+				}
+			}
+			else if (current_animation != &shotgun_walk)
 			{
-				idle.Reset();
-				current_animation = &up;
+				idle.Set_frame(1);
+				current_animation = &shotgun_walk;
 			}
-			//laser shot
-			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE,LASER_FIRE);
-				App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT,LASER_SHOT);
-				last_time = current_time;
-			}
+
+
+
 		}
-		else if (current_animation != &shotgun_walk)
+
+		//down
+		else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
 		{
-			idle.Set_frame(1);
-			current_animation = &shotgun_walk;
-		}
-		
-
-
-	}
-	
-	//down
-	else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
-	{
-		if (position.y <= last_position + 65)
-		{
-			position.y += speed;
-
-		}
-
-
-		if (shotgun == false){
-			if (current_animation != &down)
+			if (position.y <= last_position + 65)
 			{
-				idle.Reset();
-				current_animation = &down;
+				position.y += speed;
+
 			}
-			//laser shot
-			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_south_fire, position.x, position.y + 24, COLLIDER_NONE,LASER_FIRE);
-				App->particles->AddParticle(App->particles->laser_south_bullet, position.x+5, position.y + 24, COLLIDER_PLAYER_SHOT,LASER_SHOT);
-				last_time = current_time;
+
+
+			if (shotgun == false){
+				if (current_animation != &down)
+				{
+					idle.Reset();
+					current_animation = &down;
+				}
+				//laser shot
+				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+					App->particles->AddParticle(App->particles->laser_south_fire, position.x, position.y + 24, COLLIDER_NONE, LASER_FIRE);
+					App->particles->AddParticle(App->particles->laser_south_bullet, position.x + 5, position.y + 24, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					last_time = current_time;
+				}
+			}
+			else if (current_animation != &shotgun_walk)
+			{
+				idle.Set_frame(1);
+				current_animation = &shotgun_walk;
 			}
 		}
-		else if (current_animation != &shotgun_walk)
+
+
+
+
+
+		//WEAPONS
+		//AFK laser shot
+		if (current_animation == &idle&&App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN)App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE, LASER_FIRE);
+
+		//change weapon
+		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
 		{
-			idle.Set_frame(1);
-			current_animation = &shotgun_walk;
+			if (shotgun)shotgun = false;
+			else shotgun = true;
 		}
-	}
+
+		//shotgun lvl 1 shoot
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&shotgun&&current_time >= last_time + shotgun_fire_rate){
+
+			App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE, SHOTGUN_FIRE);
+			App->particles->AddParticle(App->particles->shotgun_left, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+			App->particles->AddParticle(App->particles->shotgun_mid, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+			App->particles->AddParticle(App->particles->shotgun_right, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+			last_time = current_time;
+		}
 
 
 
 
 
-	//WEAPONS
-	//AFK laser shot
-	if (current_animation == &idle&&App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN)App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE,LASER_FIRE);
-	
-	//change weapon
-	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
-	{
-		if(shotgun)shotgun = false;
-		else shotgun = true;
-	}
-	
-	//shotgun lvl 1 shoot
-	if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&shotgun&&current_time>=last_time+shotgun_fire_rate){
+		//Update Player Collider Position-----------------------
 
-		App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE,SHOTGUN_FIRE);
-		App->particles->AddParticle(App->particles->shotgun_left, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT,SHOTGUN_SHOT);
-		App->particles->AddParticle(App->particles->shotgun_mid, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT,SHOTGUN_SHOT);
-		App->particles->AddParticle(App->particles->shotgun_right, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT,SHOTGUN_SHOT);
-		last_time = current_time;
-	}
-
-
-
-
-
-	//Update Player Collider Position-----------------------
-	
 		body->SetPos(position.x, position.y);
 	}
 
@@ -453,6 +453,7 @@ update_status ModulePlayer::Update()
 
 	return UPDATE_CONTINUE;
 }
+
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
