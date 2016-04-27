@@ -139,15 +139,18 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+		if (c1->type == COLLIDER_ENEMY && c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT)
 		{
-			
-			if (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT)
-			{
-				App->particles->AddParticle(App->particles->basic_robot_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE,UNDEFINED);
-			}
 
-			
+
+			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+			{
+
+				App->particles->AddParticle(App->particles->basic_robot_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+				delete enemies[i];
+				enemies[i] = nullptr;
+
+			}
 		}
 	}
 }
