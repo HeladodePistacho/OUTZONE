@@ -63,13 +63,14 @@ bool Module_lvl_1::Start()
 		App->collision->AddCollider({ 0, -1811, 32, 62 }, COLLIDER_WALL);//column
 		App->collision->AddCollider({ 96, -1908, 32, 62 }, COLLIDER_WALL);//column
 
-		App->collision->AddCollider({ 0, -1350, 30, 178 }, COLLIDER_WALL);//turret wall
-		App->collision->AddCollider({ 30, -1350, 77, 142 }, COLLIDER_WALL);//turret wall
-		App->collision->AddCollider({ 107, -1338, 16, 130 }, COLLIDER_WALL);
-		App->collision->AddCollider({ 200, -1354, 40, 142 }, COLLIDER_WALL);//turret wall
-		App->collision->AddCollider({ 0, -1640, 39, 140 }, COLLIDER_WALL);//turret wall 2(pipiru)
-		App->collision->AddCollider({ 39, -1626, 18, 130 }, COLLIDER_WALL);
-		App->collision->AddCollider({ 134, -1642, 103, 144 }, COLLIDER_WALL);//turret wall 2
+		App->collision->AddCollider({ 0, -1340, 30, 168}, COLLIDER_WALL_FLAT);//turret wall
+		App->collision->AddCollider({ 0, -1350, 107, 120 }, COLLIDER_WALL_FLAT);//turret wall
+		App->collision->AddCollider({ 0, -1338, 123, 130 }, COLLIDER_WALL_FLAT);
+		App->collision->AddCollider({ 200, -1354, 40, 142 }, COLLIDER_WALL_FLAT);//turret wall
+		App->collision->AddCollider({ 0, -1640, 39, 140 }, COLLIDER_WALL_FLAT);//turret wall 2(pipiru)
+		App->collision->AddCollider({ 0, -1626, 57, 130 }, COLLIDER_WALL_FLAT);
+		App->collision->AddCollider({ 134, -1642, 103, 144 }, COLLIDER_WALL_FLAT);//turret wall 2
+
 
 		App->collision->AddCollider({ 0, -3128, 29, 81 }, COLLIDER_WALL);//boss wall
 		App->collision->AddCollider({ 29, -3116, 46, 61 }, COLLIDER_WALL);//boss wall

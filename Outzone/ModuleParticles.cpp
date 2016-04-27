@@ -38,9 +38,10 @@ ModuleParticles::ModuleParticles()
 	shotgun_right.life = 1200;
 	shotgun_right.type = SHOTGUN_FIRE;
 	//Shotgun impact
-	shotgun_impact.anim.PushBack({});
-	shotgun_impact.anim.PushBack({});
-	shotgun_impact.anim.PushBack({});
+	shotgun_impact.anim.PushBack({ 215, 54, 25, 25 });
+	shotgun_impact.anim.PushBack({ 237, 54, 25, 25 });
+	shotgun_impact.anim.PushBack({ 263, 54, 25, 25 });
+	shotgun_impact.anim.PushBack({ 288, 54, 25, 25 });
 	shotgun_impact.anim.loop = false;
 	shotgun_impact.anim.speed = 0.25f;
 	shotgun_impact.type = SHOTGUN_IMPACT;
@@ -225,6 +226,7 @@ ModuleParticles::ModuleParticles()
 	basic_robot_explosion.anim.PushBack({ 53, 690, 44, 43 });
 	basic_robot_explosion.anim.PushBack({ 97, 890, 44, 43 });
 	basic_robot_explosion.anim.loop = false;
+	basic_robot_explosion.anim.speed = 0.2f;
 
 }
 
@@ -312,7 +314,7 @@ Particle::Particle()
 
 Particle::Particle(const Particle& p) : 
 anim(p.anim), position(p.position), speed(p.speed),
-fx(p.fx), born(p.born), life(p.life)
+fx(p.fx), born(p.born), life(p.life), type(p.type)
 {}
 
 Particle::~Particle()
@@ -350,14 +352,20 @@ void ModuleParticles::OnCollision(Collider*c1, Collider*c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
 		
-		if (c1->type == COLLIDER_PLAYER_SHOT&&c2->type == COLLIDER_WALL){
+		if (c1->type == COLLIDER_PLAYER_SHOT && c2->type == COLLIDER_WALL || c2->type == COLLIDER_ENEMY){
 			//laser shot impact
 			if (active[i] != nullptr && active[i]->collider == c1&&active[i]->type==LASER_SHOT)
 			{
-				App->particles->AddParticle(App->particles->laser_impact, c1->rect.x-8, c1->rect.y, COLLIDER_NONE,LASER_IMPACT);
+				App->particles->AddParticle(App->particles->laser_impact, c1->rect.x-8, c1->rect.y-5, COLLIDER_NONE,LASER_IMPACT);
 				delete active[i];
 				active[i] = nullptr;
-				break;
+			}
+			//shotgun shot impact
+			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == SHOTGUN_SHOT)
+			{
+				App->particles->AddParticle(App->particles->shotgun_impact, c1->rect.x - 8, c1->rect.y-5, COLLIDER_NONE, SHOTGUN_IMPACT);
+				delete active[i];
+				active[i] = nullptr;
 			}
 		}
 	}

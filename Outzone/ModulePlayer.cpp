@@ -467,7 +467,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT, UNDEFINED);
 			App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
 		}
-		if (c2->type == COLLIDER_WALL)
+		if (c2->type == COLLIDER_WALL||c2->type==COLLIDER_WALL_FLAT)
 		{
 			if (position.y + 2 >= c2->rect.y + c2->rect.h)
 			{
