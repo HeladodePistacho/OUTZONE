@@ -7,7 +7,7 @@
 #include "Enemy.h"
 #include "ENEMY_Basic_Robot.h"
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN 320
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -66,7 +66,7 @@ update_status ModuleEnemies::PostUpdate()
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->position.y * SCREEN_SIZE < (App->render->camera.y) - SPAWN_MARGIN)
+			if (enemies[i]->position.y * SCREEN_SIZE > (App->render->camera.y) + SPAWN_MARGIN)
 			{
 				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
 				delete enemies[i];
@@ -144,7 +144,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			
 			if (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT)
 			{
-				App->particles->AddParticle(App->particles->basic_robot_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE);
+				App->particles->AddParticle(App->particles->basic_robot_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE,UNDEFINED);
 			}
 
 			

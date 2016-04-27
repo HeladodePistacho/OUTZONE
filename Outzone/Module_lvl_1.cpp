@@ -48,9 +48,9 @@ bool Module_lvl_1::Start()
 		
 
 		//Colliders
-		App->collision->AddCollider({ 48, -152, 47, 210}, COLLIDER_WALL);//blue ship left
-		App->collision->AddCollider({ 0, -162, 48, 230 }, COLLIDER_WALL);//blue ship left
-		App->collision->AddCollider({ 181, -132, 59, 86 }, COLLIDER_WALL);//blue ship right
+		App->collision->AddCollider({ 0, -152, 95, 195}, COLLIDER_WALL);//blue ship left
+		App->collision->AddCollider({ 0, -162, 48, 50 }, COLLIDER_WALL);//blue ship left
+		App->collision->AddCollider({ 178, -132, 59, 86 }, COLLIDER_WALL);//blue ship right
 		App->collision->AddCollider({ 178, -55, 62, 34 }, COLLIDER_WALL);//blue ship right
 		App->collision->AddCollider({ 230, -12, 10, 20 }, COLLIDER_WALL);//blue ship right
 		App->collision->AddCollider({ 200, -21, 42, 12 }, COLLIDER_WALL);//blue ship right
@@ -77,7 +77,7 @@ bool Module_lvl_1::Start()
 		App->collision->AddCollider({ 184, -3116, 46, 61 }, COLLIDER_WALL);//boss wall
 		App->collision->AddCollider({ 230, -3128, 14, 78 }, COLLIDER_WALL);//boss wall
 
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, 220);
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 100, -100);
 
 
 

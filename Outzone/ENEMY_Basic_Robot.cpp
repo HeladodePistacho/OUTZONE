@@ -10,7 +10,8 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
 
 	original_position = position;
 
-	path.PushBack({ 0.0f, 0.0f }, 100, &walk);
+	path.PushBack({ 0.0f, 0.8f }, 150, &walk);
+	path.PushBack({ 0.5f, 0.8f }, 300, &walk);
 	
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 

@@ -171,8 +171,8 @@ update_status ModulePlayer::Update()
 				}
 				//laser shot
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-					App->particles->AddParticle(App->particles->laser_south_east_fire, position.x+14, position.y+18, COLLIDER_NONE);
-					App->particles->AddParticle(App->particles->laser_south_east_bullet, position.x+14, position.y+18, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->laser_south_east_fire, position.x+14, position.y+18, COLLIDER_NONE,LASER_FIRE);
+					App->particles->AddParticle(App->particles->laser_south_east_bullet, position.x+14, position.y+18, COLLIDER_PLAYER_SHOT,LASER_SHOT);
 					last_time = current_time;
 				}
 			}
@@ -211,8 +211,8 @@ update_status ModulePlayer::Update()
 			}
 			//laser shot
 			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE);
-				App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE,LASER_FIRE);
+				App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT,LASER_SHOT);
 				last_time = current_time;
 			}
 		}
@@ -242,8 +242,8 @@ update_status ModulePlayer::Update()
 			}
 			//laser shot
 			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_south_west_fire, position.x-15, position.y + 13, COLLIDER_NONE);
-				App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x-13, position.y + 13, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->laser_south_west_fire, position.x-15, position.y + 13, COLLIDER_NONE,LASER_FIRE);
+				App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x-13, position.y + 13, COLLIDER_PLAYER_SHOT,LASER_SHOT);
 				last_time = current_time;
 			}
 		}
@@ -284,8 +284,8 @@ update_status ModulePlayer::Update()
 			}
 			//laser shot
 			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_south_west_fire, position.x - 15, position.y + 13, COLLIDER_NONE);
-				App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x - 13, position.y + 13, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->laser_south_west_fire, position.x - 15, position.y + 13, COLLIDER_NONE,LASER_FIRE);
+				App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x - 13, position.y + 13, COLLIDER_PLAYER_SHOT,LASER_SHOT);
 				last_time = current_time;
 			}
 		}
@@ -311,8 +311,8 @@ update_status ModulePlayer::Update()
 			}
 			//laser shot
 			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_east_fire, position.x + 28, position.y+5, COLLIDER_NONE);
-				App->particles->AddParticle(App->particles->laser_east_bullet, position.x + 28, position.y + 8, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->laser_east_fire, position.x + 28, position.y+5, COLLIDER_NONE,LASER_FIRE);
+				App->particles->AddParticle(App->particles->laser_east_bullet, position.x + 28, position.y + 8, COLLIDER_PLAYER_SHOT,LASER_SHOT);
 				last_time = current_time;
 			}
 		}
@@ -337,8 +337,8 @@ update_status ModulePlayer::Update()
 			}
 			//laser shot
 			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_west_fire, position.x-18, position.y, COLLIDER_NONE);
-				App->particles->AddParticle(App->particles->laser_west_bullet, position.x - 18, position.y+5, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->laser_west_fire, position.x-18, position.y, COLLIDER_NONE,LASER_FIRE);
+				App->particles->AddParticle(App->particles->laser_west_bullet, position.x - 18, position.y+5, COLLIDER_PLAYER_SHOT,LASER_SHOT);
 				last_time = current_time;
 			}
 		}
@@ -369,8 +369,8 @@ update_status ModulePlayer::Update()
 			}
 			//laser shot
 			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE);
-				App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE,LASER_FIRE);
+				App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT,LASER_SHOT);
 				last_time = current_time;
 			}
 		}
@@ -402,8 +402,8 @@ update_status ModulePlayer::Update()
 			}
 			//laser shot
 			if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
-				App->particles->AddParticle(App->particles->laser_south_fire, position.x, position.y + 24, COLLIDER_NONE);
-				App->particles->AddParticle(App->particles->laser_south_bullet, position.x+5, position.y + 24, COLLIDER_PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->laser_south_fire, position.x, position.y + 24, COLLIDER_NONE,LASER_FIRE);
+				App->particles->AddParticle(App->particles->laser_south_bullet, position.x+5, position.y + 24, COLLIDER_PLAYER_SHOT,LASER_SHOT);
 				last_time = current_time;
 			}
 		}
@@ -420,7 +420,7 @@ update_status ModulePlayer::Update()
 
 	//WEAPONS
 	//AFK laser shot
-	if (current_animation == &idle&&App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN)App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE);
+	if (current_animation == &idle&&App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN)App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE,LASER_FIRE);
 	
 	//change weapon
 	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
@@ -432,10 +432,10 @@ update_status ModulePlayer::Update()
 	//shotgun lvl 1 shoot
 	if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&shotgun&&current_time>=last_time+shotgun_fire_rate){
 
-		App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE);
-		App->particles->AddParticle(App->particles->shotgun_left, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT);
-		App->particles->AddParticle(App->particles->shotgun_mid, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT);
-		App->particles->AddParticle(App->particles->shotgun_right, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE,SHOTGUN_FIRE);
+		App->particles->AddParticle(App->particles->shotgun_left, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT,SHOTGUN_SHOT);
+		App->particles->AddParticle(App->particles->shotgun_mid, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT,SHOTGUN_SHOT);
+		App->particles->AddParticle(App->particles->shotgun_right, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT,SHOTGUN_SHOT);
 		last_time = current_time;
 	}
 
@@ -460,10 +460,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == body && destroyed == false && App->change_scene->IsFading() == false)
 	{
+
 		if (c2->type == COLLIDER_ENEMY)
 		{
 			destroyed = true;
-			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT, UNDEFINED);
 			App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
 		}
 
@@ -481,8 +482,42 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			}
 		}
 
+
+
+		if (c2->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY_SHOT)
+		{
+			destroyed = true;
+			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT, UNDEFINED);
+			App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
+		}
+		if (c2->type == COLLIDER_WALL)
+		{
+			if (position.y + 2 >= c2->rect.y + c2->rect.h)
+			{
+				position.y = c2->rect.y + c2->rect.h;
+			}
+
+			if (position.x + 2 >= c2->rect.x + c2->rect.w)
+			{
+				position.x = c2->rect.x + c2->rect.w;
+			}
+
+			if (position.y + c1->rect.h - 2 <= c2->rect.y)
+			{
+				position.y = c2->rect.y - c1->rect.h;
+			}
+
+			if (position.x + c1->rect.w - 2 <= c2->rect.x)
+			{
+				position.x = c2->rect.x - c1->rect.w;
+			}
+			
+
+		}
+
 	}
 }
+
 
 void ModulePlayer::Reset()
 {

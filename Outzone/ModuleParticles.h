@@ -14,8 +14,20 @@ struct SDL_Texture;
 struct Collider;
 enum COLLIDER_TYPE;
 
+enum PARTICLE_TYPE{
+	LASER_SHOT,
+	LASER_FIRE,
+	LASER_IMPACT,
+	SHOTGUN_SHOT,
+	SHOTGUN_FIRE,
+	SHOTGUN_IMPACT,
+	UNDEFINED,
+};
+
 struct Particle
 {
+	//particle type
+	uint type;
 	Collider* collider = nullptr;
 	Animation anim;
 	uint fx = 0;
@@ -41,7 +53,11 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay = 0);
+
+
+	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, PARTICLE_TYPE particle_type, Uint32 delay = 0);
+	void OnCollision(Collider*, Collider*);
+
 
 private:
 
@@ -57,7 +73,8 @@ public:
 	Particle shotgun_left;
 	Particle shotgun_mid;
 	Particle shotgun_right;
-	
+	//Shotgun impact
+	Particle shotgun_impact;
 
 	//Laser
 	//Laser fires
@@ -91,6 +108,9 @@ public:
 	Particle laser_south_west_down_bullet;
 	//west
 	Particle laser_west_bullet;
+
+	//laser impact
+	Particle laser_impact;
 
 	//character explosion
 	Particle dead_explosion;
