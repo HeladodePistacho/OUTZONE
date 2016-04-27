@@ -17,7 +17,12 @@ protected:
 
 public:
 	iPoint position;
-
+	//Miliseconds since the init
+	Uint32 current_time;
+	//Miliseconds since the last timed action
+	Uint32 last_time;
+	//Fire Rate
+	Uint32 fire_rate;
 
 public:
 	Enemy(int x, int y);
@@ -27,6 +32,7 @@ public:
 
 	virtual void Move() {};
 	virtual void Draw(SDL_Texture* sprites);
+	virtual void Attack(){};
 };
 
 #endif // __ENEMY_H__

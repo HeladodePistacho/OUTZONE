@@ -19,6 +19,7 @@ public:
 	ENEMY_Basic_Robot(int x, int y);
 
 	void Move();
+	void Attack();
 };
 
 #endif 

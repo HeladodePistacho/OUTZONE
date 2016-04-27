@@ -24,7 +24,7 @@ bool ModuleEnemies::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
 	sprites = App->textures->Load("enemy_basic_sprites.png");
-
+	
 	return true;
 }
 
@@ -50,11 +50,16 @@ update_status ModuleEnemies::PreUpdate()
 // Called before render is available
 update_status ModuleEnemies::Update()
 {
+	
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	if (enemies[i] != nullptr) enemies[i]->Move();
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	if (enemies[i] != nullptr) enemies[i]->Draw(sprites);
+
+	for(uint i = 0; i < MAX_ENEMIES; ++i)
+	if (enemies[i] != nullptr) enemies[i]->Attack();
+
 
 	return UPDATE_CONTINUE;
 }

@@ -2,6 +2,8 @@
 #include "ENEMY_Basic_Robot.h"
 #include "ModuleCollision.h"
 
+#include "SDL\include\SDL_timer.h"
+
 ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
 {
 
@@ -15,11 +17,24 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
 	
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
+	fire_rate = 500;
+	last_time = 0;
+
 }
 
 void ENEMY_Basic_Robot::Move()
 {
 
 	position = original_position + path.GetCurrentSpeed(&animation);
+}
+
+void ENEMY_Basic_Robot::Attack()
+{
+	current_time = SDL_GetTicks();
+	if (current_time >= last_time + fire_rate){
+
+		//shot
+
+	}
 }
 
