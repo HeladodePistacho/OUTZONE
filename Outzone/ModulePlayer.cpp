@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "Module_lvl_1.h"
+#include "Module_lvl_2.h"
+#include "Module_Congrats.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
@@ -423,14 +425,14 @@ update_status ModulePlayer::Update()
 		if (current_animation == &idle&&App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN)App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE, LASER_FIRE);
 
 		//change weapon
-		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
+		else if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
 		{
 			if (shotgun)shotgun = false;
 			else shotgun = true;
 		}
 
 		//shotgun lvl 1 shoot
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&shotgun&&current_time >= last_time + shotgun_fire_rate){
+		else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&shotgun&&current_time >= last_time + shotgun_fire_rate){
 
 			App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE, SHOTGUN_FIRE);
 			App->particles->AddParticle(App->particles->shotgun_left, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
@@ -439,7 +441,17 @@ update_status ModulePlayer::Update()
 			last_time = current_time;
 		}
 
-
+		//WIN
+		if (App->render->camera.y>500){
+			if (App->lvl_1->IsEnabled()){
+				App->change_scene->ChangeScene(App->lvl_1, App->congrats, 1.0f);
+				result = true;
+			}
+			if (App->lvl_2->IsEnabled()){
+				App->change_scene->ChangeScene(App->lvl_2, App->congrats, 1.0f);
+				result = true;
+			}
+		}
 
 
 
@@ -504,6 +516,7 @@ void ModulePlayer::Reset()
 	App->render->camera.y = 0;
 	shotgun = false;
 	destroyed = false;
+	result = false;
 }
 
 

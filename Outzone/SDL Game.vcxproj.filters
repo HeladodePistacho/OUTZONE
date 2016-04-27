@@ -83,6 +83,9 @@
     <ClInclude Include="Path.h">
       <Filter>Containers</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleGameOver.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -140,6 +143,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ENEMY_Basic_Robot.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGameOver.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

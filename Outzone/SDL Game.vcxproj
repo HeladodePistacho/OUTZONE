@@ -80,6 +80,7 @@
     <ClInclude Include="ModuleChangeScene.h" />
     <ClInclude Include="ModuleCollision.h" />
     <ClInclude Include="ModuleEnemies.h" />
+    <ClInclude Include="ModuleGameOver.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="Module_Congrats.h" />
     <ClInclude Include="Module_lvl_1.h" />
@@ -103,6 +104,7 @@
     <ClCompile Include="ModuleChangeScene.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
+    <ClCompile Include="ModuleGameOver.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="Module_Congrats.cpp" />
     <ClCompile Include="Module_lvl_1.cpp" />

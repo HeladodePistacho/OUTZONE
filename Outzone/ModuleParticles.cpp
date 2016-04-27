@@ -351,14 +351,14 @@ bool Particle::Update()
 void ModuleParticles::OnCollision(Collider*c1, Collider*c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
-		
-		if (c1->type == COLLIDER_PLAYER_SHOT && c2->type == COLLIDER_WALL || c2->type == COLLIDER_ENEMY){
+		if (c1->type == COLLIDER_PLAYER_SHOT&&c2->type==COLLIDER_WALL||COLLIDER_ENEMY){
 			//laser shot impact
 			if (active[i] != nullptr && active[i]->collider == c1&&active[i]->type==LASER_SHOT)
 			{
 				App->particles->AddParticle(App->particles->laser_impact, c1->rect.x-8, c1->rect.y-5, COLLIDER_NONE,LASER_IMPACT);
 				delete active[i];
 				active[i] = nullptr;
+				break;
 			}
 			//shotgun shot impact
 			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == SHOTGUN_SHOT)
@@ -366,6 +366,7 @@ void ModuleParticles::OnCollision(Collider*c1, Collider*c2)
 				App->particles->AddParticle(App->particles->shotgun_impact, c1->rect.x - 8, c1->rect.y-5, COLLIDER_NONE, SHOTGUN_IMPACT);
 				delete active[i];
 				active[i] = nullptr;
+				break;
 			}
 		}
 	}

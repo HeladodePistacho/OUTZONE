@@ -8,7 +8,9 @@
 #include "Module_lvl_2.h"
 #include "Module_Welcome.h"
 #include "Module_Congrats.h"
+#include "ModuleGameOver.h"
 #include "ModuleChangeScene.h"
+#include "ModulePlayer.h"
 
 ModuleChangeScene::ModuleChangeScene()
 {
@@ -50,23 +52,47 @@ update_status ModuleChangeScene::Update()
 			}
 
 			else {
-				if (App->lvl_1->IsEnabled())
-				{
+				if (App->lvl_1->IsEnabled() && App->player->destroyed == false && App->player->result == false){
 					App->lvl_1->Disable();
 					App->lvl_2->Enable();
 				}
-
+				else if (App->lvl_1->IsEnabled()&&App->player->destroyed==false&& App->player->result)
+				{
+					App->lvl_1->Disable();
+					App->congrats->Enable();
+				}
+				else if (App->lvl_1->IsEnabled() && App->player->destroyed){
+					App->lvl_1->Disable();
+					App->gameover->Enable();
+				}
 				else{
-					if (App->lvl_2->IsEnabled())
+					if (App->lvl_2->IsEnabled() && App->player->destroyed == false && App->player->result == false)
+					{
+						App->lvl_2->Disable();
+						App->welcome->Enable();
+					}
+					else if (App->lvl_2->IsEnabled() && App->player->destroyed == false && App->player->result)
 					{
 						App->lvl_2->Disable();
 						App->congrats->Enable();
 					}
+					else if (App->lvl_2->IsEnabled() && App->player->destroyed)
+					{
+						App->lvl_2->Disable();
+						App->gameover->Enable();
+					}
+					
 					else{
 						if (App->congrats->IsEnabled())
 						{
 							App->congrats->Disable();
 							App->welcome->Enable();
+						}
+						else{
+							if (App->gameover->IsEnabled()){
+								App->gameover->Disable();
+								App->welcome->Enable();
+							}
 						}
 					}
 				}

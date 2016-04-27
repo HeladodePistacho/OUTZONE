@@ -13,6 +13,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModuleGameOver.h"
 
 Application::Application()
 {
@@ -27,9 +28,11 @@ Application::Application()
 	modules[8] = change_scene = new ModuleChangeScene();
 	modules[9] = welcome = new Module_Welcome();
 	modules[10] = congrats = new Module_Congrats();
-	modules[11] = collision = new ModuleCollision();
-	modules[12] = particles = new ModuleParticles();
+	modules[11] = gameover = new Module_GameOver();
+	modules[12] = collision = new ModuleCollision();
 	modules[13] = enemies = new ModuleEnemies();
+	modules[14] = particles = new ModuleParticles();
+	
 }	
 
 Application::~Application()
@@ -49,6 +52,7 @@ bool Application::Init()
 	lvl_1->Disable();
 	lvl_2->Disable();
 	congrats->Disable();
+	gameover->Disable();
 	collision->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)

@@ -95,7 +95,7 @@ update_status Module_lvl_1::Update()
 		
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
-			App->change_scene->ChangeScene(App->lvl_2, App->lvl_1, 1.0f);
+			App->change_scene->ChangeScene(App->lvl_1, App->lvl_2, 1.0f);
 		}
 	}
 

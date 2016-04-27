@@ -61,8 +61,11 @@ public:
 	bool shotgun = false;
 	//Live state
 	bool destroyed = false;
+	//win or lose
+	bool result = false;
 	//??
 	int last_position = 220;
+	
 };
 
 #endif

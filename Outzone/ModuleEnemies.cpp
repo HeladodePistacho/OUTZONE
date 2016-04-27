@@ -134,8 +134,6 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::BASIC_ROBOT:
 			enemies[i] = new ENEMY_Basic_Robot(info.x, info.y);
 			break;
-
-		
 		}
 	}
 }
@@ -146,15 +144,12 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (c1->type == COLLIDER_ENEMY && c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT)
 		{
-
-
 			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 			{
-
 				App->particles->AddParticle(App->particles->basic_robot_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
 				delete enemies[i];
 				enemies[i] = nullptr;
-
+				break;
 			}
 		}
 	}

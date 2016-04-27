@@ -9,6 +9,7 @@
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
+#include "Module_Congrats.h"
 
 Module_lvl_2::Module_lvl_2()
 {
@@ -48,8 +49,8 @@ update_status Module_lvl_2::Update()
 	if (IsEnabled() == true){
 		// Draw everything --------------------------------------
 		App->render->Blit(graphics, 0, -4940, &background, 0.75f); // lvl 2 background
-		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
-			App->change_scene->ChangeScene(App->lvl_1, App->lvl_2, 1.0f);
+		if (App->input->keyboard[SDL_SCANCODE_SPACE]){
+			App->change_scene->ChangeScene(App->lvl_2, App->congrats, 1.0f);
 		}
 	}
 	return UPDATE_CONTINUE;
