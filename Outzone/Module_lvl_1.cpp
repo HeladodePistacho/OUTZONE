@@ -117,8 +117,9 @@ bool Module_lvl_1::CleanUp()
 	//Disable Collisions
 	App->collision->Disable();
 	App->player->Disable();
-
-	//disable particles
+	//Disable Enemies
+	App->enemies->Disable();
+	//Disable particles
 	App->particles->Disable();
 	App->enemies->Disable();
 

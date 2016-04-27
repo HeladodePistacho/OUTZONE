@@ -155,7 +155,7 @@ update_status ModulePlayer::Update()
 	if (IsEnabled()){
 
 		//right down
-		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 		{
 
 			if (position.y <= last_position + 65)
@@ -186,7 +186,7 @@ update_status ModulePlayer::Update()
 		}
 
 		//right up
-		else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT){
+		else if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 
 			if (position.y <= last_position)
 			{
@@ -226,7 +226,7 @@ update_status ModulePlayer::Update()
 		}
 
 		//left down
-		else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+		else if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 		{
 
 			if (position.y <= last_position + 65)
@@ -257,7 +257,7 @@ update_status ModulePlayer::Update()
 		}
 
 		//left up
-		else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
+		else if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 		{
 
 			if (position.y <= last_position)
@@ -300,7 +300,7 @@ update_status ModulePlayer::Update()
 
 
 		//right
-		else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT){
+		else if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT){
 			if (position.x < 210){
 				position.x += speed;
 			}
@@ -326,7 +326,7 @@ update_status ModulePlayer::Update()
 		}
 
 		//left
-		else if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT){
+		else if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT){
 			if (position.x > 0){
 				position.x -= speed;
 			}
@@ -352,7 +352,7 @@ update_status ModulePlayer::Update()
 		}
 
 		//up
-		else if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
+		else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 		{
 
 
@@ -364,6 +364,8 @@ update_status ModulePlayer::Update()
 			else position.y -= speed;
 
 			if (shotgun == false){
+				if (current_animation == &up_right){
+				}
 				if (current_animation != &up)
 				{
 					idle.Reset();
@@ -387,7 +389,7 @@ update_status ModulePlayer::Update()
 		}
 
 		//down
-		else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+		else if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 		{
 			if (position.y <= last_position + 65)
 			{
@@ -422,7 +424,11 @@ update_status ModulePlayer::Update()
 
 		//WEAPONS
 		//AFK laser shot
-		if (current_animation == &idle&&App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN)App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE, LASER_FIRE);
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+			App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE, LASER_FIRE);
+			App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			last_time = current_time;
+		}
 
 		//change weapon
 		else if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
@@ -478,7 +484,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		{
 			destroyed = true;
 			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT, UNDEFINED);
+			App->player->Disable();
 			App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
+			
 		}
 		if (c2->type == COLLIDER_WALL||c2->type == COLLIDER_WALL_FLAT)
 		{
