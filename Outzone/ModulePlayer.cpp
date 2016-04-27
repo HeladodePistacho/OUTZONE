@@ -124,6 +124,7 @@ bool ModulePlayer::Start()
 	body = App->collision->AddCollider({ position.x, position.y, 30, 40 }, COLLIDER_PLAYER, this);
 	//Load character sprites
 	graphics = App->textures->Load("character_sprites.png");
+
 	
 
 	return true;
@@ -175,6 +176,7 @@ update_status ModulePlayer::Update()
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 					App->particles->AddParticle(App->particles->laser_south_east_fire, position.x + 14, position.y + 18, COLLIDER_NONE, LASER_FIRE);
 					App->particles->AddParticle(App->particles->laser_south_east_bullet, position.x + 14, position.y + 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+				
 					last_time = current_time;
 				}
 			}
@@ -215,6 +217,7 @@ update_status ModulePlayer::Update()
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 					App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE, LASER_FIRE);
 					App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					
 					last_time = current_time;
 				}
 			}
@@ -246,6 +249,7 @@ update_status ModulePlayer::Update()
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 					App->particles->AddParticle(App->particles->laser_south_west_fire, position.x - 15, position.y + 13, COLLIDER_NONE, LASER_FIRE);
 					App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x - 13, position.y + 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					
 					last_time = current_time;
 				}
 			}
@@ -288,6 +292,7 @@ update_status ModulePlayer::Update()
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 					App->particles->AddParticle(App->particles->laser_north_west_fire, position.x, position.y - 13, COLLIDER_NONE, LASER_FIRE);
 					App->particles->AddParticle(App->particles->laser_north_west_bullet, position.x + 2, position.y - 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+				
 					last_time = current_time;
 				}
 			}
@@ -315,6 +320,7 @@ update_status ModulePlayer::Update()
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 					App->particles->AddParticle(App->particles->laser_east_fire, position.x + 28, position.y + 5, COLLIDER_NONE, LASER_FIRE);
 					App->particles->AddParticle(App->particles->laser_east_bullet, position.x + 28, position.y + 8, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+					
 					last_time = current_time;
 				}
 			}
@@ -341,6 +347,7 @@ update_status ModulePlayer::Update()
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 					App->particles->AddParticle(App->particles->laser_west_fire, position.x - 18, position.y, COLLIDER_NONE, LASER_FIRE);
 					App->particles->AddParticle(App->particles->laser_west_bullet, position.x - 18, position.y + 5, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+
 					last_time = current_time;
 				}
 			}
@@ -375,6 +382,7 @@ update_status ModulePlayer::Update()
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 					App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE, LASER_FIRE);
 					App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			
 					last_time = current_time;
 				}
 			}
@@ -408,6 +416,7 @@ update_status ModulePlayer::Update()
 				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 					App->particles->AddParticle(App->particles->laser_south_fire, position.x, position.y + 24, COLLIDER_NONE, LASER_FIRE);
 					App->particles->AddParticle(App->particles->laser_south_bullet, position.x + 5, position.y + 24, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+				
 					last_time = current_time;
 				}
 			}
@@ -444,6 +453,7 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(App->particles->shotgun_left, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
 			App->particles->AddParticle(App->particles->shotgun_mid, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
 			App->particles->AddParticle(App->particles->shotgun_right, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+			
 			last_time = current_time;
 		}
 

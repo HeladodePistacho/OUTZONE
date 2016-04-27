@@ -66,6 +66,8 @@ public:
 	//??
 	int last_position = 220;
 	
+	Mix_Chunk* shotgun_shot_sound = nullptr;
+	Mix_Chunk* game_over = nullptr;
 };
 
 #endif

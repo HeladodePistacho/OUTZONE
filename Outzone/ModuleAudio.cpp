@@ -49,9 +49,27 @@ Mix_Music* const ModuleAudio::Load(const char* path)
 
 }
 
+Mix_Chunk* const ModuleAudio::Load_chunk(const char* path)
+{
+	Mix_Chunk* efect = Mix_LoadWAV(path);
+
+	if (efect == NULL)
+	{
+		LOG("Audio error, %s", Mix_GetError());
+	}
+	else{
+		efects[last_efect++] = efect;
+	}
+
+	return efect;
+}
+
+
 bool ModuleAudio::CleanUp()
 {
 	LOG("Destroying audio");
+
+	
 
 	for (uint i = 0; i < MAX_AUDIOS; ++i)
 	{
@@ -60,7 +78,8 @@ bool ModuleAudio::CleanUp()
 			Mix_FreeMusic(audios[i]);
 		}
 	}
-		
+
+	
 	Mix_CloseAudio();
 	Mix_Quit();
 

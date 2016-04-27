@@ -10,7 +10,9 @@ class ModuleAudio : public Module
 {
 public:
 	Mix_Music* audios[MAX_AUDIOS];
+	Mix_Chunk* efects[MAX_AUDIOS];
 	uint last_audio = 0;
+	uint last_efect = 0;
 public:
 
 	ModuleAudio();
@@ -20,6 +22,7 @@ public:
 	bool CleanUp();
 
 	Mix_Music* const Load(const char* path);
+	Mix_Chunk* const Load_chunk(const char* path);
 	
 };
 
