@@ -117,6 +117,7 @@ public:
 
 	//enemie basic robot explosion
 	Particle basic_robot_explosion;
+	Particle enemie_shot;
 
 };
 

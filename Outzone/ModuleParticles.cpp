@@ -228,6 +228,9 @@ ModuleParticles::ModuleParticles()
 	basic_robot_explosion.anim.loop = false;
 	basic_robot_explosion.anim.speed = 0.2f;
 
+	//enemie shot
+	enemie_shot.anim.PushBack({ 0, 112, 6, 6 });
+	enemie_shot.life = 5000;
 }
 
 ModuleParticles::~ModuleParticles()
