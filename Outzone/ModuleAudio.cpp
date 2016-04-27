@@ -69,6 +69,8 @@ bool ModuleAudio::CleanUp()
 {
 	LOG("Destroying audio");
 
+	
+
 	for (uint i = 0; i < MAX_AUDIOS; ++i)
 	{
 		if (audios[i] != nullptr)
@@ -76,7 +78,8 @@ bool ModuleAudio::CleanUp()
 			Mix_FreeMusic(audios[i]);
 		}
 	}
-		
+
+	
 	Mix_CloseAudio();
 	Mix_Quit();
 
