@@ -461,29 +461,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == body && destroyed == false && App->change_scene->IsFading() == false)
 	{
 
-		if (c2->type == COLLIDER_ENEMY)
-		{
-			destroyed = true;
-			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT, UNDEFINED);
-			App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
-		}
-
-		if (c2->type == COLLIDER_WALL)
-		{
-			if (c1->rect.y >= c2->rect.y && c1->rect.y + c1->rect.h >= c2->rect.y + c2->rect.h)
-			{
-				position.x = c2->rect.x + c2->rect.w;
-				
-
-			}
-			else if(c1->rect.x >= c2->rect.x || c1->rect.x + c1->rect.w <= c2->rect.x + c2->rect.w)
-			{
-				position.y = c2->rect.y + c2->rect.h;
-			}
-		}
-
-
-
 		if (c2->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY_SHOT)
 		{
 			destroyed = true;
@@ -507,7 +484,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 				position.y = c2->rect.y - c1->rect.h;
 			}
 
-			if (position.x + c1->rect.w - 2 <= c2->rect.x)
+			if (c1->rect.x + c1->rect.w - 2 <= c2->rect.x)
 			{
 				position.x = c2->rect.x - c1->rect.w;
 			}
