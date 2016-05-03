@@ -40,9 +40,16 @@ public:
 	//ANIMATIONS
 	//Current animation
 	Animation* current_animation = nullptr;
+	//LASER
 	//AFK
-	Animation idle;
-	Animation shotgun_AFK;
+	Animation idle_up;
+	Animation idle_up_right;
+	Animation idle_right;
+	Animation idle_down_right;
+	Animation idle_up_left;
+	Animation idle_down_left;
+	Animation idle_left;
+	Animation idle_down;
 	//Movement
 	Animation up;
 	Animation up_right;
@@ -52,7 +59,13 @@ public:
 	Animation down_left;
 	Animation left;
 	Animation down;
+
+	//SHOTGUN
+	//AFK
+	Animation shotgun_AFK;
+	//Movement
 	Animation shotgun_walk;
+	
 
 	//PLAYER DATA
 	//Coordenades

@@ -14,14 +14,25 @@
 #include "SDL/include/SDL_timer.h"
 ModulePlayer::ModulePlayer()
 {
-
-	//AFK
-	idle.PushBack({ 2, 156, 29, 39 });	//stoped
-	shotgun_AFK.PushBack({ 0, 322, 29, 37 });
-	
-
-	//WALKING ANIMATIONS
-
+	//Laser movement
+	//up
+	up.PushBack({ 2, 156, 29, 39 });
+	up.PushBack({ 120, 156, 29, 39 });
+	up.PushBack({ 32, 156, 29, 39 });
+	up.PushBack({ 62, 156, 29, 39 });
+	up.PushBack({ 92, 156, 29, 38 });
+	up.loop = true;
+	up.speed = 0.22f;
+	//down
+	down.PushBack({ 101, 117, 28, 40 });
+	down.PushBack({ 70, 118, 27, 37 });
+	down.PushBack({ 131, 116, 28, 39 });
+	down.PushBack({ 35, 118, 28, 38 });
+	down.PushBack({ 70, 118, 27, 37 });
+	down.PushBack({ 0, 118, 28, 38 });
+	down.loop = true;
+	down.speed = 0.22f;
+	//left
 	left.PushBack({ 32, 0, 26, 35 });
 	left.PushBack({ 118, 0, 28, 35 });
 	left.PushBack({ 0, 0, 29, 32 });
@@ -30,7 +41,7 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 87, 0, 28, 35 });
 	left.loop = true;
 	left.speed = 0.22f;
-
+	//up left
 	up_left.PushBack({ 0, 37, 28, 35 });
 	up_left.PushBack({ 32, 37, 28, 35 });
 	up_left.PushBack({ 63, 38, 28, 35 });
@@ -41,7 +52,7 @@ ModulePlayer::ModulePlayer()
 	up_left.PushBack({ 95, 36, 27, 35 });
 	up_left.loop = true;
 	up_left.speed = 0.22f;
-
+	//down left
 	down_left.PushBack({ 126, 75, 32, 38 });
 	down_left.PushBack({ 95, 78, 28, 36 });
 	down_left.PushBack({ 0, 76, 30, 37 });
@@ -50,33 +61,7 @@ ModulePlayer::ModulePlayer()
 	down_left.PushBack({ 64, 77, 31, 37 });
 	down_left.loop = true;
 	down_left.speed = 0.22f;
-
-	down.PushBack({ 101, 117, 28, 40 });
-	down.PushBack({ 70, 118, 27, 37 });
-	down.PushBack({ 131, 116, 28, 39 });
-	down.PushBack({ 35, 118, 28, 38 });
-	down.PushBack({ 70, 118, 27, 37 });
-	down.PushBack({ 0, 118, 28, 38 });
-	down.loop = true;
-	down.speed = 0.22f;
-	//1,5,2,3,4
-	up.PushBack({ 2, 156, 29, 39 });
-	up.PushBack({ 120, 156, 29, 39 });
-	up.PushBack({ 32, 156, 29, 39 });
-	up.PushBack({ 62, 156, 29, 39 });
-	up.PushBack({ 92, 156, 29, 38 });
-	up.loop = true;
-	up.speed = 0.22f;
-
-	up_right.PushBack({ 67, 199, 23, 35 });
-	up_right.PushBack({ 35, 197, 25, 37 });
-	up_right.PushBack({ 6, 198, 24, 36 });
-	up_right.PushBack({ 93, 198, 27, 36 });
-	up_right.PushBack({ 35, 197, 25, 37 });
-	up_right.PushBack({ 129, 197, 22, 37 });
-	up_right.loop = true;
-	up_right.speed = 0.22f;
-
+	//right
 	right.PushBack({ 36, 236, 29, 38 });
 	right.PushBack({ 6, 237, 27, 38 });
 	right.PushBack({ 129, 238, 27, 37 });
@@ -85,7 +70,16 @@ ModulePlayer::ModulePlayer()
 	right.PushBack({ 98, 237, 29, 36 });
 	right.loop = true;
 	right.speed = 0.22f;
-
+	//up right
+	up_right.PushBack({ 67, 199, 23, 35 });
+	up_right.PushBack({ 35, 197, 25, 37 });
+	up_right.PushBack({ 6, 198, 24, 36 });
+	up_right.PushBack({ 93, 198, 27, 36 });
+	up_right.PushBack({ 35, 197, 25, 37 });
+	up_right.PushBack({ 129, 197, 22, 37 });
+	up_right.loop = true;
+	up_right.speed = 0.22f;
+	//down right
 	down_right.PushBack({ 7, 279, 28, 36 });
 	down_right.PushBack({ 35, 278, 28, 37 });
 	down_right.PushBack({ 67, 277, 27, 37 });
@@ -93,14 +87,35 @@ ModulePlayer::ModulePlayer()
 	down_right.PushBack({ 131, 277, 28, 37 });
 	down_right.loop = true;
 	down_right.speed = 0.22f;
+	
+	//AFK
+	//up
+	idle_up.PushBack({ 2, 156, 29, 39 });
+	//down
+	idle_down.PushBack({ 101, 117, 28, 40 });
+	//left
+	idle_left.PushBack({ 32, 0, 26, 35 });
+	//up left
+	idle_up_left.PushBack({ 0, 37, 28, 35 });
+	//down left
+	idle_down_left.PushBack({ 126, 75, 32, 38 });
+	//right
+	idle_right.PushBack({ 36, 236, 29, 38 });
+	//up right
+	idle_up_right.PushBack({ 67, 199, 23, 35 });
+	//down right
+	idle_down_right.PushBack({ 7, 279, 28, 36 });
 
-	//shotgun movement
+
+	//Shotgun movement
 	shotgun_walk.PushBack({0,322,29,37});
 	shotgun_walk.PushBack({33,322,30,36});
 	shotgun_walk.PushBack({65,322,30,36});
 	shotgun_walk.PushBack({98,322,30,38});
 	shotgun_walk.loop = true;
 	shotgun_walk.speed = 0.22f;
+	//AFK
+	shotgun_AFK.PushBack({ 0, 322, 29, 37 });
 }
 
 ModulePlayer::~ModulePlayer()
@@ -150,7 +165,18 @@ update_status ModulePlayer::Update()
 	float speed = 2.0f;
 	//AFK
 	if (shotgun)current_animation = &shotgun_AFK;
-	else current_animation = &idle;
+	else {
+		if (current_animation == &down)current_animation = &idle_down;
+		else if (current_animation == &up || current_animation == &idle_up)current_animation = &idle_up;
+		else if (current_animation == &down || current_animation == &idle_down)current_animation = &idle_down;
+		else if (current_animation == &left || current_animation == &idle_left)current_animation = &idle_left;
+		else if (current_animation == &up_left || current_animation == &idle_up_left)current_animation = &idle_up_left;
+		else if (current_animation == &down_left || current_animation == &idle_down_left)current_animation = &idle_down_left;
+		else if (current_animation == &right || current_animation == &idle_right)current_animation = &idle_right;
+		else if (current_animation == &up_right || current_animation == &idle_up_right)current_animation = &idle_up_right;
+		else if (current_animation == &down_right || current_animation ==&idle_down_right)current_animation = &idle_down_right;
+		else current_animation = &idle_up;
+	}
 
 	//MOVEMENT
 	if (IsEnabled()){
@@ -169,7 +195,15 @@ update_status ModulePlayer::Update()
 			if (shotgun == false){
 				if (current_animation != &down_right)
 				{
-					idle.Reset();
+					if (current_animation == &right){
+						if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+							App->particles->AddParticle(App->particles->laser_south_east_fire, position.x + 14, position.y + 18, COLLIDER_NONE, LASER_FIRE);
+							App->particles->AddParticle(App->particles->laser_south_east_up_bullet, position.x + 14, position.y + 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+
+							last_time = current_time;
+						}
+					
+					}
 					current_animation = &down_right;
 				}
 				//laser shot
@@ -182,7 +216,6 @@ update_status ModulePlayer::Update()
 			}
 			else if (current_animation != &shotgun_walk)
 			{
-				idle.Set_frame(1);
 				current_animation = &shotgun_walk;
 			}
 		}
@@ -210,7 +243,6 @@ update_status ModulePlayer::Update()
 			if (shotgun == false){
 				if (current_animation != &up_right)
 				{
-					idle.Reset();
 					current_animation = &up_right;
 				}
 				//laser shot
@@ -223,7 +255,6 @@ update_status ModulePlayer::Update()
 			}
 			else if (current_animation != &shotgun_walk)
 			{
-				idle.Set_frame(1);
 				current_animation = &shotgun_walk;
 			}
 		}
@@ -242,7 +273,6 @@ update_status ModulePlayer::Update()
 			if (shotgun == false){
 				if (current_animation != &down_left)
 				{
-					idle.Reset();
 					current_animation = &down_left;
 				}
 				//laser shot
@@ -255,7 +285,6 @@ update_status ModulePlayer::Update()
 			}
 			else if (current_animation != &shotgun_walk)
 			{
-				idle.Set_frame(1);
 				current_animation = &shotgun_walk;
 			}
 		}
@@ -285,7 +314,6 @@ update_status ModulePlayer::Update()
 			{
 				if (current_animation != &up_left)
 				{
-					idle.Reset();
 					current_animation = &up_left;
 				}
 				//laser shot
@@ -298,7 +326,6 @@ update_status ModulePlayer::Update()
 			}
 			else if (current_animation != &shotgun_walk)
 			{
-				idle.Set_frame(1);
 				current_animation = &shotgun_walk;
 			}
 		}
@@ -313,7 +340,6 @@ update_status ModulePlayer::Update()
 			if (shotgun == false){
 				if (current_animation != &right)
 				{
-					idle.Reset();
 					current_animation = &right;
 				}
 				//laser shot
@@ -326,7 +352,6 @@ update_status ModulePlayer::Update()
 			}
 			else if (current_animation != &shotgun_walk)
 			{
-				idle.Set_frame(1);
 				current_animation = &shotgun_walk;
 			}
 		}
@@ -340,7 +365,6 @@ update_status ModulePlayer::Update()
 			if (shotgun == false){
 				if (current_animation != &left)
 				{
-					idle.Reset();
 					current_animation = &left;
 				}
 				//laser shot
@@ -353,7 +377,6 @@ update_status ModulePlayer::Update()
 			}
 			else if (current_animation != &shotgun_walk)
 			{
-				idle.Set_frame(1);
 				current_animation = &shotgun_walk;
 			}
 		}
@@ -375,7 +398,6 @@ update_status ModulePlayer::Update()
 				}
 				if (current_animation != &up)
 				{
-					idle.Reset();
 					current_animation = &up;
 				}
 				//laser shot
@@ -388,7 +410,6 @@ update_status ModulePlayer::Update()
 			}
 			else if (current_animation != &shotgun_walk)
 			{
-				idle.Set_frame(1);
 				current_animation = &shotgun_walk;
 			}
 
@@ -409,7 +430,6 @@ update_status ModulePlayer::Update()
 			if (shotgun == false){
 				if (current_animation != &down)
 				{
-					idle.Reset();
 					current_animation = &down;
 				}
 				//laser shot
@@ -422,7 +442,6 @@ update_status ModulePlayer::Update()
 			}
 			else if (current_animation != &shotgun_walk)
 			{
-				idle.Set_frame(1);
 				current_animation = &shotgun_walk;
 			}
 		}
