@@ -121,7 +121,6 @@ bool Module_lvl_1::CleanUp()
 	App->enemies->Disable();
 	//Disable particles
 	App->particles->Disable();
-	App->enemies->Disable();
 
 	//Disable Textures
 	App->textures->Disable();

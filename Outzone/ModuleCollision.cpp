@@ -75,45 +75,48 @@ update_status ModuleCollision::PreUpdate()
 // Called before render is available
 update_status ModuleCollision::Update()
 {
-	Collider* c1;
-	Collider* c2;
+	if (IsEnabled()){
+		Collider* c1;
+		Collider* c2;
 
-	for (uint i = 0; i < MAX_COLLIDERS; ++i)
-	{
-		// skip empty colliders
-		if (colliders[i] == nullptr)
-			continue;
-
-		c1 = colliders[i];
-
-		// avoid checking collisions already checked
-		for (uint k = i + 1; k < MAX_COLLIDERS; ++k)
+		for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		{
 			// skip empty colliders
-			if (colliders[k] == nullptr)
+			if (colliders[i] == nullptr)
 				continue;
 
-			c2 = colliders[k];
+			c1 = colliders[i];
 
-			if (c1->CheckCollision(c2->rect) == true)
+			// avoid checking collisions already checked
+			for (uint k = i + 1; k < MAX_COLLIDERS; ++k)
 			{
-				if (matrix[c1->type][c2->type] && c1->callback)
-					c1->callback->OnCollision(c1, c2);
+				// skip empty colliders
+				if (colliders[k] == nullptr)
+					continue;
 
-				else if (matrix[c2->type][c1->type] && c2->callback)
-					 c2->callback->OnCollision(c2, c1);
+				c2 = colliders[k];
+
+				if (c1->CheckCollision(c2->rect) == true)
+				{
+					if (matrix[c1->type][c2->type] && c1->callback){
+						c1->callback->OnCollision(c1, c2);
+					}
+					if (matrix[c2->type][c1->type] && c2->callback){
+						c2->callback->OnCollision(c2, c1);
+					}
+
+				}
 			}
 		}
+
+		DebugDraw();
 	}
-
-	DebugDraw();
-
 	return UPDATE_CONTINUE;
 }
 
 void ModuleCollision::DebugDraw()
 {
-	if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_DOWN)
 		debug = !debug;
 
 	if (debug == false)
@@ -187,15 +190,19 @@ Collider* ModuleCollision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module
 
 bool ModuleCollision::EraseCollider(Collider* collider)
 {
-	for (uint i = 0; i < MAX_COLLIDERS; ++i)
+	if (collider != nullptr)
 	{
-		if (colliders[i] == collider)
+		// we still search for it in case we received a dangling pointer
+		for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		{
-			delete colliders[i];
-			colliders[i] = nullptr;
-			return true;
+			if (colliders[i] == collider)
+			{
+				collider->to_delete = true;
+				break;
+			}
 		}
 	}
+
 
 	return false;
 }

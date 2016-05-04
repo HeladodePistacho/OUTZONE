@@ -33,8 +33,12 @@ public:
 	Uint32 shotgun_fire_rate;
 	//Miliseconds since the init
 	Uint32 current_time;
-	//Miliseconds since the last timed action
+	//Miliseconds since the last shot
 	Uint32 last_time;
+	//Rotation timing
+	Uint32 rotation_vel;
+	//Miliseconds since the last rotation
+	Uint32 last_rotation;
 	
 	
 	//ANIMATIONS

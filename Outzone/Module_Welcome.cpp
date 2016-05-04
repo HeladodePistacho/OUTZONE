@@ -24,7 +24,7 @@ bool Module_Welcome::Start()
 	LOG("Loading background assets");
 	graphics = App->textures->Load("Welcome_Screen.png");
 	App->render->escalated_screen = 0;
-
+	App->player->Reset();
 	return true;
 }
 // Update: draw background
