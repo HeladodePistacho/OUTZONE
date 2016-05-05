@@ -18,6 +18,15 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
+	//Laser Movement Functions 
+	void Go_North(float);
+	void Go_South(float);
+	void Go_East(float);
+	void Go_East_Up(float);
+	void Go_East_Down(float);
+	void Go_West(float);
+	void Go_West_Up(float);
+	void Go_West_Down(float);
 	void Reset();
 
 public:
