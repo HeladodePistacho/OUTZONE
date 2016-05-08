@@ -165,11 +165,52 @@ update_status ModulePlayer::Update()
 		if (IsEnabled()){
 		//Player Speed
 		float speed = 2.0f;
-		//AFK
+		
+		//WEAPONS
+		//CHANGE WEAPON
+		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
+		{
+			if (shotgun)shotgun = false;
+			else shotgun = true;
+		}
+		//UPGRADE WEAPON
+		if (App->input->keyboard[SDL_SCANCODE_U] == KEY_STATE::KEY_DOWN){
+			if (shotgun_lvl < 3){
+				shotgun_lvl++;
+			}
+			else shotgun_lvl = 1;
+		}
+		//SHOTGUN SHOT
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && shotgun&&current_time >= last_time + shotgun_fire_rate || App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN && shotgun){
+			//fire
+			App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE, SHOTGUN_FIRE);
+			//lvl 1 bullets
+			if (shotgun_lvl == 1){
+				App->particles->AddParticle(App->particles->shotgun_left_1, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+				App->particles->AddParticle(App->particles->shotgun_mid_1, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+				App->particles->AddParticle(App->particles->shotgun_right_1, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+			}
+			//lvl 2 bullets
+			else if (shotgun_lvl == 2){
+				App->particles->AddParticle(App->particles->shotgun_left_2, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+				App->particles->AddParticle(App->particles->shotgun_mid_2, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+				App->particles->AddParticle(App->particles->shotgun_right_2, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+			}
+			//lvl 2 bullets
+			else if (shotgun_lvl == 3){
+				App->particles->AddParticle(App->particles->shotgun_left_3, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+				App->particles->AddParticle(App->particles->shotgun_mid_3, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+				App->particles->AddParticle(App->particles->shotgun_right_3, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
+			}
+			//shot timing
+			last_time = current_time;
+		}
 
+		
+		//AFK
 		//IDLE WALK
 		if (shotgun == false){
-			if (current_animation == &shotgun_AFK && shotgun == false){
+			if (current_animation == &shotgun_AFK || current_animation == &shotgun_walk){
 				current_animation = &idle_up;
 			}
 			//idle down
@@ -263,7 +304,7 @@ update_status ModulePlayer::Update()
 				else if ((current_animation == &down_left || current_animation == &idle_down_left) && current_time > last_rotation + rotation_vel){ Go_South(speed); }
 				else if ((current_animation == &right || current_animation == &idle_right) && current_time > last_rotation + rotation_vel){ Go_East_Down(speed); }
 				else if ((current_animation == &down || current_animation == &idle_down) && current_time > last_rotation + rotation_vel){ Go_East_Down(speed); }
-				else if (current_animation == &down_right || current_animation == &down || current_animation == &right){ Go_East_Down(speed); }
+				else if (current_animation == &down_right || current_animation == &idle_down_right || current_animation == &down || current_animation == &right){ Go_East_Down(speed); }
 			}
 			else Go_East_Down(speed);
 		}
@@ -279,7 +320,7 @@ update_status ModulePlayer::Update()
 				else if ((current_animation == &down || current_animation == &idle_down) && current_time > last_rotation + rotation_vel){ Go_East_Down(speed); }
 				else if ((current_animation == &right || current_animation == &idle_right) && current_time > last_rotation + rotation_vel){ Go_East_Up(speed); }
 				else if ((current_animation == &up || current_animation == &idle_up) && current_time > last_rotation + rotation_vel){ Go_East_Up(speed); }
-				else if (current_animation == &up_right || current_animation == &up || current_animation == &right){ Go_East_Up(speed); }
+				else if (current_animation == &up_right || current_animation == &idle_up_right || current_animation == &up || current_animation == &right){ Go_East_Up(speed); }
 			}
 			else Go_East_Up(speed);
 		}
@@ -295,7 +336,7 @@ update_status ModulePlayer::Update()
 				else if ((current_animation == &up_left || current_animation == &idle_up_left) && current_time > last_rotation + rotation_vel){ Go_West(speed); }
 				else if ((current_animation == &left || current_animation == &idle_left) && current_time > last_rotation + rotation_vel){ Go_West_Down(speed); }
 				else if ((current_animation == &down || current_animation == &idle_down) && current_time > last_rotation + rotation_vel){ Go_West_Down(speed); }
-				else if (current_animation == &down_left || current_animation == &down || current_animation == &left){ Go_West_Down(speed); }
+				else if (current_animation == &down_left || current_animation == &idle_down_left || current_animation == &down || current_animation == &left){ Go_West_Down(speed); }
 			}
 			else Go_West_Down(speed);
 		}
@@ -311,7 +352,7 @@ update_status ModulePlayer::Update()
 				else if ((current_animation == &down || current_animation == &idle_down) && current_time > last_rotation + rotation_vel){ Go_West_Down(speed); }
 				else if ((current_animation == &up || current_animation == &idle_up) && current_time > last_rotation + rotation_vel){ Go_West_Up(speed); }
 				else if ((current_animation == &left || current_animation == &idle_left) && current_time > last_rotation + rotation_vel){ Go_West_Up(speed); }
-				else if (current_animation == &up_left || current_animation == &up || current_animation == &left){ Go_West_Up(speed); }
+				else if (current_animation == &up_left || current_animation == &idle_up_left || current_animation == &up || current_animation == &left){ Go_West_Up(speed); }
 			}
 			else Go_West_Up(speed);
 		}
@@ -327,7 +368,7 @@ update_status ModulePlayer::Update()
 				else if ((current_animation == &down || current_animation == &idle_down) && current_time > last_rotation + rotation_vel){ Go_East_Down(speed); }
 				else if ((current_animation == &up_right || current_animation == &idle_up_right) && current_time > last_rotation + rotation_vel){ Go_East(speed); }
 				else if ((current_animation == &down_right || current_animation == &idle_down_right)){ Go_East(speed); }
-				else if (current_animation == &down_right || current_animation == &up_right || current_animation == &right){ Go_East(speed); }
+				else if (current_animation == &right || current_animation == &idle_right || current_animation == &down_right || current_animation == &up_right){ Go_East(speed); }
 			}
 			else Go_East(speed);
 		}
@@ -343,7 +384,7 @@ update_status ModulePlayer::Update()
 				else if ((current_animation == &down || current_animation == &idle_down) && current_time > last_rotation + rotation_vel){ Go_West_Down(speed); }
 				else if ((current_animation == &down_left || current_animation == &idle_down_left) && current_time > last_rotation + rotation_vel){ Go_West(speed); }
 				else if ((current_animation == &up_left || current_animation == &idle_up_left) && current_time > last_rotation + rotation_vel){ Go_West(speed); }
-				else if (current_animation == &up_left || current_animation == &down_left || current_animation == &left){ Go_West(speed); }
+				else if (current_animation == &left || current_animation == &idle_left || current_animation == &up_left || current_animation == &down_left){ Go_West(speed); }
 			}
 			else Go_West(speed);
 		}
@@ -381,8 +422,8 @@ update_status ModulePlayer::Update()
 		}
 
 
-		
 		//BAD COMANDS
+		//LASER
 		else if (current_animation == &up)Go_North(speed);
 		else if (current_animation == &down)Go_South(speed);
 		else if (current_animation == &right)Go_East(speed);
@@ -391,50 +432,7 @@ update_status ModulePlayer::Update()
 		else if (current_animation == &left)Go_West(speed);
 		else if (current_animation == &up_left)Go_West_Up(speed);
 		else if (current_animation == &down_left)Go_West_Down(speed);
-		
 
-
-
-
-		//WEAPONS
-		//CHANGE WEAPON
-		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
-		{
-			if (shotgun)shotgun = false;
-			else shotgun = true;
-		}
-		//UPGRADE WEAPON
-		if (App->input->keyboard[SDL_SCANCODE_U] == KEY_STATE::KEY_DOWN){
-			if (shotgun_lvl < 3){
-				shotgun_lvl++;
-			}
-			else shotgun_lvl = 1;
-		}
-		//SHOTGUN SHOT
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && shotgun&&current_time >= last_time + shotgun_fire_rate || App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN && shotgun){
-			//fire
-			App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE, SHOTGUN_FIRE);
-			//lvl 1 bullets
-			if (shotgun_lvl == 1){
-				App->particles->AddParticle(App->particles->shotgun_left_1, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
-				App->particles->AddParticle(App->particles->shotgun_mid_1, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
-				App->particles->AddParticle(App->particles->shotgun_right_1, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
-			}
-			//lvl 2 bullets
-			else if (shotgun_lvl == 2){
-				App->particles->AddParticle(App->particles->shotgun_left_2, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
-				App->particles->AddParticle(App->particles->shotgun_mid_2, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
-				App->particles->AddParticle(App->particles->shotgun_right_2, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
-			}
-			//lvl 2 bullets
-			else if (shotgun_lvl == 3){
-				App->particles->AddParticle(App->particles->shotgun_left_3, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
-				App->particles->AddParticle(App->particles->shotgun_mid_3, position.x + 10, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
-				App->particles->AddParticle(App->particles->shotgun_right_3, position.x + 23, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
-			}
-			//shot timing
-			last_time = current_time;
-		}
 
 		//WIN
 		if (App->render->camera.y > 4000){

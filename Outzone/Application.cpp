@@ -14,7 +14,7 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleGameOver.h"
-
+#include "ModuleObjects.h"
 Application::Application()
 {
 	modules[0] = window = new ModuleWindow();
@@ -31,7 +31,8 @@ Application::Application()
 	modules[11] = gameover = new Module_GameOver();
 	modules[12] = enemies = new ModuleEnemies();
 	modules[13] = particles = new ModuleParticles();
-	modules[14] = collision = new ModuleCollision();
+	modules[14] = objects = new ModuleObjects();
+	modules[15] = collision = new ModuleCollision();
 }	
 
 Application::~Application()
@@ -53,6 +54,7 @@ bool Application::Init()
 	congrats->Disable();
 	gameover->Disable();
 	collision->Disable();
+	objects->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

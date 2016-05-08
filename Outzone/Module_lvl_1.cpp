@@ -10,7 +10,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
-
+#include "ModuleObjects.h"
 Module_lvl_1::Module_lvl_1()
 {
 	// Level 1 
@@ -44,6 +44,7 @@ bool Module_lvl_1::Start()
 		App->player->Enable();
 		App->collision->Enable();
 		App->enemies->Enable();
+		App->objects->Enable();
 		App->player->Reset();
 		
 
@@ -81,8 +82,9 @@ bool Module_lvl_1::Start()
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 20, -3080);
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 100, -3200);
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 230, -3050);
+		
 		//OBJECTS
-		//chests
+		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 50, -50);
 		
 
 
@@ -115,12 +117,14 @@ bool Module_lvl_1::CleanUp()
 
 	//Disable Collisions
 	App->collision->Disable();
+	//Disable Player
 	App->player->Disable();
 	//Disable Enemies
 	App->enemies->Disable();
-	//Disable particles
+	//Disable Particles
 	App->particles->Disable();
-
+	//Disable Objects
+	App->objects->Disable();
 	//Disable Textures
 	App->textures->Disable();
 	App->render->escalated_screen = SCREEN_SIZE * App->lvl_2->map_size * 1.25f;

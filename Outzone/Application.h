@@ -3,8 +3,9 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 15
+#define NUM_MODULES 16
 
+class ModuleObjects;
 class ModuleParticles;
 class ModuleEnemies;
 class ModuleWindow;
@@ -42,6 +43,7 @@ public:
 	ModuleCollision* collision;
 	ModuleParticles* particles;
 	ModuleEnemies* enemies;
+	ModuleObjects* objects;
 
 public:
 

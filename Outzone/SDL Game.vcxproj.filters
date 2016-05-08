@@ -24,6 +24,9 @@
     <Filter Include="Modules\Game Modules">
       <UniqueIdentifier>{a4d754d4-ae68-43f9-b622-567dcf9ba311}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Objects">
+      <UniqueIdentifier>{74fb39fc-2b4a-46a0-8a2f-2e3a39e89843}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemLeaks.h">
@@ -98,6 +101,15 @@
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules\Game Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Modules\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleObjects.h">
+      <Filter>Modules\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJECT_Change_Box.h">
+      <Filter>Modules\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -159,6 +171,15 @@
     </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules\Game Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Modules\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleObjects.cpp">
+      <Filter>Modules\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJECT_Change_Box.cpp">
+      <Filter>Modules\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
