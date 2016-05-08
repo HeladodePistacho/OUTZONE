@@ -47,13 +47,13 @@ bool Module_lvl_1::Start()
 		App->player->Reset();
 		
 
-		//Colliders
+		//COLLIDERS
+		//WALLS
 		App->collision->AddCollider({ 0, -152, 95, 195}, COLLIDER_WALL);//blue ship left
 		App->collision->AddCollider({ 0, -162, 48, 50 }, COLLIDER_WALL);//blue ship left
 		App->collision->AddCollider({ 178, -132, 59, 120 }, COLLIDER_WALL);//blue ship right
 		App->collision->AddCollider({ 230, -12, 10, 20 }, COLLIDER_WALL);//blue ship right
 		App->collision->AddCollider({ 200, -21, 42, 12 }, COLLIDER_WALL);//blue ship right
-
 		App->collision->AddCollider({ 160, -1074, 32, 62 }, COLLIDER_WALL);//column
 		App->collision->AddCollider({ 0, -914, 32, 62 }, COLLIDER_WALL);//column
 		App->collision->AddCollider({ 191, -786, 32, 62 }, COLLIDER_WALL);//column
@@ -62,7 +62,6 @@ bool Module_lvl_1::Start()
 		App->collision->AddCollider({ 193, -1779, 32, 62 }, COLLIDER_WALL);//column
 		App->collision->AddCollider({ 0, -1811, 32, 62 }, COLLIDER_WALL);//column
 		App->collision->AddCollider({ 96, -1908, 32, 62 }, COLLIDER_WALL);//column
-
 		App->collision->AddCollider({ 0, -1340, 30, 168}, COLLIDER_WALL_FLAT);//turret wall
 		App->collision->AddCollider({ 0, -1350, 107, 120 }, COLLIDER_WALL_FLAT);//turret wall
 		App->collision->AddCollider({ 0, -1338, 123, 130 }, COLLIDER_WALL_FLAT);
@@ -70,14 +69,11 @@ bool Module_lvl_1::Start()
 		App->collision->AddCollider({ 0, -1640, 39, 140 }, COLLIDER_WALL_FLAT);//turret wall 2(pipiru)
 		App->collision->AddCollider({ 0, -1626, 57, 130 }, COLLIDER_WALL_FLAT);
 		App->collision->AddCollider({ 134, -1642, 103, 144 }, COLLIDER_WALL_FLAT);//turret wall 2
-
-
 		App->collision->AddCollider({ 0, -3128, 29, 81 }, COLLIDER_WALL);//boss wall
 		App->collision->AddCollider({ 29, -3116, 46, 61 }, COLLIDER_WALL);//boss wall
 		App->collision->AddCollider({ 184, -3116, 46, 61 }, COLLIDER_WALL);//boss wall
 		App->collision->AddCollider({ 230, -3128, 14, 78 }, COLLIDER_WALL);//boss wall
-		
-
+		//ENEMIES
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, -40);
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, -400);
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 200, -1000);
@@ -85,6 +81,8 @@ bool Module_lvl_1::Start()
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 20, -3080);
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 100, -3200);
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 230, -3050);
+		//OBJECTS
+		//chests
 		
 
 
