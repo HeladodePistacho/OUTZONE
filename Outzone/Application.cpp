@@ -29,10 +29,9 @@ Application::Application()
 	modules[9] = welcome = new Module_Welcome();
 	modules[10] = congrats = new Module_Congrats();
 	modules[11] = gameover = new Module_GameOver();
-	modules[12] = collision = new ModuleCollision();
-	modules[13] = enemies = new ModuleEnemies();
-	modules[14] = particles = new ModuleParticles();
-	
+	modules[12] = enemies = new ModuleEnemies();
+	modules[13] = particles = new ModuleParticles();
+	modules[14] = collision = new ModuleCollision();
 }	
 
 Application::~Application()

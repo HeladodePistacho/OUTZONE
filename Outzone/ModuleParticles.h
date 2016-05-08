@@ -71,9 +71,17 @@ public:
 	//Shotgun
 	Particle shotgun_fire;
 	//Shotgun lvl 1
-	Particle shotgun_left;
-	Particle shotgun_mid;
-	Particle shotgun_right;
+	Particle shotgun_left_1;
+	Particle shotgun_mid_1;
+	Particle shotgun_right_1;
+	//Shotgun lvl 2
+	Particle shotgun_left_2;
+	Particle shotgun_mid_2;
+	Particle shotgun_right_2;
+	//Shotgun lvl 3
+	Particle shotgun_left_3;
+	Particle shotgun_mid_3;
+	Particle shotgun_right_3;
 	//Shotgun impact
 	Particle shotgun_impact;
 

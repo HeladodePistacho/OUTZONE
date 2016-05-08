@@ -15,29 +15,69 @@ ModuleParticles::ModuleParticles()
 		active[i] = nullptr;
 	//SHOTGUN
 
-	//Shotgun Fire
+	//SHOTGUN FIRE
 	shotgun_fire.anim.PushBack({ 0, 65, 36, 16 });
 	shotgun_fire.life = 15;
 	shotgun_fire.type = SHOTGUN_FIRE;
-	//Shotgun lvl 1
+	
+	//SHOTGUN LVL 1
 	//left
-	shotgun_left.anim.PushBack({ 18, 48, 8, 13 });
-	shotgun_left.speed.y -= 5;
-	shotgun_left.speed.x -= 2;
-	shotgun_left.life = 1200;
-	shotgun_left.type = SHOTGUN_FIRE;
+	shotgun_left_1.anim.PushBack({ 18, 48, 8, 13 });
+	shotgun_left_1.speed.y -= 5;
+	shotgun_left_1.speed.x -= 2;
+	shotgun_left_1.life = 1200;
+	shotgun_left_1.type = SHOTGUN_FIRE;
 	//mid
-	shotgun_mid.anim.PushBack({ 4, 48, 6, 14 });
-	shotgun_mid.speed.y -= 5;
-	shotgun_mid.life = 1200;
-	shotgun_mid.type = SHOTGUN_FIRE;
+	shotgun_mid_1.anim.PushBack({ 4, 48, 6, 14 });
+	shotgun_mid_1.speed.y -= 5;
+	shotgun_mid_1.life = 1200;
+	shotgun_mid_1.type = SHOTGUN_FIRE;
 	//right
-	shotgun_right.anim.PushBack({ 32, 48, 8, 13 });
-	shotgun_right.speed.y -= 5;
-	shotgun_right.speed.x += 2;
-	shotgun_right.life = 1200;
-	shotgun_right.type = SHOTGUN_FIRE;
-	//Shotgun impact
+	shotgun_right_1.anim.PushBack({ 32, 48, 8, 13 });
+	shotgun_right_1.speed.y -= 5;
+	shotgun_right_1.speed.x += 2;
+	shotgun_right_1.life = 1200;
+	shotgun_right_1.type = SHOTGUN_FIRE;
+	
+	//SHOTGUN LVL 2
+	//left
+	shotgun_left_2.anim.PushBack({ 16, 26, 12, 19 });
+	shotgun_left_2.speed.y -= 5;
+	shotgun_left_2.speed.x -= 2;
+	shotgun_left_2.life = 1200;
+	shotgun_left_2.type = SHOTGUN_FIRE;
+	//mid
+	shotgun_mid_2.anim.PushBack({ 1, 26, 12, 19 });
+	shotgun_mid_2.speed.y -= 5;
+	shotgun_mid_2.life = 1200;
+	shotgun_mid_2.type = SHOTGUN_FIRE;
+	//right
+	shotgun_right_2.anim.PushBack({ 30, 26, 12, 19 });
+	shotgun_right_2.speed.y -= 5;
+	shotgun_right_2.speed.x += 2;
+	shotgun_right_2.life = 1200;
+	shotgun_right_2.type = SHOTGUN_FIRE;
+	
+	//SHOTGUN LVL 3
+	//left
+	shotgun_left_3.anim.PushBack({ 15, 0, 15, 24 });
+	shotgun_left_3.speed.y -= 5;
+	shotgun_left_3.speed.x -= 2;
+	shotgun_left_3.life = 1200;
+	shotgun_left_3.type = SHOTGUN_FIRE;
+	//mid
+	shotgun_mid_3.anim.PushBack({ 0, 0, 15, 24 });
+	shotgun_mid_3.speed.y -= 5;
+	shotgun_mid_3.life = 1200;
+	shotgun_mid_3.type = SHOTGUN_FIRE;
+	//right
+	shotgun_right_3.anim.PushBack({ 31, 0, 14, 23 });
+	shotgun_right_3.speed.y -= 5;
+	shotgun_right_3.speed.x += 2;
+	shotgun_right_3.life = 1200;
+	shotgun_right_3.type = SHOTGUN_FIRE;
+
+	//SHOTGUN IMPACT
 	shotgun_impact.anim.PushBack({ 215, 54, 25, 25 });
 	shotgun_impact.anim.PushBack({ 237, 54, 25, 25 });
 	shotgun_impact.anim.PushBack({ 263, 54, 25, 25 });

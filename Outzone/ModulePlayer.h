@@ -85,6 +85,8 @@ public:
 	fPoint position;
 	//Weapon Equiped
 	bool shotgun = false;
+	//Shotgun level
+	uint shotgun_lvl;
 	//Live state
 	bool destroyed = false;
 	//win or lose
