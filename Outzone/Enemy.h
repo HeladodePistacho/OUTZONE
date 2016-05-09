@@ -11,7 +11,7 @@ class Enemy
 {
 protected:
 
-	Animation* animation;
+	Animation* enemy_animation;
 	Collider* collider;
 
 public:
@@ -32,6 +32,8 @@ public:
 	virtual void Move() {};
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void Attack(){};
+	virtual void Focus(){}; //Looks player position
+
 };
 
 #endif // __ENEMY_H__

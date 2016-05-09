@@ -8,7 +8,13 @@
 class ENEMY_Basic_Robot : public Enemy
 {
 private:
-	Animation walk;
+	Animation down;
+	Animation left;
+	Animation right;
+	Animation up;
+
+	Animation* anim = Enemy::enemy_animation;
+
 	Path path;
 	iPoint original_position;
 	int original_y = 0;
@@ -20,6 +26,7 @@ public:
 
 	void Move();
 	void Attack();
+	void Focus();
 };
 
 #endif 
