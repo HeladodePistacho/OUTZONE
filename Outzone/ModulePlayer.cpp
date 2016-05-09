@@ -476,7 +476,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
 			
 		}
-		if (c2->type == COLLIDER_WALL||c2->type == COLLIDER_WALL_FLAT)
+		if (c2->type == COLLIDER_WALL||c2->type == COLLIDER_WALL_FLAT ||c2->type == COLLIDER_CHEST)
 		{
 			if (position.y + 2 >= c2->rect.y + c2->rect.h)
 			{
@@ -498,9 +498,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 				position.x = c2->rect.x - c1->rect.w;
 			}
 			
-
 		}
-
 	}
 }
 

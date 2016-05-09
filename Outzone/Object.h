@@ -8,16 +8,23 @@
 struct SDL_Texture;
 struct Collider;
 
+enum  STATE{
+	CLOSE,
+	OPEN
+};
+
 class Object{
 protected:
-	Animation* animation;
+	Animation* object_animation;
 	Collider* collider;
 public:
 	iPoint position;
+	unsigned int type;
 public:
 	Object(int x, int y);
 	virtual ~Object();
 	const Collider* GetCollider() const;
 	virtual void Draw(SDL_Texture* sprites);
+	virtual void Update(){};
 };
 #endif

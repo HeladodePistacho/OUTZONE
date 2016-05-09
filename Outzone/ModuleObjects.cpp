@@ -6,7 +6,9 @@
 #include "ModuleTextures.h"
 #include "Object.h"
 #include "OBJECT_Change_Box.h"
-
+#include "OBJECT_Energy_Box.h"
+#include "OBJECT_Upgrade.h"
+#include "ModulePlayer.h"
 
 #define SPAWN_MARGIN 50
 
@@ -52,10 +54,10 @@ update_status ModuleObjects::PreUpdate()
 update_status ModuleObjects::Update()
 {
 
-	for (uint i = 0; i < MAX_OBJECTS; ++i)
+	for (uint i = 0; i < MAX_OBJECTS; ++i){
 		if (objects[i] != nullptr) objects[i]->Draw(sprites);
-
-
+		
+	}
 	return UPDATE_CONTINUE;
 }
 
@@ -130,8 +132,12 @@ void ModuleObjects::SpawnObject(const ObjectInfo& info)
 			objects[i] = new Change_Box(info.x, info.y);
 			break;
 
-		case OBJECT_TYPES::UPGRADE_BOX:
-			//
+		case OBJECT_TYPES::ENERGY_BOX:
+			objects[i] = new Energy_Box(info.x, info.y);
+			break;
+		
+		case OBJECT_TYPES::UPGRADE:
+			objects[i] = new Upgrade(info.x, info.y);
 			break;
 		}
 	}
@@ -141,14 +147,41 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_OBJECTS; ++i)
 	{
-		if (c1->type == COLLIDER_OBJECT && c2->type == COLLIDER_PLAYER_SHOT)
+		if (objects[i] != nullptr && objects[i]->GetCollider() == c1)
 		{
-			if (objects[i] != nullptr && objects[i]->GetCollider() == c1)
+			if (c2->type == COLLIDER_PLAYER_SHOT && c1->type == COLLIDER_CHEST)
 			{
-				App->particles->AddParticle(App->particles->basic_robot_explosion, App->objects->objects[i]->position.x, App->objects->objects[i]->position.y, COLLIDER_NONE, UNDEFINED);
-				delete objects[i];
-				objects[i] = nullptr;
-				break;
+				if (objects[i]->type == CHANGE_BOX){
+					App->particles->AddParticle(App->particles->basic_robot_explosion, App->objects->objects[i]->position.x - 8, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
+					objects[i]->Update();
+					break;
+				}
+				else if (objects[i]->type == ENERGY_BOX){
+					App->particles->AddParticle(App->particles->basic_robot_explosion, App->objects->objects[i]->position.x - 6, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
+					objects[i]->Update();
+					break;
+				}
+			}
+			else if (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_OBJECT){
+				if (objects[i]->type == CHANGE_BOX){
+					if (App->player->shotgun == false){
+						App->player->shotgun = true;
+					}
+					else App->player->shotgun = false;
+					delete objects[i];
+					objects[i] = nullptr;
+				}
+				else if (objects[i]->type == ENERGY_BOX){
+					delete objects[i];
+					objects[i] = nullptr;
+				}
+				else if (objects[i]->type == UPGRADE){
+					if (App->player->shotgun_lvl < 3){
+						App->player->shotgun_lvl++;
+					}
+					delete objects[i];
+					objects[i] = nullptr;
+				}
 			}
 		}
 	}

@@ -110,6 +110,12 @@
     <ClInclude Include="OBJECT_Change_Box.h">
       <Filter>Modules\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="OBJECT_Energy_Box.h">
+      <Filter>Modules\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJECT_Upgrade.h">
+      <Filter>Modules\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -179,6 +185,12 @@
       <Filter>Modules\Objects</Filter>
     </ClCompile>
     <ClCompile Include="OBJECT_Change_Box.cpp">
+      <Filter>Modules\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJECT_Energy_Box.cpp">
+      <Filter>Modules\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJECT_Upgrade.cpp">
       <Filter>Modules\Objects</Filter>
     </ClCompile>
   </ItemGroup>

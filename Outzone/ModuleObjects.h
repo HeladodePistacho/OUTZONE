@@ -9,7 +9,8 @@ enum OBJECT_TYPES
 {
 	UNKNOWN,
 	CHANGE_BOX,
-	UPGRADE_BOX
+	UPGRADE,
+	ENERGY_BOX
 };
 
 struct SDL_Texture;

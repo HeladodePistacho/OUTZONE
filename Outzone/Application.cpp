@@ -23,16 +23,16 @@ Application::Application()
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = lvl_1 = new Module_lvl_1();
 	modules[5] = lvl_2 = new Module_lvl_2();
-	modules[6] = player = new ModulePlayer();
-	modules[7] = audio = new ModuleAudio();
-	modules[8] = change_scene = new ModuleChangeScene();
-	modules[9] = welcome = new Module_Welcome();
-	modules[10] = congrats = new Module_Congrats();
-	modules[11] = gameover = new Module_GameOver();
-	modules[12] = enemies = new ModuleEnemies();
+	modules[6] = audio = new ModuleAudio();
+	modules[7] = change_scene = new ModuleChangeScene();
+	modules[8] = welcome = new Module_Welcome();
+	modules[9] = congrats = new Module_Congrats();
+	modules[10] = gameover = new Module_GameOver();
+	modules[11] = enemies = new ModuleEnemies();
+	modules[12] = objects = new ModuleObjects();
 	modules[13] = particles = new ModuleParticles();
-	modules[14] = objects = new ModuleObjects();
-	modules[15] = collision = new ModuleCollision();
+	modules[14] = collision = new ModuleCollision();
+	modules[15] = player = new ModulePlayer();
 }	
 
 Application::~Application()

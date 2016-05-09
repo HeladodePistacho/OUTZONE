@@ -21,5 +21,5 @@ void Object::Draw(SDL_Texture* sprites){
 	if (collider != nullptr){
 		collider->SetPos(position.x, position.y);
 	}
-	//App->render->Blit(sprites, position.x, position.y, &(animation->GetCurrentFrame()));
+	App->render->Blit(sprites, position.x, position.y, &(object_animation->GetCurrentFrame()));
 }

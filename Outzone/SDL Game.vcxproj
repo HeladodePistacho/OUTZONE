@@ -94,6 +94,8 @@
     <ClInclude Include="Module_Welcome.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="OBJECT_Change_Box.h" />
+    <ClInclude Include="OBJECT_Energy_Box.h" />
+    <ClInclude Include="OBJECT_Upgrade.h" />
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="Path.h" />
   </ItemGroup>
@@ -121,6 +123,8 @@
     <ClCompile Include="Module_Welcome.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="OBJECT_Change_Box.cpp" />
+    <ClCompile Include="OBJECT_Energy_Box.cpp" />
+    <ClCompile Include="OBJECT_Upgrade.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
