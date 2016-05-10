@@ -167,21 +167,20 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 					if (App->player->shotgun == false){
 						App->player->shotgun = true;
 					}
-					else App->player->shotgun = false;
-					delete objects[i];
-					objects[i] = nullptr;
+					else {
+						App->player->shotgun = false;
+						App->player->shotgun_lvl = 1;
+					}
 				}
 				else if (objects[i]->type == ENERGY_BOX){
-					delete objects[i];
-					objects[i] = nullptr;
 				}
 				else if (objects[i]->type == UPGRADE){
 					if (App->player->shotgun_lvl < 3){
 						App->player->shotgun_lvl++;
 					}
-					delete objects[i];
-					objects[i] = nullptr;
 				}
+				delete objects[i];
+				objects[i] = nullptr;
 			}
 		}
 	}

@@ -21,11 +21,23 @@
     <Filter Include="Modules\Base Modules">
       <UniqueIdentifier>{37227915-943c-437e-af36-a714c7c0747a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Game Modules">
-      <UniqueIdentifier>{a4d754d4-ae68-43f9-b622-567dcf9ba311}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Modules\Objects">
       <UniqueIdentifier>{74fb39fc-2b4a-46a0-8a2f-2e3a39e89843}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Colliders">
+      <UniqueIdentifier>{e5aed6fd-5f82-41d1-b703-5a891b5005e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Player">
+      <UniqueIdentifier>{09caff88-5fd9-43f6-b4dd-650e65945fc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Particles">
+      <UniqueIdentifier>{79f681a5-28c2-4cf6-931d-2cf52369b06e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Fade">
+      <UniqueIdentifier>{49f57e16-c3c3-46de-ba20-91b66aeba5fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Interfice">
+      <UniqueIdentifier>{52f834f8-6b79-400a-b7fe-9886a57a542f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,18 +101,6 @@
     <ClInclude Include="Module.h">
       <Filter>Modules\Base Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleChangeScene.h">
-      <Filter>Modules\Game Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleCollision.h">
-      <Filter>Modules\Game Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleParticles.h">
-      <Filter>Modules\Game Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Modules\Game Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Modules\Objects</Filter>
     </ClInclude>
@@ -115,6 +115,21 @@
     </ClInclude>
     <ClInclude Include="OBJECT_Upgrade.h">
       <Filter>Modules\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCollision.h">
+      <Filter>Modules\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleParticles.h">
+      <Filter>Modules\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleChangeScene.h">
+      <Filter>Modules\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInterfice.h">
+      <Filter>Modules\Interfice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -166,18 +181,6 @@
     <ClCompile Include="ModuleWindow.cpp">
       <Filter>Modules\Base Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleChangeScene.cpp">
-      <Filter>Modules\Game Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleCollision.cpp">
-      <Filter>Modules\Game Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleParticles.cpp">
-      <Filter>Modules\Game Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Modules\Game Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Modules\Objects</Filter>
     </ClCompile>
@@ -192,6 +195,21 @@
     </ClCompile>
     <ClCompile Include="OBJECT_Upgrade.cpp">
       <Filter>Modules\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCollision.cpp">
+      <Filter>Modules\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Modules\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleParticles.cpp">
+      <Filter>Modules\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleChangeScene.cpp">
+      <Filter>Modules\Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInterfice.cpp">
+      <Filter>Modules\Interfice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

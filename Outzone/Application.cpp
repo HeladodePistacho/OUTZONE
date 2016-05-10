@@ -15,6 +15,8 @@
 #include "ModuleParticles.h"
 #include "ModuleGameOver.h"
 #include "ModuleObjects.h"
+#include "ModuleInterfice.h"
+
 Application::Application()
 {
 	modules[0] = window = new ModuleWindow();
@@ -33,6 +35,7 @@ Application::Application()
 	modules[13] = particles = new ModuleParticles();
 	modules[14] = collision = new ModuleCollision();
 	modules[15] = player = new ModulePlayer();
+	modules[16] = interfice = new ModuleInterfice();
 }	
 
 Application::~Application()
@@ -45,10 +48,10 @@ bool Application::Init()
 {
 	bool ret = true;
 
-	// Player will be enabled on the first update of a new scene
-
 	player->Disable();
-	// Disable the map that you do not start with
+	interfice->Disable();
+	particles->Disable();
+	enemies->Disable();
 	lvl_1->Disable();
 	lvl_2->Disable();
 	congrats->Disable();

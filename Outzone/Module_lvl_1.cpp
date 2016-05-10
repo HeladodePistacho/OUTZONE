@@ -11,6 +11,7 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleObjects.h"
+#include "ModuleInterfice.h"
 Module_lvl_1::Module_lvl_1()
 {
 	// Level 1 
@@ -40,7 +41,7 @@ bool Module_lvl_1::Start()
 		Mix_FadeInMusicPos(audio_lvl_1, 1, 2000, 1);
 		Mix_PlayMusic(audio_lvl_1, -1);
 		//Enable Collisions
-
+		App->interfice->Enable();
 		App->player->Enable();
 		App->collision->Enable();
 		App->enemies->Enable();
@@ -86,7 +87,7 @@ bool Module_lvl_1::Start()
 		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 150, 150);
 		App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 100, 150);
 		App->objects->AddObject(OBJECT_TYPES::UPGRADE, 60, 150);
-
+		
 	return true;
 }
 
