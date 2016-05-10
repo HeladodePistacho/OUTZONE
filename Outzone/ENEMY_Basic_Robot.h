@@ -8,11 +8,12 @@
 class ENEMY_Basic_Robot : public Enemy
 {
 private:
+
+	//statick animations
 	Animation down;
 	Animation left;
 	Animation right;
 	Animation up;
-
 	Animation midle_down_right;
 	Animation midle_down_right_bot;
 	Animation midle_down_right_top;
@@ -26,11 +27,22 @@ private:
 	Animation midle_up_left_bot;
 	Animation midle_up_left_top;
 	
+	//movement animations
+	Animation mov_down;
+	Animation mov_left;
+	Animation mov_right;
+	Animation mov_up;
+	Animation mov_down_left;
+	Animation mov_down_right;
+	Animation mov_up_left;
+	Animation mov_up_right;
+
 
 	Animation* anim = Enemy::enemy_animation;
 
 	Path path;
 	iPoint original_position;
+	iPoint last_position;
 	int original_y = 0;
 
 

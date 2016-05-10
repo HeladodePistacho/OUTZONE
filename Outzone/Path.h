@@ -17,7 +17,9 @@ class Path
 public:
 	bool loop = true;
 	Step steps[MAX_STEPS];
+	fPoint current_speed;
 	fPoint accumulated_speed = { 0.0f, 0.0f };
+
 
 private:
 	uint current_frame = 0;
@@ -46,6 +48,7 @@ public:
 				*current_animation = steps[i].animation;
 			if (count >= current_frame)
 			{
+				current_speed = steps[i].speed;
 				accumulated_speed += steps[i].speed;
 				need_loop = false;
 				break;
@@ -62,6 +65,8 @@ public:
 	{
 		current_frame = 0;
 	}
+
+
 };
 
 #endif // __PATH_H__

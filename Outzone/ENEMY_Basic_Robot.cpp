@@ -9,7 +9,7 @@
 ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
 {
 
-	//static animations
+	//IDLE animations
 	down.PushBack({ 3, 131, 28, 35 });
 	left.PushBack({114, 179, 23, 33 });
 	right.PushBack({ 162, 132, 24, 35 });
@@ -31,12 +31,39 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
 	midle_up_left_bot.PushBack({ 161, 179, 24, 35 });
 	midle_up_left_top.PushBack({ 239, 177, 26, 35 });
 
+	//MOVEMENT animations
+	mov_down.PushBack({ 167, 360, 27, 35 });
+	mov_down.PushBack({ 205, 363, 27, 32 });
+	mov_down.PushBack({ 243, 362, 28, 33 });
+	mov_down.PushBack({ 282, 364, 27, 31 });
+	mov_down.speed = 0.15f;
+
+	mov_left.PushBack({ 170, 273, 25, 32 });
+	mov_left.PushBack({ 207, 273, 28, 32 });
+	mov_left.PushBack({ 244, 272, 25, 33 });
+	mov_left.PushBack({ 281, 273, 25, 33 });
+	mov_left.speed = 0.15f;
+
+	mov_right.PushBack({ 164, 226, 28, 32 });
+	mov_right.PushBack({ 203, 224, 25, 32 });
+	mov_right.PushBack({ 240, 225, 27, 32 });
+	mov_right.PushBack({ 280, 224, 25, 33 });
+	mov_right.speed = 0.15f;
+
+	mov_up.PushBack({ 174, 317, 26, 36 });
+	mov_up.PushBack({ 208, 316, 27, 37 });
+	mov_up.PushBack({ 243, 318, 26, 35 });
+	mov_up.PushBack({ 277, 318, 26, 35 });
+	mov_up.speed = 0.15f;
+
 	original_position = position;
 
 	enemy_animation = &down;
 	
 	path.PushBack({ 0.0f, 0.0f }, 300, anim);
+	path.PushBack({ 0.0f, 0.6f }, 150, anim);
 	
+
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	fire_rate = 500000;
@@ -49,7 +76,8 @@ void ENEMY_Basic_Robot::Move()
 	
 	Focus();
 
-	position = original_position + path.GetCurrentSpeed(&anim);
+	 position = original_position + path.GetCurrentSpeed(&anim);
+	
 }
 
 void ENEMY_Basic_Robot::Attack()
@@ -70,7 +98,7 @@ void ENEMY_Basic_Robot::Attack()
 void ENEMY_Basic_Robot::Focus()
 {
 
-	if (path.accumulated_speed.IsZero())
+	if (path.current_speed.IsZero())
 	{
 		
 		if (App->player->position.y < position.y)
@@ -155,5 +183,27 @@ void ENEMY_Basic_Robot::Focus()
 		{
 			enemy_animation = &right;
 		}
+	}
+	else
+	{
+		if (App->player->position.y < position.y)
+		{
+			enemy_animation = &mov_up;
+		}
+		
+		if (App->player->position.y > position.y)
+		{
+			enemy_animation = &mov_down;
+		}
+		if (App->player->position.x < position.x && App->player->position.y < position.y + 5 && App->player->position.y > position.y - 5)
+		{
+			enemy_animation = &mov_left;
+		}
+		if (App->player->position.x > position.x + collider->rect.w && App->player->position.y < position.y + 5 && App->player->position.y > position.y - 5)
+		{
+			enemy_animation = &mov_right;
+		}
+
+		
 	}
 }
