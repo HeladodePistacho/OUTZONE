@@ -56,6 +56,30 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
 	mov_up.PushBack({ 277, 318, 26, 35 });
 	mov_up.speed = 0.15f;
 
+	mov_down_left.PushBack({ 10, 361, 27, 33 });
+	mov_down_left.PushBack({ 48, 361, 27, 34 });
+	mov_down_left.PushBack({ 84, 360, 25, 34 });
+	mov_down_left.PushBack({ 115, 361, 27, 34 });
+	mov_down_left.speed = 0.15f;
+
+	mov_down_right.PushBack({ 6, 317, 27, 34});
+	mov_down_right.PushBack({ 41, 318, 26, 33});
+	mov_down_right.PushBack({ 78, 318, 27, 33});
+	mov_down_right.PushBack({ 116, 318, 26, 35});
+	mov_down_right.speed = 0.15f;
+
+	mov_up_left.PushBack({ 6, 273, 26, 35});
+	mov_up_left.PushBack({ 40, 273, 28, 35});
+	mov_up_left.PushBack({ 76, 271, 28, 34});
+	mov_up_left.PushBack({ 115, 271, 27, 33});
+	mov_up_left.speed = 0.15f;
+
+	mov_up_right.PushBack({ 0, 226, 29, 34});
+	mov_up_right.PushBack({ 41, 226, 26, 34});
+	mov_up_right.PushBack({ 80, 226, 24, 33});
+	mov_up_right.PushBack({ 115, 224, 25, 36});
+	mov_up_right.speed = 0.15f;
+
 	original_position = position;
 
 	enemy_animation = &down;
@@ -189,17 +213,23 @@ void ENEMY_Basic_Robot::Focus()
 		if (App->player->position.y < position.y)
 		{
 			enemy_animation = &mov_up;
+			if (App->player->position.x <= position.x - 20) enemy_animation = &mov_up_left;
+			if (App->player->position.x >= position.x + 20) enemy_animation = &mov_up_right;
+
 		}
 		
 		if (App->player->position.y > position.y)
 		{
 			enemy_animation = &mov_down;
+			if (App->player->position.x <= position.x - 20) enemy_animation = &mov_down_left;
+			if (App->player->position.x >= position.x + 20) enemy_animation = &mov_down_right;
 		}
-		if (App->player->position.x < position.x && App->player->position.y < position.y + 5 && App->player->position.y > position.y - 5)
+
+		if (App->player->position.x < position.x && App->player->position.y < position.y + 10 && App->player->position.y > position.y - 10)
 		{
 			enemy_animation = &mov_left;
 		}
-		if (App->player->position.x > position.x + collider->rect.w && App->player->position.y < position.y + 5 && App->player->position.y > position.y - 5)
+		if (App->player->position.x > position.x + collider->rect.w && App->player->position.y < position.y + 10 && App->player->position.y > position.y - 10)
 		{
 			enemy_animation = &mov_right;
 		}
