@@ -22,6 +22,8 @@ enum PARTICLE_TYPE{
 	SHOTGUN_FIRE,
 	SHOTGUN_IMPACT,
 	ENEMY_SHOT,
+	ENEMY_BIG_SHOT,
+	ENEMY_MISSILE,
 	UNDEFINED,
 };
 
@@ -120,13 +122,22 @@ public:
 
 	//laser impact
 	Particle laser_impact;
+	
 
-	//character explosion
+	//Explosions
 	Particle dead_explosion;
+	Particle basic_enemy_explosion;
+	Particle big_enemy_explosion;
 
-	//enemie basic robot explosion
-	Particle basic_robot_explosion;
-	Particle enemie_shot;
+	//Enemy bullets
+	Particle enemy_shot;
+	Particle enemy_big_shot;
+	Particle enemy_missile;
+	
+
+	//Enemy impacts
+	Particle missile_impact;
+	Particle big_shot_impact;
 
 };
 

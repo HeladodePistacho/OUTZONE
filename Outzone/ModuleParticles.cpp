@@ -256,22 +256,75 @@ ModuleParticles::ModuleParticles()
 	dead_explosion.anim.loop = false;
 	dead_explosion.anim.speed = 0.15f;
 
-	//enemie explosion
-	basic_robot_explosion.anim.PushBack({ 9, 647, 44, 43 });
-	basic_robot_explosion.anim.PushBack({ 53, 647, 44, 43 });
-	basic_robot_explosion.anim.PushBack({ 95, 647, 44, 43 });
-	basic_robot_explosion.anim.PushBack({ 140, 647, 44, 43 });
-	basic_robot_explosion.anim.PushBack({ 184, 647, 44, 43 });
-	basic_robot_explosion.anim.PushBack({ 9, 690, 44, 43 });
-	basic_robot_explosion.anim.PushBack({ 53, 690, 44, 43 });
-	basic_robot_explosion.anim.PushBack({ 97, 890, 44, 43 });
-	basic_robot_explosion.anim.loop = false;
-	basic_robot_explosion.anim.speed = 0.2f;
+	//enemy explosion
+	basic_enemy_explosion.anim.PushBack({ 9, 647, 44, 43 });
+	basic_enemy_explosion.anim.PushBack({ 53, 647, 44, 43 });
+	basic_enemy_explosion.anim.PushBack({ 95, 647, 44, 43 });
+	basic_enemy_explosion.anim.PushBack({ 140, 647, 44, 43 });
+	basic_enemy_explosion.anim.PushBack({ 184, 647, 44, 43 });
+	basic_enemy_explosion.anim.PushBack({ 9, 690, 44, 43 });
+	basic_enemy_explosion.anim.PushBack({ 53, 690, 44, 43 });
+	basic_enemy_explosion.anim.PushBack({ 97, 890, 44, 43 });
+	basic_enemy_explosion.anim.loop = false;
+	basic_enemy_explosion.anim.speed = 0.2f;
 
-	//enemie shot
-	enemie_shot.anim.PushBack({ 0, 112, 6, 6 });
-	enemie_shot.life = 2000;
-	enemie_shot.type = ENEMY_SHOT;
+	
+	//random explosions
+	//big_enemy_explosion.anim.PushBack({ 383, 98, 184, 180 });
+	//big_enemy_explosion.anim.PushBack({ 560, 98, 160, 163 });
+	//big_enemy_explosion.anim.PushBack({ 740 , 98, 180, 178 });
+
+	// big enemy explosion
+	big_enemy_explosion.anim.PushBack({ 393, 270, 160, 152 });
+	big_enemy_explosion.anim.PushBack({ 565, 270, 160, 152 });
+	big_enemy_explosion.anim.PushBack({ 732, 265, 150, 142 });
+	big_enemy_explosion.anim.PushBack({ 406, 420, 145, 137 });
+	big_enemy_explosion.anim.PushBack({ 567, 431, 146, 126 });
+	big_enemy_explosion.anim.PushBack({ 728, 430, 144, 120 });
+	big_enemy_explosion.anim.PushBack({ 405, 590, 153, 132 });
+	big_enemy_explosion.anim.PushBack({ 565, 590, 167, 129 });
+	big_enemy_explosion.anim.PushBack({ 731, 582, 141, 155 });
+	big_enemy_explosion.anim.loop = false;
+	big_enemy_explosion.anim.speed = 0.2f;
+
+
+	//ENEMY SHOTS
+	//enemy shot
+	enemy_shot.anim.PushBack({ 0, 112, 6, 6 });
+	enemy_shot.anim.PushBack({ 9, 11, 8, 8 });
+	enemy_shot.anim.loop = true;
+	enemy_shot.life = 2000;
+	enemy_shot.type = ENEMY_SHOT;
+	//enemy big shot
+	enemy_big_shot.anim.PushBack({ 37, 91, 14, 15 });
+	enemy_big_shot.anim.PushBack({ 63 , 91, 16, 17 });
+	enemy_big_shot.anim.speed = 0.18f;
+	enemy_big_shot.speed.y = - 1;
+	enemy_big_shot.anim.loop = true;
+	enemy_big_shot.life = 2000;
+	enemy_big_shot.type = ENEMY_BIG_SHOT;
+	//enemy missile
+	enemy_missile.anim.PushBack({ 360, 23, 27, 38 });
+	enemy_missile.anim.PushBack({ 385, 23, 26, 37 });
+	enemy_missile.anim.PushBack({ 435, 23, 28, 38 });
+	enemy_missile.anim.PushBack({ 435, 23, 24, 38 });
+	enemy_missile.anim.speed = 0.55f;
+	enemy_missile.speed.y = -1.5;
+	enemy_missile.anim.loop = true;
+	enemy_missile.life = 2000;
+	enemy_missile.type = ENEMY_MISSILE;
+
+	//ENEMY IMPACTS
+	//missile impact
+	missile_impact.anim.PushBack({ 465, 38, 18, 19 });
+	missile_impact.life = 1000;
+	missile_impact.anim.loop = false;
+	//big shot impact
+	big_shot_impact.anim.PushBack({ 88, 85, 34, 33 });
+	big_shot_impact.life = 1000;
+	big_shot_impact.anim.loop = true;
+
+
 }
 
 ModuleParticles::~ModuleParticles()
@@ -395,11 +448,11 @@ bool Particle::Update()
 void ModuleParticles::OnCollision(Collider*c1, Collider*c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
-		if (c1->type == COLLIDER_PLAYER_SHOT || COLLIDER_ENEMY_SHOT&&c2->type==COLLIDER_WALL||COLLIDER_ENEMY){
+		if ((c1->type == COLLIDER_PLAYER_SHOT) && (c2->type == COLLIDER_WALL || c2->type == COLLIDER_ENEMY ||c2->type == COLLIDER_CHEST)){
 			//laser shot impact
-			if (active[i] != nullptr && active[i]->collider == c1&&active[i]->type==LASER_SHOT)
+			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == LASER_SHOT)
 			{
-				App->particles->AddParticle(App->particles->laser_impact, c1->rect.x-8, c1->rect.y-5, COLLIDER_NONE,LASER_IMPACT);
+				App->particles->AddParticle(App->particles->laser_impact, c1->rect.x - 8, c1->rect.y - 5, COLLIDER_NONE, LASER_IMPACT);
 				delete active[i];
 				active[i] = nullptr;
 				break;
@@ -407,18 +460,35 @@ void ModuleParticles::OnCollision(Collider*c1, Collider*c2)
 			//shotgun shot impact
 			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == SHOTGUN_SHOT)
 			{
-				App->particles->AddParticle(App->particles->shotgun_impact, c1->rect.x - 8, c1->rect.y-5, COLLIDER_NONE, SHOTGUN_IMPACT);
+				App->particles->AddParticle(App->particles->shotgun_impact, c1->rect.x - 8, c1->rect.y - 5, COLLIDER_NONE, SHOTGUN_IMPACT);
 				delete active[i];
 				active[i] = nullptr;
 				break;
 			}
-			//enemy bullet
-			//still not working
-			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_SHOT && c2->type == COLLIDER_PLAYER){
+		}
+		else if (c1->type == COLLIDER_ENEMY_SHOT && c2->type == COLLIDER_WALL){
+			
+			//enemy shot
+			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_SHOT && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_WALL)){
 				delete active[i];
 				active[i] = nullptr;
 				break;
 			}
+			//big enemy shot
+			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_BIG_SHOT &&  c2->type == COLLIDER_WALL){
+				App->particles->AddParticle(App->particles->big_shot_impact, c1->rect.x - 8, c1->rect.y + 5, COLLIDER_NONE, UNDEFINED );
+				delete active[i];
+				active[i] = nullptr;
+				break;
+			}
+			//enemy missile
+			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_MISSILE && c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_WALL){
+				App->particles->AddParticle(App->particles->missile_impact, c1->rect.x +2, c1->rect.y - 5, COLLIDER_NONE,UNDEFINED);
+				delete active[i];
+				active[i] = nullptr;
+				break;
+			}
+			
 		}
 	}
 }

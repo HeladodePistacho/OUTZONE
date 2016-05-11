@@ -152,12 +152,12 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 			if (c2->type == COLLIDER_PLAYER_SHOT && c1->type == COLLIDER_CHEST)
 			{
 				if (objects[i]->type == CHANGE_BOX){
-					App->particles->AddParticle(App->particles->basic_robot_explosion, App->objects->objects[i]->position.x - 8, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
+					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->objects->objects[i]->position.x - 8, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
 					objects[i]->Update();
 					break;
 				}
 				else if (objects[i]->type == ENERGY_BOX){
-					App->particles->AddParticle(App->particles->basic_robot_explosion, App->objects->objects[i]->position.x - 6, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
+					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->objects->objects[i]->position.x - 6, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
 					objects[i]->Update();
 					break;
 				}

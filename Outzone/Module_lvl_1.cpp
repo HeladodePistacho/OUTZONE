@@ -85,6 +85,8 @@ bool Module_lvl_1::Start()
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 230, -3050);
 		//OBJECTS
 		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 150, 150);
+		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 50, 150);
+		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 20, 150);
 		App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 100, 150);
 		App->objects->AddObject(OBJECT_TYPES::UPGRADE, 60, 150);
 		

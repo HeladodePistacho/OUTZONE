@@ -107,14 +107,14 @@ void ENEMY_Basic_Robot::Move()
 void ENEMY_Basic_Robot::Attack()
 {
 	current_time = SDL_GetTicks();
-	App->particles->enemie_shot.speed.x = -(position.x - App->player->position.x) / 40;
-	App->particles->enemie_shot.speed.y = -(position.y - App->player->position.y) / 40;
+	App->particles->enemy_shot.speed.x = -(position.x - App->player->position.x) / 40;
+	App->particles->enemy_shot.speed.y = -(position.y - App->player->position.y) / 40;
 
 
 	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y))
 	{
 		
-		App->particles->AddParticle(App->particles->enemie_shot, position.x, position.y, COLLIDER_ENEMY_SHOT, UNDEFINED);
+		App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y, COLLIDER_ENEMY_SHOT, UNDEFINED);
 		last_time = current_time;
 	}
 }
