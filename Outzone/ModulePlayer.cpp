@@ -136,7 +136,7 @@ bool ModulePlayer::Start()
 	//Shotgun
 	shotgun_fire_rate = 350;
 	//Rotation
-	rotation_vel = 50;
+	rotation_vel = 40;
 	//Add collider
 	body = App->collision->AddCollider({ position.x, position.y, 30, 40 }, COLLIDER_PLAYER, this);
 	//Load character sprites

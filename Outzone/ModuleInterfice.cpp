@@ -14,6 +14,7 @@ ModuleInterfice::ModuleInterfice()
 	//Player 1 Title
 	title.element_animation.PushBack({ 120, 14, 56, 9 });
 	title.element_animation.PushBack({ 180, 14, 56, 9 });
+	title.element_animation.speed = 0.2f;
 	//Top
 	top.element_animation.PushBack({ 120, 27, 24, 9 });
 	//Energy bar
@@ -26,9 +27,6 @@ ModuleInterfice::ModuleInterfice()
 	bombs.element_animation.PushBack({ 44, 27, 8, 18 });
 }
 
-void Element::Draw(SDL_Texture* sprites){
-	App->render->Blit(sprites, position.x, position.y, &(element_animation.GetCurrentFrame()));
-}
 
 Element::Element(){
 	position.SetToZero();
@@ -56,7 +54,7 @@ ModuleInterfice::~ModuleInterfice()
 bool ModuleInterfice::Start()
 {
 	sprites = App->textures->Load("interfice.png");
-	App->interfice->AddElement(50, 25, App->interfice->title);
+	App->interfice->AddElement(App->player->position.x, App->player->position.y, App->interfice->title);
 	return true;
 }
 
@@ -69,8 +67,8 @@ update_status ModuleInterfice::Update()
 
 			if (elements[i] != nullptr){
 				elements[i]->position.y = App->render->camera.y + 50;
-				elements[i]->position.x = App->render->camera.x + 50;
-				elements[i]->Draw(sprites);
+				elements[i]->position.y = App->render->camera.x + 50;
+				App->render->Blit(sprites, elements[i]->position.x, elements[i]->position.y, &(elements[i]->element_animation.GetCurrentFrame()));
 			}
 		}
 	}

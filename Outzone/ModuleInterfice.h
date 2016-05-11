@@ -14,7 +14,6 @@ struct Element{
 	Element();
 	Element(int x, int y, Animation anim);
 	virtual ~Element();
-	virtual void Draw(SDL_Texture* sprites);
 };
 
 class ModuleInterfice : public Module
@@ -44,6 +43,7 @@ public:
 	Element lives;
 	Element title;
 	Element top;
+	Element bombs;
 };
 
 #endif
