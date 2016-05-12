@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "Enemy.h"
 #include "ENEMY_Basic_Robot.h"
+#include "ENEMY_Tiny_Turret.h"
 
 #define SPAWN_MARGIN 50
 
@@ -22,9 +23,7 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	// Create a prototype for each enemy available so we can copy them around
 	sprites = App->textures->Load("enemy_basic_sprites_all.png");
-	
 	return true;
 }
 
@@ -133,6 +132,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		{
 		case ENEMY_TYPES::BASIC_ROBOT:
 			enemies[i] = new ENEMY_Basic_Robot(info.x, info.y);
+			break;
+		case ENEMY_TYPES::TINY_TURRET:
+			enemies[i] = new ENEMY_Tiny_Turret(info.x, info.y);
 			break;
 		}
 	}

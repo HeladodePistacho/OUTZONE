@@ -257,7 +257,7 @@ update_status ModulePlayer::Update()
 			}		
 			else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate && current_animation == &idle_up){
 				App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 12, COLLIDER_NONE, LASER_FIRE);
-				App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+				App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 20, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 				last_time = current_time;
 			}			
 			else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate && current_animation == &idle_left){

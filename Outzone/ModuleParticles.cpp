@@ -304,12 +304,12 @@ ModuleParticles::ModuleParticles()
 	enemy_big_shot.life = 2000;
 	enemy_big_shot.type = ENEMY_BIG_SHOT;
 	//enemy missile
-	enemy_missile.anim.PushBack({ 360, 23, 27, 38 });
-	enemy_missile.anim.PushBack({ 385, 23, 26, 37 });
-	enemy_missile.anim.PushBack({ 435, 23, 28, 38 });
-	enemy_missile.anim.PushBack({ 435, 23, 24, 38 });
+	enemy_missile.anim.PushBack({ 360, 25, 18, 32  });
+	enemy_missile.anim.PushBack({ 385, 25, 18, 32 });
+	enemy_missile.anim.PushBack({ 435, 25, 18, 32 });
+	enemy_missile.anim.PushBack({ 435, 25, 18, 32 });
 	enemy_missile.anim.speed = 0.55f;
-	enemy_missile.speed.y = -1.5;
+	enemy_missile.speed.y = 1.5;
 	enemy_missile.anim.loop = true;
 	enemy_missile.life = 2000;
 	enemy_missile.type = ENEMY_MISSILE;
@@ -317,7 +317,7 @@ ModuleParticles::ModuleParticles()
 	//ENEMY IMPACTS
 	//missile impact
 	missile_impact.anim.PushBack({ 465, 38, 18, 19 });
-	missile_impact.life = 1000;
+	missile_impact.life = 100;
 	missile_impact.anim.loop = false;
 	//big shot impact
 	big_shot_impact.anim.PushBack({ 88, 85, 34, 33 });
@@ -474,9 +474,9 @@ void ModuleParticles::OnCollision(Collider*c1, Collider*c2)
 				active[i] = nullptr;
 				break;
 			}
-			//big enemy shot
+			//enemy big shot
 			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_BIG_SHOT &&  c2->type == COLLIDER_WALL){
-				App->particles->AddParticle(App->particles->big_shot_impact, c1->rect.x - 8, c1->rect.y + 5, COLLIDER_NONE, UNDEFINED );
+				App->particles->AddParticle(App->particles->big_shot_impact, c1->rect.x - 8, c1->rect.y - 5, COLLIDER_NONE, UNDEFINED );
 				delete active[i];
 				active[i] = nullptr;
 				break;

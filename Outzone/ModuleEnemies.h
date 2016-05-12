@@ -9,6 +9,7 @@ enum ENEMY_TYPES
 {
 	NO_TYPE,
 	BASIC_ROBOT,
+	TINY_TURRET
 };
 
 struct SDL_Texture;
