@@ -10,110 +10,110 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
 {
 
 	//IDLE animations
-	down.PushBack({ 3, 131, 28, 35 });
-	left.PushBack({114, 179, 23, 33 });
-	right.PushBack({ 162, 132, 24, 35 });
-	up.PushBack({ 274, 176, 28, 35 });
+	down.PushBack({ 3, 2, 28, 35 });
+	left.PushBack({ 114, 50, 23, 33 });
+	right.PushBack({ 162, 3, 24, 35 });
+	up.PushBack({ 274, 47, 28, 35 });
 
-	midle_down_right.PushBack({ 75, 132, 27, 35 });
-	midle_down_right_bot.PushBack({ 38, 132, 29, 34 });
-	midle_down_right_top.PushBack({ 111, 130, 26, 35 });
+	midle_down_right.PushBack({ 75, 3, 27, 35 });
+	midle_down_right_bot.PushBack({ 38, 3, 29, 34 });
+	midle_down_right_top.PushBack({ 111, 1, 26, 35 });
 
-	midle_down_left.PushBack({ 43, 178, 27, 36 });
-	midle_down_left_bot.PushBack({ 8, 179, 26, 35 });
-	midle_down_left_top.PushBack({ 79, 179, 26, 35 });
+	midle_down_left.PushBack({ 43, 49, 27, 36 });
+	midle_down_left_bot.PushBack({ 8, 50, 26, 35 });
+	midle_down_left_top.PushBack({ 79, 50, 26, 35 });
 
-	midle_up_right.PushBack({ 239, 131, 25, 35 });
-	midle_up_right_bot.PushBack({ 203, 131, 22, 36 });
-	midle_up_right_top.PushBack({ 274, 130, 28, 36 });
+	midle_up_right.PushBack({ 239, 2, 25, 35 });
+	midle_up_right_bot.PushBack({ 203, 2, 22, 36 });
+	midle_up_right_top.PushBack({ 274, 1, 28, 36 });
 
-	midle_up_left.PushBack({ 200, 177, 27, 35 });
-	midle_up_left_bot.PushBack({ 161, 179, 24, 35 });
-	midle_up_left_top.PushBack({ 239, 177, 26, 35 });
+	midle_up_left.PushBack({ 200, 48, 27, 35 });
+	midle_up_left_bot.PushBack({ 161, 50, 24, 35 });
+	midle_up_left_top.PushBack({ 239, 48, 26, 35 });
 
 	//MOVEMENT animations
-	mov_down.PushBack({ 167, 360, 27, 35 });
-	mov_down.PushBack({ 205, 363, 27, 32 });
-	mov_down.PushBack({ 243, 362, 28, 33 });
-	mov_down.PushBack({ 282, 364, 27, 31 });
+	mov_down.PushBack({ 167, 231, 27, 35 });
+	mov_down.PushBack({ 205, 234, 27, 32 });
+	mov_down.PushBack({ 243, 233, 28, 33 });
+	mov_down.PushBack({ 282, 235, 27, 31 });
 	mov_down.speed = 0.15f;
 
-	mov_left.PushBack({ 170, 273, 25, 32 });
-	mov_left.PushBack({ 207, 273, 28, 32 });
-	mov_left.PushBack({ 244, 272, 25, 33 });
-	mov_left.PushBack({ 281, 273, 25, 33 });
+	mov_left.PushBack({ 170, 144, 25, 32 });
+	mov_left.PushBack({ 207, 144, 28, 32 });
+	mov_left.PushBack({ 244, 143, 25, 33 });
+	mov_left.PushBack({ 281, 144, 25, 33 });
 	mov_left.speed = 0.15f;
 
-	mov_right.PushBack({ 164, 226, 28, 32 });
-	mov_right.PushBack({ 203, 224, 25, 32 });
-	mov_right.PushBack({ 240, 225, 27, 32 });
-	mov_right.PushBack({ 280, 224, 25, 33 });
+	mov_right.PushBack({ 164, 97, 28, 32 });
+	mov_right.PushBack({ 203, 95, 25, 32 });
+	mov_right.PushBack({ 240, 96, 27, 32 });
+	mov_right.PushBack({ 280, 97, 25, 33 });
 	mov_right.speed = 0.15f;
 
-	mov_up.PushBack({ 174, 317, 26, 36 });
-	mov_up.PushBack({ 208, 316, 27, 37 });
-	mov_up.PushBack({ 243, 318, 26, 35 });
-	mov_up.PushBack({ 277, 318, 26, 35 });
+	mov_up.PushBack({ 174, 188, 26, 36 });
+	mov_up.PushBack({ 208, 187, 27, 37 });
+	mov_up.PushBack({ 243, 189, 26, 35 });
+	mov_up.PushBack({ 277, 189, 26, 35 });
 	mov_up.speed = 0.15f;
 
-	mov_down_left.PushBack({ 10, 361, 27, 33 });
-	mov_down_left.PushBack({ 48, 361, 27, 34 });
-	mov_down_left.PushBack({ 84, 360, 25, 34 });
-	mov_down_left.PushBack({ 115, 361, 27, 34 });
+	mov_down_left.PushBack({ 10, 232, 27, 33 });
+	mov_down_left.PushBack({ 48, 232, 27, 34 });
+	mov_down_left.PushBack({ 84, 231, 25, 34 });
+	mov_down_left.PushBack({ 115, 232, 27, 34 });
 	mov_down_left.speed = 0.15f;
 
-	mov_down_right.PushBack({ 6, 317, 27, 34});
-	mov_down_right.PushBack({ 41, 318, 26, 33});
-	mov_down_right.PushBack({ 78, 318, 27, 33});
-	mov_down_right.PushBack({ 116, 318, 26, 35});
+	mov_down_right.PushBack({ 6, 188, 27, 34 });
+	mov_down_right.PushBack({ 41, 189, 26, 33 });
+	mov_down_right.PushBack({ 78, 189, 27, 33 });
+	mov_down_right.PushBack({ 116, 189, 26, 35 });
 	mov_down_right.speed = 0.15f;
 
-	mov_up_left.PushBack({ 6, 273, 26, 35});
-	mov_up_left.PushBack({ 40, 273, 28, 35});
-	mov_up_left.PushBack({ 76, 271, 28, 34});
-	mov_up_left.PushBack({ 115, 271, 27, 33});
+	mov_up_left.PushBack({ 6, 144, 26, 35 });
+	mov_up_left.PushBack({ 40, 144, 28, 35 });
+	mov_up_left.PushBack({ 76, 142, 28, 34 });
+	mov_up_left.PushBack({ 115, 142, 27, 33 });
 	mov_up_left.speed = 0.15f;
 
-	mov_up_right.PushBack({ 0, 226, 29, 34});
-	mov_up_right.PushBack({ 41, 226, 26, 34});
-	mov_up_right.PushBack({ 80, 226, 24, 33});
-	mov_up_right.PushBack({ 115, 224, 25, 36});
+	mov_up_right.PushBack({ 0, 97, 29, 34 });
+	mov_up_right.PushBack({ 41, 97, 26, 34 });
+	mov_up_right.PushBack({ 80, 97, 24, 33 });
+	mov_up_right.PushBack({ 115, 95, 25, 36 });
 	mov_up_right.speed = 0.15f;
 
 	original_position = position;
 
 	enemy_animation = &down;
-	
+
 	path.PushBack({ 0.0f, 0.0f }, 300, anim);
 	path.PushBack({ 0.0f, 0.6f }, 150, anim);
-	
+
 
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	fire_rate = 500000;
 	last_time = 0;
-
+	current_time = SDL_GetTicks();
 }
 
 void ENEMY_Basic_Robot::Move()
 {
-	
+
 	Focus();
 
-	 position = original_position + path.GetCurrentSpeed(&anim);
-	
+	position = original_position + path.GetCurrentSpeed(&anim);
+
 }
 
 void ENEMY_Basic_Robot::Attack()
 {
-	current_time = SDL_GetTicks();
+	
 	App->particles->enemy_shot.speed.x = -(position.x - App->player->position.x) / 40;
 	App->particles->enemy_shot.speed.y = -(position.y - App->player->position.y) / 40;
 
 
 	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y))
 	{
-		
+
 		App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y, COLLIDER_ENEMY_SHOT, UNDEFINED);
 		last_time = current_time;
 	}
@@ -124,7 +124,7 @@ void ENEMY_Basic_Robot::Focus()
 
 	if (path.current_speed.IsZero())
 	{
-		
+
 		if (App->player->position.y < position.y)
 		{
 			enemy_animation = &up;
@@ -217,7 +217,7 @@ void ENEMY_Basic_Robot::Focus()
 			if (App->player->position.x >= position.x + 20) enemy_animation = &mov_up_right;
 
 		}
-		
+
 		if (App->player->position.y > position.y)
 		{
 			enemy_animation = &mov_down;
@@ -234,6 +234,6 @@ void ENEMY_Basic_Robot::Focus()
 			enemy_animation = &mov_right;
 		}
 
-		
+
 	}
 }

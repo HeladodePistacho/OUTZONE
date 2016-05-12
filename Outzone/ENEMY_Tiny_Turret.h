@@ -30,6 +30,8 @@ public:
 	ENEMY_Tiny_Turret(int x, int y);
 
 	void Focus();
+	void Move();
+	void Attack();
 
 };
 

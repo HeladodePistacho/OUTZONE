@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "ENEMY_Basic_Robot.h"
 #include "ENEMY_Tiny_Turret.h"
+#include "ENEMY_Car.h"
 
 #define SPAWN_MARGIN 50
 
@@ -23,7 +24,8 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	sprites = App->textures->Load("enemy_basic_sprites_all.png");
+	sprites = App->textures->Load("enemies_sprites.png");
+	
 	return true;
 }
 
@@ -136,6 +138,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::TINY_TURRET:
 			enemies[i] = new ENEMY_Tiny_Turret(info.x, info.y);
 			break;
+		case ENEMY_TYPES::CAR:
+			enemies[i] = new ENEMY_Car(info.x, info.y);
+			break;
 		}
 	}
 }
@@ -144,9 +149,15 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if (c1->type == COLLIDER_ENEMY && c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT)
+		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+			if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER_SHOT ){
+				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+				delete enemies[i];
+				enemies[i] = nullptr;
+				break;
+			}
+			else if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 			{
 				App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
 				delete enemies[i];

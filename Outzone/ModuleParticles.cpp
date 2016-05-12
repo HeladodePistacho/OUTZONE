@@ -291,8 +291,9 @@ ModuleParticles::ModuleParticles()
 	//ENEMY SHOTS
 	//enemy shot
 	enemy_shot.anim.PushBack({ 0, 112, 6, 6 });
-	enemy_shot.anim.PushBack({ 9, 11, 8, 8 });
+	enemy_shot.anim.PushBack({ 9, 111, 8, 8 });
 	enemy_shot.anim.loop = true;
+	enemy_shot.anim.speed = 0.1f;
 	enemy_shot.life = 2000;
 	enemy_shot.type = ENEMY_SHOT;
 	//enemy big shot
@@ -448,7 +449,7 @@ bool Particle::Update()
 void ModuleParticles::OnCollision(Collider*c1, Collider*c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
-		if ((c1->type == COLLIDER_PLAYER_SHOT) && (c2->type == COLLIDER_WALL || c2->type == COLLIDER_ENEMY ||c2->type == COLLIDER_CHEST)){
+		if ((c1->type == COLLIDER_PLAYER_SHOT) && (c2->type == COLLIDER_WALL || c2->type == COLLIDER_ENEMY ||c2->type == COLLIDER_CHEST || c2->type == COLLIDER_SHIELD)){
 			//laser shot impact
 			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == LASER_SHOT)
 			{
