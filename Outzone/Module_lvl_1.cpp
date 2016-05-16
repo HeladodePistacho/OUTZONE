@@ -100,7 +100,7 @@ bool Module_lvl_1::Start()
 		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 130, -998);
 
 		//Car
-		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 150, 150);
+		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 150, -200);
 		
 	return true;
 }
