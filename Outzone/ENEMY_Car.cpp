@@ -46,7 +46,7 @@ void ENEMY_Car::Move()
 void ENEMY_Car::Drop(){
 	//current_time = SDL_GetTicks();
 	if (current_time > last_spawn + spawn_rate && enemy_animation == &down){
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, last_position.x, last_position.y);
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, last_position.x, last_position.y, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
 		last_spawn = current_time;
 	}
 }

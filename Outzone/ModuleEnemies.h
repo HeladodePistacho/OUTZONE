@@ -13,6 +13,15 @@ enum ENEMY_TYPES
 	CAR
 };
 
+enum MOVEMENT_TYPES
+{
+	NO_MOVEMENT,
+	TYPE_DOWN,
+	TYPE_DOWN_RIGHT,
+	TYPE_DOWN_LEFT
+
+};
+
 struct SDL_Texture;
 class Enemy;
 
@@ -20,6 +29,7 @@ struct EnemyInfo
 {
 	ENEMY_TYPES type = ENEMY_TYPES::NO_TYPE;
 	int x, y;
+	MOVEMENT_TYPES movement_type = MOVEMENT_TYPES::NO_MOVEMENT;
 };
 
 class ModuleEnemies : public Module
@@ -36,7 +46,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	bool AddEnemy(ENEMY_TYPES type, int x, int y);
+	bool AddEnemy(ENEMY_TYPES type, int x, int y, MOVEMENT_TYPES m_type);
 	
 
 private:

@@ -36,7 +36,7 @@ update_status ModuleEnemies::PreUpdate()
 	{
 		if (queue[i].type != ENEMY_TYPES::NO_TYPE)
 		{
-			if (queue[i].y * (-SCREEN_SIZE) < App->render->camera.y + (App->render->camera.h * SCREEN_SIZE) + SPAWN_MARGIN)
+			if (queue[i].y * (-SCREEN_SIZE) < App->render->camera.y + SPAWN_MARGIN)
 			{
 				SpawnEnemy(queue[i]);
 				queue[i].type = ENEMY_TYPES::NO_TYPE;
@@ -103,7 +103,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, MOVEMENT_TYPES m_type)
 {
 	bool ret = false;
 
@@ -114,6 +114,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
 			queue[i].type = type;
 			queue[i].x = x;
 			queue[i].y = y;
+			queue[i].movement_type = m_type;
 			ret = true;
 			break;
 		}
@@ -133,7 +134,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		switch (info.type)
 		{
 		case ENEMY_TYPES::BASIC_ROBOT:
-			enemies[i] = new ENEMY_Basic_Robot(info.x, info.y);
+			enemies[i] = new ENEMY_Basic_Robot(info.x, info.y, info.movement_type);
 			break;
 		case ENEMY_TYPES::TINY_TURRET:
 			enemies[i] = new ENEMY_Tiny_Turret(info.x, info.y);

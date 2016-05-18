@@ -77,30 +77,27 @@ bool Module_lvl_1::Start()
 		App->collision->AddCollider({ 230, -3128, 14, 78 }, COLLIDER_WALL);//boss wall
 	
 		//ENEMIES
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, -40);
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, -400);
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 200, -1000);
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 40, -3000);
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 20, -3080);
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 100, -3200);
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 230, -3050);
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, -50, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 95, -100, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, 0, MOVEMENT_TYPES::TYPE_DOWN);
+		
 	
 		//OBJECTS
-		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 150, 150);
-		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 50, 150);
-		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 20, 150);
-		App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 100, 150);
-		App->objects->AddObject(OBJECT_TYPES::UPGRADE, 60, 150);
+		//App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 150, 150);
+		//App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 50, 150);
+		//App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 20, 150);
+		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 100, 150);
+		//App->objects->AddObject(OBJECT_TYPES::UPGRADE, 60, 150);
 
 		//Turret
-		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 200, 100);
-		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 2, -582);
-		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 132, -612);
-		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 195, -676);
-		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 130, -998);
+		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 200, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 2, -582);
+		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 132, -612);
+		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 195, -676);
+		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 130, -998);
 
 		//Car
-		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 150, -200);
+		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 150, -200);
 		
 	return true;
 }

@@ -6,7 +6,7 @@
 
 #include "SDL\include\SDL_timer.h"
 
-ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
+ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), basic_robot_movement(type)
 {
 
 	//IDLE animations
@@ -84,13 +84,19 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y) : Enemy(x, y)
 
 	enemy_animation = &down;
 
-	path.PushBack({ 0.0f, 0.0f }, 300, anim);
-	path.PushBack({ 0.0f, 0.6f }, 150, anim);
-
+	if (basic_robot_movement == TYPE_DOWN_RIGHT)
+	{
+		path.PushBack({ 0.0f, 0.75f }, 150, anim);
+		path.PushBack({ 0.75f, 0.5f }, 300, anim);
+	}
+	if (basic_robot_movement == TYPE_DOWN)
+	{
+		path.PushBack({ 0.0f, 0.75f }, 150, anim);
+	}
 
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	fire_rate = 500000;
+	fire_rate = 100000;
 	last_time = 0;
 	current_time = SDL_GetTicks();
 }
@@ -213,16 +219,16 @@ void ENEMY_Basic_Robot::Focus()
 		if (App->player->position.y < position.y)
 		{
 			enemy_animation = &mov_up;
-			if (App->player->position.x <= position.x - 20) enemy_animation = &mov_up_left;
-			if (App->player->position.x >= position.x + 20) enemy_animation = &mov_up_right;
+			if (App->player->position.x <= position.x - 50) enemy_animation = &mov_up_left;
+			if (App->player->position.x >= position.x + 50) enemy_animation = &mov_up_right;
 
 		}
 
 		if (App->player->position.y > position.y)
 		{
 			enemy_animation = &mov_down;
-			if (App->player->position.x <= position.x - 20) enemy_animation = &mov_down_left;
-			if (App->player->position.x >= position.x + 20) enemy_animation = &mov_down_right;
+			if (App->player->position.x <= position.x - 50) enemy_animation = &mov_down_left;
+			if (App->player->position.x >= position.x + 50) enemy_animation = &mov_down_right;
 		}
 
 		if (App->player->position.x < position.x && App->player->position.y < position.y + 10 && App->player->position.y > position.y - 10)

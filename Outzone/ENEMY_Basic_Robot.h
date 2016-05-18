@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "ModuleParticles.h"
 #include "Path.h"
+#include "ModuleEnemies.h"
 
 class ENEMY_Basic_Robot : public Enemy
 {
@@ -48,11 +49,12 @@ private:
 
 public:
 
-	ENEMY_Basic_Robot(int x, int y);
+	ENEMY_Basic_Robot(int x, int y, MOVEMENT_TYPES type);
 
 	void Move();
 	void Attack();
 	void Focus();
+	MOVEMENT_TYPES basic_robot_movement;
 };
 
 #endif 
