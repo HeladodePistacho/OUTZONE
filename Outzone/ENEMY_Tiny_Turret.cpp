@@ -9,22 +9,22 @@
 ENEMY_Tiny_Turret::ENEMY_Tiny_Turret(int x, int y) :Enemy(x, y)
 {
 	//static animations
-	down.PushBack({ 319, 487, 31, 48 });
-	left.PushBack({ 131, 433, 32, 45 });
-	right.PushBack({ 137, 498, 31, 46 });
-	up.PushBack({ 317, 429, 27, 48 });
-	midle_down_right.PushBack({ 229, 490, 30, 45 });
-	midle_down_right_bot.PushBack({ 272, 489, 30, 46 });
-	midle_down_right_top.PushBack({ 185, 490, 28, 45 });
-	midle_down_left.PushBack({ 46, 434, 27, 45 });
-	midle_down_left_bot.PushBack({ 0, 432, 28, 47 });
-	midle_down_left_top.PushBack({ 89, 432, 30, 46 });
-	midle_up_right.PushBack({ 47, 65, 452, 46 });
-	midle_up_right_bot.PushBack({ 93, 490, 29, 45 });
-	midle_up_right_top.PushBack({ 0, 488, 27, 47 });
-	midle_up_left.PushBack({ 228, 7, 450, 47 });
-	midle_up_left_bot.PushBack({ 180, 434, 30, 44 });
-	midle_up_left_top.PushBack({ 173, 431, 26, 47 });
+	down.PushBack({ 320, 488, 29, 45 });
+	left.PushBack({ 132, 433, 30, 43 });
+	right.PushBack({ 139, 490, 28, 43 });
+	up.PushBack({ 317, 429, 27, 47 });
+	midle_down_right.PushBack({ 230, 489, 28, 44 });
+	midle_down_right_bot.PushBack({ 273, 488, 28, 45 });
+	midle_down_right_top.PushBack({ 185, 489, 27, 44 });
+	midle_down_left.PushBack({ 46, 433, 26, 44 });
+	midle_down_left_bot.PushBack({ 0, 432, 27, 45 });
+	midle_down_left_top.PushBack({ 89, 432, 29, 44 });
+	midle_up_right.PushBack({ 47, 488, 27, 45 });
+	midle_up_right_bot.PushBack({ 94, 490, 27, 43 });
+	midle_up_right_top.PushBack({ 0, 487, 26, 46 });
+	midle_up_left.PushBack({ 229, 431, 24, 45 });
+	midle_up_left_bot.PushBack({ 181, 433, 28, 43 });
+	midle_up_left_top.PushBack({ 274, 430, 24, 46 });
 
 	enemy_animation = &down;
 
