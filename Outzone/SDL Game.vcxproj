@@ -86,6 +86,7 @@
     <ClInclude Include="ModuleInterfice.h" />
     <ClInclude Include="ModuleObjects.h" />
     <ClInclude Include="ModuleParticles.h" />
+    <ClInclude Include="ModuleVolumes.h" />
     <ClInclude Include="Module_Congrats.h" />
     <ClInclude Include="Module_lvl_1.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -118,6 +119,7 @@
     <ClCompile Include="ModuleInterfice.cpp" />
     <ClCompile Include="ModuleObjects.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
+    <ClCompile Include="ModuleVolumes.cpp" />
     <ClCompile Include="Module_Congrats.cpp" />
     <ClCompile Include="Module_lvl_1.cpp" />
     <ClCompile Include="ModuleInput.cpp" />

@@ -39,6 +39,9 @@
     <Filter Include="Modules\Interfice">
       <UniqueIdentifier>{52f834f8-6b79-400a-b7fe-9886a57a542f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Volumes">
+      <UniqueIdentifier>{f6273bef-b0bd-45b5-8ff5-f7d963f84cb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemLeaks.h">
@@ -137,6 +140,9 @@
     <ClInclude Include="ENEMY_Car.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleVolumes.h">
+      <Filter>Modules\Volumes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -222,6 +228,9 @@
     </ClCompile>
     <ClCompile Include="ENEMY_Car.cpp">
       <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleVolumes.cpp">
+      <Filter>Modules\Volumes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

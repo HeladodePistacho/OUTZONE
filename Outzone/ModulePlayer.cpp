@@ -437,8 +437,8 @@ update_status ModulePlayer::Update()
 		//WIN
 		if (App->render->camera.y > 4000){
 			if (App->lvl_1->IsEnabled()){
-				App->change_scene->ChangeScene(App->lvl_1, App->congrats, 1.0f);
-				result = true;
+				//App->change_scene->ChangeScene(App->lvl_1, App->congrats, 1.0f);
+				//result = true;
 			}
 			if (App->lvl_2->IsEnabled()){
 				App->change_scene->ChangeScene(App->lvl_2, App->congrats, 1.0f);

@@ -12,6 +12,7 @@
 #include "ModuleParticles.h"
 #include "ModuleObjects.h"
 #include "ModuleInterfice.h"
+#include "ModuleVolumes.h"
 Module_lvl_1::Module_lvl_1()
 {
 	// Level 1 
@@ -47,7 +48,7 @@ bool Module_lvl_1::Start()
 		App->enemies->Enable();
 		App->objects->Enable();
 		App->player->Reset();
-		
+		App->volumes->Enable();
 
 		//COLLIDERS
 		//WALLS
@@ -77,9 +78,9 @@ bool Module_lvl_1::Start()
 		App->collision->AddCollider({ 230, -3128, 14, 78 }, COLLIDER_WALL);//boss wall
 	
 		//ENEMIES
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, -50, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 95, -100, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
-		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, 0, MOVEMENT_TYPES::TYPE_DOWN);
+		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, -50, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
+		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 95, -100, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
+		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, 0, MOVEMENT_TYPES::TYPE_DOWN);
 		
 	
 		//OBJECTS
@@ -90,7 +91,7 @@ bool Module_lvl_1::Start()
 		//App->objects->AddObject(OBJECT_TYPES::UPGRADE, 60, 150);
 
 		//Turret
-		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 200, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 200, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 2, -582);
 		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 132, -612);
 		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 195, -676);
@@ -98,6 +99,38 @@ bool Module_lvl_1::Start()
 
 		//Car
 		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 150, -200);
+
+		//VOLUMES
+		//Blue Ship
+		//blue ship left
+		App->volumes->AddVolume(App->volumes->blue_ship_left, 0, -195);
+		//blue ship right
+		App->volumes->AddVolume(App->volumes->blue_ship_right, 158, -147);
+
+		//Columns
+		//column 1
+		App->volumes->AddVolume(App->volumes->column_3, 127, -722);
+		//column 2
+		App->volumes->AddVolume(App->volumes->column_2, 190, -786);
+		//column 3
+		App->volumes->AddVolume(App->volumes->column_1, 0, -916);
+		//column 4
+		App->volumes->AddVolume(App->volumes->column_3, 160, -1075);
+		//column 5
+		App->volumes->AddVolume(App->volumes->column_1, 63, -1748);
+		//column 6
+		App->volumes->AddVolume(App->volumes->column_3, 191, -1780);
+		//column 7
+		App->volumes->AddVolume(App->volumes->column_2, 0, -1812);
+		//column 8
+		App->volumes->AddVolume(App->volumes->column_2, 95, -1908);
+
+		//Door Walls
+		//left wall
+		App->volumes->AddVolume(App->volumes->door_wall_left, 0, -3129);
+		//right wall
+		App->volumes->AddVolume(App->volumes->door_wall_right, 164, -3130);
+
 		
 	return true;
 }
