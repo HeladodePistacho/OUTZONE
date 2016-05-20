@@ -127,7 +127,7 @@ bool Module_lvl_1::Start()
 
 		//Door Walls
 		//left wall
-		App->volumes->AddVolume(App->volumes->door_wall_left, 0, -3129);
+		App->volumes->AddVolume(App->volumes->door_wall_left, 0, -3130);
 		//right wall
 		App->volumes->AddVolume(App->volumes->door_wall_right, 164, -3130);
 
