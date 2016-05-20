@@ -99,6 +99,9 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(
 	fire_rate = 100000;
 	last_time = 0;
 	current_time = SDL_GetTicks();
+
+	//enemy type
+	enemy_type = BASIC_ROBOT;
 }
 
 void ENEMY_Basic_Robot::Move()

@@ -22,6 +22,8 @@ public:
 	Uint32 last_time;
 	//Fire Rate
 	Uint32 fire_rate;
+	//Enemy Type
+	unsigned int enemy_type;
 
 public:
 	Enemy(int x, int y);

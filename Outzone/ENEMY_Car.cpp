@@ -23,6 +23,9 @@ ENEMY_Car::ENEMY_Car(int x, int y) : Enemy(x, y)
 	spawn_rate = 200;
 	
 	current_time = SDL_GetTicks();
+
+	//enemy type
+	enemy_type = CAR;
 }
 
 void ENEMY_Car::Move()

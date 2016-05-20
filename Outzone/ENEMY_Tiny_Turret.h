@@ -2,6 +2,7 @@
 #define _TINY_TURRET_
 #include "Enemy.h"
 #include "ModuleParticles.h"
+#include "ModuleEnemies.h"
 #include "Path.h"
 
 class ENEMY_Tiny_Turret : public Enemy{

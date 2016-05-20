@@ -2,6 +2,7 @@
 #define _CAR_
 #include "Enemy.h"
 #include "ModuleParticles.h"
+#include "ModuleEnemies.h"
 #include "Path.h"
 
 class ENEMY_Car : public Enemy{

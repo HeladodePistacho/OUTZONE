@@ -243,6 +243,7 @@ ModuleParticles::ModuleParticles()
 	laser_impact.anim.speed = 0.25f;
 	laser_impact.type = LASER_IMPACT;
 
+	//EXPLOSIONS
 	//character explosion
 	dead_explosion.anim.PushBack({ 0, 116, 125, 125 });
 	dead_explosion.anim.PushBack({ 250, 116, 125, 125 });
@@ -287,6 +288,24 @@ ModuleParticles::ModuleParticles()
 	big_enemy_explosion.anim.loop = false;
 	big_enemy_explosion.anim.speed = 0.2f;
 
+	//big turrer fire
+	big_turret_fire.anim.PushBack({ 901, 446, 81, 88 });
+	big_turret_fire.anim.PushBack({ 1005, 438, 85, 96 });
+	big_turret_fire.anim.PushBack({ 901, 554, 85, 85 });
+	big_turret_fire.anim.PushBack({ 1020, 553, 78, 92 });
+	big_turret_fire.anim.PushBack({ 900, 668, 90, 81 });
+	big_turret_fire.anim.loop = true;
+	big_turret_fire.anim.speed = 0.15f;
+	big_turret_fire.life = 10000000;
+
+	//partial damage 
+	partial_damage.anim.PushBack({ 525, 20, 16, 38 });
+	partial_damage.anim.PushBack({ 546, 19, 17, 39 });
+	partial_damage.anim.PushBack({ 565, 20, 16, 40 });
+	partial_damage.anim.PushBack({ 580, 20, 16, 40 });
+	partial_damage.anim.loop = true;
+	partial_damage.anim.speed = 0.5f;
+	partial_damage.life = 10000000;
 
 	//ENEMY SHOTS
 	//enemy shot

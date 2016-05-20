@@ -34,6 +34,9 @@ ENEMY_Tiny_Turret::ENEMY_Tiny_Turret(int x, int y) :Enemy(x, y)
 	last_time = 0;
 
 	current_time = SDL_GetTicks();
+
+	//enemy type
+	enemy_type = TINY_TURRET;
 }
 
 void ENEMY_Tiny_Turret::Attack()

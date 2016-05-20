@@ -128,6 +128,8 @@ public:
 	Particle dead_explosion;
 	Particle basic_enemy_explosion;
 	Particle big_enemy_explosion;
+	Particle big_turret_fire;
+	Particle partial_damage;
 
 	//Enemy bullets
 	Particle enemy_shot;
