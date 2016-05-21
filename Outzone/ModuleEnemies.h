@@ -24,6 +24,12 @@ enum MOVEMENT_TYPES
 
 };
 
+enum DIRECTION{
+	RIGHT,
+	LEFT,
+	NONE
+};
+
 struct SDL_Texture;
 class Enemy;
 

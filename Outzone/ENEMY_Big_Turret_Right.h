@@ -11,7 +11,7 @@ private:
 	//statik animations
 	Animation idle;
 	Animation hit;
-
+	uint direction;
 	Animation* anim = Enemy::enemy_animation;
 public:
 	ENEMY_Big_Turret_Right(int x, int y);

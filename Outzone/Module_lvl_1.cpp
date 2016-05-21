@@ -143,7 +143,7 @@ bool Module_lvl_1::Start()
 		//App->particles->AddParticle(App->particles->partial_damage, 100, 100, COLLIDER_NONE, UNDEFINED);
 		
 
-
+		App->enemies->AddEnemy(ENEMY_TYPES::BIG_TURRET_LEFT, 100, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 
 	return true;
 }

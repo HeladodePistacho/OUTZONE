@@ -288,14 +288,14 @@ ModuleParticles::ModuleParticles()
 	big_enemy_explosion.anim.loop = false;
 	big_enemy_explosion.anim.speed = 0.2f;
 
-	//big turrer fire
-	big_turret_fire.anim.PushBack({ 901, 446, 81, 88 });
-	big_turret_fire.anim.PushBack({ 1005, 438, 85, 96 });
-	big_turret_fire.anim.PushBack({ 901, 554, 85, 85 });
-	big_turret_fire.anim.PushBack({ 1020, 553, 78, 92 });
-	big_turret_fire.anim.PushBack({ 900, 668, 90, 81 });
+	//big turret fire
+	big_turret_fire.anim.PushBack({ 922, 458, 56, 60 });
+	big_turret_fire.anim.PushBack({ 992, 459, 56, 65 });
+	big_turret_fire.anim.PushBack({ 922, 534, 57, 56 });
+	big_turret_fire.anim.PushBack({ 1008, 528, 56, 66 });
+	big_turret_fire.anim.PushBack({ 929, 610, 56, 50 });
 	big_turret_fire.anim.loop = true;
-	big_turret_fire.anim.speed = 0.15f;
+	big_turret_fire.anim.speed = 0.25f;
 	big_turret_fire.life = 10000000;
 
 	//partial damage 
