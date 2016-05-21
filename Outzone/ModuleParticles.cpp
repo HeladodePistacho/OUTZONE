@@ -256,7 +256,6 @@ ModuleParticles::ModuleParticles()
 	dead_explosion.anim.PushBack({ 125, 491, 125, 125 });
 	dead_explosion.anim.loop = false;
 	dead_explosion.anim.speed = 0.15f;
-
 	//enemy explosion
 	basic_enemy_explosion.anim.PushBack({ 9, 647, 44, 43 });
 	basic_enemy_explosion.anim.PushBack({ 53, 647, 44, 43 });
@@ -268,13 +267,10 @@ ModuleParticles::ModuleParticles()
 	basic_enemy_explosion.anim.PushBack({ 97, 890, 44, 43 });
 	basic_enemy_explosion.anim.loop = false;
 	basic_enemy_explosion.anim.speed = 0.2f;
-
-	
 	//random explosions
 	//big_enemy_explosion.anim.PushBack({ 383, 98, 184, 180 });
 	//big_enemy_explosion.anim.PushBack({ 560, 98, 160, 163 });
 	//big_enemy_explosion.anim.PushBack({ 740 , 98, 180, 178 });
-
 	// big enemy explosion
 	big_enemy_explosion.anim.PushBack({ 393, 270, 160, 152 });
 	big_enemy_explosion.anim.PushBack({ 565, 270, 160, 152 });
@@ -287,7 +283,6 @@ ModuleParticles::ModuleParticles()
 	big_enemy_explosion.anim.PushBack({ 731, 582, 141, 155 });
 	big_enemy_explosion.anim.loop = false;
 	big_enemy_explosion.anim.speed = 0.2f;
-
 	//big turret fire
 	big_turret_fire.anim.PushBack({ 922, 458, 56, 60 });
 	big_turret_fire.anim.PushBack({ 992, 459, 56, 65 });
@@ -297,7 +292,6 @@ ModuleParticles::ModuleParticles()
 	big_turret_fire.anim.loop = true;
 	big_turret_fire.anim.speed = 0.25f;
 	big_turret_fire.life = 10000000;
-
 	//partial damage 
 	partial_damage.anim.PushBack({ 525, 20, 16, 38 });
 	partial_damage.anim.PushBack({ 546, 19, 17, 39 });

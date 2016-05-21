@@ -76,6 +76,7 @@
     <ClInclude Include="ENEMY_Big_Turret_Left.h" />
     <ClInclude Include="ENEMY_Big_Turret_Right.h" />
     <ClInclude Include="ENEMY_Car.h" />
+    <ClInclude Include="ENEMY_Golden_Turret.h" />
     <ClInclude Include="ENEMY_Tiny_Turret.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
@@ -112,6 +113,7 @@
     <ClCompile Include="ENEMY_Big_Turret_Left.cpp" />
     <ClCompile Include="ENEMY_Big_Turret_Right.cpp" />
     <ClCompile Include="ENEMY_Car.cpp" />
+    <ClCompile Include="ENEMY_Golden_Turret.cpp" />
     <ClCompile Include="ENEMY_Tiny_Turret.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />

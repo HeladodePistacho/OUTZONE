@@ -8,7 +8,7 @@
 #include "ModuleCollision.h"
 
 
-#define MAX_ACTIVE_PARTICLES 150
+#define MAX_ACTIVE_PARTICLES 500
 
 struct SDL_Texture;
 struct Collider;

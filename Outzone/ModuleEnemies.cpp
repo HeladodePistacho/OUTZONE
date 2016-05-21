@@ -9,6 +9,7 @@
 #include "ENEMY_Tiny_Turret.h"
 #include "ENEMY_Big_Turret_Left.h"
 #include "ENEMY_Big_Turret_Right.h"
+#include "ENEMY_Golden_Turret.h"
 #include "ENEMY_Car.h"
 
 #define SPAWN_MARGIN 50
@@ -150,6 +151,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::BIG_TURRET_RIGHT:
 			enemies[i] = new ENEMY_Big_Turret_Right(info.x, info.y);
 			break;
+		case ENEMY_TYPES::GOLDEN_TURRET:
+			enemies[i] = new ENEMY_Golden_Turret(info.x, info.y);
+			break;
 		}
 	}
 }
@@ -171,6 +175,9 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				if (enemies[i]->enemy_type == BIG_TURRET_LEFT ||enemies[i]->enemy_type == BIG_TURRET_RIGHT){
 					App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x-40, App->enemies->enemies[i]->position.y -40, COLLIDER_NONE, UNDEFINED);
 					App->particles->AddParticle(App->particles->big_turret_fire, App->enemies->enemies[i]->position.x , App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+				}
+				if (enemies[i]->enemy_type == GOLDEN_TURRET){
+					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x -10, App->enemies->enemies[i]->position.y -2, COLLIDER_NONE, UNDEFINED);
 				}
 				else{
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);

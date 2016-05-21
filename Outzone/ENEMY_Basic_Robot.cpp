@@ -96,9 +96,9 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(
 
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	fire_rate = 100000;
+	fire_rate = 1000;
 	last_time = 0;
-	current_time = SDL_GetTicks();
+	
 
 	//enemy type
 	enemy_type = BASIC_ROBOT;
@@ -115,14 +115,12 @@ void ENEMY_Basic_Robot::Move()
 
 void ENEMY_Basic_Robot::Attack()
 {
-	
-	App->particles->enemy_shot.speed.x = -(position.x - App->player->position.x) / 40;
-	App->particles->enemy_shot.speed.y = -(position.y - App->player->position.y) / 40;
-
-
+	current_time = SDL_GetTicks();
 	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y))
 	{
-
+		App->particles->enemy_shot.speed.x = -(position.x - App->player->position.x) / 40;
+		App->particles->enemy_shot.speed.y = -(position.y - App->player->position.y) / 40;
+		
 		App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y, COLLIDER_ENEMY_SHOT, UNDEFINED);
 		last_time = current_time;
 	}

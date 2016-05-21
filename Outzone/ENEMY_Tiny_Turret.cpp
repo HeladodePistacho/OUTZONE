@@ -41,13 +41,10 @@ ENEMY_Tiny_Turret::ENEMY_Tiny_Turret(int x, int y) :Enemy(x, y)
 
 void ENEMY_Tiny_Turret::Attack()
 {
-	App->particles->enemy_shot.speed.x = -(position.x - App->player->position.x) / 40;
-	App->particles->enemy_shot.speed.y = -(position.y - App->player->position.y) / 40;
-
-
 	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y))
 	{
-
+		App->particles->enemy_shot.speed.x = -(position.x - App->player->position.x) / 40;
+		App->particles->enemy_shot.speed.y = -(position.y - App->player->position.y) / 40; 
 		App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y, COLLIDER_ENEMY_SHOT, UNDEFINED);
 		last_time = current_time;
 	}

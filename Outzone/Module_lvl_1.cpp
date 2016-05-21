@@ -91,7 +91,6 @@ bool Module_lvl_1::Start()
 		//App->objects->AddObject(OBJECT_TYPES::UPGRADE, 60, 150);
 
 		//Turret
-		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 200, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 2, -582);
 		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 132, -612);
 		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 195, -676);
@@ -106,6 +105,11 @@ bool Module_lvl_1::Start()
 		//second(right)
 		App->enemies->AddEnemy(ENEMY_TYPES::BIG_TURRET_LEFT, 162, -1632, MOVEMENT_TYPES::NO_MOVEMENT);
 
+		//GOLDEN TURRETS
+		//left turret
+		App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 40, -3040, MOVEMENT_TYPES::NO_MOVEMENT);
+		//right turret
+		App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 180, -3040, MOVEMENT_TYPES::NO_MOVEMENT);
 		//VOLUMES
 		//Blue Ship
 		//blue ship left
@@ -137,13 +141,20 @@ bool Module_lvl_1::Start()
 		//right wall
 		App->volumes->AddVolume(App->volumes->door_wall_right, 164, -3130);
 
-		//test zone
+		//TEST ZONE
 		//App->particles->AddParticle(App->particles->big_turret_fire, 150, 150,COLLIDER_NONE,UNDEFINED);
 		//App->enemies->AddEnemy(ENEMY_TYPES::BIG_TURRET_LEFT, 100, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		//App->particles->AddParticle(App->particles->partial_damage, 100, 100, COLLIDER_NONE, UNDEFINED);
 		
 
-		App->enemies->AddEnemy(ENEMY_TYPES::BIG_TURRET_LEFT, 100, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		// App->enemies->AddEnemy(ENEMY_TYPES::BIG_TURRET_LEFT, 100, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		// App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		// App->enemies->AddEnemy(ENEMY_TYPES::CAR, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		
+
+
 
 	return true;
 }
