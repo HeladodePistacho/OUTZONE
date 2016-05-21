@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -94,6 +95,8 @@ public:
 	//??
 	int last_position = 220;
 	
+	Mix_Chunk* laser_fx = nullptr;
+
 };
 
 #endif

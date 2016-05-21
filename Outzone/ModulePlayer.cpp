@@ -141,6 +141,8 @@ bool ModulePlayer::Start()
 	body = App->collision->AddCollider({ position.x, position.y, 30, 40 }, COLLIDER_PLAYER, this);
 	//Load character sprites
 	graphics = App->textures->Load("character_sprites.png");
+	laser_fx = App->audio->Load_chunk("laser.wav");
+
 	current_animation = &idle_up;
 
 	return true;
@@ -254,41 +256,49 @@ update_status ModulePlayer::Update()
 				App->particles->AddParticle(App->particles->laser_south_fire, position.x, position.y + 24, COLLIDER_NONE, LASER_FIRE);
 				App->particles->AddParticle(App->particles->laser_south_bullet, position.x + 5, position.y + 24, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 				last_time = current_time;
+				Mix_PlayChannel(-1, laser_fx, 0);
 			}		
 			else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate && current_animation == &idle_up){
 				App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 12, COLLIDER_NONE, LASER_FIRE);
 				App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 20, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 				last_time = current_time;
+				Mix_PlayChannel(-1, laser_fx, 0);
 			}			
 			else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate && current_animation == &idle_left){
 				App->particles->AddParticle(App->particles->laser_west_fire, position.x - 15, position.y, COLLIDER_NONE, LASER_FIRE);
 				App->particles->AddParticle(App->particles->laser_west_bullet, position.x - 18, position.y + 5, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 				last_time = current_time;
+				Mix_PlayChannel(-1, laser_fx, 0);
 			}			
 			else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate && current_animation == &idle_up_left){
 				App->particles->AddParticle(App->particles->laser_north_west_fire, position.x - 2, position.y - 13, COLLIDER_NONE, LASER_FIRE);
 				App->particles->AddParticle(App->particles->laser_north_west_bullet, position.x, position.y - 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 				last_time = current_time;
+				Mix_PlayChannel(-1, laser_fx, 0);
 			}			
 			else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate && current_animation == &idle_down_left){
 				App->particles->AddParticle(App->particles->laser_south_west_fire, position.x - 13, position.y + 13, COLLIDER_NONE, LASER_FIRE);
 				App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x - 8, position.y + 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 				last_time = current_time;
+				Mix_PlayChannel(-1, laser_fx, 0);
 			}
 			else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate && current_animation == &idle_right){
 				App->particles->AddParticle(App->particles->laser_east_fire, position.x + 28, position.y + 3, COLLIDER_NONE, LASER_FIRE);
 				App->particles->AddParticle(App->particles->laser_east_bullet, position.x + 28, position.y + 9, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 				last_time = current_time;
+				Mix_PlayChannel(-1, laser_fx, 0);
 			}
 			else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate && current_animation == &idle_up_right){
 				App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 13, COLLIDER_NONE, LASER_FIRE);
 				App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 				last_time = current_time;
+				Mix_PlayChannel(-1, laser_fx, 0);
 			}
 			else if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate && current_animation == &idle_down_right){
 				App->particles->AddParticle(App->particles->laser_south_east_fire, position.x + 14, position.y + 18, COLLIDER_NONE, LASER_FIRE);
 				App->particles->AddParticle(App->particles->laser_south_east_bullet, position.x + 14, position.y + 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 				last_time = current_time;
+				Mix_PlayChannel(-1, laser_fx, 0);
 			}
 
 		//MOVEMENT
@@ -536,6 +546,7 @@ void ModulePlayer::Go_South(float speed){
 			App->particles->AddParticle(App->particles->laser_south_bullet, position.x + 5, position.y + 24, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 
 			last_time = current_time;
+			Mix_PlayChannel(-1, laser_fx, 0);
 		}
 		//CHANGE ANIMATION
 		if (current_animation != &down)
@@ -570,7 +581,7 @@ void ModulePlayer::Go_North(float speed){
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 			App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
-
+			Mix_PlayChannel(-1, laser_fx, 0);
 			last_time = current_time;
 		}
 		//CHANGE ANIMATION
@@ -603,6 +614,7 @@ void ModulePlayer::Go_West(float speed){
 			App->particles->AddParticle(App->particles->laser_west_fire, position.x - 18, position.y, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_west_bullet, position.x - 18, position.y + 5, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 			last_time = current_time;
+			Mix_PlayChannel(-1, laser_fx, 0);
 		}
 		//CHANGE ANIMATION
 		if (current_animation != &left)
@@ -633,7 +645,7 @@ void ModulePlayer::Go_East(float speed){
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && current_time >= last_time + laser_fire_rate){
 			App->particles->AddParticle(App->particles->laser_east_fire, position.x + 30, position.y + 3, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_east_bullet, position.x + 28, position.y + 9, COLLIDER_PLAYER_SHOT, LASER_SHOT);
-
+			Mix_PlayChannel(-1, laser_fx, 0);
 			last_time = current_time;
 		}
 		//CHANGE ANIMATION
@@ -679,6 +691,7 @@ void ModulePlayer::Go_West_Up(float speed){
 			App->particles->AddParticle(App->particles->laser_north_west_fire, position.x - 4, position.y - 13, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_north_west_bullet, position.x + 2, position.y - 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 			last_time = current_time;
+			Mix_PlayChannel(-1, laser_fx, 0);
 		}
 		//CHANGE ANIMATION
 		if (current_animation != &up_left)
@@ -713,7 +726,7 @@ void ModulePlayer::Go_West_Down(float speed){
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 			App->particles->AddParticle(App->particles->laser_south_west_fire, position.x - 15, position.y + 13, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x - 13, position.y + 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
-
+			Mix_PlayChannel(-1, laser_fx, 0);
 			last_time = current_time;
 		}
 		//CHANGE ANIMATION
@@ -759,7 +772,7 @@ void ModulePlayer::Go_East_Up(float speed){
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
 			App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT, LASER_SHOT);
-
+			Mix_PlayChannel(-1, laser_fx, 0);
 			last_time = current_time;
 		}
 		//CHANGE ANIMATION
@@ -794,7 +807,7 @@ void ModulePlayer::Go_East_Down(float speed){
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &down || current_animation == &right)){
 			App->particles->AddParticle(App->particles->laser_south_east_fire, position.x + 14, position.y + 22, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_south_east_bullet, position.x + 14, position.y + 22, COLLIDER_PLAYER_SHOT, LASER_SHOT);
-
+			Mix_PlayChannel(-1, laser_fx, 0);
 			last_time = current_time;
 		}
 		//CHANGE ANIMATION

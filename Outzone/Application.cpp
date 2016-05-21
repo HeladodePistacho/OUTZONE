@@ -49,6 +49,7 @@ bool Application::Init()
 {
 	bool ret = true;
 
+	audio->Disable();
 	player->Disable();
 	interfice->Disable();
 	particles->Disable();

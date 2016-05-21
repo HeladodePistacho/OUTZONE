@@ -47,6 +47,7 @@ bool Module_Welcome::CleanUp()
 {
 	LOG("Unloading HUB");
 	App->textures->Disable();
+	App->audio->Enable();
 	App->render->escalated_screen = SCREEN_SIZE * App->lvl_1->map_size * 1.2f;
 	return true;
 }
