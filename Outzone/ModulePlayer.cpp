@@ -141,7 +141,10 @@ bool ModulePlayer::Start()
 	body = App->collision->AddCollider({ position.x, position.y, 30, 40 }, COLLIDER_PLAYER, this);
 	//Load character sprites
 	graphics = App->textures->Load("character_sprites.png");
+
 	laser_fx = App->audio->Load_chunk("laser.wav");
+	shotgun_fx = App->audio->Load_chunk("shotgun.wav");
+	dead_fx = App->audio->Load_chunk("lose.wav");
 
 	current_animation = &idle_up;
 
@@ -186,6 +189,7 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && shotgun&&current_time >= last_time + shotgun_fire_rate || App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN && shotgun){
 			//fire
 			App->particles->AddParticle(App->particles->shotgun_fire, position.x - 5, position.y - 18, COLLIDER_NONE, SHOTGUN_FIRE);
+			Mix_PlayChannel(-1, shotgun_fx, 0);
 			//lvl 1 bullets
 			if (shotgun_lvl == 1){
 				App->particles->AddParticle(App->particles->shotgun_left_1, position.x - 5, position.y - 18, COLLIDER_PLAYER_SHOT, SHOTGUN_SHOT);
@@ -206,8 +210,10 @@ update_status ModulePlayer::Update()
 			}
 			//shot timing
 			last_time = current_time;
-		}
 
+			
+
+		}
 		
 		//AFK
 		//IDLE WALK
@@ -482,6 +488,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		{
 			destroyed = true;
 			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT, UNDEFINED);
+			Mix_PlayChannel(-1, dead_fx, 0);
 			App->player->Disable();
 			App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
 			

@@ -77,8 +77,7 @@ bool ModuleAudio::CleanUp()
 
 	for (uint i = 0; i < MAX_AUDIOS; ++i)
 	{
-		if (audios[i] != nullptr) Mix_FreeMusic(audios[i]);
-		
+		if (audios[i] != nullptr) Mix_FreeMusic(audios[i]);	
 	}
 
 	for (uint i = 0; i < MAX_FX; ++i)

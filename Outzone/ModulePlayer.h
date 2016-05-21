@@ -96,6 +96,8 @@ public:
 	int last_position = 220;
 	
 	Mix_Chunk* laser_fx = nullptr;
+	Mix_Chunk* shotgun_fx = nullptr;
+	Mix_Chunk* dead_fx = nullptr;
 
 };
 
