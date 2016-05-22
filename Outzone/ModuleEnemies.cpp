@@ -11,6 +11,7 @@
 #include "ENEMY_Big_Turret_Right.h"
 #include "ENEMY_Golden_Turret.h"
 #include "ENEMY_Car.h"
+#include "ENEMY_Red_Robot.h"
 
 #define SPAWN_MARGIN 150
 
@@ -22,8 +23,7 @@ ModuleEnemies::ModuleEnemies()
 
 // Destructor
 ModuleEnemies::~ModuleEnemies()
-{
-}
+{}
 
 bool ModuleEnemies::Start()
 {
@@ -153,6 +153,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::GOLDEN_TURRET:
 			enemies[i] = new ENEMY_Golden_Turret(info.x, info.y);
+			break;
+		case ENEMY_TYPES::RED_ROBOT:
+			enemies[i] = new ENEMY_Red_Robot(info.x, info.y, info.movement_type);
 			break;
 		}
 	}
