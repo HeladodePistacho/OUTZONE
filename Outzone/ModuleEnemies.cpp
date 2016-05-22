@@ -12,7 +12,7 @@
 #include "ENEMY_Golden_Turret.h"
 #include "ENEMY_Car.h"
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN 150
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -178,6 +178,10 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				}
 				if (enemies[i]->enemy_type == GOLDEN_TURRET){
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x -10, App->enemies->enemies[i]->position.y -2, COLLIDER_NONE, UNDEFINED);
+				}
+				if (enemies[i]->enemy_type == TINY_TURRET)
+				{
+					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x - 10, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
 				}
 				else{
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
