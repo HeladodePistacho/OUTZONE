@@ -5,7 +5,6 @@
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_timer.h"
 #include "Module_lvl_1.h"
-#include "Module_lvl_2.h"
 #include "Module_Welcome.h"
 #include "Module_Congrats.h"
 #include "ModuleGameOver.h"
@@ -54,7 +53,7 @@ update_status ModuleChangeScene::Update()
 			else {
 				if (App->lvl_1->IsEnabled() && App->player->destroyed == false && App->player->result == false){
 					App->lvl_1->Disable();
-					App->lvl_2->Enable();
+					App->welcome->Enable();
 				}
 				else if (App->lvl_1->IsEnabled()&&App->player->destroyed==false&& App->player->result)
 				{
@@ -66,33 +65,15 @@ update_status ModuleChangeScene::Update()
 					App->gameover->Enable();
 				}
 				else{
-					if (App->lvl_2->IsEnabled() && App->player->destroyed == false && App->player->result == false)
+					if (App->congrats->IsEnabled())
 					{
-						App->lvl_2->Disable();
+						App->congrats->Disable();
 						App->welcome->Enable();
 					}
-					else if (App->lvl_2->IsEnabled() && App->player->destroyed == false && App->player->result)
-					{
-						App->lvl_2->Disable();
-						App->congrats->Enable();
-					}
-					else if (App->lvl_2->IsEnabled() && App->player->destroyed)
-					{
-						App->lvl_2->Disable();
-						App->gameover->Enable();
-					}
-					
 					else{
-						if (App->congrats->IsEnabled())
-						{
-							App->congrats->Disable();
+						if (App->gameover->IsEnabled()){
+							App->gameover->Disable();
 							App->welcome->Enable();
-						}
-						else{
-							if (App->gameover->IsEnabled()){
-								App->gameover->Disable();
-								App->welcome->Enable();
-							}
 						}
 					}
 				}

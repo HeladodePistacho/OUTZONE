@@ -3,7 +3,6 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "Module_lvl_1.h"
-#include "Module_lvl_2.h"
 #include "ModuleChangeScene.h"
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
@@ -13,6 +12,7 @@
 #include "ModuleObjects.h"
 #include "ModuleInterfice.h"
 #include "ModuleVolumes.h"
+#include "Module_Welcome.h"
 Module_lvl_1::Module_lvl_1()
 {
 	// Level 1 
@@ -186,7 +186,7 @@ update_status Module_lvl_1::Update()
 		
 
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
-			App->change_scene->ChangeScene(App->lvl_1, App->lvl_2, 1.0f);
+			App->change_scene->ChangeScene(App->lvl_1, App->welcome, 1.0f);
 		}
 	}
 
@@ -211,6 +211,6 @@ bool Module_lvl_1::CleanUp()
 	App->objects->Disable();
 	//Disable Textures
 	App->textures->Disable();
-	App->render->escalated_screen = SCREEN_SIZE * App->lvl_2->map_size * 1.25f;
+	
 	return true;
 }

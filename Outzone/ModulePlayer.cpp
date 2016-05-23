@@ -1,7 +1,6 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "Module_lvl_1.h"
-#include "Module_lvl_2.h"
 #include "Module_Congrats.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
@@ -456,10 +455,6 @@ update_status ModulePlayer::Update()
 				//App->change_scene->ChangeScene(App->lvl_1, App->congrats, 1.0f);
 				//result = true;
 			}
-			if (App->lvl_2->IsEnabled()){
-				App->change_scene->ChangeScene(App->lvl_2, App->congrats, 1.0f);
-				result = true;
-			}
 		}
 
 
@@ -570,12 +565,14 @@ void ModulePlayer::Go_South(float speed){
 }
 
 void ModulePlayer::Go_North(float speed){
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		if (position.y <= last_position){
 			position.y -= speed;
 			App->render->camera.y += speed * 2;
 			last_position = position.y;
 		}
 		else position.y -= speed;
+	}
 
 	if (shotgun == false){
 		//LASER SHOT
@@ -669,6 +666,7 @@ void ModulePlayer::Go_East(float speed){
 }
 
 void ModulePlayer::Go_West_Up(float speed){
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		if (position.y <= last_position)
 		{
 			if (position.x >= 0)
@@ -686,6 +684,7 @@ void ModulePlayer::Go_West_Up(float speed){
 			}
 			position.y -= speed;
 		}
+	}
 		if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &left || current_animation == &idle_left) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
@@ -751,6 +750,7 @@ void ModulePlayer::Go_West_Down(float speed){
 }
 
 void ModulePlayer::Go_East_Up(float speed){
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT){
 		if (position.y <= last_position)
 		{
 			if (position.x <= 210)
@@ -768,6 +768,7 @@ void ModulePlayer::Go_East_Up(float speed){
 			}
 			position.y -= speed;
 		}
+	}
 	if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &right || current_animation == &idle_right) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){

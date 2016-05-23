@@ -68,9 +68,6 @@
     <ClInclude Include="Module_Congrats.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Module_lvl_2.h">
-      <Filter>Modules\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Module_Welcome.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
@@ -170,9 +167,6 @@
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Module_Congrats.cpp">
-      <Filter>Modules\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Module_lvl_2.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Module_Welcome.cpp">

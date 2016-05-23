@@ -5,7 +5,6 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "Module_lvl_1.h"
-#include "Module_lvl_2.h"
 #include "ModulePlayer.h"
 #include "Module_Welcome.h"
 #include "Module_Congrats.h"
@@ -19,24 +18,25 @@
 #include "ModuleVolumes.h"
 Application::Application()
 {
-	modules[0] = window = new ModuleWindow();
-	modules[1] = render = new ModuleRender();
-	modules[2] = input = new ModuleInput();
-	modules[3] = textures = new ModuleTextures();
-	modules[4] = lvl_1 = new Module_lvl_1();
-	modules[5] = lvl_2 = new Module_lvl_2();
-	modules[6] = audio = new ModuleAudio();
-	modules[7] = change_scene = new ModuleChangeScene();
-	modules[8] = welcome = new Module_Welcome();
-	modules[9] = congrats = new Module_Congrats();
-	modules[10] = gameover = new Module_GameOver();
-	modules[11] = enemies = new ModuleEnemies();
-	modules[12] = objects = new ModuleObjects();
-	modules[13] = particles = new ModuleParticles();
-	modules[14] = collision = new ModuleCollision();
-	modules[15] = player = new ModulePlayer();
-	modules[16] = volumes = new ModuleVolumes();
-	modules[17] = interfice = new ModuleInterfice();
+
+	uint num = 0;
+	modules[num++] = window = new ModuleWindow();
+	modules[num++] = render = new ModuleRender();
+	modules[num++] = input = new ModuleInput();
+	modules[num++] = textures = new ModuleTextures();
+	modules[num++] = lvl_1 = new Module_lvl_1();
+	modules[num++] = audio = new ModuleAudio();
+	modules[num++] = change_scene = new ModuleChangeScene();
+	modules[num++] = welcome = new Module_Welcome();
+	modules[num++] = congrats = new Module_Congrats();
+	modules[num++] = gameover = new Module_GameOver();
+	modules[num++] = enemies = new ModuleEnemies();
+	modules[num++] = objects = new ModuleObjects();
+	modules[num++] = particles = new ModuleParticles();
+	modules[num++] = collision = new ModuleCollision();
+	modules[num++] = player = new ModulePlayer();
+	modules[num++] = volumes = new ModuleVolumes();
+	modules[num++] = interfice = new ModuleInterfice();
 }	
 
 Application::~Application()
@@ -55,7 +55,6 @@ bool Application::Init()
 	particles->Disable();
 	enemies->Disable();
 	lvl_1->Disable();
-	lvl_2->Disable();
 	congrats->Disable();
 	gameover->Disable();
 	collision->Disable();
