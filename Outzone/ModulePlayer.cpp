@@ -137,7 +137,7 @@ bool ModulePlayer::Start()
 	//Rotation
 	rotation_vel = 40;
 	//Add collider
-	body = App->collision->AddCollider({ position.x, position.y, 30, 40 }, COLLIDER_PLAYER, this);
+	body = App->collision->AddCollider({ position.x, position.y, 20, 30 }, COLLIDER_PLAYER, this);
 	//Load character sprites
 	graphics = App->textures->Load("character_sprites.png");
 
@@ -461,7 +461,7 @@ update_status ModulePlayer::Update()
 
 		//Update Player Collider Position-----------------------
 
-		body->SetPos(position.x, position.y);
+		body->SetPos(position.x + 5, position.y + 5);
 
 		// Draw everything --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -490,24 +490,24 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}
 		if (c2->type == COLLIDER_WALL||c2->type == COLLIDER_WALL_FLAT ||c2->type == COLLIDER_CHEST || c2->type == COLLIDER_SHIELD)
 		{
-			if (position.y + 2 >= c2->rect.y + c2->rect.h)
+			if (c1->rect.y + 2 >= c2->rect.y + c2->rect.h)
 			{
-				position.y = c2->rect.y + c2->rect.h;
+				position.y = (c2->rect.y + c2->rect.h) + (position.y - c1->rect.y);
 			}
 
-			if (position.x + 2 >= c2->rect.x + c2->rect.w)
+			if (c1->rect.x + 2 >= c2->rect.x + c2->rect.w)
 			{
-				position.x = c2->rect.x + c2->rect.w;
+				position.x = (c2->rect.x + c2->rect.w) + (position.x - c1->rect.x);
 			}
 
-			if (position.y + c1->rect.h - 2 <= c2->rect.y)
+			if (c1->rect.y + c1->rect.h - 2 <= c2->rect.y)
 			{
-				position.y = c2->rect.y - c1->rect.h;
+				position.y = c2->rect.y - (c1->rect.h  - (position.y - c1->rect.y));
 			}
-
 			if (c1->rect.x + c1->rect.w - 2 <= c2->rect.x)
+
 			{
-				position.x = c2->rect.x - c1->rect.w;
+				position.x = (c2->rect.x - c1->rect.w) + (position.x - c1->rect.x);
 			}
 			
 		}
@@ -671,7 +671,7 @@ void ModulePlayer::Go_West_Up(float speed){
 		{
 			if (position.x >= 0)
 			{
-				position.x -= speed / 1.5f;
+				position.x -= speed / 2;
 			}
 			position.y -= speed;
 			App->render->camera.y += speed * 2;
@@ -680,7 +680,7 @@ void ModulePlayer::Go_West_Up(float speed){
 		else {
 			if (position.x >= 0)
 			{
-				position.x -= speed / 1.5f;
+				position.x -= speed / 2;
 			}
 			position.y -= speed;
 		}
@@ -716,10 +716,10 @@ void ModulePlayer::Go_West_Up(float speed){
 void ModulePlayer::Go_West_Down(float speed){
 		if (position.y <= last_position + 65)
 		{
-			if (position.x > 0){ position.x -= speed / 1.5f; }
+			if (position.x > 0){ position.x -= speed / 2; }
 			position.y += speed;
 		}
-		else if (position.x >= 0) { position.x -= speed / 1.5f; }
+		else if (position.x >= 0) { position.x -= speed / 2; }
 	
 	if (shotgun == false){
 		//LASER SHOT
@@ -755,7 +755,7 @@ void ModulePlayer::Go_East_Up(float speed){
 		{
 			if (position.x <= 210)
 			{
-				position.x += speed / 1.5f;
+				position.x += speed / 2;
 			}
 			position.y -= speed;
 			App->render->camera.y += speed * 2;
@@ -764,7 +764,7 @@ void ModulePlayer::Go_East_Up(float speed){
 		else {
 			if (position.x <= 210)
 			{
-				position.x += speed / 1.5f;
+				position.x += speed / 2;
 			}
 			position.y -= speed;
 		}
@@ -799,10 +799,10 @@ void ModulePlayer::Go_East_Up(float speed){
 void ModulePlayer::Go_East_Down(float speed){
 		if (position.y <= last_position + 65)
 		{
-			if (position.x <= 210){ position.x += speed / 1.5f; }
+			if (position.x <= 210){ position.x += speed / 2; }
 			position.y += speed;
 		}
-		else if (position.x <= 210) { position.x += speed / 1.5f; }
+		else if (position.x <= 210) { position.x += speed / 2; }
 	
 	if (shotgun == false){
 		//LASER SHOT
