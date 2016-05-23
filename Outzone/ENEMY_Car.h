@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
+#include "ModuleVolumes.h"
 #include "Path.h"
 
 class ENEMY_Car : public Enemy{
@@ -10,6 +11,7 @@ private:
 	Animation stoped;
 	Animation down;
 	Animation* anim = Enemy::enemy_animation;
+	Volume cover;
 	Path path;
 	iPoint original_position;
 	iPoint last_position;

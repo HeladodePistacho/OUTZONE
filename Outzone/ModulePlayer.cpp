@@ -9,7 +9,7 @@
 #include "ModuleCollision.h"
 #include "ModuleChangeScene.h"
 #include "ModuleParticles.h"
-
+#include "ModuleVolumes.h"
 #include "SDL/include/SDL_timer.h"
 ModulePlayer::ModulePlayer()
 {
@@ -183,6 +183,10 @@ update_status ModulePlayer::Update()
 				shotgun_lvl++;
 			}
 			else shotgun_lvl = 1;
+		}
+		//DROP BOMB 
+		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN){
+			App->volumes->AddVolume(App->volumes->bomb, App->render->camera.x, App->render->camera.y);
 		}
 		//SHOTGUN SHOT
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && shotgun&&current_time >= last_time + shotgun_fire_rate || App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN && shotgun){

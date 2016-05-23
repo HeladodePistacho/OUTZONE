@@ -37,6 +37,29 @@ ModuleVolumes::ModuleVolumes()
 	//right wall
 	door_wall_right.volume_sprite.PushBack({ 103, 140, 77, 71 });
 	door_wall_right.volume_sprite.loop = true;
+
+	//CAR COVER
+	car_cover.volume_sprite.PushBack({ 0, 204, 47, 68 });
+	car_cover.volume_sprite.loop = true;
+
+	//BOMB
+	bomb.volume_sprite.PushBack({ 375, 0, 240, 317 });
+	bomb.volume_sprite.PushBack({ 620, 0, 240, 317 });
+	bomb.volume_sprite.PushBack({ 860, 0, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1089, 0, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1315, 0, 240, 317 });
+	bomb.volume_sprite.PushBack({ 375, 317, 240, 317 });
+	bomb.volume_sprite.PushBack({ 620, 317, 240, 317 });
+	bomb.volume_sprite.PushBack({ 860, 317, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1089, 317, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1315, 317, 240, 317 });
+	bomb.volume_sprite.PushBack({ 375, 634, 240, 317 });
+	bomb.volume_sprite.PushBack({ 620, 634, 240, 317 });
+	bomb.volume_sprite.PushBack({ 860, 634, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1089, 634, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1305, 634, 240, 317 });
+	bomb.volume_sprite.speed = 0.1f;
+	bomb.volume_sprite.loop = false;
 }
 
 ModuleVolumes::~ModuleVolumes()

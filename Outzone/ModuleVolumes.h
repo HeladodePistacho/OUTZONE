@@ -55,6 +55,12 @@ public:
 	//Door walls
 	Volume door_wall_left;
 	Volume door_wall_right;
+
+	//Car cover
+	Volume car_cover;
+
+	//Bomb
+	Volume bomb;
 };
 
 #endif // __MODULEVOLUMES_H__
