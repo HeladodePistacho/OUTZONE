@@ -32,52 +32,52 @@ ENEMY_Red_Robot::ENEMY_Red_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y
 	midle_up_left_top.PushBack({ 579, 44, 26, 35 });
 
 	//MOVEMENT animations
-	mov_down.PushBack({ 167, 231, 27, 35 });
-	mov_down.PushBack({ 205, 234, 27, 32 });
-	mov_down.PushBack({ 243, 233, 28, 33 });
-	mov_down.PushBack({ 282, 235, 27, 31 });
+	mov_down.PushBack({ 502, 185, 27, 35 });
+	mov_down.PushBack({ 540, 188, 27, 32 });
+	mov_down.PushBack({ 581, 187, 28, 33 });
+	mov_down.PushBack({ 618, 189, 27, 31 });
 	mov_down.speed = 0.15f;
 
-	mov_left.PushBack({ 170, 144, 25, 32 });
-	mov_left.PushBack({ 207, 144, 28, 32 });
-	mov_left.PushBack({ 244, 143, 25, 33 });
-	mov_left.PushBack({ 281, 144, 25, 33 });
+	mov_left.PushBack({ 506, 95, 25, 32 });
+	mov_left.PushBack({ 546, 94, 28, 32 });
+	mov_left.PushBack({ 581, 94, 25, 33 });
+	mov_left.PushBack({ 622, 93, 25, 33 });
 	mov_left.speed = 0.15f;
 
-	mov_right.PushBack({ 164, 97, 28, 32 });
-	mov_right.PushBack({ 203, 95, 25, 32 });
-	mov_right.PushBack({ 240, 96, 27, 32 });
-	mov_right.PushBack({ 280, 97, 25, 33 });
+	mov_right.PushBack({ 506, 145, 28, 32 });
+	mov_right.PushBack({ 545, 145, 25, 32 });
+	mov_right.PushBack({ 585, 145, 27, 32 });
+	mov_right.PushBack({ 622, 143, 25, 33 });
 	mov_right.speed = 0.15f;
 
-	mov_up.PushBack({ 174, 188, 26, 36 });
-	mov_up.PushBack({ 208, 187, 27, 37 });
-	mov_up.PushBack({ 243, 189, 26, 35 });
-	mov_up.PushBack({ 277, 189, 26, 35 });
+	mov_up.PushBack({ 508, 230, 26, 36 });
+	mov_up.PushBack({ 545, 229, 27, 37 });
+	mov_up.PushBack({ 581, 229, 26, 35 });
+	mov_up.PushBack({ 617, 229, 26, 35 });
 	mov_up.speed = 0.15f;
 
-	mov_down_left.PushBack({ 10, 232, 27, 33 });
-	mov_down_left.PushBack({ 48, 232, 27, 34 });
-	mov_down_left.PushBack({ 84, 231, 25, 34 });
-	mov_down_left.PushBack({ 115, 232, 27, 34 });
+	mov_down_left.PushBack({ 328, 231, 27, 33 });
+	mov_down_left.PushBack({ 367, 233, 27, 34 });
+	mov_down_left.PushBack({ 411, 231, 25, 34 });
+	mov_down_left.PushBack({ 448, 233, 27, 34 });
 	mov_down_left.speed = 0.15f;
 
-	mov_down_right.PushBack({ 6, 188, 27, 34 });
-	mov_down_right.PushBack({ 41, 189, 26, 33 });
-	mov_down_right.PushBack({ 78, 189, 27, 33 });
-	mov_down_right.PushBack({ 116, 189, 26, 35 });
+	mov_down_right.PushBack({ 327, 188, 27, 34 });
+	mov_down_right.PushBack({ 365, 187, 26, 33 });
+	mov_down_right.PushBack({ 407, 187, 27, 33 });
+	mov_down_right.PushBack({ 446, 187, 26, 35 });
 	mov_down_right.speed = 0.15f;
 
-	mov_up_left.PushBack({ 6, 144, 26, 35 });
-	mov_up_left.PushBack({ 40, 144, 28, 35 });
-	mov_up_left.PushBack({ 76, 142, 28, 34 });
-	mov_up_left.PushBack({ 115, 142, 27, 33 });
+	mov_up_left.PushBack({ 329, 141, 26, 35 });
+	mov_up_left.PushBack({ 367, 141, 28, 35 });
+	mov_up_left.PushBack({ 408, 141, 28, 34 });
+	mov_up_left.PushBack({ 450, 142, 27, 33 });
 	mov_up_left.speed = 0.15f;
 
-	mov_up_right.PushBack({ 0, 97, 29, 34 });
-	mov_up_right.PushBack({ 41, 97, 26, 34 });
-	mov_up_right.PushBack({ 80, 97, 24, 33 });
-	mov_up_right.PushBack({ 115, 95, 25, 36 });
+	mov_up_right.PushBack({ 330, 93, 29, 34 });
+	mov_up_right.PushBack({ 371, 93, 26, 34 });
+	mov_up_right.PushBack({ 415, 94, 24, 33 });
+	mov_up_right.PushBack({ 459, 92, 25, 36 });
 	mov_up_right.speed = 0.15f;
 
 	original_position = position;
