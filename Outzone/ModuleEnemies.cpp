@@ -18,7 +18,13 @@
 ModuleEnemies::ModuleEnemies()
 {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
 		enemies[i] = nullptr;
+		
+	}
+
+
+	
 }
 
 // Destructor
@@ -101,6 +107,9 @@ bool ModuleEnemies::CleanUp()
 			delete enemies[i];
 			enemies[i] = nullptr;
 		}
+		
+		queue[i].type = NO_TYPE;
+
 	}
 
 	return true;
