@@ -171,6 +171,9 @@ update_status ModulePlayer::Update()
 		//Player Speed
 		float speed = 2.0f;
 		
+		
+
+
 		//WEAPONS
 		//CHANGE WEAPON
 		if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
@@ -466,7 +469,25 @@ update_status ModulePlayer::Update()
 
 		//Update Player Collider Position-----------------------
 
-		body->SetPos(position.x + 5, position.y + 5);
+		if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN)
+		{
+			if (god_mode) god_mode = false;
+			else god_mode = true;	
+		}
+
+		if (god_mode)
+		{
+			body->SetPos(-30, 0);
+		}
+		else body->SetPos(position.x + 5, position.y + 5);
+			
+			
+			
+			
+		 
+		
+
+		
 
 		// Draw everything --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));

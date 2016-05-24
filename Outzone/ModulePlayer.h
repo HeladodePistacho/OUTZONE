@@ -99,6 +99,7 @@ public:
 	Mix_Chunk* shotgun_fx = nullptr;
 	Mix_Chunk* dead_fx = nullptr;
 
+	bool god_mode = false;
 };
 
 #endif
