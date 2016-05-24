@@ -26,17 +26,17 @@ Application::Application()
 	modules[num++] = textures = new ModuleTextures();
 	modules[num++] = lvl_1 = new Module_lvl_1();
 	modules[num++] = audio = new ModuleAudio();
-	modules[num++] = change_scene = new ModuleChangeScene();
 	modules[num++] = welcome = new Module_Welcome();
 	modules[num++] = congrats = new Module_Congrats();
 	modules[num++] = gameover = new Module_GameOver();
-	modules[num++] = enemies = new ModuleEnemies();
 	modules[num++] = objects = new ModuleObjects();
+	modules[num++] = enemies = new ModuleEnemies();
 	modules[num++] = particles = new ModuleParticles();
 	modules[num++] = collision = new ModuleCollision();
 	modules[num++] = player = new ModulePlayer();
 	modules[num++] = volumes = new ModuleVolumes();
 	modules[num++] = interfice = new ModuleInterfice();
+	modules[num++] = change_scene = new ModuleChangeScene();
 }	
 
 Application::~Application()

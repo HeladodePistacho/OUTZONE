@@ -109,7 +109,7 @@ void ENEMY_Golden_Turret::Attack()
 
 		App->particles->enemy_shot.speed.x = bullet_speed.x;
 		App->particles->enemy_shot.speed.y = bullet_speed.y;
-		App->particles->AddParticle(App->particles->enemy_shot, position.x + 10, position.y + 16, COLLIDER_ENEMY_SHOT, UNDEFINED);
+		App->particles->AddParticle(App->particles->enemy_shot, position.x + 10, position.y + 16, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
 		last_time = current_time;
 	}
 }

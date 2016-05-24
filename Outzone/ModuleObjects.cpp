@@ -8,6 +8,7 @@
 #include "OBJECT_Change_Box.h"
 #include "OBJECT_Energy_Box.h"
 #include "OBJECT_Upgrade.h"
+#include "OBJECT_Car_Rail.h"
 #include "ModulePlayer.h"
 
 #define SPAWN_MARGIN 50
@@ -139,6 +140,8 @@ void ModuleObjects::SpawnObject(const ObjectInfo& info)
 		case OBJECT_TYPES::UPGRADE:
 			objects[i] = new Upgrade(info.x, info.y);
 			break;
+		case OBJECT_TYPES::CAR_RAIL:
+			objects[i] = new Car_Rail(info.x, info.y);
 		}
 	}
 }

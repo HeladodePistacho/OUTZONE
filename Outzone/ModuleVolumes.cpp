@@ -33,15 +33,15 @@ ModuleVolumes::ModuleVolumes()
 
 	//DOOR WALLS
 	//left wall
-	door_wall_left.volume_sprite.PushBack({ 0, 140, 93, 71 });
+	door_wall_left.volume_sprite.PushBack({ 0, 140, 93, 65 });
 	door_wall_left.volume_sprite.loop = true;
 	//right wall
 	door_wall_right.volume_sprite.PushBack({ 103, 140, 77, 71 });
 	door_wall_right.volume_sprite.loop = true;
 
 	//CAR COVER
-	car_cover.volume_sprite.PushBack({ 0, 204, 47, 68 });
-	car_cover.volume_sprite.loop = true;
+	car_cover.volume_sprite.PushBack({ 0, 205, 66, 67 });
+	car_cover.volume_sprite.loop = false;
 
 	//BOMB
 	bomb.volume_sprite.PushBack({ 375, -20, 240, 317 });

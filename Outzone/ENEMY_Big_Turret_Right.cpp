@@ -48,7 +48,7 @@ void ENEMY_Big_Turret_Right::Attack()
 			App->particles->enemy_big_shot.speed.x = 2;
 			App->particles->enemy_big_shot.speed.y = 2;
 		}
-		App->particles->AddParticle(App->particles->enemy_big_shot, position.x + 33, position.y + 42, COLLIDER_ENEMY_SHOT, UNDEFINED);
+		App->particles->AddParticle(App->particles->enemy_big_shot, position.x + 33, position.y + 42, COLLIDER_ENEMY_SHOT, ENEMY_BIG_SHOT);
 		last_time = current_time;
 	}
 }

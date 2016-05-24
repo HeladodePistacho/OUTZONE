@@ -177,13 +177,15 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER_SHOT ){
-				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+				App->particles->AddParticle(App->particles->car_hole, App->enemies->enemies[i]->position.x - 5, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x - 30, App->enemies->enemies[i]->position.y - 5, COLLIDER_NONE, UNDEFINED);
 				delete enemies[i];
 				enemies[i] = nullptr;
 				break;
 			}
 			else if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER && (c1->rect.y - 2 + c1->rect.h > c2->rect.y)){
-				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+				App->particles->AddParticle(App->particles->car_hole, App->enemies->enemies[i]->position.x - 5, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x - 30, App->enemies->enemies[i]->position.y - 5, COLLIDER_NONE, UNDEFINED);
 				delete enemies[i];
 				enemies[i] = nullptr;
 				break;
@@ -194,10 +196,10 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x-40, App->enemies->enemies[i]->position.y -40, COLLIDER_NONE, UNDEFINED);
 					App->particles->AddParticle(App->particles->big_turret_fire, App->enemies->enemies[i]->position.x , App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
 				}
-				if (enemies[i]->enemy_type == GOLDEN_TURRET){
+				else if (enemies[i]->enemy_type == GOLDEN_TURRET){
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x -10, App->enemies->enemies[i]->position.y -2, COLLIDER_NONE, UNDEFINED);
 				}
-				if (enemies[i]->enemy_type == TINY_TURRET)
+				else if (enemies[i]->enemy_type == TINY_TURRET)
 				{
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x - 10, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
 				}

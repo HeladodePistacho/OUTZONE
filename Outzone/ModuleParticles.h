@@ -141,6 +141,8 @@ public:
 	Particle missile_impact;
 	Particle big_shot_impact;
 
+	//Car background 
+	Particle car_hole;
 };
 
 #endif // __MODULEPARTICLES_H__
