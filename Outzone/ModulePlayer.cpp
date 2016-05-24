@@ -477,7 +477,7 @@ update_status ModulePlayer::Update()
 
 		if (god_mode)
 		{
-			body->SetPos(-30, 0);
+			body->SetPos(-1000, 1000);
 		}
 		else body->SetPos(position.x + 5, position.y + 5);
 			

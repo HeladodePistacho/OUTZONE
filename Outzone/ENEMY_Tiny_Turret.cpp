@@ -9,26 +9,30 @@
 ENEMY_Tiny_Turret::ENEMY_Tiny_Turret(int x, int y) :Enemy(x, y)
 {
 	//static animations
-	down.PushBack({ 342, 488, 29, 45 });
-	left.PushBack({ 154, 433, 30, 43 });
-	right.PushBack({ 161, 490, 28, 43 });
-	up.PushBack({ 339, 429, 27, 47 });
-	midle_down_right.PushBack({ 252, 489, 28, 44 });
-	midle_down_right_bot.PushBack({ 298, 488, 28, 45 });
-	midle_down_right_top.PushBack({ 207, 489, 27, 44 });
-	midle_down_left.PushBack({ 68, 433, 26, 44 });
-	midle_down_left_bot.PushBack({ 22, 432, 27, 45 });
-	midle_down_left_top.PushBack({ 111, 432, 29, 44 });
-	midle_up_right.PushBack({ 69, 488, 27, 45 });
-	midle_up_right_bot.PushBack({ 116, 490, 27, 43 });
-	midle_up_right_top.PushBack({ 22, 487, 26, 46 });
-	midle_up_left.PushBack({ 251, 431, 24, 45 });
-	midle_up_left_bot.PushBack({ 203, 433, 28, 43 });
-	midle_up_left_top.PushBack({ 296, 430, 24, 46 });
+	down.PushBack({ 341, 485, 33, 48 });
+	left.PushBack({ 156, 428, 31, 48 });
+	right.PushBack({ 159, 485, 33, 48 });
+	up.PushBack({ 337, 428, 33, 48 });
+
+	midle_down_right.PushBack({ 251, 485, 33, 48 });
+	midle_down_right_bot.PushBack({ 294, 485, 33, 48 });
+	midle_down_right_top.PushBack({ 205, 485, 33, 48 });
+
+	midle_down_left.PushBack({ 65, 429, 33, 48 });
+	midle_down_left_bot.PushBack({ 20, 429, 33, 48 });
+	midle_down_left_top.PushBack({ 112, 428, 34, 47 });
+
+	midle_up_right.PushBack({ 67, 485, 33, 48 });
+	midle_up_right_bot.PushBack({ 113, 485, 33, 48});
+	midle_up_right_top.PushBack({ 20, 485, 33, 48 });
+
+	midle_up_left.PushBack({ 248, 428, 33, 48 });
+	midle_up_left_bot.PushBack({ 203, 428, 33, 47 });
+	midle_up_left_top.PushBack({ 293, 428, 33, 48 });
 
 	enemy_animation = &down;
 
-	collider = App->collision->AddCollider({ 0, 0, 30, 42 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 30, 45 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	fire_rate = 10000;
 	last_time = 0;
