@@ -342,13 +342,8 @@ ModuleParticles::ModuleParticles()
 	//CAR BACKGROUND
 	//car hole
 	car_hole.anim.PushBack({ 923, 279, 99, 124 });
-	car_hole.anim.loop = true;
+	car_hole.anim.loop = false;
 	car_hole.life = 100000;
-	//car road
-	car_road.anim.PushBack({ 932, 223, 66, 26 });
-	car_road.anim.loop = true;
-	car_road.life = 100000;
-
 }
 
 ModuleParticles::~ModuleParticles()
@@ -482,7 +477,7 @@ void ModuleParticles::OnCollision(Collider*c1, Collider*c2)
 				break;
 			}
 			//shotgun shot impact
-			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == SHOTGUN_SHOT)
+			else if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == SHOTGUN_SHOT)
 			{
 				App->particles->AddParticle(App->particles->shotgun_impact, c1->rect.x - 8, c1->rect.y - 5, COLLIDER_NONE, SHOTGUN_IMPACT);
 				delete active[i];
@@ -490,29 +485,22 @@ void ModuleParticles::OnCollision(Collider*c1, Collider*c2)
 				break;
 			}
 		}
-		else if (c1->type == COLLIDER_ENEMY_SHOT && c2->type == COLLIDER_WALL){
+		else if (c1->type == COLLIDER_ENEMY_SHOT && (c2->type == COLLIDER_WALL || c2->type == COLLIDER_SHIELD)){
 			
-			//enemy shot
-			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_SHOT && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_WALL)){
+			//enemy missile && shot
+			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_SHOT){
+				App->particles->AddParticle(App->particles->missile_impact, c1->rect.x + 2, c1->rect.y - 5, COLLIDER_NONE, UNDEFINED);
 				delete active[i];
 				active[i] = nullptr;
 				break;
 			}
 			//enemy big shot
-			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_BIG_SHOT &&  c2->type == COLLIDER_WALL){
+			else if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_BIG_SHOT){
 				App->particles->AddParticle(App->particles->big_shot_impact, c1->rect.x - 8, c1->rect.y - 5, COLLIDER_NONE, UNDEFINED );
 				delete active[i];
 				active[i] = nullptr;
 				break;
 			}
-			//enemy missile
-			if (active[i] != nullptr && active[i]->collider == c1 && active[i]->type == ENEMY_MISSILE && c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_WALL){
-				App->particles->AddParticle(App->particles->missile_impact, c1->rect.x +2, c1->rect.y - 5, COLLIDER_NONE,UNDEFINED);
-				delete active[i];
-				active[i] = nullptr;
-				break;
-			}
-			
 		}
 	}
 }

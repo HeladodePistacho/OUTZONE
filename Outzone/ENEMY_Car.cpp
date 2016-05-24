@@ -6,6 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModuleEnemies.h"
 #include "ModuleVolumes.h"
+#include "ModuleObjects.h"
 
 #include "SDL\include\SDL_timer.h"
 
@@ -57,7 +58,7 @@ void ENEMY_Car::Move()
 	else{
 		App->volumes->AddVolume(App->volumes->car_cover, position.x + 4, position.y + 1);
 		if (current_time > last_road + road_rate){
-			App->particles->AddParticle(App->particles->car_road, position.x +2, position.y + 20, COLLIDER_NONE, UNDEFINED);
+			App->objects->AddObject(CAR_RAIL, position.x +2, position.y + 20);
 			last_road = current_time;
 		}
 		enemy_animation = &down;
@@ -74,7 +75,7 @@ void ENEMY_Car::Drop(){
 			//Add red enemy
 		}
 		else{
-			//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::NO_MOVEMENT);
+			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::NO_MOVEMENT);
 		}
 		last_spawn = current_time;
 		capacity--;

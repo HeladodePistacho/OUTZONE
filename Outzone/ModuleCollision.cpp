@@ -98,7 +98,7 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY_SHOT] = false;
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_OBJECT] = false;
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_CHEST] = false;
-	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_SHIELD] = false;
+	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_SHIELD] = true;
 }
 
 // Destructor

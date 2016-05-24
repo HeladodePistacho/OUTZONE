@@ -142,7 +142,6 @@ public:
 	Particle big_shot_impact;
 
 	//Car background 
-	Particle car_road;
 	Particle car_hole;
 };
 
