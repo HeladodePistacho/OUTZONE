@@ -79,8 +79,11 @@ bool Module_lvl_1::Start()
 	
 		//ENEMIES
 		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, -50, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
-		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 95, -100, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
-		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, 0, MOVEMENT_TYPES::TYPE_DOWN);
+		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 95, -105, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
+		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 140, -140, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
+		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 105, -160, MOVEMENT_TYPES::TYPE_DOWN);
+		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 97, -205, MOVEMENT_TYPES::TYPE_DOWN);
+		//App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 130, -220, MOVEMENT_TYPES::TYPE_DOWN);
 		
 	
 		//OBJECTS
@@ -163,12 +166,13 @@ bool Module_lvl_1::Start()
 		//App->particles->AddParticle(App->particles->partial_damage, 100, 100, COLLIDER_NONE, UNDEFINED);
 		//App->collision->AddCollider({ 100, 100, 50, 50 }, COLLIDER_WALL);
 		
+		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 20, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 
 		// App->enemies->AddEnemy(ENEMY_TYPES::BIG_TURRET_LEFT, 100, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
-		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 50, -100, MOVEMENT_TYPES::NO_MOVEMENT);
+		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 50, -100, MOVEMENT_TYPES::NO_MOVEMENT);
 
 
 
