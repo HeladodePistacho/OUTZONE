@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "Module_lvl_1.h"
+#include "Module_Welcome.h"
 #include "Module_Congrats.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
@@ -186,7 +187,7 @@ update_status ModulePlayer::Update()
 		}
 		//DROP BOMB 
 		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN){
-			App->volumes->AddVolume(App->volumes->bomb, App->render->camera.x, App->render->camera.y);
+			App->volumes->AddVolume(App->volumes->bomb, App->render->camera.x,position.y -220);
 		}
 		//SHOTGUN SHOT
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && shotgun&&current_time >= last_time + shotgun_fire_rate || App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN && shotgun){
@@ -483,13 +484,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == body && destroyed == false && App->change_scene->IsFading() == false)
 	{
 
-		if (c2->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY_SHOT)
+		if (c2->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY_SHOT || (c2->type == COLLIDER_SHIELD && (c2->rect.y + c2->rect.h - 2 > c1->rect.y)))
 		{
 			destroyed = true;
 			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT, UNDEFINED);
 			Mix_PlayChannel(-1, dead_fx, 0);
 			App->player->Disable();
-			App->change_scene->ChangeScene(App->lvl_1, App->lvl_1);
+			App->change_scene->ChangeScene(App->lvl_1, App->welcome);
 			
 		}
 		if (c2->type == COLLIDER_WALL||c2->type == COLLIDER_WALL_FLAT ||c2->type == COLLIDER_CHEST || c2->type == COLLIDER_SHIELD)

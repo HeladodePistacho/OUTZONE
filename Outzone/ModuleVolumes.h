@@ -18,6 +18,7 @@ struct Volume
 	Volume(const Volume& p);
 	~Volume();
 	bool Update();
+	bool Move(int, int);
 };
 
 class ModuleVolumes : public Module
@@ -33,7 +34,7 @@ public:
 
 
 	void AddVolume(const Volume& particle, int x, int y);
-
+	
 
 private:
 

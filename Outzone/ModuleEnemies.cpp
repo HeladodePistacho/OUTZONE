@@ -182,6 +182,12 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				enemies[i] = nullptr;
 				break;
 			}
+			else if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER && (c1->rect.y - 2 + c1->rect.h > c2->rect.y)){
+				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+				delete enemies[i];
+				enemies[i] = nullptr;
+				break;
+			}
 			else if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 			{
 				if (enemies[i]->enemy_type == BIG_TURRET_LEFT ||enemies[i]->enemy_type == BIG_TURRET_RIGHT){

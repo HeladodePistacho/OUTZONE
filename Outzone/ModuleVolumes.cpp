@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleVolumes.h"
+#include "ModulePlayer.h"
 #include "SDL/include/SDL_timer.h"
 
 ModuleVolumes::ModuleVolumes()
@@ -43,22 +44,35 @@ ModuleVolumes::ModuleVolumes()
 	car_cover.volume_sprite.loop = true;
 
 	//BOMB
-	bomb.volume_sprite.PushBack({ 375, 0, 240, 317 });
-	bomb.volume_sprite.PushBack({ 620, 0, 240, 317 });
-	bomb.volume_sprite.PushBack({ 860, 0, 240, 317 });
-	bomb.volume_sprite.PushBack({ 1089, 0, 240, 317 });
-	bomb.volume_sprite.PushBack({ 1315, 0, 240, 317 });
-	bomb.volume_sprite.PushBack({ 375, 317, 240, 317 });
-	bomb.volume_sprite.PushBack({ 620, 317, 240, 317 });
-	bomb.volume_sprite.PushBack({ 860, 317, 240, 317 });
+	bomb.volume_sprite.PushBack({ 375, -20, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 620, -20, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 860, 0, 220, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 1080, 0, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 1330, 0, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 375, 325, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 620, 325, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 860, 317, 230, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
 	bomb.volume_sprite.PushBack({ 1089, 317, 240, 317 });
-	bomb.volume_sprite.PushBack({ 1315, 317, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 1325, 317, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
 	bomb.volume_sprite.PushBack({ 375, 634, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
 	bomb.volume_sprite.PushBack({ 620, 634, 240, 317 });
-	bomb.volume_sprite.PushBack({ 860, 634, 240, 317 });
-	bomb.volume_sprite.PushBack({ 1089, 634, 240, 317 });
-	bomb.volume_sprite.PushBack({ 1305, 634, 240, 317 });
-	bomb.volume_sprite.speed = 0.1f;
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 842, 634, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.PushBack({ 1079, 634, 240, 317 });
+	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
+	bomb.volume_sprite.speed = 0.4f;
 	bomb.volume_sprite.loop = false;
 }
 
@@ -98,7 +112,6 @@ update_status ModuleVolumes::Update()
 
 		if (p == nullptr)
 			continue;
-
 		if (p->Update() == false)
 		{
 			delete p;
@@ -107,6 +120,7 @@ update_status ModuleVolumes::Update()
 		else{
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->volume_sprite.GetCurrentFrame()));
 		}
+		
 	}
 
 	return UPDATE_CONTINUE;
@@ -148,5 +162,12 @@ bool Volume::Update()
 		ret = false;
 		//realment no es borrar 
 	}
+	if (volume_sprite.Finished() && volume_sprite.loop == false)ret = false;
 	return ret;
+}
+
+bool Volume::Move(int x,int y){
+	position.x = x;
+	position.y = y;
+	return true;
 }
