@@ -8,10 +8,14 @@
 
 class ENEMY_Car : public Enemy{
 private:
+	//Draw data
 	Animation stoped;
 	Animation down;
 	Animation* anim = Enemy::enemy_animation;
-	Volume cover;
+	Uint32 road_rate;
+	Uint32 last_road;
+
+	//Position data
 	Path path;
 	iPoint original_position;
 	iPoint last_position;

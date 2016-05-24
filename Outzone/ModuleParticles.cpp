@@ -339,6 +339,16 @@ ModuleParticles::ModuleParticles()
 	big_shot_impact.anim.loop = true;
 
 
+	//CAR BACKGROUND
+	//car hole
+	car_hole.anim.PushBack({ 923, 279, 99, 124 });
+	car_hole.anim.loop = true;
+	car_hole.life = 100000;
+	//car road
+	car_road.anim.PushBack({ 932, 223, 66, 26 });
+	car_road.anim.loop = true;
+	car_road.life = 100000;
+
 }
 
 ModuleParticles::~ModuleParticles()

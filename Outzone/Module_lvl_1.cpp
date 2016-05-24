@@ -84,10 +84,23 @@ bool Module_lvl_1::Start()
 		
 	
 		//OBJECTS
-		//App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 150, 150);
-		//App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 50, 150);
-		//App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 20, 150);
-		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 100, 150);
+		//Energy
+		App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 195, -510);
+		App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 80, -1195);
+		App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 135, -1880);
+		App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 4, -2930);
+		App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 7, -3208);
+		//Change
+		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 200, -465);
+		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 0, -975);
+		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 0, -1485);
+		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 200, -2095);
+		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 205, -3205);
+
+		
+
+
+		
 		//App->objects->AddObject(OBJECT_TYPES::UPGRADE, 60, 150);
 
 		//Turret
@@ -168,7 +181,7 @@ bool Module_lvl_1::Start()
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
-		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 50, -100, MOVEMENT_TYPES::NO_MOVEMENT);
+		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 100, -100, MOVEMENT_TYPES::NO_MOVEMENT);
 
 
 
@@ -215,6 +228,8 @@ bool Module_lvl_1::CleanUp()
 	App->objects->Disable();
 	//Disable Textures
 	App->textures->Disable();
+	//Volumes disable
+	App->volumes->Disable();
 	
 	return true;
 }
