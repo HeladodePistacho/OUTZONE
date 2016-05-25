@@ -35,6 +35,7 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void Attack(){};
 	virtual void Focus(){}; //Looks player position
+	uint live;
 
 };
 

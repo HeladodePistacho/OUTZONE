@@ -101,6 +101,7 @@ ENEMY_Red_Robot::ENEMY_Red_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y
 
 
 	//enemy type
+	live = 2;
 	enemy_type = BASIC_ROBOT;
 }
 

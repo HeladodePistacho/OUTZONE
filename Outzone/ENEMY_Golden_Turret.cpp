@@ -24,8 +24,10 @@ ENEMY_Golden_Turret::ENEMY_Golden_Turret(int x, int y) :Enemy(x, y)
 	last_time = 0;
 
 
+	
 
 	//enemy type
+	live = 8;
 	enemy_type = GOLDEN_TURRET;
 }
 

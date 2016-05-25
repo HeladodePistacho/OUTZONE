@@ -43,7 +43,7 @@ ENEMY_Car::ENEMY_Car(int x, int y) : Enemy(x, y)
 	current_time = SDL_GetTicks();
 
 	
-	
+	live = 16;
 	
 
 }

@@ -23,6 +23,7 @@ ENEMY_Big_Turret_Right::ENEMY_Big_Turret_Right(int x, int y) :Enemy(x, y)
 
 
 	//enemy type
+	live = 16;
 	enemy_type = BIG_TURRET_RIGHT;
 }
 
