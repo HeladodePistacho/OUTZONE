@@ -35,9 +35,10 @@ Application::Application()
 	modules[num++] = particles = new ModuleParticles();
 	modules[num++] = collision = new ModuleCollision();
 	modules[num++] = player = new ModulePlayer();
+	modules[num++] = fonts = new ModuleFonts();
 	modules[num++] = volumes = new ModuleVolumes();
 	modules[num++] = interfice = new ModuleInterfice();
-	modules[num++] = fonts = new ModuleFonts();
+	
 	modules[num++] = change_scene = new ModuleChangeScene();
 }	
 
