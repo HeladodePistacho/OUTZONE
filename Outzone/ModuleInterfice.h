@@ -38,11 +38,10 @@ private:
 public:
 	Element energy_bar;
 	Element energy_segment;
-	Element top_score;
 	Element lives_decoration;
-	Element lives;
-	Element title;
-	Element top;
+	Element p1_title;
+	Element p2_title;
+	Element top_title;
 	Element bombs;
 };
 

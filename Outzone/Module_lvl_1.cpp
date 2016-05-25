@@ -41,7 +41,7 @@ bool Module_lvl_1::Start()
 		audio_lvl_1 = App->audio->Load("1st_Level_Theme.ogg");
 		Mix_FadeInMusicPos(audio_lvl_1, 1, 2000, 1);
 		Mix_PlayMusic(audio_lvl_1, -1);
-		//Enable Collisions
+
 		App->interfice->Enable();
 		App->player->Enable();
 		App->collision->Enable();
@@ -238,6 +238,8 @@ bool Module_lvl_1::CleanUp()
 	App->textures->Disable();
 	//Volumes disable
 	App->volumes->Disable();
+	//UI dusable
+	App->interfice->Disable();
 	
 	return true;
 }

@@ -12,6 +12,7 @@
 #include "ModuleParticles.h"
 #include "ModuleVolumes.h"
 #include "ModuleFonts.h"
+#include "ModuleInterfice.h"
 
 #include "SDL/include/SDL_timer.h"
 #include <stdio.h>
@@ -128,7 +129,6 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player ");
-
 	//PLAYER DATA LOADED
 	//Reset position
 	position.x = 100;
@@ -153,6 +153,7 @@ bool ModulePlayer::Start()
 	current_animation = &idle_up;
 
 	//PLAYER INTERFICE
+	//Numbers
 	//current score
 	score = 0;
 	score_font = App->fonts->Load("Interfice_font.png", "0123456789", 1);
@@ -510,13 +511,13 @@ update_status ModulePlayer::Update()
 		//Draw player UI --------------------------------------------
 		//top score
 		sprintf_s(top_score_text, 10, "%ui", top_score);
-		App->fonts->Blit(5, 270, score_font, top_score_text);
+		App->fonts->Blit(147, 10, score_font, top_score_text);
 		//score
 		sprintf_s(score_text, 10, "%7d", score);
-		App->fonts->Blit(5, 248, score_font, score_text);
+		App->fonts->Blit(73, 10, score_font, score_text);
 		//lives
 		sprintf_s(lives_text, 4, "%ui", lives);
-		App->fonts->Blit(5, 200, lives_font, lives_text);
+		App->fonts->Blit(15, 2, lives_font, lives_text);
 		
 	}
 

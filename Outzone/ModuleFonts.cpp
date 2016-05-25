@@ -87,6 +87,17 @@ void ModuleFonts::Blit(int x, int y, int font_id, const char* text) const
 	rect.w = font->char_w;
 	rect.h = font->char_h;
 
+	int digits = 0;
+	for (uint i = 0; i < len; ++i)
+	{
+		for (uint j = 0; j < font->lenght; ++j)
+		{
+			if (font->table[j] == text[i]){
+				digits++;
+			}
+		}
+	}
+	x -= rect.w*digits;
 	for (uint i = 0; i < len; ++i)
 	{
 		// we could use strchr instead ?
