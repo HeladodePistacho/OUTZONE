@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
-#define MAX_ELEMENTS 50
+#define MAX_ELEMENTS 250
 
 struct SDL_Texture;
 
@@ -42,7 +42,11 @@ public:
 	Element p1_title;
 	Element p2_title;
 	Element top_title;
-	Element bombs;
+	Element bomb_icon;
+
+	//Counters
+	uint bombs_printed;
+	uint e_segments_printed;
 };
 
 #endif

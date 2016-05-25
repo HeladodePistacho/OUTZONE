@@ -183,6 +183,12 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 
 				//Energy box
 				else if (objects[i]->type == ENERGY_BOX){
+					for (int k = 0; k < 10; k++){
+						if (App->player->energy < App->player->energy_limit){
+							App->player->energy ++;
+						}
+					}
+					
 				}
 
 				//Powerup

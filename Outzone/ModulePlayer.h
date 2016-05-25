@@ -59,6 +59,10 @@ public:
 	Uint32 rotation_vel;
 	//Miliseconds since the last rotation
 	Uint32 last_rotation;
+	//Energy segment live
+	Uint32 energy_segment_live;
+	//Last energy segment dead
+	Uint32 last_segment;
 	
 	
 	//ANIMATIONS
@@ -122,12 +126,17 @@ public:
 	int score_font = -1;
 	//Top score
 	char top_score_text[10];
-	uint top_score = 2000000;
+	uint top_score = 500;
 	//Lives
 	char lives_text[4];
 	uint lives = 2;
 	int lives_font = -1;
-	
+	//Bombs
+	uint bombs = 3;
+	uint bombs_limit = 10;
+	//Energy
+	uint energy;
+	uint energy_limit = 36;
 	
 
 	

@@ -164,6 +164,9 @@ bool ModulePlayer::Start()
 	if (lives == -1){
 		lives = 2;
 	}
+
+	//energy
+	energy_segment_live = 1200;
 	return true;
 }
 
@@ -207,6 +210,7 @@ update_status ModulePlayer::Update()
 		//DROP BOMB 
 		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN){
 			App->volumes->AddVolume(App->volumes->bomb, App->render->camera.x,position.y -220);
+			bombs--;
 		}
 		//SHOTGUN SHOT
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && shotgun&&current_time >= last_time + shotgun_fire_rate || App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN && shotgun){
@@ -496,14 +500,13 @@ update_status ModulePlayer::Update()
 			body->SetPos(-1000, 1000);
 		}
 		else body->SetPos(position.x + 5, position.y + 5);
-			
-			
-			
-			
-		 
 		
 
-		
+		//Update the energy of the player----------------------------
+		if (current_time > last_segment + energy_segment_live && energy > 0){
+			energy--;
+			last_segment = current_time;
+		}
 
 		// Draw player sprites --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -513,7 +516,7 @@ update_status ModulePlayer::Update()
 		sprintf_s(top_score_text, 10, "%ui", top_score);
 		App->fonts->Blit(147, 10, score_font, top_score_text);
 		//score
-		sprintf_s(score_text, 10, "%7d", score);
+		sprintf_s(score_text, 10, "%ui", score);
 		App->fonts->Blit(73, 10, score_font, score_text);
 		//lives
 		sprintf_s(lives_text, 4, "%ui", lives);
@@ -582,6 +585,8 @@ void ModulePlayer::Reset()
 	destroyed = false;
 	result = false;
 	current_animation = &idle_up;
+	score = 0;
+	energy = 36;
 }
 
 void ModulePlayer::Go_South(float speed){

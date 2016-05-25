@@ -179,7 +179,7 @@ bool Module_lvl_1::Start()
 		//App->particles->AddParticle(App->particles->partial_damage, 100, 100, COLLIDER_NONE, UNDEFINED);
 		//App->collision->AddCollider({ 100, 100, 50, 50 }, COLLIDER_WALL);
 		
-		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 20, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		//App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 20, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 
 		// App->enemies->AddEnemy(ENEMY_TYPES::BIG_TURRET_LEFT, 100, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
@@ -188,10 +188,12 @@ bool Module_lvl_1::Start()
 
 		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 50, -100, MOVEMENT_TYPES::NO_MOVEMENT);
 
-		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 100, -100, MOVEMENT_TYPES::NO_MOVEMENT);
+		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 100, -100, MOVEMENT_TYPES::NO_MOVEMENT);
 
 
-
+		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 50, 50);
+		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 100, 50);
+		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 150, 50);
 
 		
 

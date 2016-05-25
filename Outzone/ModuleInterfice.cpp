@@ -24,11 +24,13 @@ ModuleInterfice::ModuleInterfice()
 	//Energy bar
 	energy_bar.element_animation.PushBack({ 0, 52, 92, 8 });
 	//Energy Segment
-	energy_segment.element_animation.PushBack({ 31, 15, 3, 8 });
+	energy_segment.element_animation.PushBack({ 94, 52, 1, 8 });
+	energy_segment.element_animation.loop = false;
 	//Lives Decoration
 	lives_decoration.element_animation.PushBack({ 5, 4, 8, 18 });
 	//Bombs
-	bombs.element_animation.PushBack({ 44, 27, 8, 18 });
+	bomb_icon.element_animation.PushBack({ 19, 6, 6, 16 });
+	bomb_icon.element_animation.loop = false;
 }
 
 
@@ -68,6 +70,7 @@ bool ModuleInterfice::Start()
 	App->interfice->AddElement(165, 2, p2_title);
 	//Top title
 	App->interfice->AddElement(105, 2, top_title);
+	
 	return true;
 }
 
@@ -75,11 +78,47 @@ bool ModuleInterfice::Start()
 // Called before render is available
 update_status ModuleInterfice::Update()
 {
-		for (uint i = 0; i < MAX_ELEMENTS; ++i){
-			if (elements[i] != nullptr){
-				App->render->Blit(sprites,elements[i]->position.x, elements[i]->position.y, &(elements[i]->element_animation.GetCurrentFrame()), false);
+	//Bombs data
+	bombs_printed = 0;
+	uint mark = 8;
+	uint original_x= 18;
+
+	//Adds the bombs to the elements array
+	if (App->player->bombs){
+		for (int k = 0; k < App->player->bombs; k++){
+			App->interfice->AddElement(original_x + bombs_printed*mark, 300, bomb_icon);
+			bombs_printed++;
+		}
+	}
+	//Energy data
+	e_segments_printed = 0;
+	uint e_mark = 2;
+	uint e_original_x = 10;
+
+	//Adds the energy segments to the elements array
+	if (App->player->energy){
+		for (int k = 0; k < App->player->energy; k++){
+			App->interfice->AddElement(original_x + e_segments_printed*e_mark, 17, energy_segment);
+			e_segments_printed++;
+		}
+	}
+
+	//Deletes the loop false with animation ended elements
+	for (uint i = 0; i < MAX_ELEMENTS; ++i)
+	{
+		if (elements[i] != nullptr && elements[i]->element_animation.loop == false && elements[i]->element_animation.Finished()){
+			{
+				delete elements[i];
+				elements[i] = nullptr;
 			}
 		}
+	}
+	//Prints all the alive elements
+	for (uint i = 0; i < MAX_ELEMENTS; ++i){
+		if (elements[i] != nullptr){
+			App->render->Blit(sprites, elements[i]->position.x, elements[i]->position.y, &(elements[i]->element_animation.GetCurrentFrame()), false);
+		}
+	}
 	return UPDATE_CONTINUE;
 }
 
