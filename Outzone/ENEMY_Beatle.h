@@ -10,7 +10,7 @@ class ENEMY_Beatle : public Enemy
 private:
 
 	//statik animations
-	Animation idle;
+	Animation movement;
 	Animation shoot;
 
 	MOVEMENT_TYPES basic_robot_movement;
