@@ -185,11 +185,11 @@ bool Module_lvl_1::Start()
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
-<<<<<<< HEAD
+
 		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 50, -100, MOVEMENT_TYPES::NO_MOVEMENT);
-=======
+
 		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 100, -100, MOVEMENT_TYPES::NO_MOVEMENT);
->>>>>>> origin/master
+
 
 
 

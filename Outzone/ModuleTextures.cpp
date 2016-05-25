@@ -52,10 +52,10 @@ bool ModuleTextures::CleanUp()
 // Load new texture from file path
 SDL_Texture* const ModuleTextures::Load(const char* path)
 {
-	SDL_Texture* texture = NULL;
+	SDL_Texture* texture = nullptr;
 	SDL_Surface* surface = IMG_Load(path);
 
-	if(surface == NULL)
+	if (surface == nullptr)
 	{
 		LOG("Could not load surface with path: %s. IMG_Load: %s", path, IMG_GetError());
 	}
@@ -63,13 +63,20 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 	{
 		texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
 
-		if(texture == NULL)
+		if (texture == nullptr)
 		{
 			LOG("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
 		}
 		else
 		{
-			textures[last_texture++] = texture;
+			for (uint i = 0; i < MAX_TEXTURES; ++i)
+			{
+				if (textures[i] == nullptr)
+				{
+					textures[i] = texture;
+					break;
+				}
+			}
 		}
 
 		SDL_FreeSurface(surface);
@@ -94,4 +101,32 @@ bool ModuleTextures::Unload(SDL_Texture* texture)
 	}
 
 	return ret;
+}
+
+SDL_Texture* ModuleTextures::LoadSurface(SDL_Surface* surface)
+{
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
+
+	if (texture == NULL)
+	{
+		LOG("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
+	}
+	else
+	{
+		for (uint i = 0; i < MAX_TEXTURES; ++i)
+		{
+			if (textures[i] == nullptr)
+			{
+				textures[i] = texture;
+				break;
+			}
+		}
+	}
+
+	return texture;
+}
+
+void ModuleTextures::GetSize(const SDL_Texture* texture, uint& width, uint& height) const
+{
+	SDL_QueryTexture((SDL_Texture*)texture, NULL, NULL, (int*)&width, (int*)&height);
 }

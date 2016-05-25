@@ -11,7 +11,10 @@
 #include "ModuleChangeScene.h"
 #include "ModuleParticles.h"
 #include "ModuleVolumes.h"
+#include "ModuleFonts.h"
+
 #include "SDL/include/SDL_timer.h"
+#include <stdio.h>
 ModulePlayer::ModulePlayer()
 {
 	//Laser movement
@@ -142,12 +145,24 @@ bool ModulePlayer::Start()
 	//Load character sprites
 	graphics = App->textures->Load("character_sprites.png");
 
+	//PLAYER FX
 	laser_fx = App->audio->Load_chunk("laser.wav");
 	shotgun_fx = App->audio->Load_chunk("shotgun.wav");
 	dead_fx = App->audio->Load_chunk("lose.wav");
 
 	current_animation = &idle_up;
 
+	//PLAYER INTERFICE
+	//current score
+	score = 0;
+	score_font = App->fonts->Load("Interfice_font.png", "0123456789", 1);
+	//top score
+
+	//lives
+	lives_font = App->fonts->Load("Lives_font.png", "012", 1);
+	if (lives == -1){
+		lives = 2;
+	}
 	return true;
 }
 
@@ -458,10 +473,10 @@ update_status ModulePlayer::Update()
 
 
 		//WIN
-		if (App->render->camera.y > 4000){
+		if (App->render->camera.y > 7200){
 			if (App->lvl_1->IsEnabled()){
-				//App->change_scene->ChangeScene(App->lvl_1, App->congrats, 1.0f);
-				//result = true;
+				App->change_scene->ChangeScene(App->lvl_1, App->congrats, 1.0f);
+				result = true;
 			}
 		}
 
@@ -489,9 +504,20 @@ update_status ModulePlayer::Update()
 
 		
 
-		// Draw everything --------------------------------------
+		// Draw player sprites --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-
+		
+		//Draw player UI --------------------------------------------
+		//top score
+		sprintf_s(top_score_text, 10, "%ui", top_score);
+		App->fonts->Blit(5, 270, score_font, top_score_text);
+		//score
+		sprintf_s(score_text, 10, "%7d", score);
+		App->fonts->Blit(5, 248, score_font, score_text);
+		//lives
+		sprintf_s(lives_text, 4, "%ui", lives);
+		App->fonts->Blit(5, 200, lives_font, lives_text);
+		
 	}
 
 	
@@ -510,6 +536,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			destroyed = true;
 			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT, UNDEFINED);
 			Mix_PlayChannel(-1, dead_fx, 0);
+			//UI
+			lives--;
+			if (score > top_score)top_score = score;
 			App->player->Disable();
 			App->change_scene->ChangeScene(App->lvl_1, App->welcome);
 			

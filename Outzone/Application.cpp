@@ -16,6 +16,7 @@
 #include "ModuleObjects.h"
 #include "ModuleInterfice.h"
 #include "ModuleVolumes.h"
+#include "ModuleFonts.h"
 Application::Application()
 {
 
@@ -36,6 +37,7 @@ Application::Application()
 	modules[num++] = player = new ModulePlayer();
 	modules[num++] = volumes = new ModuleVolumes();
 	modules[num++] = interfice = new ModuleInterfice();
+	modules[num++] = fonts = new ModuleFonts();
 	modules[num++] = change_scene = new ModuleChangeScene();
 }	
 
@@ -60,6 +62,7 @@ bool Application::Init()
 	collision->Disable();
 	objects->Disable();
 	volumes->Disable();
+	fonts->Disable();
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

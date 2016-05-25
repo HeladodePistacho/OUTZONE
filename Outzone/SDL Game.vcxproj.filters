@@ -155,6 +155,9 @@
     <ClInclude Include="OBJECT_Car_Rail.h">
       <Filter>Modules\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Modules\Interfice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -255,6 +258,9 @@
     </ClCompile>
     <ClCompile Include="OBJECT_Car_Rail.cpp">
       <Filter>Modules\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Modules\Interfice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -61,8 +61,14 @@ update_status ModuleChangeScene::Update()
 					App->congrats->Enable();
 				}
 				else if (App->lvl_1->IsEnabled() && App->player->destroyed){
-					App->lvl_1->Disable();
-					App->gameover->Enable();
+					if (App->player->lives == -1){
+						App->lvl_1->Disable();
+						App->gameover->Enable();
+					}
+					else{
+						App->lvl_1->Disable();
+						App->lvl_1->Enable();
+					}
 				}
 				else{
 					if (App->congrats->IsEnabled())

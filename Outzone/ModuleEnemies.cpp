@@ -12,6 +12,7 @@
 #include "ENEMY_Golden_Turret.h"
 #include "ENEMY_Car.h"
 #include "ENEMY_Red_Robot.h"
+#include "ModulePlayer.h"
 
 #define SPAWN_MARGIN 150
 
@@ -179,6 +180,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER_SHOT ){
 				App->particles->AddParticle(App->particles->car_hole, App->enemies->enemies[i]->position.x - 5, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
 				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x - 30, App->enemies->enemies[i]->position.y - 5, COLLIDER_NONE, UNDEFINED);
+				App->player->score += 20;
 				delete enemies[i];
 				enemies[i] = nullptr;
 				break;
@@ -195,13 +197,20 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				if (enemies[i]->enemy_type == BIG_TURRET_LEFT ||enemies[i]->enemy_type == BIG_TURRET_RIGHT){
 					App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x-40, App->enemies->enemies[i]->position.y -40, COLLIDER_NONE, UNDEFINED);
 					App->particles->AddParticle(App->particles->big_turret_fire, App->enemies->enemies[i]->position.x , App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+					App->player->score += 810;
 				}
 				else if (enemies[i]->enemy_type == GOLDEN_TURRET){
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x -10, App->enemies->enemies[i]->position.y -2, COLLIDER_NONE, UNDEFINED);
+					App->player->score += 290;
 				}
 				else if (enemies[i]->enemy_type == TINY_TURRET)
 				{
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x - 10, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+					App->player->score += 410;
+				}
+				else if (enemies[i]->enemy_type == BASIC_ROBOT || enemies[i]->enemy_type == RED_ROBOT){
+					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
+					App->player->score += 390;
 				}
 				else{
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);

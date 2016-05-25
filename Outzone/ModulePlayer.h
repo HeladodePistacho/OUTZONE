@@ -12,14 +12,19 @@ struct Collider;
 class ModulePlayer : public Module
 {
 public:
+
 	ModulePlayer();
 	~ModulePlayer();
 
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+
+public:
+
+	//Collision method
 	void OnCollision(Collider* c1, Collider* c2);
-	//Laser Movement Functions 
+	//Movement methods
 	void Go_North(float);
 	void Go_South(float);
 	void Go_East(float);
@@ -28,18 +33,23 @@ public:
 	void Go_West(float);
 	void Go_West_Up(float);
 	void Go_West_Down(float);
+	//Reset player data
 	void Reset();
 
 public:
+
 	//TEXTURES
 	SDL_Texture* graphics = nullptr;
+	
+	
 	//COLLIDER
 	Collider* body;
 	
+	
 	//TIME DATA
-	//Laser Weapon
+	//Laser Weapon rate
 	Uint32 laser_fire_rate;
-	//Shotgun Weapon
+	//Shotgun Weapon rate
 	Uint32 shotgun_fire_rate;
 	//Miliseconds since the init
 	Uint32 current_time;
@@ -54,6 +64,7 @@ public:
 	//ANIMATIONS
 	//Current animation
 	Animation* current_animation = nullptr;
+	
 	//LASER
 	//AFK
 	Animation idle_up;
@@ -90,16 +101,36 @@ public:
 	uint shotgun_lvl;
 	//Live state
 	bool destroyed = false;
-	//win or lose
+	//Win or Lose
 	bool result = false;
-	//??
+	//Last position
 	int last_position = 220;
-	
+	//God mode
+	bool god_mode = false;
+
+
+	//PLAYER FX
 	Mix_Chunk* laser_fx = nullptr;
 	Mix_Chunk* shotgun_fx = nullptr;
 	Mix_Chunk* dead_fx = nullptr;
 
-	bool god_mode = false;
+
+	//PLAYER INTERFICE
+	//Current score
+	char score_text[10];
+	uint score = 0;
+	int score_font = -1;
+	//Top score
+	char top_score_text[10];
+	uint top_score = 2000000;
+	//Lives
+	char lives_text[4];
+	uint lives = 2;
+	int lives_font = -1;
+	
+	
+
+	
 };
 
 #endif

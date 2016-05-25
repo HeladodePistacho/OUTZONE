@@ -156,16 +156,20 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 			{
 				if (objects[i]->type == CHANGE_BOX){
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->objects->objects[i]->position.x - 8, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
+					App->player->score += 100;
 					objects[i]->Update();
 					break;
 				}
 				else if (objects[i]->type == ENERGY_BOX){
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->objects->objects[i]->position.x - 6, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
+					App->player->score += 230;
 					objects[i]->Update();
 					break;
 				}
 			}
 			else if (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_OBJECT){
+				
+				//Change box
 				if (objects[i]->type == CHANGE_BOX){
 					if (App->player->shotgun == false){
 						App->player->shotgun = true;
@@ -174,14 +178,22 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 						App->player->shotgun = false;
 						App->player->shotgun_lvl = 1;
 					}
+					App->player->score += 100;
 				}
+
+				//Energy box
 				else if (objects[i]->type == ENERGY_BOX){
 				}
+
+				//Powerup
 				else if (objects[i]->type == UPGRADE){
 					if (App->player->shotgun_lvl < 3){
 						App->player->shotgun_lvl++;
 					}
+					App->player->score += 100;
 				}
+
+
 				delete objects[i];
 				objects[i] = nullptr;
 			}
