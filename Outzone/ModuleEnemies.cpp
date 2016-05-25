@@ -12,6 +12,7 @@
 #include "ENEMY_Golden_Turret.h"
 #include "ENEMY_Car.h"
 #include "ENEMY_Red_Robot.h"
+#include "ENEMY_Beatle.h"
 #include "ModulePlayer.h"
 
 #define SPAWN_MARGIN 150
@@ -166,6 +167,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::RED_ROBOT:
 			enemies[i] = new ENEMY_Red_Robot(info.x, info.y, info.movement_type);
+			break;
+		case ENEMY_TYPES::BEATLE:
+			enemies[i] = new ENEMY_Beatle(info.x, info.y, info.movement_type);
 			break;
 		}
 	}
