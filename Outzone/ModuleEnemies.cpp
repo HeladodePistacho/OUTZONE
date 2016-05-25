@@ -12,6 +12,7 @@
 #include "ENEMY_Golden_Turret.h"
 #include "ENEMY_Car.h"
 #include "ENEMY_Red_Robot.h"
+#include "ENEMY_Blue_Robot.h"
 #include "ENEMY_Beatle.h"
 #include "ModulePlayer.h"
 
@@ -24,9 +25,6 @@ ModuleEnemies::ModuleEnemies()
 		enemies[i] = nullptr;
 		
 	}
-
-
-	
 }
 
 // Destructor
@@ -170,6 +168,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::BEATLE:
 			enemies[i] = new ENEMY_Beatle(info.x, info.y, info.movement_type);
+			break;
+		case ENEMY_TYPES::BLUE_ROBOT:
+			enemies[i] = new ENEMY_Blue_Robot(info.x, info.y, info.movement_type);
 			break;
 		}
 	}
