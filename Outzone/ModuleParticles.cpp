@@ -322,16 +322,16 @@ ModuleParticles::ModuleParticles()
 	enemy_missile.anim.PushBack({ 385, 25, 18, 32 });
 	enemy_missile.anim.PushBack({ 435, 25, 18, 32 });
 	enemy_missile.anim.PushBack({ 435, 25, 18, 32 });
-	enemy_missile.anim.speed = 0.55f;
-	enemy_missile.speed.y = 1.5;
+	enemy_missile.anim.speed = 0.8f;
+	enemy_missile.speed.y = 2.5f;
 	enemy_missile.anim.loop = true;
-	enemy_missile.life = 2000;
+	enemy_missile.life = 5000;
 	enemy_missile.type = ENEMY_MISSILE;
 
 	//ENEMY IMPACTS
 	//missile impact
 	missile_impact.anim.PushBack({ 465, 38, 18, 19 });
-	missile_impact.life = 100;
+	missile_impact.life = 20;
 	missile_impact.anim.loop = false;
 	//big shot impact
 	big_shot_impact.anim.PushBack({ 88, 85, 34, 33 });
