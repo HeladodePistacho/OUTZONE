@@ -76,6 +76,7 @@
     <ClInclude Include="ENEMY_Beatle.h" />
     <ClInclude Include="ENEMY_Big_Turret_Left.h" />
     <ClInclude Include="ENEMY_Big_Turret_Right.h" />
+    <ClInclude Include="ENEMY_Blue_Robot.h" />
     <ClInclude Include="ENEMY_Car.h" />
     <ClInclude Include="ENEMY_Golden_Turret.h" />
     <ClInclude Include="ENEMY_Red_Robot.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="ENEMY_Beatle.cpp" />
     <ClCompile Include="ENEMY_Big_Turret_Left.cpp" />
     <ClCompile Include="ENEMY_Big_Turret_Right.cpp" />
+    <ClCompile Include="ENEMY_Blue_Robot.cpp" />
     <ClCompile Include="ENEMY_Car.cpp" />
     <ClCompile Include="ENEMY_Golden_Turret.cpp" />
     <ClCompile Include="ENEMY_Red_Robot.cpp" />
