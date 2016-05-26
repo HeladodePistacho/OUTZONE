@@ -580,6 +580,7 @@ void ModulePlayer::Reset()
 	last_position = position.y;
 	App->render->camera.y = 0;
 	//Weapons
+	body->SetPos(position.x + 5, position.y + 5);
 	shotgun = false;
 	shotgun_lvl = 1;
 	destroyed = false;
@@ -587,6 +588,7 @@ void ModulePlayer::Reset()
 	current_animation = &idle_up;
 	score = 0;
 	energy = 36;
+	bombs = 3;
 }
 
 void ModulePlayer::Go_South(float speed){

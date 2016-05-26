@@ -86,7 +86,7 @@ update_status ModuleInterfice::Update()
 	//Adds the bombs to the elements array
 	if (App->player->bombs){
 		for (int k = 0; k < App->player->bombs; k++){
-			App->interfice->AddElement(original_x + bombs_printed*mark, 300, bomb_icon);
+			App->interfice->AddElement(bombs_printed*mark, 304, bomb_icon);
 			bombs_printed++;
 		}
 	}
