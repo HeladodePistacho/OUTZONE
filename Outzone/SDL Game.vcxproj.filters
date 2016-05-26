@@ -164,6 +164,9 @@
     <ClInclude Include="ENEMY_Blue_Robot.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="OBJECT_Bomb.h">
+      <Filter>Modules\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -273,6 +276,9 @@
     </ClCompile>
     <ClCompile Include="ENEMY_Blue_Robot.cpp">
       <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJECT_Bomb.cpp">
+      <Filter>Modules\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,6 +9,7 @@
 #include "OBJECT_Energy_Box.h"
 #include "OBJECT_Upgrade.h"
 #include "OBJECT_Car_Rail.h"
+#include "OBJECT_Bomb.h"
 #include "ModulePlayer.h"
 
 #define SPAWN_MARGIN 50
@@ -140,8 +141,12 @@ void ModuleObjects::SpawnObject(const ObjectInfo& info)
 		case OBJECT_TYPES::UPGRADE:
 			objects[i] = new Upgrade(info.x, info.y);
 			break;
+		case OBJECT_TYPES::BOMB:
+			objects[i] = new Bomb(info.x, info.y);
+			break;
 		case OBJECT_TYPES::CAR_RAIL:
 			objects[i] = new Car_Rail(info.x, info.y);
+			
 		}
 	}
 }
@@ -192,11 +197,19 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 				}
 
 				//Powerup
-				else if (objects[i]->type == UPGRADE){
+				else if (objects[i]->type == UPGRADE)
+				{
 					if (App->player->shotgun_lvl < 3){
 						App->player->shotgun_lvl++;
 					}
 					App->player->score += 100;
+				}
+				else if (objects[i]->type == BOMB)
+				{
+					if (App->player->bombs_limit != App->player->bombs)
+					{
+						App->player->bombs++;
+					}
 				}
 
 

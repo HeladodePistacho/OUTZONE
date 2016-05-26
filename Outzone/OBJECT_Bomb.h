@@ -1,15 +1,15 @@
-#ifndef __UPGRADE__
-#define __UPGRADE__
+#ifndef __BOMB__
+#define __BOMB__
 
 #include "Object.h"
 #include "ModuleParticles.h"
 
-class Upgrade : public Object
+class Bomb : public Object
 {
 private:
 	Animation flash;
 public:
-	Upgrade(int x, int y);
+	Bomb(int x, int y);
 };
 
 #endif 

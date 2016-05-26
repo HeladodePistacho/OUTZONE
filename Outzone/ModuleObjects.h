@@ -11,7 +11,8 @@ enum OBJECT_TYPES
 	CHANGE_BOX,
 	UPGRADE,
 	ENERGY_BOX,
-	CAR_RAIL
+	CAR_RAIL,
+	BOMB,
 };
 
 struct SDL_Texture;
