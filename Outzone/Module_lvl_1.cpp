@@ -13,6 +13,7 @@
 #include "ModuleInterfice.h"
 #include "ModuleVolumes.h"
 #include "Module_Welcome.h"
+#include "ModuleFonts.h"
 Module_lvl_1::Module_lvl_1()
 {
 	// Level 1 
@@ -49,7 +50,7 @@ bool Module_lvl_1::Start()
 		App->objects->Enable();
 		App->player->Reset();
 		App->volumes->Enable();
-
+		App->fonts->Enable();
 		//COLLIDERS
 		//WALLS
 		App->collision->AddCollider({ 0, -152, 95, 195}, COLLIDER_WALL);//blue ship left
@@ -195,8 +196,15 @@ bool Module_lvl_1::Start()
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 50, 50);
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 100, 50);
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 150, 50);
-
-		
+		App->objects->AddObject(OBJECT_TYPES::BOMB, 60, 100);
+		App->objects->AddObject(OBJECT_TYPES::BOMB, 80, 100);
+		App->objects->AddObject(OBJECT_TYPES::BOMB, 100, 100);
+		App->objects->AddObject(OBJECT_TYPES::BOMB, 120, 100);
+		App->objects->AddObject(OBJECT_TYPES::BOMB, 140, 100);
+		App->objects->AddObject(OBJECT_TYPES::BOMB, 160, 100);
+		App->objects->AddObject(OBJECT_TYPES::BOMB, 180, 100);
+		App->objects->AddObject(OBJECT_TYPES::BOMB, 200, 100);
+		App->objects->AddObject(OBJECT_TYPES::BOMB, 220, 100);
 
 
 
@@ -243,6 +251,8 @@ bool Module_lvl_1::CleanUp()
 	App->volumes->Disable();
 	//UI dusable
 	App->interfice->Disable();
+	//	Counters disable
+	App->fonts->Disable();
 	
 	return true;
 }

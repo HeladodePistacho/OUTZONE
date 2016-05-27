@@ -10,6 +10,7 @@
 #include "ModuleGameOver.h"
 #include "ModuleChangeScene.h"
 #include "ModulePlayer.h"
+#include "ModuleInterfice.h"
 
 ModuleChangeScene::ModuleChangeScene()
 {
@@ -61,7 +62,7 @@ update_status ModuleChangeScene::Update()
 					App->congrats->Enable();
 				}
 				else if (App->lvl_1->IsEnabled() && App->player->destroyed){
-					if (App->player->lives == -1){
+					if (App->player->fully_destroyed){
 						App->lvl_1->Disable();
 						App->gameover->Enable();
 					}

@@ -105,6 +105,8 @@ public:
 	uint shotgun_lvl;
 	//Live state
 	bool destroyed = false;
+	//Live state 2
+	bool fully_destroyed = false;
 	//Win or Lose
 	bool result = false;
 	//Last position
@@ -117,29 +119,6 @@ public:
 	Mix_Chunk* laser_fx = nullptr;
 	Mix_Chunk* shotgun_fx = nullptr;
 	Mix_Chunk* dead_fx = nullptr;
-
-
-	//PLAYER INTERFICE
-	//Current score
-	char score_text[10];
-	uint score = 0;
-	int score_font = -1;
-	//Top score
-	char top_score_text[10];
-	uint top_score = 500;
-	//Lives
-	char lives_text[4];
-	uint lives = 2;
-	int lives_font = -1;
-	//Bombs
-	uint bombs = 3;
-	uint bombs_limit = 10;
-	//Energy
-	uint energy;
-	uint energy_limit = 36;
-	
-
-	
 };
 
 #endif

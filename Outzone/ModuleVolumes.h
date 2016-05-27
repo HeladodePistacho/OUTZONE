@@ -10,13 +10,26 @@
 
 struct SDL_Texture;
 
+enum UPDATE_TYPE{
+
+	STATIC,
+	DINAMIC
+};
+
 struct Volume
 {
+public:
+	//Data
+	UPDATE_TYPE type;
 	iPoint position;
 	Animation volume_sprite;
+public:
+	//Constructors / Destructors
 	Volume();
 	Volume(const Volume& p);
 	~Volume();
+
+	//Functions
 	bool Update();
 	bool Move(int, int);
 };

@@ -36,6 +36,7 @@ private:
 	SDL_Texture* sprites;
 
 public:
+	//PLAYER INTERFICE
 	Element energy_bar;
 	Element energy_segment;
 	Element lives_decoration;
@@ -43,6 +44,23 @@ public:
 	Element p2_title;
 	Element top_title;
 	Element bomb_icon;
+	//Current score
+	char score_text[10];
+	uint score = 0;
+	int score_font = -1;
+	//Top score
+	char top_score_text[10];
+	uint top_score = 500;
+	//Lives
+	char lives_text[4];
+	uint lives = 2;
+	int lives_font = -1;
+	//Bombs
+	uint bombs = 3;
+	uint bombs_limit = 10;
+	//Energy
+	uint energy;
+	uint energy_limit = 36;
 
 	//Counters
 	uint bombs_printed;

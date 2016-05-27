@@ -155,16 +155,18 @@ bool ModulePlayer::Start()
 	//PLAYER INTERFICE
 	//Numbers
 	//current score
-	score = 0;
-	score_font = App->fonts->Load("Interfice_font.png", "0123456789", 1);
+	App->interfice->score = 0;
+	App->interfice->score_font = App->fonts->Load("Interfice_font.png", "0123456789", 1);
 	//top score
 
 	//lives
-	lives_font = App->fonts->Load("Lives_font.png", "012", 1);
-	if (lives == -1){
-		lives = 2;
+	App->interfice->lives_font = App->fonts->Load("Lives_font.png", "012", 1);
+	if (fully_destroyed||result){
+		App->interfice->bombs = 3;
+		App->interfice->lives = 2;
+		fully_destroyed = false;
+		result = false;
 	}
-
 	//energy
 	energy_segment_live = 1200;
 	return true;
@@ -177,7 +179,6 @@ bool ModulePlayer::CleanUp()
 	App->collision->EraseCollider(body);
 	//Delete character sprites
 	App->textures->Unload(graphics);
-
 	return true;
 }
 
@@ -208,9 +209,9 @@ update_status ModulePlayer::Update()
 			else shotgun_lvl = 1;
 		}
 		//DROP BOMB 
-		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN){
-			App->volumes->AddVolume(App->volumes->bomb, App->render->camera.x,position.y -220);
-			bombs--;
+		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->interfice->bombs > 0){
+			App->volumes->AddVolume(App->volumes->bomb, 0, 0);
+			App->interfice->bombs--;
 		}
 		//SHOTGUN SHOT
 		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && shotgun&&current_time >= last_time + shotgun_fire_rate || App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN && shotgun){
@@ -503,24 +504,15 @@ update_status ModulePlayer::Update()
 		
 
 		//Update the energy of the player----------------------------
-		if (current_time > last_segment + energy_segment_live && energy > 0){
-			energy--;
+		if (current_time > last_segment + energy_segment_live && App->interfice->energy > 0){
+			App->interfice->energy--;
 			last_segment = current_time;
 		}
 
 		// Draw player sprites --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 		
-		//Draw player UI --------------------------------------------
-		//top score
-		sprintf_s(top_score_text, 10, "%ui", top_score);
-		App->fonts->Blit(147, 10, score_font, top_score_text);
-		//score
-		sprintf_s(score_text, 10, "%ui", score);
-		App->fonts->Blit(73, 10, score_font, score_text);
-		//lives
-		sprintf_s(lives_text, 4, "%ui", lives);
-		App->fonts->Blit(15, 2, lives_font, lives_text);
+		
 		
 	}
 
@@ -541,8 +533,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->particles->AddParticle(App->particles->dead_explosion, position.x - 62, position.y - 62, COLLIDER_PLAYER_SHOT, UNDEFINED);
 			Mix_PlayChannel(-1, dead_fx, 0);
 			//UI
-			lives--;
-			if (score > top_score)top_score = score;
+			if (App->interfice->lives == 0){
+				fully_destroyed = true;
+			}
+			else App->interfice->lives--;
+			if (App->interfice->score > App->interfice->top_score)App->interfice->top_score = App->interfice->score;
 			App->player->Disable();
 			App->change_scene->ChangeScene(App->lvl_1, App->welcome);
 			
@@ -580,15 +575,13 @@ void ModulePlayer::Reset()
 	last_position = position.y;
 	App->render->camera.y = 0;
 	//Weapons
-	body->SetPos(position.x + 5, position.y + 5);
+	//body->SetPos(position.x + 5, position.y + 5);
 	shotgun = false;
 	shotgun_lvl = 1;
 	destroyed = false;
-	result = false;
 	current_animation = &idle_up;
-	score = 0;
-	energy = 36;
-	bombs = 3;
+	App->interfice->score = 0;
+	App->interfice->energy = 36;
 }
 
 void ModulePlayer::Go_South(float speed){

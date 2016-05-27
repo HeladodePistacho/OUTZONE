@@ -16,33 +16,37 @@ ModuleVolumes::ModuleVolumes()
 	//column 1
 	column_1.volume_sprite.PushBack({ 0, 97, 32, 32 });
 	column_1.volume_sprite.loop = true;
+	column_1.type = STATIC;
 	//column 2
 	column_2.volume_sprite.PushBack({ 35, 98, 34, 31 });
 	column_2.volume_sprite.loop = true;
+	column_2.type = STATIC;
 	//column 3
 	column_3.volume_sprite.PushBack({ 72, 98, 32, 31 });
 	column_3.volume_sprite.loop = true;
-
+	column_3.type = STATIC;
 	//BLUE SHIP
 	//ship left
 	blue_ship_left.volume_sprite.PushBack({ 0, 0, 129, 96 });
 	blue_ship_left.volume_sprite.loop = true;
+	blue_ship_left.type = STATIC;
 	//ship right
 	blue_ship_right.volume_sprite.PushBack({ 133, 13, 77, 83 });
 	blue_ship_right.volume_sprite.loop = true;
-
+	blue_ship_right.type = STATIC;
 	//DOOR WALLS
 	//left wall
 	door_wall_left.volume_sprite.PushBack({ 0, 140, 93, 65 });
 	door_wall_left.volume_sprite.loop = true;
+	door_wall_left.type = STATIC;
 	//right wall
 	door_wall_right.volume_sprite.PushBack({ 103, 140, 77, 71 });
 	door_wall_right.volume_sprite.loop = true;
-
+	door_wall_right.type = STATIC;
 	//CAR COVER
 	car_cover.volume_sprite.PushBack({ 0, 205, 66, 67 });
 	car_cover.volume_sprite.loop = false;
-
+	car_cover.type = STATIC;
 	//BOMB
 	bomb.volume_sprite.PushBack({ 375, -20, 240, 317 });
 	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
@@ -74,6 +78,7 @@ ModuleVolumes::ModuleVolumes()
 	bomb.volume_sprite.PushBack({ 1320, 640, 240, 318 });//flash
 	bomb.volume_sprite.speed = 0.4f;
 	bomb.volume_sprite.loop = false;
+	bomb.type = DINAMIC;
 }
 
 ModuleVolumes::~ModuleVolumes()
@@ -118,7 +123,12 @@ update_status ModuleVolumes::Update()
 			active[i] = nullptr;
 		}
 		else{
-			App->render->Blit(graphics, p->position.x, p->position.y, &(p->volume_sprite.GetCurrentFrame()));
+			if (active[i]->type == STATIC){
+				App->render->Blit(graphics, p->position.x, p->position.y, &(p->volume_sprite.GetCurrentFrame()));
+			}
+			else{
+				App->render->Blit(graphics, p->position.x, p->position.y, &(p->volume_sprite.GetCurrentFrame()), false);
+			}
 		}
 		
 	}
@@ -147,7 +157,7 @@ Volume::Volume()
 	//position.SetToZero();
 }
 
-Volume::Volume(const Volume& p) :
+Volume::Volume(const Volume& p):
 volume_sprite(p.volume_sprite), position(p.position)
 {}
 

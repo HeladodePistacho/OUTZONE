@@ -5,7 +5,9 @@
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
+#include "ModuleFonts.h"
 
+#include <stdio.h>
 
 ModuleInterfice::ModuleInterfice()
 {
@@ -78,14 +80,15 @@ bool ModuleInterfice::Start()
 // Called before render is available
 update_status ModuleInterfice::Update()
 {
+	if (IsEnabled()){
 	//Bombs data
 	bombs_printed = 0;
 	uint mark = 8;
 	uint original_x= 18;
 
 	//Adds the bombs to the elements array
-	if (App->player->bombs){
-		for (int k = 0; k < App->player->bombs; k++){
+	if (bombs){
+		for (int k = 0; k < bombs; k++){
 			App->interfice->AddElement(bombs_printed*mark, 304, bomb_icon);
 			bombs_printed++;
 		}
@@ -96,8 +99,8 @@ update_status ModuleInterfice::Update()
 	uint e_original_x = 10;
 
 	//Adds the energy segments to the elements array
-	if (App->player->energy){
-		for (int k = 0; k < App->player->energy; k++){
+	if (energy){
+		for (int k = 0; k <energy; k++){
 			App->interfice->AddElement(original_x + e_segments_printed*e_mark, 17, energy_segment);
 			e_segments_printed++;
 		}
@@ -118,6 +121,18 @@ update_status ModuleInterfice::Update()
 		if (elements[i] != nullptr){
 			App->render->Blit(sprites, elements[i]->position.x, elements[i]->position.y, &(elements[i]->element_animation.GetCurrentFrame()), false);
 		}
+	}
+
+	//Draw player UI --------------------------------------------
+	//top score
+		sprintf_s(top_score_text, 10, "%ui", top_score);
+		App->fonts->Blit(147, 10, score_font, top_score_text);
+		//score
+		sprintf_s(score_text, 10, "%ui", score);
+		App->fonts->Blit(73, 10, score_font, score_text);
+		//lives
+		sprintf_s(lives_text, 4, "%ui", lives);
+		App->fonts->Blit(15, 2, lives_font, lives_text);
 	}
 	return UPDATE_CONTINUE;
 }

@@ -11,6 +11,7 @@
 #include "OBJECT_Car_Rail.h"
 #include "OBJECT_Bomb.h"
 #include "ModulePlayer.h"
+#include "ModuleInterfice.h"
 
 #define SPAWN_MARGIN 50
 
@@ -161,13 +162,13 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 			{
 				if (objects[i]->type == CHANGE_BOX){
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->objects->objects[i]->position.x - 8, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
-					App->player->score += 100;
+					App->interfice->score += 100;
 					objects[i]->Update();
 					break;
 				}
 				else if (objects[i]->type == ENERGY_BOX){
 					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->objects->objects[i]->position.x - 6, App->objects->objects[i]->position.y - 10, COLLIDER_NONE, UNDEFINED);
-					App->player->score += 230;
+					App->interfice->score += 230;
 					objects[i]->Update();
 					break;
 				}
@@ -183,14 +184,14 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 						App->player->shotgun = false;
 						App->player->shotgun_lvl = 1;
 					}
-					App->player->score += 100;
+					App->interfice->score += 100;
 				}
 
 				//Energy box
 				else if (objects[i]->type == ENERGY_BOX){
 					for (int k = 0; k < 10; k++){
-						if (App->player->energy < App->player->energy_limit){
-							App->player->energy ++;
+						if (App->interfice->energy < App->interfice->energy_limit){
+							App->interfice->energy++;
 						}
 					}
 					
@@ -202,13 +203,14 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 					if (App->player->shotgun_lvl < 3){
 						App->player->shotgun_lvl++;
 					}
-					App->player->score += 100;
+					App->interfice->score += 100;
 				}
+				//Bomb
 				else if (objects[i]->type == BOMB)
 				{
-					if (App->player->bombs_limit != App->player->bombs)
+					if (App->interfice->bombs_limit != App->interfice->bombs)
 					{
-						App->player->bombs++;
+						App->interfice->bombs++;
 					}
 				}
 
