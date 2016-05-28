@@ -45,11 +45,11 @@ ENEMY_Blue_Robot::ENEMY_Blue_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x,
 	mov_left.PushBack({ 959, 94, 28, 33 });
 	mov_left.speed = 0.15f;
 
-	mov_right.PushBack({ 850, 145, 28, 31 });
-	mov_right.PushBack({ 888, 145, 25, 31 });
-	mov_right.PushBack({ 923, 144, 27, 32 });
-	mov_right.PushBack({ 959, 143, 25, 33 });
-	mov_right.speed = 0.15f;
+	mov_right.PushBack({ 850, 145, 28, 32 });
+	mov_right.PushBack({ 888, 145, 25, 32 });
+	mov_right.PushBack({ 923, 144, 27, 33 });
+	mov_right.PushBack({ 959, 143, 25, 34 });
+	mov_right.speed = 0.17f;
 
 	mov_up.PushBack({ 851, 228, 26, 36 });
 	mov_up.PushBack({ 888, 227, 27, 37 });
@@ -75,11 +75,11 @@ ENEMY_Blue_Robot::ENEMY_Blue_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x,
 	mov_up_left.PushBack({ 782, 144, 28, 32 });
 	mov_up_left.speed = 0.15f;
 
+	mov_up_right.PushBack({ 784, 94, 24, 34 });
 	mov_up_right.PushBack({ 675, 91, 25, 36 });
-	mov_up_right.PushBack({ 711, 94, 26, 34 });
-	mov_up_right.PushBack({ 749, 92, 24, 33 });
-	mov_up_right.PushBack({ 784, 94, 25, 36 });
-	mov_up_right.speed = 0.15f;
+	mov_up_right.PushBack({ 711, 94, 29, 34 });
+	mov_up_right.PushBack({ 749, 92, 26, 35 });
+	mov_up_right.speed = 0.17f;
 
 	original_position = position;
 

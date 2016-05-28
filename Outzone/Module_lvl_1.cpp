@@ -191,20 +191,12 @@ bool Module_lvl_1::Start()
 
 		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 100, -100, MOVEMENT_TYPES::NO_MOVEMENT);
 
-		App->enemies->AddEnemy(ENEMY_TYPES::RED_ROBOT, 100, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		App->enemies->AddEnemy(ENEMY_TYPES::RED_ROBOT, 100, 100, MOVEMENT_TYPES::TYPE_DOWN);
 
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 50, 50);
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 100, 50);
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 150, 50);
-		App->objects->AddObject(OBJECT_TYPES::BOMB, 60, 100);
-		App->objects->AddObject(OBJECT_TYPES::BOMB, 80, 100);
-		App->objects->AddObject(OBJECT_TYPES::BOMB, 100, 100);
-		App->objects->AddObject(OBJECT_TYPES::BOMB, 120, 100);
-		App->objects->AddObject(OBJECT_TYPES::BOMB, 140, 100);
-		App->objects->AddObject(OBJECT_TYPES::BOMB, 160, 100);
-		App->objects->AddObject(OBJECT_TYPES::BOMB, 180, 100);
-		App->objects->AddObject(OBJECT_TYPES::BOMB, 200, 100);
-		App->objects->AddObject(OBJECT_TYPES::BOMB, 220, 100);
+		
 
 
 

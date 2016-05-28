@@ -45,10 +45,10 @@ ENEMY_Red_Robot::ENEMY_Red_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y
 	mov_left.PushBack({ 622, 93, 25, 33 });
 	mov_left.speed = 0.15f;
 
-	mov_right.PushBack({ 506, 145, 28, 32 });
-	mov_right.PushBack({ 545, 145, 25, 32 });
-	mov_right.PushBack({ 585, 145, 27, 32 });
-	mov_right.PushBack({ 622, 143, 25, 33 });
+	mov_right.PushBack({ 504, 145, 28, 33 });
+	mov_right.PushBack({ 545, 145, 25, 33 });
+	mov_right.PushBack({ 585, 145, 27, 33 });
+	mov_right.PushBack({ 622, 143, 25, 34 });
 	mov_right.speed = 0.15f;
 
 	mov_up.PushBack({ 508, 230, 26, 36 });
@@ -78,7 +78,7 @@ ENEMY_Red_Robot::ENEMY_Red_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y
 	mov_up_right.PushBack({ 330, 93, 29, 34 });
 	mov_up_right.PushBack({ 371, 93, 26, 34 });
 	mov_up_right.PushBack({ 415, 94, 24, 33 });
-	mov_up_right.PushBack({ 459, 92, 25, 36 });
+	mov_up_right.PushBack({ 455, 92, 25, 36 });
 	mov_up_right.speed = 0.15f;
 
 	original_position = position;
