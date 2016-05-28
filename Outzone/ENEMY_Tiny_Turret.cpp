@@ -51,6 +51,7 @@ void ENEMY_Tiny_Turret::Attack()
 	int caos = -20 + rand() % 70;
 
 	current_time = SDL_GetTicks();
+	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y + 30) && position.x > 0 && position.x < 240)
 	{
 		//find angle
 		float angle = atan2((position.y - App->player->position.y), (position.x - App->player->position.x - caos));
@@ -198,4 +199,15 @@ void ENEMY_Tiny_Turret::Focus(){
 	{
 		enemy_animation = &right;
 	}
+}
+
+bool ENEMY_Tiny_Turret::Is_Dead()
+{
+	if (live <= 0)
+	{
+		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x - 10, position.y, COLLIDER_NONE, UNDEFINED);
+		App->interfice->score += 410;
+		return true;
+	}
+	return false;
 }
