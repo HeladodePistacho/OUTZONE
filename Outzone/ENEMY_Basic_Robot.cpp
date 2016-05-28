@@ -3,6 +3,9 @@
 #include "ModuleCollision.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include <math.h>
+#include <stdlib.h>
+
 
 #include "SDL\include\SDL_timer.h"
 
@@ -116,13 +119,66 @@ void ENEMY_Basic_Robot::Move()
 
 void ENEMY_Basic_Robot::Attack()
 {
+	
+	int shot_speed = 3;
+	int caos = -20 + rand() % 70;
+
 	current_time = SDL_GetTicks();
-	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y))
+	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y) && position.x > 0 && position.x < 240)
 	{
-		App->particles->enemy_shot.speed.x = -(position.x - App->player->position.x) / 40;
-		App->particles->enemy_shot.speed.y = -(position.y - App->player->position.y) / 40;
+		//find angle
+		float angle = atan2((position.y - App->player->position.y), (position.x - App->player->position.x - caos));
+		App->particles->enemy_shot.speed.x = -cos(angle) * shot_speed;
+		App->particles->enemy_shot.speed.y = -sin(angle) * shot_speed;
 		
-		App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+		if (enemy_animation == &down || enemy_animation == &mov_down)
+		App->particles->AddParticle(App->particles->enemy_shot, position.x + 10, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &up || enemy_animation == &mov_up)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 12, position.y - 1, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &left || enemy_animation == &mov_left)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x - 2, position.y + 10, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &right || enemy_animation == &mov_right)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 20, position.y + 12, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_left || enemy_animation == &mov_down_left)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x , position.y + 17, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_right || enemy_animation == &mov_down_right)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 20, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_left || enemy_animation == &mov_up_left)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 3, position.y, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_right || enemy_animation == &mov_up_right)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 20, position.y + 5, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_left_bot)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 5, position.y + 22, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_left_top)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_right_bot)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 17, position.y + 22, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_right_top)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 23, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_left_bot)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y + 5 , COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_left_top)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 8 , position.y - 2, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_right_bot)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 20, position.y + 10, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_right_top)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 20, position.y - 3, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
 		last_time = current_time;
 	}
 }
