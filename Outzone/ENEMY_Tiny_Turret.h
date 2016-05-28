@@ -33,6 +33,7 @@ public:
 	void Focus();
 	void Move();
 	void Attack();
+	bool Is_Dead();
 
 };
 

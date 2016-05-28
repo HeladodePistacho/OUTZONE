@@ -27,7 +27,7 @@ public:
 
 	void Move();
 	void Attack();
-
+	bool Is_Dead();
 };
 
 #endif

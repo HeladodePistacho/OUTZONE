@@ -301,3 +301,14 @@ void ENEMY_Basic_Robot::Focus()
 
 	}
 }
+
+bool ENEMY_Basic_Robot::Is_Dead()
+{
+	if (live <= 0)
+	{
+		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x, position.y, COLLIDER_NONE, UNDEFINED);
+		App->interfice->score += 390;
+		return true;
+	}
+	return false;
+}

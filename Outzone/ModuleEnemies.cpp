@@ -72,6 +72,18 @@ update_status ModuleEnemies::Update()
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	if (enemies[i] != nullptr) enemies[i]->Attack();
 
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+ 			if(enemies[i]->Is_Dead())
+			{
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
+		}
+			
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -184,15 +196,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER_SHOT ){
-				App->particles->AddParticle(App->particles->car_hole, App->enemies->enemies[i]->position.x - 5, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
-				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x - 30, App->enemies->enemies[i]->position.y - 5, COLLIDER_NONE, UNDEFINED);
-				App->interfice->score += 20;
-				delete enemies[i];
-				enemies[i] = nullptr;
-				break;
-			}
-			else if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER && (c1->rect.y - 2 + c1->rect.h > c2->rect.y)){
+			if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER && (c1->rect.y - 2 + c1->rect.h > c2->rect.y))
+			{
 				App->particles->AddParticle(App->particles->car_hole, App->enemies->enemies[i]->position.x - 5, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
 				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x - 30, App->enemies->enemies[i]->position.y - 5, COLLIDER_NONE, UNDEFINED);
 				delete enemies[i];
@@ -201,44 +206,21 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			}
 			else if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 			{
-				if (enemies[i]->enemy_type == BIG_TURRET_LEFT ||enemies[i]->enemy_type == BIG_TURRET_RIGHT)
+				if (enemies[i]->live > 0)
 				{
-					App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x-40, App->enemies->enemies[i]->position.y -40, COLLIDER_NONE, UNDEFINED);
-					App->particles->AddParticle(App->particles->big_turret_fire, App->enemies->enemies[i]->position.x , App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
-					App->interfice->score += 810;
-				}
-				else if (enemies[i]->enemy_type == GOLDEN_TURRET)
-				{
-					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x -10, App->enemies->enemies[i]->position.y -2, COLLIDER_NONE, UNDEFINED);
-					App->interfice->score += 290;
-				}
-				else if (enemies[i]->enemy_type == TINY_TURRET)
-				{
-					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x - 10, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
-					App->interfice->score += 410;
-				}
-				else if (enemies[i]->enemy_type == BASIC_ROBOT)
-				{
-					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
-					App->interfice->score += 390;
-				}
-				else if (enemies[i]->enemy_type == RED_ROBOT)
-				{
-					App->particles->AddParticle(App->particles->basic_enemy_explosion, App->enemies->enemies[i]->position.x - 7, App->enemies->enemies[i]->position.y - 5, COLLIDER_NONE, UNDEFINED);
-					App->interfice->score += 390;
-
-					if (App->player->shotgun_lvl != 3)
+					if (App->player->shotgun == true)
 					{
-						App->objects->AddObject(OBJECT_TYPES::UPGRADE, App->enemies->enemies[i]->position.x + 7, App->enemies->enemies[i]->position.y + 10);
+						if (App->player->shotgun_lvl == 1) enemies[i]->live--;
+						if (App->player->shotgun_lvl == 2) enemies[i]->live -= 2;
+						if (App->player->shotgun_lvl == 3) enemies[i]->live -= 4;
 					}
-					else App->objects->AddObject(OBJECT_TYPES::BOMB, App->enemies->enemies[i]->position.x + 7, App->enemies->enemies[i]->position.y + 10);
-				}
+					else enemies[i]->live -= 2;
+				    //enemies change to green
+					if (enemies[i]->enemy_type == CAR) enemies[i]->hitmarker();
 				
-
-				delete enemies[i];
-				enemies[i] = nullptr;
-				break;
+				}
 			}
 		}
 	}
+
 }

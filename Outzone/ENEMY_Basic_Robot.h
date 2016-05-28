@@ -54,6 +54,7 @@ public:
 	void Move();
 	void Attack();
 	void Focus();
+	bool Is_Dead();
 	MOVEMENT_TYPES basic_robot_movement;
 };
 

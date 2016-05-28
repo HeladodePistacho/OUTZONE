@@ -109,7 +109,6 @@ bool Module_lvl_1::Start()
 
 		//Turret
 		
-
 		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 7, -576, MOVEMENT_TYPES::NO_MOVEMENT);
 		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 129, -616, MOVEMENT_TYPES::NO_MOVEMENT);
 		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 193, -678, MOVEMENT_TYPES::NO_MOVEMENT);
@@ -128,6 +127,8 @@ bool Module_lvl_1::Start()
 		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 5, -2153, MOVEMENT_TYPES::NO_MOVEMENT);
 		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 76, -2161, MOVEMENT_TYPES::NO_MOVEMENT);
 		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 140, -2169, MOVEMENT_TYPES::NO_MOVEMENT);
+
+		App->enemies->AddEnemy(BEATLE, 100, 100, NO_MOVEMENT);
 
 		//Car
 		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 150, -200);
@@ -189,9 +190,9 @@ bool Module_lvl_1::Start()
 
 		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 50, -100, MOVEMENT_TYPES::NO_MOVEMENT);
 
-		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 100, -100, MOVEMENT_TYPES::NO_MOVEMENT);
+		
 
-		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 50, 100, MOVEMENT_TYPES::TYPE_DOWN);
+		
 
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 50, 50);
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 100, 50);

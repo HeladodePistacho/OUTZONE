@@ -116,7 +116,7 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 		path.PushBack({ -2.0f, 0.0f }, 200, anim);
 	}
 
-	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 46, 46 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	fire_rate = 700;
 	last_time = fire_rate;
@@ -142,9 +142,21 @@ void ENEMY_Beatle::Attack()
 
 	if (current_time >= last_time + fire_rate)
 	{
-		App->particles->AddParticle(App->particles->missile_impact, position.x + 10, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_MISSILE);
-		App->particles->AddParticle(App->particles->enemy_missile, position.x + 10, position.y + 15, COLLIDER_ENEMY_SHOT, ENEMY_MISSILE);
+		App->particles->AddParticle(App->particles->missile_impact, position.x + 13, position.y + 25, COLLIDER_ENEMY_SHOT, ENEMY_MISSILE);
+		App->particles->AddParticle(App->particles->enemy_missile, position.x + 13, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_MISSILE);
 		last_time = current_time;
 	}
+
+}
+
+bool ENEMY_Beatle::Is_Dead()
+{
+	if (live <= 0)
+	{
+		App->particles->AddParticle(App->particles->big_enemy_explosion, position.x - 50, position.y - 50, COLLIDER_NONE, UNDEFINED);
+		App->interfice->score += 1490;
+		return true;
+	}
+	return false;
 
 }

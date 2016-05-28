@@ -53,3 +53,15 @@ void ENEMY_Big_Turret_Right::Attack()
 		last_time = current_time;
 	}
 }
+
+bool ENEMY_Big_Turret_Right::Is_Dead()
+{
+	if (live <= 0)
+	{
+		App->particles->AddParticle(App->particles->big_enemy_explosion, position.x - 40, position.y - 40, COLLIDER_NONE, UNDEFINED);
+		App->particles->AddParticle(App->particles->big_turret_fire, position.x, position.y, COLLIDER_NONE, UNDEFINED);
+		App->interfice->score += 810;
+		return true;
+	}
+	return false;
+}

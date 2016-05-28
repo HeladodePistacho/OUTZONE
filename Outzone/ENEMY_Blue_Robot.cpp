@@ -103,7 +103,7 @@ ENEMY_Blue_Robot::ENEMY_Blue_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x,
 
 	//enemy type
 	live = 2;
-	enemy_type = BASIC_ROBOT;
+	enemy_type = BLUE_ROBOT;
 }
 
 void ENEMY_Blue_Robot::Move()
@@ -298,4 +298,15 @@ void ENEMY_Blue_Robot::Focus()
 
 
 	}
+}
+
+bool ENEMY_Blue_Robot::Is_Dead()
+{
+	if (live <= 0)
+	{
+		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x, position.y, COLLIDER_NONE, UNDEFINED);
+		App->interfice->score += 390;
+		return true;
+	}
+	return false;
 }

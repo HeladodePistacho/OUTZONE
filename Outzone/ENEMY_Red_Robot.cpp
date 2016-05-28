@@ -4,8 +4,11 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include <stdlib.h>
-
+#include "ModuleInterfice.h"
+#include "ModuleObjects.h"
 #include "SDL\include\SDL_timer.h"
+
+
 
 ENEMY_Red_Robot::ENEMY_Red_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), basic_robot_movement(type)
 {
@@ -298,4 +301,22 @@ void ENEMY_Red_Robot::Focus()
 
 
 	}
+}
+
+bool ENEMY_Red_Robot::Is_Dead()
+{
+	if (live <= 0)
+		{
+			App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x - 7, position.y - 5, COLLIDER_NONE, UNDEFINED);
+			App->interfice->score += 390;
+
+			if (App->player->shotgun_lvl != 3)
+			{
+				App->objects->AddObject(OBJECT_TYPES::UPGRADE, position.x + 7,position.y + 10);
+			}
+			else App->objects->AddObject(OBJECT_TYPES::BOMB, position.x + 7, position.y + 10);
+
+			return true;
+		}
+	return false;
 }

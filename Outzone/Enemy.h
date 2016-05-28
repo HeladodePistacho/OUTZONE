@@ -3,6 +3,7 @@
 
 #include "p2Point.h"
 #include "Animation.h"
+#include "ModuleInterfice.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -35,7 +36,10 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void Attack(){};
 	virtual void Focus(){}; //Looks player position
-	uint live;
+	virtual bool Is_Dead(){ return false; };
+	virtual void hitmarker(){};
+
+	int live;
 
 };
 

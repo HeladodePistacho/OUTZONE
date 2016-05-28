@@ -17,6 +17,7 @@ public:
 	ENEMY_Big_Turret_Right(int x, int y);
 
 	void Attack();
+	bool Is_Dead();
 
 };
 

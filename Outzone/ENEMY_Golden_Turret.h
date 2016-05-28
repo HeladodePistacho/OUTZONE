@@ -18,6 +18,7 @@ public:
 	ENEMY_Golden_Turret(int x, int y);
 
 	void Attack();
+	bool Is_Dead();
 
 };
 

@@ -7,6 +7,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleVolumes.h"
 #include "ModuleObjects.h"
+#include "ModuleInterfice.h"
 
 #include "SDL\include\SDL_timer.h"
 
@@ -21,6 +22,9 @@ ENEMY_Car::ENEMY_Car(int x, int y) : Enemy(x, y)
 	down.PushBack({ 188, 284, 78, 125 });
 	down.speed = 0.05f;
 	down.loop = true;
+	//hit
+	hit.PushBack({ 385, 283, 80, 125 });
+	hit.speed = 0.1f;
 	
 	//MOVEMENT
 	//Car path
@@ -30,6 +34,7 @@ ENEMY_Car::ENEMY_Car(int x, int y) : Enemy(x, y)
 	original_position.y = y;
 	enemy_type = CAR;
 	collider = App->collision->AddCollider({ 0, 0, 70, 120 }, COLLIDER_TYPE::COLLIDER_SHIELD, (Module*)App->enemies);
+
 
 
 	//DROP DATA
@@ -80,4 +85,21 @@ void ENEMY_Car::Drop(){
 		last_spawn = current_time;
 		capacity--;
 	}
+}
+
+void ENEMY_Car::hitmarker()
+{
+	enemy_animation = &hit;
+}
+
+bool ENEMY_Car::Is_Dead()
+{
+	if (live <= 0)
+	{
+		App->particles->AddParticle(App->particles->car_hole, position.x - 5, position.y, COLLIDER_NONE, UNDEFINED);
+		App->particles->AddParticle(App->particles->big_enemy_explosion, position.x - 30, position.y - 5, COLLIDER_NONE, UNDEFINED);
+		App->interfice->score += 20;
+		return true;
+	}
+	return false;
 }

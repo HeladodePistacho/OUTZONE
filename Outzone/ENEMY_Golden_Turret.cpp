@@ -115,3 +115,14 @@ void ENEMY_Golden_Turret::Attack()
 		last_time = current_time;
 	}
 }
+
+bool ENEMY_Golden_Turret::Is_Dead()
+{
+	if (live <= 0)
+	{
+		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x - 10, position.y - 2, COLLIDER_NONE, UNDEFINED);
+		App->interfice->score += 290;
+		return true;
+	}
+	return false;
+}
