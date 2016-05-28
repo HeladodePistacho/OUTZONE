@@ -3,6 +3,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ENEMY_Tiny_Turret.h"
+#include <stdlib.h>
 
 #include "SDL\include\SDL_timer.h"
 
@@ -34,7 +35,7 @@ ENEMY_Tiny_Turret::ENEMY_Tiny_Turret(int x, int y) :Enemy(x, y)
 
 	collider = App->collision->AddCollider({ 0, 0, 30, 45 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	fire_rate = 10000;
+	fire_rate = 2000;
 	last_time = 0;
 
 	current_time = SDL_GetTicks();
@@ -46,11 +47,64 @@ ENEMY_Tiny_Turret::ENEMY_Tiny_Turret(int x, int y) :Enemy(x, y)
 
 void ENEMY_Tiny_Turret::Attack()
 {
-	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y))
+	int shot_speed = 3;
+	int caos = -20 + rand() % 70;
+
+	current_time = SDL_GetTicks();
 	{
-		App->particles->enemy_shot.speed.x = -(position.x - App->player->position.x) / 40;
-		App->particles->enemy_shot.speed.y = -(position.y - App->player->position.y) / 40; 
-		App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+		//find angle
+		float angle = atan2((position.y - App->player->position.y), (position.x - App->player->position.x - caos));
+		App->particles->enemy_shot.speed.x = -cos(angle) * shot_speed;
+		App->particles->enemy_shot.speed.y = -sin(angle) * shot_speed;
+
+		if (enemy_animation == &down)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 10, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &up)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 12, position.y - 1, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &left)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x - 2, position.y + 10, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &right)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 25, position.y + 12, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_left)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 5, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_right)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 20, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_left)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 3, position.y, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_right)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 20, position.y, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_left_bot)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 5, position.y + 25, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_left_top)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x - 2, position.y + 17, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_right_bot)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 17, position.y + 22, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_down_right_top)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 25, position.y + 16, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_left_bot)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y + 5, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_left_top)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 8, position.y - 2, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_right_bot)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 27, position.y + 5, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
+		if (enemy_animation == &midle_up_right_top)
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 20, position.y - 3, COLLIDER_ENEMY_SHOT, ENEMY_SHOT);
+
 		last_time = current_time;
 	}
 }
