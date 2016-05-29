@@ -18,7 +18,8 @@ ENEMY_Big_Turret_Left::ENEMY_Big_Turret_Left(int x, int y) :Enemy(x, y)
 	fire_rate = 300;
 	last_time = 0;
 
-	
+
+	delay = 150;
 
 	//enemy type
 	live = 16;
@@ -59,4 +60,22 @@ bool ENEMY_Big_Turret_Left::Is_Dead()
 		return true;
 	}
 	return false;
+}
+
+void ENEMY_Big_Turret_Left::hitmarker()
+{
+	if (enemy_animation != &hit)
+		enemy_animation = &hit;
+}
+
+void ENEMY_Big_Turret_Left::return_from_hitmarker()
+{
+	if (enemy_animation != &idle)
+	{
+		if (current_time >= delay + return_idle)
+		{
+			enemy_animation = &idle;
+			return_idle = current_time;
+		}
+	}
 }

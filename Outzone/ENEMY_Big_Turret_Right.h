@@ -13,11 +13,17 @@ private:
 	Animation hit;
 	uint direction;
 	Animation* anim = Enemy::enemy_animation;
+
 public:
 	ENEMY_Big_Turret_Right(int x, int y);
 
 	void Attack();
+	void hitmarker();
 	bool Is_Dead();
+	void return_from_hitmarker();
+
+	int return_idle = 0;
+	int delay;
 
 };
 

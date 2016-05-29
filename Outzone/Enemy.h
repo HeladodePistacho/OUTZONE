@@ -38,6 +38,7 @@ public:
 	virtual void Focus(){}; //Looks player position
 	virtual bool Is_Dead(){ return false; };
 	virtual void hitmarker(){};
+	virtual void return_from_hitmarker(){};
 
 	int live;
 

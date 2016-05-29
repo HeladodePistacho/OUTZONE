@@ -72,6 +72,7 @@ update_status ModuleEnemies::Update()
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	if (enemies[i] != nullptr) enemies[i]->Attack();
 
+
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr)
@@ -84,6 +85,9 @@ update_status ModuleEnemies::Update()
 		}
 			
 	}
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->return_from_hitmarker();
 
 	return UPDATE_CONTINUE;
 }
@@ -217,6 +221,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					else enemies[i]->live -= 2;
 				    //enemies change to green
 					if (enemies[i]->enemy_type == CAR) enemies[i]->hitmarker();
+					if (enemies[i]->enemy_type == BIG_TURRET_RIGHT) enemies[i]->hitmarker();
+					if (enemies[i]->enemy_type == BIG_TURRET_LEFT) enemies[i]->hitmarker();
 				
 				}
 			}

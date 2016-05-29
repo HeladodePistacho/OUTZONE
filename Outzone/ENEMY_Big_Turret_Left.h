@@ -18,6 +18,11 @@ public:
 
 	void Attack();
 	bool Is_Dead();
+	void hitmarker();
+	void return_from_hitmarker();
+
+	int return_idle = 0;
+	int delay;
 
 };
 
