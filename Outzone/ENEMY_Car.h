@@ -28,11 +28,13 @@ private:
 	Uint32 last_spawn;
 
 public:
-	ENEMY_Car(int x, int y);
+	ENEMY_Car(int x, int y, MOVEMENT_TYPES type);
 	void Move();
 	void Drop();
 	bool Is_Dead();
 	void hitmarker();
+
+	MOVEMENT_TYPES car_movement;
 
 };
 #endif

@@ -208,7 +208,7 @@ bool Module_lvl_1::Start()
 		// App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 
-		App->enemies->AddEnemy(ENEMY_TYPES::RED_ROBOT, 100, 100, MOVEMENT_TYPES::NO_MOVEMENT);
+		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 35, -850, MOVEMENT_TYPES::CAR_TYPE_1);
 
 	
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 50, 50);

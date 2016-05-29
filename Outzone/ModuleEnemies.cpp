@@ -178,7 +178,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		switch (info.type)
 		{
 		case ENEMY_TYPES::CAR:
-			enemies[i] = new ENEMY_Car(info.x, info.y);
+			enemies[i] = new ENEMY_Car(info.x, info.y, info.movement_type);
 			break;
 		case ENEMY_TYPES::BASIC_ROBOT:
 			enemies[i] = new ENEMY_Basic_Robot(info.x, info.y, info.movement_type);

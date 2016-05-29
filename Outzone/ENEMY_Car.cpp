@@ -11,7 +11,7 @@
 
 #include "SDL\include\SDL_timer.h"
 
-ENEMY_Car::ENEMY_Car(int x, int y) : Enemy(x, y)
+ENEMY_Car::ENEMY_Car(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), car_movement(type)
 {
 	//ANIMATIONS
 	//Stop
@@ -28,14 +28,19 @@ ENEMY_Car::ENEMY_Car(int x, int y) : Enemy(x, y)
 	
 	//MOVEMENT
 	//Car path
-	path.PushBack({ 0.0f, 0.0f }, 50, anim);
-	path.PushBack({ 0.0f, 0.6f }, 150, anim);
+	if (car_movement == CAR_TYPE_1)
+	{
+		path.PushBack({ 0.0f, 0.8f }, 50, anim);
+		path.PushBack({ 0.0f, 0.0f }, 250, anim);
+		path.PushBack({ 0.0f, 0.8f }, 1000, anim);
+	}
+
 	original_position.x = x;
 	original_position.y = y;
 	enemy_type = CAR;
 	collider = App->collision->AddCollider({ 0, 0, 70, 120 }, COLLIDER_TYPE::COLLIDER_SHIELD, (Module*)App->enemies);
 
-
+	
 
 	//DROP DATA
 	last_spawn = 0;
@@ -77,7 +82,7 @@ void ENEMY_Car::Drop(){
 	current_time = SDL_GetTicks();
 	if (current_time > last_spawn + spawn_rate && enemy_animation == &down){
 		if (capacity == 1){
-			//Add red enemy
+			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::NO_MOVEMENT); //Add red enemy
 		}
 		else{
 			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::NO_MOVEMENT);
