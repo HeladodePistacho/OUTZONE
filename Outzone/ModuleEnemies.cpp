@@ -219,7 +219,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						if (App->player->shotgun_lvl == 2) enemies[i]->live -= 2;
 						if (App->player->shotgun_lvl == 3) enemies[i]->live -= 4;
 					}
-					else enemies[i]->live -= 2;
+					
 				    //enemies change to green
 					if (enemies[i]->enemy_type == CAR)
 					{
@@ -231,6 +231,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					if (enemies[i]->enemy_type == BASIC_ROBOT) enemies[i]->hitmarker();
 					if (enemies[i]->enemy_type == BEATLE) enemies[i]->hitmarker();
 					if (enemies[i]->enemy_type == GOLDEN_TURRET) enemies[i]->hitmarker();
+					if (enemies[i]->enemy_type == TINY_TURRET) enemies[i]->hitmarker();
 				
 				}
 			}

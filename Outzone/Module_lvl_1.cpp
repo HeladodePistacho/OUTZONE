@@ -128,7 +128,6 @@ bool Module_lvl_1::Start()
 		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 76, -2161, MOVEMENT_TYPES::NO_MOVEMENT);
 		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 140, -2169, MOVEMENT_TYPES::NO_MOVEMENT);
 
-		App->enemies->AddEnemy(BEATLE, 100, 100, NO_MOVEMENT);
 
 		//Car
 		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 150, -200);
@@ -188,7 +187,7 @@ bool Module_lvl_1::Start()
 		// App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 
-		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 50, -100, MOVEMENT_TYPES::NO_MOVEMENT);
+		App->enemies->AddEnemy(ENEMY_TYPES::TINY_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 
 		
 
