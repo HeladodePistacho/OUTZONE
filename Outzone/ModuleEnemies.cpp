@@ -18,6 +18,7 @@
 #include "OBJECT_Upgrade.h"
 #include "ModulePlayer.h"
 #include "ModuleInterfice.h"
+
 #define SPAWN_MARGIN 200
 
 ModuleEnemies::ModuleEnemies()
@@ -47,11 +48,23 @@ update_status ModuleEnemies::PreUpdate()
 	{
 		if (queue[i].type != ENEMY_TYPES::NO_TYPE)
 		{
-			if (queue[i].y * (-SCREEN_SIZE) < App->render->camera.y + SPAWN_MARGIN)
+			if (queue[i].type == ENEMY_TYPES::CAR || queue[i].type == ENEMY_TYPES::BIG_TURRET_LEFT || queue[i].type == ENEMY_TYPES::BIG_TURRET_RIGHT)
 			{
-				SpawnEnemy(queue[i]);
-				queue[i].type = ENEMY_TYPES::NO_TYPE;
-				LOG("Spawning enemy at %d", queue[i].x * SCREEN_SIZE);
+				if (queue[i].y * (-SCREEN_SIZE) < App->render->camera.y + SPAWN_MARGIN)
+				{
+					SpawnEnemy(queue[i]);
+					queue[i].type = ENEMY_TYPES::NO_TYPE;
+					LOG("Spawning enemy at %d", queue[i].x * SCREEN_SIZE);
+				}
+			}
+			else
+			{
+				if (queue[i].y * (-SCREEN_SIZE) < App->render->camera.y + 100)
+				{
+					SpawnEnemy(queue[i]);
+					queue[i].type = ENEMY_TYPES::NO_TYPE;
+					LOG("Spawning enemy at %d", queue[i].x * SCREEN_SIZE);
+				}
 			}
 		}
 	}
@@ -219,7 +232,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						if (App->player->shotgun_lvl == 2) enemies[i]->live -= 2;
 						if (App->player->shotgun_lvl == 3) enemies[i]->live -= 4;
 					}
-					
+					else enemies[i]->live -= 0;
 				    //enemies change to green
 					if (enemies[i]->enemy_type == CAR)
 					{

@@ -96,6 +96,18 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(
 	{
 		path.PushBack({ 0.0f, 0.75f }, 150, anim);
 	}
+	if (basic_robot_movement == TYPE_DIAGONAL_LEFT)
+	{
+		path.PushBack({ -0.75f, 0.75f }, 150, anim);
+		path.PushBack({ 0.0f, 0.0f }, 100, anim);
+		path.PushBack({ -0.75f, 0.75f }, 500, anim);
+	}
+	if (basic_robot_movement == TYPE_DIAGONAL_LEFT_2)
+	{
+		path.PushBack({ -0.5f, 0.75f }, 150, anim);
+		path.PushBack({ 0.0f, 0.0f }, 100, anim);
+		path.PushBack({ -0.5f, 0.75f }, 500, anim);
+	}
 
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
