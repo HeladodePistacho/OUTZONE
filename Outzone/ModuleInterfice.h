@@ -44,6 +44,18 @@ public:
 	Element p2_title;
 	Element top_title;
 	Element bomb_icon;
+	Element empty_energy_alert;
+	Element go_ahead_alert;
+
+	//Last alert added
+	Uint32 last_alert;
+	//Alert rate
+	Uint32 alert_rate;
+	//Last empty energy alert
+	Uint32 last_energy_alert;
+	//Empty alert rate
+	Uint32 energy_alert_rate;
+
 	//Current score
 	char score_text[10];
 	uint score = 0;
@@ -59,7 +71,7 @@ public:
 	uint bombs = 3;
 	uint bombs_limit = 10;
 	//Energy
-	uint energy;
+	int energy;
 	uint energy_limit = 36;
 
 	//Counters

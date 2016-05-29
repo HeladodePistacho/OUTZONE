@@ -123,11 +123,11 @@ update_status ModuleVolumes::Update()
 			active[i] = nullptr;
 		}
 		else{
-			if (active[i]->type == STATIC){
-				App->render->Blit(graphics, p->position.x, p->position.y, &(p->volume_sprite.GetCurrentFrame()));
+			if (active[i]->type == DINAMIC){
+				App->render->Blit(graphics, p->position.x, p->position.y, &(p->volume_sprite.GetCurrentFrame()), false);
 			}
 			else{
-				App->render->Blit(graphics, p->position.x, p->position.y, &(p->volume_sprite.GetCurrentFrame()), false);
+				App->render->Blit(graphics, p->position.x, p->position.y, &(p->volume_sprite.GetCurrentFrame()));
 			}
 		}
 		

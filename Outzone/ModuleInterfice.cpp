@@ -33,6 +33,21 @@ ModuleInterfice::ModuleInterfice()
 	//Bombs
 	bomb_icon.element_animation.PushBack({ 19, 6, 6, 16 });
 	bomb_icon.element_animation.loop = false;
+	//Empty energy alert
+	empty_energy_alert.element_animation.PushBack({ 4, 96, 42, 26 });
+	empty_energy_alert.element_animation.speed = 0.05;
+	empty_energy_alert.element_animation.loop = false;
+	//Go ahead alert
+	go_ahead_alert.element_animation.PushBack({ 34, 0, 52, 48 });
+	go_ahead_alert.element_animation.PushBack({ 0, 0, 0, 0 });
+	go_ahead_alert.element_animation.speed = 0.02f;
+	go_ahead_alert.element_animation.loop = false;
+
+	//Alerts timming
+	last_alert = 0;
+	alert_rate = 1000;
+	last_energy_alert = 0;
+	energy_alert_rate = 800;
 }
 
 
@@ -72,7 +87,8 @@ bool ModuleInterfice::Start()
 	App->interfice->AddElement(165, 2, p2_title);
 	//Top title
 	App->interfice->AddElement(105, 2, top_title);
-	
+	energy_alert_rate = 800;
+	empty_energy_alert.element_animation.speed = 0.05;
 	return true;
 }
 
@@ -123,15 +139,46 @@ update_status ModuleInterfice::Update()
 		}
 	}
 
+	//Print go ahead alert
+	if (App->player->current_time>App->player->last_movement + App->player->afk_mark && App->player->current_time>last_alert+ alert_rate){
+		last_alert = App->player->current_time;
+		App->interfice->AddElement(103, 56,App->interfice->go_ahead_alert);
+	}
+
+	//Print empty energy alert
+	if (energy <= 8 && App->player->current_time>last_energy_alert+energy_alert_rate){
+		last_energy_alert = App->player->current_time;
+		App->interfice->AddElement(20, 32, App->interfice->empty_energy_alert);
+	}
+	if (energy == 4 && energy_alert_rate > 400){
+		energy_alert_rate /= 2;
+		empty_energy_alert.element_animation.speed *= 2;
+	}
+	else if (energy == 3 && energy_alert_rate > 200){
+		energy_alert_rate /= 2;
+		empty_energy_alert.element_animation.speed *= 2;
+	}
+	else if (energy == 1 && energy_alert_rate > 100){
+		energy_alert_rate /= 2;
+		empty_energy_alert.element_animation.speed *= 2;
+	}
+	else if (energy == 0){
+		empty_energy_alert.element_animation.speed /= 2;
+	}
+
+	if (App->player->current_animation == &App->player->energy_dead){
+		App->interfice->AddElement(App->player->position.x, App->player->position.y-15, empty_energy_alert);
+	}
+
 	//Draw player UI --------------------------------------------
 	//top score
-		sprintf_s(top_score_text, 10, "%ui", top_score);
+		sprintf_s(top_score_text, 10, "%i", top_score);
 		App->fonts->Blit(147, 10, score_font, top_score_text);
 		//score
-		sprintf_s(score_text, 10, "%ui", score);
+		sprintf_s(score_text, 10, "%i", score);
 		App->fonts->Blit(73, 10, score_font, score_text);
 		//lives
-		sprintf_s(lives_text, 4, "%ui", lives);
+		sprintf_s(lives_text, 4, "%i", lives);
 		App->fonts->Blit(15, 2, lives_font, lives_text);
 	}
 	return UPDATE_CONTINUE;

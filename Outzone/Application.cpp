@@ -32,9 +32,9 @@ Application::Application()
 	modules[num++] = gameover = new Module_GameOver();
 	modules[num++] = objects = new ModuleObjects();
 	modules[num++] = enemies = new ModuleEnemies();
+	modules[num++] = player = new ModulePlayer();
 	modules[num++] = particles = new ModuleParticles();
 	modules[num++] = collision = new ModuleCollision();
-	modules[num++] = player = new ModulePlayer();
 	modules[num++] = volumes = new ModuleVolumes();
 	modules[num++] = fonts = new ModuleFonts();
 	modules[num++] = interfice = new ModuleInterfice();

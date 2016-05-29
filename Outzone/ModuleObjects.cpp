@@ -189,7 +189,7 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 
 				//Energy box
 				else if (objects[i]->type == ENERGY_BOX){
-					for (int k = 0; k < 10; k++){
+					for (int k = 0; k < 15; k++){
 						if (App->interfice->energy < App->interfice->energy_limit){
 							App->interfice->energy++;
 						}

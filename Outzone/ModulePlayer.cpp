@@ -120,6 +120,14 @@ ModulePlayer::ModulePlayer()
 	shotgun_walk.speed = 0.22f;
 	//AFK
 	shotgun_AFK.PushBack({ 0, 322, 29, 37 });
+
+	//Energy Dead
+	energy_dead.PushBack({ 0, 373, 33, 29 });
+	energy_dead.PushBack({ 38, 374, 32, 27 });
+	energy_dead.PushBack({ 76, 374, 32, 27 });
+	energy_dead.PushBack({ 115, 374, 32, 27 });
+	energy_dead.speed = 0.05f;
+	energy_dead.loop = true;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -139,7 +147,7 @@ bool ModulePlayer::Start()
 	//Shotgun
 	shotgun_fire_rate = 350;
 	//Rotation
-	rotation_vel = 40;
+	rotation_vel = 50;
 	//Add collider
 	body = App->collision->AddCollider({ position.x, position.y, 20, 30 }, COLLIDER_PLAYER, this);
 	//Load character sprites
@@ -167,8 +175,12 @@ bool ModulePlayer::Start()
 		fully_destroyed = false;
 		result = false;
 	}
-	//energy
-	energy_segment_live = 1200;
+	
+
+	//UI times
+	energy_segment_live = 100;
+	dead_mark = 1300;
+	afk_mark = 5500;
 	return true;
 }
 
@@ -189,7 +201,7 @@ update_status ModulePlayer::Update()
 		current_time = SDL_GetTicks();
 		if (IsEnabled()){
 		//Player Speed
-		float speed = 2.0f;
+		float speed = 2 ;
 		
 		
 
@@ -340,6 +352,7 @@ update_status ModulePlayer::Update()
 		//East down
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
 		{
+			last_movement = current_time;
 			if (shotgun == false){
 				if ((current_animation == &up || current_animation == &idle_up) && current_time > last_rotation + rotation_vel){ Go_East_Up(speed); }
 				else if ((current_animation == &up_left || current_animation == &idle_up_left) && current_time > last_rotation + rotation_vel){ Go_West(speed); }
@@ -356,6 +369,7 @@ update_status ModulePlayer::Update()
 		//East up
 		else if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE)
 		{
+			last_movement = current_time;
 			if (shotgun == false){
 				if ((current_animation == &up_left || current_animation == &idle_up_left) && current_time > last_rotation + rotation_vel){ Go_North(speed); }
 				else if ((current_animation == &left || current_animation == &idle_left) && current_time > last_rotation + rotation_vel){ Go_West_Up(speed); }
@@ -372,6 +386,7 @@ update_status ModulePlayer::Update()
 		//West down
 		else if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
 		{
+			last_movement = current_time;
 			if (shotgun == false){
 				if ((current_animation == &up || current_animation == &idle_up) && current_time > last_rotation + rotation_vel){ Go_West_Up(speed); }
 				else if ((current_animation == &up_right || current_animation == &idle_up_right) && current_time > last_rotation + rotation_vel){ Go_East(speed); }
@@ -388,6 +403,7 @@ update_status ModulePlayer::Update()
 		//West up
 		else if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
 		{
+			last_movement = current_time;
 			if (shotgun == false){
 				if ((current_animation == &up_right || current_animation == &idle_up_right) && current_time > last_rotation + rotation_vel){ Go_North(speed); }
 				else if ((current_animation == &right || current_animation == &idle_right) && current_time > last_rotation + rotation_vel){ Go_East_Up(speed); }
@@ -404,6 +420,7 @@ update_status ModulePlayer::Update()
 		//East
 		else if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE)
 		{
+			last_movement = current_time;
 			if (shotgun == false){
 				if ((current_animation == &up || current_animation == &idle_up) && current_time > last_rotation + rotation_vel){ Go_East_Up(speed); }
 				else if ((current_animation == &up_left || current_animation == &idle_up_left) && current_time > last_rotation + rotation_vel){ Go_North(speed); }
@@ -420,6 +437,7 @@ update_status ModulePlayer::Update()
 		//West
 		else if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE)
 		{
+			last_movement = current_time;
 			if (shotgun == false){
 				if ((current_animation == &up || current_animation == &idle_up) && current_time > last_rotation + rotation_vel){ Go_West_Up(speed); }
 				else if ((current_animation == &up_right || current_animation == &idle_up_right) && current_time > last_rotation + rotation_vel){ Go_North(speed); }
@@ -436,6 +454,7 @@ update_status ModulePlayer::Update()
 		//North
 		else if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE  && App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
 		{
+			last_movement = current_time;
 			if (shotgun == false){
 				if ((current_animation == &down || current_animation == &idle_down) && current_time > last_rotation + rotation_vel){ Go_East_Down(speed); }
 				else if ((current_animation == &down_right || current_animation == &idle_down_right) && current_time > last_rotation + rotation_vel){ Go_East(speed); }
@@ -452,6 +471,7 @@ update_status ModulePlayer::Update()
 		//South
 		else if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE && App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
 		{
+			last_movement = current_time;
 			if (shotgun == false){
 				if ((current_animation == &up || current_animation == &idle_up) && current_time > last_rotation + rotation_vel){ Go_West_Up(speed); }
 				else if ((current_animation == &up_right || current_animation == &idle_up_right) && current_time > last_rotation + rotation_vel){ Go_East(speed); }
@@ -507,6 +527,27 @@ update_status ModulePlayer::Update()
 		if (current_time > last_segment + energy_segment_live && App->interfice->energy > 0){
 			App->interfice->energy--;
 			last_segment = current_time;
+		}
+
+		//Update the energy of the player----------------------------
+		if (current_time > last_segment + energy_segment_live && App->interfice->energy > -2){
+			App->interfice->energy--;
+			last_segment = current_time;
+		}
+		if (App->interfice->energy == -2){
+			current_animation = &energy_dead;
+			destroyed = true;
+			if (current_time>dead_mark + last_segment){
+				if (App->interfice->lives == 0){
+					fully_destroyed = true;
+				}
+				else App->interfice->lives--;
+
+				if (App->interfice->score > App->interfice->top_score)App->interfice->top_score = App->interfice->score;
+
+				App->player->Disable();
+				App->change_scene->ChangeScene(App->lvl_1, App->welcome);
+			}
 		}
 
 		// Draw player sprites --------------------------------------
@@ -595,12 +636,12 @@ void ModulePlayer::Go_South(float speed){
 	if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &down_right || current_animation == &idle_down_right) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_south_east_down_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_south_east_down_bullet, position.x +9, position.y +23, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
 		if ((current_animation == &down_left || current_animation == &idle_down_left) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_south_west_down_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_south_west_down_bullet, position.x-4, position.y+18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &down_right || current_animation == &idle_down_right || current_animation == &down_left || current_animation == &idle_down_left)){
 			App->particles->AddParticle(App->particles->laser_south_fire, position.x, position.y + 22, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_south_bullet, position.x + 5, position.y + 24, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 
@@ -634,12 +675,12 @@ void ModulePlayer::Go_North(float speed){
 	if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &up_right || current_animation == &idle_up_right) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_north_east_up_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_north_east_up_bullet, position.x+22, position.y-17, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
 		if ((current_animation == &up_left || current_animation == &idle_up_left) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_north_west_up_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_north_west_up_bullet, position.x+9, position.y-14, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &up_right || current_animation == &idle_up_right || current_animation == &up_left || current_animation == &idle_up_left)){
 			App->particles->AddParticle(App->particles->laser_north_fire, position.x + 13, position.y - 18, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_north_bullet, position.x + 18, position.y - 18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 			Mix_PlayChannel(-1, laser_fx, 0);
@@ -666,12 +707,12 @@ void ModulePlayer::Go_West(float speed){
 	if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &down_left || current_animation == &idle_down_left) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_south_west_up_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_south_west_up_bullet, position.x-15, position.y+9, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
 		if ((current_animation == &up_left || current_animation == &idle_up_left) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_north_west_down_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_north_west_down_bullet, position.x -9 , position.y -2, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &down_left || current_animation == &idle_down_left || current_animation == &up_left || current_animation == &idle_up_left)){
 			App->particles->AddParticle(App->particles->laser_west_fire, position.x - 18, position.y, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_west_bullet, position.x - 18, position.y + 5, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 			last_time = current_time;
@@ -698,12 +739,12 @@ void ModulePlayer::Go_East(float speed){
 	if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &down_right || current_animation == &idle_down_right) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_south_east_up_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_south_east_up_bullet, position.x +21, position.y +14, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
 		if ((current_animation == &up_right || current_animation == &idle_up_right) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_north_east_down_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_north_east_down_bullet, position.x + 27, position.y - 3, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && current_time >= last_time + laser_fire_rate){
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &up_right || current_animation == &idle_up_right || current_animation == &down_right || current_animation == &idle_down_right)){
 			App->particles->AddParticle(App->particles->laser_east_fire, position.x + 30, position.y + 3, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_east_bullet, position.x + 28, position.y + 9, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 			Mix_PlayChannel(-1, laser_fx, 0);
@@ -745,14 +786,14 @@ void ModulePlayer::Go_West_Up(float speed){
 		if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &left || current_animation == &idle_left) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_north_west_down_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_north_west_down_bullet, position.x-9, position.y-2, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
 		if ((current_animation == &up || current_animation == &idle_up) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_north_west_up_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_north_west_up_bullet, position.x+9, position.y-14, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &left || current_animation == &idle_left || current_animation == &up || current_animation == &idle_up)){
 			App->particles->AddParticle(App->particles->laser_north_west_fire, position.x - 4, position.y - 13, COLLIDER_NONE, LASER_FIRE);
-			App->particles->AddParticle(App->particles->laser_north_west_bullet, position.x + 2, position.y - 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_north_west_bullet, position.x, position.y - 10, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 			last_time = current_time;
 			Mix_PlayChannel(-1, laser_fx, 0);
 		}
@@ -781,12 +822,12 @@ void ModulePlayer::Go_West_Down(float speed){
 	if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &left || current_animation == &idle_left) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_south_west_up_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_south_west_up_bullet, position.x -15, position.y + 9, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
 		if ((current_animation == &down || current_animation == &idle_down) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_south_west_down_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_south_west_down_bullet, position.x-4, position.y+18, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &left || current_animation == &idle_left || current_animation == &down || current_animation == &idle_down)){
 			App->particles->AddParticle(App->particles->laser_south_west_fire, position.x - 15, position.y + 13, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_south_west_bullet, position.x - 13, position.y + 13, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 			Mix_PlayChannel(-1, laser_fx, 0);
@@ -829,12 +870,12 @@ void ModulePlayer::Go_East_Up(float speed){
 	if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &right || current_animation == &idle_right) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_north_east_up_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_north_east_down_bullet, position.x + 27, position.y -3, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
 		if ((current_animation == &up || current_animation == &idle_up) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_north_east_down_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_north_east_up_bullet, position.x + 22, position.y-17, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT&&current_time >= last_time + laser_fire_rate){
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &right || current_animation == &idle_right || current_animation == &up || current_animation == &idle_up)){
 			App->particles->AddParticle(App->particles->laser_north_east_fire, position.x + 22, position.y - 16, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_north_east_bullet, position.x + 26, position.y - 16, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 			Mix_PlayChannel(-1, laser_fx, 0);
@@ -864,12 +905,12 @@ void ModulePlayer::Go_East_Down(float speed){
 	if (shotgun == false){
 		//LASER SHOT
 		if ((current_animation == &right || current_animation == &idle_right) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_south_east_up_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_south_east_up_bullet, position.x +21, position.y +14, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
 		if ((current_animation == &down || current_animation == &idle_down) && App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT){
-			App->particles->AddParticle(App->particles->laser_south_east_down_bullet, position.x, position.y, COLLIDER_PLAYER_SHOT, LASER_SHOT);
+			App->particles->AddParticle(App->particles->laser_south_east_down_bullet, position.x +9, position.y +23, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 		}
-		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &down || current_animation == &right)){
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT && (current_time >= last_time + laser_fire_rate || current_animation == &down || current_animation == &right || current_animation == &right || current_animation == &idle_right || current_animation == &down || current_animation == &idle_down)){
 			App->particles->AddParticle(App->particles->laser_south_east_fire, position.x + 14, position.y + 22, COLLIDER_NONE, LASER_FIRE);
 			App->particles->AddParticle(App->particles->laser_south_east_bullet, position.x + 14, position.y + 22, COLLIDER_PLAYER_SHOT, LASER_SHOT);
 			Mix_PlayChannel(-1, laser_fx, 0);

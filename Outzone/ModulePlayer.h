@@ -63,12 +63,19 @@ public:
 	Uint32 energy_segment_live;
 	//Last energy segment dead
 	Uint32 last_segment;
-	
-	
+	//Dead time
+	Uint32 dead_mark;
+	//AFK limit time
+	Uint32 afk_mark;
+	//Last movement time
+	Uint32 last_movement;
 	//ANIMATIONS
 	//Current animation
 	Animation* current_animation = nullptr;
 	
+	//ENERGY DEAD
+	Animation energy_dead;
+
 	//LASER
 	//AFK
 	Animation idle_up;
