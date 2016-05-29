@@ -11,19 +11,20 @@
 ENEMY_Golden_Turret::ENEMY_Golden_Turret(int x, int y) :Enemy(x, y)
 {
 	//static animations
-	idle.PushBack({ 0, 703, 27, 42 });
-	idle.PushBack({ 29, 703, 28, 42 });
+	idle.PushBack({ 0, 704, 26, 40 });
+	idle.PushBack({ 29, 704, 26, 40 });
 	idle.loop = true;
-	idle.speed = 0.1f;
-	hit.PushBack({ 57, 703, 28, 41 });
+	idle.speed = 0.2f;
+	hit.PushBack({ 58, 704, 26, 40 });
 	enemy_animation = &idle;
 
-	collider = App->collision->AddCollider({ 0, 0, 30, 35 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 26, 40 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	fire_rate = 100;
+	fire_rate = 350;
 	last_time = 0;
 
 
+	delay = 180;
 	
 
 	//enemy type
@@ -125,4 +126,23 @@ bool ENEMY_Golden_Turret::Is_Dead()
 		return true;
 	}
 	return false;
+}
+
+void ENEMY_Golden_Turret::hitmarker()
+{
+	if (enemy_animation != &hit)
+		enemy_animation = &hit;
+		
+}
+
+void ENEMY_Golden_Turret::return_from_hitmarker()
+{
+	if (enemy_animation != &idle)
+	{
+		if (current_time >= delay + return_idle)
+		{
+			enemy_animation = &idle;
+			return_idle = current_time;
+		}
+	}
 }

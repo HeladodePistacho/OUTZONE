@@ -230,6 +230,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					if (enemies[i]->enemy_type == BIG_TURRET_LEFT) enemies[i]->hitmarker();
 					if (enemies[i]->enemy_type == BASIC_ROBOT) enemies[i]->hitmarker();
 					if (enemies[i]->enemy_type == BEATLE) enemies[i]->hitmarker();
+					if (enemies[i]->enemy_type == GOLDEN_TURRET) enemies[i]->hitmarker();
 				
 				}
 			}

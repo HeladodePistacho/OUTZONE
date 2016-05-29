@@ -123,7 +123,7 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 
 
 	//enemy type
-	delay = 170;
+	delay = 160;
 	live = 10;
 	enemy_type = BEATLE;
 	
