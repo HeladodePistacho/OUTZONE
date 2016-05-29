@@ -6,7 +6,8 @@
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
 #include "ModuleFonts.h"
-
+#include "Module_lvl_1.h"
+#include "Module_Welcome.h"
 #include <stdio.h>
 
 ModuleInterfice::ModuleInterfice()
@@ -77,18 +78,24 @@ ModuleInterfice::~ModuleInterfice()
 bool ModuleInterfice::Start()
 {
 	sprites = App->textures->Load("interfice.png");
-	//Energy bar
-	App->interfice->AddElement(0, 17, energy_bar);
-	//Lives decoration
-	App->interfice->AddElement(0, 1, lives_decoration);
-	//Player 1 title
-	App->interfice->AddElement(25, 2, p1_title);
-	//Player 2 title
-	App->interfice->AddElement(165, 2, p2_title);
-	//Top title
-	App->interfice->AddElement(105, 2, top_title);
-	energy_alert_rate = 800;
-	empty_energy_alert.element_animation.speed = 0.05;
+	if (App->lvl_1->IsEnabled()){
+		//Energy bar
+		App->interfice->AddElement(0, 17, energy_bar);
+		//Lives decoration
+		App->interfice->AddElement(0, 1, lives_decoration);
+		//Player 1 title
+		App->interfice->AddElement(25, 2, p1_title);
+		//Player 2 title
+		App->interfice->AddElement(165, 2, p2_title);
+		//Top title
+		App->interfice->AddElement(105, 2, top_title);
+		energy_alert_rate = 800;
+		empty_energy_alert.element_animation.speed = 0.05;
+	}
+	if (App->welcome->IsEnabled()){
+		//Player 1 title
+		App->interfice->AddElement(25, 2, p1_title);
+	}
 	return true;
 }
 
@@ -97,29 +104,79 @@ bool ModuleInterfice::Start()
 update_status ModuleInterfice::Update()
 {
 	if (IsEnabled()){
-	//Bombs data
-	bombs_printed = 0;
-	uint mark = 8;
-	uint original_x= 18;
+		if (App->lvl_1->IsEnabled()){
+			//Bombs data
+			bombs_printed = 0;
+			uint mark = 8;
+			uint original_x = 18;
 
-	//Adds the bombs to the elements array
-	if (bombs){
-		for (int k = 0; k < bombs; k++){
-			App->interfice->AddElement(bombs_printed*mark, 304, bomb_icon);
-			bombs_printed++;
+			//Adds the bombs to the elements array
+			if (bombs){
+				for (int k = 0; k < bombs; k++){
+					App->interfice->AddElement(bombs_printed*mark, 304, bomb_icon);
+					bombs_printed++;
+				}
+			}
+			//Energy data
+			e_segments_printed = 0;
+			uint e_mark = 2;
+			uint e_original_x = 10;
+
+			//Adds the energy segments to the elements array
+			if (energy){
+				for (int k = 0; k < energy; k++){
+					App->interfice->AddElement(original_x + e_segments_printed*e_mark, 17, energy_segment);
+					e_segments_printed++;
+				}
+			}
+			//Print go ahead alert
+			if (App->player->current_time>App->player->last_movement + App->player->afk_mark && App->player->current_time > last_alert + alert_rate){
+				last_alert = App->player->current_time;
+				App->interfice->AddElement(103, 56, App->interfice->go_ahead_alert);
+			}
+			//Print empty energy alert
+			if (energy <= 8 && App->player->current_time > last_energy_alert + energy_alert_rate){
+				last_energy_alert = App->player->current_time;
+				App->interfice->AddElement(20, 32, App->interfice->empty_energy_alert);
+			}
+			if (energy == 4 && energy_alert_rate > 400){
+				energy_alert_rate /= 2;
+				empty_energy_alert.element_animation.speed *= 2;
+			}
+			else if (energy == 3 && energy_alert_rate > 200){
+				energy_alert_rate /= 2;
+				empty_energy_alert.element_animation.speed *= 2;
+			}
+			else if (energy == 1 && energy_alert_rate > 100){
+				energy_alert_rate /= 2;
+				empty_energy_alert.element_animation.speed *= 2;
+			}
+			else if (energy == 0){
+				empty_energy_alert.element_animation.speed /= 2;
+			}
+			if (App->player->current_animation == &App->player->energy_dead){
+				App->interfice->AddElement(App->player->position.x, App->player->position.y - 15, empty_energy_alert);
+			}
+
+			//Draw player UI --------------------------------------------
+			//top score
+			sprintf_s(top_score_text, 10, "%i", top_score);
+			App->fonts->Blit(147, 10, score_font, top_score_text);
+			//score
+			sprintf_s(score_text, 10, "%i", score);
+			App->fonts->Blit(73, 10, score_font, score_text);
+			//lives
+			sprintf_s(lives_text, 4, "%i", lives);
+			App->fonts->Blit(15, 2, lives_font, lives_text);
 		}
 	}
-	//Energy data
-	e_segments_printed = 0;
-	uint e_mark = 2;
-	uint e_original_x = 10;
-
-	//Adds the energy segments to the elements array
-	if (energy){
-		for (int k = 0; k <energy; k++){
-			App->interfice->AddElement(original_x + e_segments_printed*e_mark, 17, energy_segment);
-			e_segments_printed++;
-		}
+	if (App->welcome->IsEnabled()){
+		//top score
+		sprintf_s(top_score_text, 10, "%i", top_score);
+		App->fonts->Blit(147, 10, score_font, top_score_text);
+		//score
+		sprintf_s(score_text, 10, "%i", score);
+		App->fonts->Blit(73, 10, score_font, score_text);
 	}
 
 	//Deletes the loop false with animation ended elements
@@ -137,49 +194,6 @@ update_status ModuleInterfice::Update()
 		if (elements[i] != nullptr){
 			App->render->Blit(sprites, elements[i]->position.x, elements[i]->position.y, &(elements[i]->element_animation.GetCurrentFrame()), false);
 		}
-	}
-
-	//Print go ahead alert
-	if (App->player->current_time>App->player->last_movement + App->player->afk_mark && App->player->current_time>last_alert+ alert_rate){
-		last_alert = App->player->current_time;
-		App->interfice->AddElement(103, 56,App->interfice->go_ahead_alert);
-	}
-
-	//Print empty energy alert
-	if (energy <= 8 && App->player->current_time>last_energy_alert+energy_alert_rate){
-		last_energy_alert = App->player->current_time;
-		App->interfice->AddElement(20, 32, App->interfice->empty_energy_alert);
-	}
-	if (energy == 4 && energy_alert_rate > 400){
-		energy_alert_rate /= 2;
-		empty_energy_alert.element_animation.speed *= 2;
-	}
-	else if (energy == 3 && energy_alert_rate > 200){
-		energy_alert_rate /= 2;
-		empty_energy_alert.element_animation.speed *= 2;
-	}
-	else if (energy == 1 && energy_alert_rate > 100){
-		energy_alert_rate /= 2;
-		empty_energy_alert.element_animation.speed *= 2;
-	}
-	else if (energy == 0){
-		empty_energy_alert.element_animation.speed /= 2;
-	}
-
-	if (App->player->current_animation == &App->player->energy_dead){
-		App->interfice->AddElement(App->player->position.x, App->player->position.y-15, empty_energy_alert);
-	}
-
-	//Draw player UI --------------------------------------------
-	//top score
-		sprintf_s(top_score_text, 10, "%i", top_score);
-		App->fonts->Blit(147, 10, score_font, top_score_text);
-		//score
-		sprintf_s(score_text, 10, "%i", score);
-		App->fonts->Blit(73, 10, score_font, score_text);
-		//lives
-		sprintf_s(lives_text, 4, "%i", lives);
-		App->fonts->Blit(15, 2, lives_font, lives_text);
 	}
 	return UPDATE_CONTINUE;
 }
@@ -199,7 +213,9 @@ bool ModuleInterfice::CleanUp()
 			elements[i] = nullptr;
 		}
 	}
-
+	//Unload all the fonts
+	App->fonts->UnLoad(score_font);
+	App->fonts->UnLoad(lives_font);
 	return true;
 }
 

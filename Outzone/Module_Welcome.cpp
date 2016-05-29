@@ -7,7 +7,7 @@
 #include "ModuleChangeScene.h"
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
-
+#include "ModuleInterfice.h"
 Module_Welcome::Module_Welcome()
 {
 	// Welcome UI
@@ -25,6 +25,7 @@ bool Module_Welcome::Start()
 	graphics = App->textures->Load("Welcome_Screen.png");
 	App->render->escalated_screen = 0;
 	App->player->Reset();
+	App->interfice->Enable();
 	return true;
 }
 // Update: draw background
@@ -49,5 +50,6 @@ bool Module_Welcome::CleanUp()
 	App->textures->Disable();
 	App->audio->Enable();
 	App->render->escalated_screen = SCREEN_SIZE * App->lvl_1->map_size * 1.2f;
+	App->interfice->Disable();
 	return true;
 }

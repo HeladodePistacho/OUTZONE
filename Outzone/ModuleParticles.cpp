@@ -126,7 +126,7 @@ ModuleParticles::ModuleParticles()
 	laser_west_fire.life = 50;
 	laser_west_fire.type = LASER_FIRE;
 
-	//Laser bullets
+	//Laser bullets lvl 1
 	//north bullet
 	laser_north_bullet.anim.PushBack({ 115, 3, 4, 16 });
 	laser_north_bullet.speed.y = -8;
@@ -232,6 +232,220 @@ ModuleParticles::ModuleParticles()
 	laser_west_bullet.speed.x = -8;
 	laser_west_bullet.life = 1200;
 	laser_west_bullet.type = LASER_SHOT;
+
+	//Laser bullets lvl 2
+	//north bullet
+	laser_north_bullet_2.anim.PushBack({ 988, 11, 10, 18 });
+	laser_north_bullet_2.speed.y = -8;
+	laser_north_bullet_2.life = 1200;
+	laser_north_bullet_2.type = LASER_SHOT;
+	//north east bullet
+	laser_north_east_bullet_2.anim.PushBack({ 951, 66, 16, 16 });
+	laser_north_east_bullet_2.speed.y = -5.65;
+	laser_north_east_bullet_2.speed.x = 5.65;
+	laser_north_east_bullet_2.life = 1200;
+	laser_north_east_bullet_2.type = LASER_SHOT;
+
+	//north east up bullet
+	laser_north_east_up_bullet_2.anim.PushBack({ 970, 70, 12, 16 });
+	laser_north_east_up_bullet_2.speed.y = -7.3;
+	laser_north_east_up_bullet_2.speed.x = 3;
+	laser_north_east_up_bullet_2.life = 1200;
+	laser_north_east_up_bullet_2.type = LASER_SHOT;
+	//north east down bullet
+	laser_north_east_down_bullet_2.anim.PushBack({ 931, 60, 16, 13 });
+	laser_north_east_down_bullet_2.speed.y = -3;
+	laser_north_east_down_bullet_2.speed.x = 7.3;
+	laser_north_east_down_bullet_2.life = 1200;
+	laser_north_east_down_bullet_2.type = LASER_SHOT;
+
+	//north west bullet
+	laser_north_west_bullet_2.anim.PushBack({ 951, 15, 16, 16 });
+	laser_north_west_bullet_2.speed.y = -5.65;
+	laser_north_west_bullet_2.speed.x = -5.65;
+	laser_north_west_bullet_2.life = 1200;
+	laser_north_west_bullet_2.type = LASER_SHOT;
+
+	//north west up bullet
+	laser_north_west_up_bullet_2.anim.PushBack({ 969, 12, 13, 16 });
+	laser_north_west_up_bullet_2.speed.y = -7.3;
+	laser_north_west_up_bullet_2.speed.x = -3;
+	laser_north_west_up_bullet_2.life = 1200;
+	laser_north_west_up_bullet_2.type = LASER_SHOT;
+
+	//north west down bullet
+	laser_north_west_down_bullet_2.anim.PushBack({ 931, 25, 16, 12 });
+	laser_north_west_down_bullet_2.speed.y = -3;
+	laser_north_west_down_bullet_2.speed.x = -7.3;
+	laser_north_west_down_bullet_2.life = 1200;
+	laser_north_west_down_bullet_2.type = LASER_SHOT;
+
+	//east bullet
+	laser_east_bullet_2.anim.PushBack({ 923, 43, 16, 10 });
+	laser_east_bullet_2.speed.x = 8;
+	laser_east_bullet_2.life = 1200;
+	laser_east_bullet_2.type = LASER_SHOT;
+
+	//south bullet
+	laser_south_bullet_2.anim.PushBack({ 988, 11, 10, 18 });
+	laser_south_bullet_2.speed.y = 8;
+	laser_south_bullet_2.life = 1200;
+	laser_south_bullet_2.type = LASER_SHOT;
+
+	//south east bullet
+	laser_south_east_bullet_2.anim.PushBack({ 951, 15, 16, 16 });
+	laser_south_east_bullet_2.speed.y = 5.65;
+	laser_south_east_bullet_2.speed.x = 5.65;
+	laser_south_east_bullet_2.life = 1200;
+	laser_south_east_bullet_2.type = LASER_SHOT;
+
+	//south east up bullet
+	laser_south_east_up_bullet_2.anim.PushBack({ 931, 25, 16, 12 });
+	laser_south_east_up_bullet_2.speed.y = 3;
+	laser_south_east_up_bullet_2.speed.x = 7.3;
+	laser_south_east_up_bullet_2.life = 1200;
+	laser_south_east_up_bullet_2.type = LASER_SHOT;
+
+	//south east down bullet
+	laser_south_east_down_bullet_2.anim.PushBack({ 969, 12, 13, 16 });
+	laser_south_east_down_bullet_2.speed.y = 7.3;
+	laser_south_east_down_bullet_2.speed.x = 3;
+	laser_south_east_down_bullet_2.life = 1200;
+	laser_south_east_down_bullet_2.type = LASER_SHOT;
+
+	//south west bullet
+	laser_south_west_bullet_2.anim.PushBack({ 951, 66, 16, 16 });
+	laser_south_west_bullet_2.speed.y = 5.65;
+	laser_south_west_bullet_2.speed.x = -5.65;
+	laser_south_west_bullet_2.life = 1200;
+	laser_south_west_bullet_2.type = LASER_SHOT;
+
+	//south west up bullet
+	laser_south_west_up_bullet_2.anim.PushBack({ 931, 60, 16, 13 });
+	laser_south_west_up_bullet_2.speed.y = 3;
+	laser_south_west_up_bullet_2.speed.x = -7.3;
+	laser_south_west_up_bullet_2.life = 1200;
+	laser_south_west_up_bullet_2.type = LASER_SHOT;
+
+	//south west down bullet
+	laser_south_west_down_bullet_2.anim.PushBack({ 970, 70, 13, 16 });
+	laser_south_west_down_bullet_2.speed.y = 7.3;
+	laser_south_west_down_bullet_2.speed.x = -3;
+	laser_south_west_down_bullet_2.life = 1200;
+	laser_south_west_down_bullet_2.type = LASER_SHOT;
+
+	//west bullet
+	laser_west_bullet_2.anim.PushBack({ 923, 43, 16, 10 });
+	laser_west_bullet_2.speed.x = -8;
+	laser_west_bullet_2.life = 1200;
+	laser_west_bullet_2.type = LASER_SHOT;
+
+	//Laser bullets lvl 3
+	//north bullet
+	laser_north_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_north_bullet_3.speed.y = -8;
+	laser_north_bullet_3.life = 1200;
+	laser_north_bullet_3.type = LASER_SHOT;
+	//north east bullet
+	laser_north_east_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_north_east_bullet_3.speed.y = -5.65;
+	laser_north_east_bullet_3.speed.x = 5.65;
+	laser_north_east_bullet_3.life = 1200;
+	laser_north_east_bullet_3.type = LASER_SHOT;
+
+	//north east up bullet
+	laser_north_east_up_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_north_east_up_bullet_3.speed.y = -7.3;
+	laser_north_east_up_bullet_3.speed.x = 3;
+	laser_north_east_up_bullet_3.life = 1200;
+	laser_north_east_up_bullet_3.type = LASER_SHOT;
+	//north east down bullet
+	laser_north_east_down_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_north_east_down_bullet_3.speed.y = -3;
+	laser_north_east_down_bullet_3.speed.x = 7.3;
+	laser_north_east_down_bullet_3.life = 1200;
+	laser_north_east_down_bullet_3.type = LASER_SHOT;
+
+	//north west bullet
+	laser_north_west_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_north_west_bullet_3.speed.y = -5.65;
+	laser_north_west_bullet_3.speed.x = -5.65;
+	laser_north_west_bullet_3.life = 1200;
+	laser_north_west_bullet_3.type = LASER_SHOT;
+
+	//north west up bullet
+	laser_north_west_up_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_north_west_up_bullet_3.speed.y = -7.3;
+	laser_north_west_up_bullet_3.speed.x = -3;
+	laser_north_west_up_bullet_3.life = 1200;
+	laser_north_west_up_bullet_3.type = LASER_SHOT;
+
+	//north west down bullet
+	laser_north_west_down_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_north_west_down_bullet_3.speed.y = -3;
+	laser_north_west_down_bullet_3.speed.x = -7.3;
+	laser_north_west_down_bullet_3.life = 1200;
+	laser_north_west_down_bullet_3.type = LASER_SHOT;
+
+	//east bullet
+	laser_east_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_east_bullet_3.speed.x = 8;
+	laser_east_bullet_3.life = 1200;
+	laser_east_bullet_3.type = LASER_SHOT;
+
+	//south bullet
+	laser_south_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_south_bullet_3.speed.y = 8;
+	laser_south_bullet_3.life = 1200;
+	laser_south_bullet_3.type = LASER_SHOT;
+
+	//south east bullet
+	laser_south_east_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_south_east_bullet_3.speed.y = 5.65;
+	laser_south_east_bullet_3.speed.x = 5.65;
+	laser_south_east_bullet_3.life = 1200;
+	laser_south_east_bullet_3.type = LASER_SHOT;
+
+	//south east up bullet
+	laser_south_east_up_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_south_east_up_bullet_3.speed.y = 3;
+	laser_south_east_up_bullet_3.speed.x = 7.3;
+	laser_south_east_up_bullet_3.life = 1200;
+	laser_south_east_up_bullet_3.type = LASER_SHOT;
+
+	//south east down bullet
+	laser_south_east_down_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_south_east_down_bullet_3.speed.y = 7.3;
+	laser_south_east_down_bullet_3.speed.x = 3;
+	laser_south_east_down_bullet_3.life = 1200;
+	laser_south_east_down_bullet_3.type = LASER_SHOT;
+
+	//south west bullet
+	laser_south_west_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_south_west_bullet_3.speed.y = 5.65;
+	laser_south_west_bullet_3.speed.x = -5.65;
+	laser_south_west_bullet_3.life = 1200;
+	laser_south_west_bullet_3.type = LASER_SHOT;
+
+	//south west up bullet
+	laser_south_west_up_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_south_west_up_bullet_3.speed.y = 3;
+	laser_south_west_up_bullet_3.speed.x = -7.3;
+	laser_south_west_up_bullet_3.life = 1200;
+	laser_south_west_up_bullet_3.type = LASER_SHOT;
+
+	//south west down bullet
+	laser_south_west_down_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_south_west_down_bullet_3.speed.y = 7.3;
+	laser_south_west_down_bullet_3.speed.x = -3;
+	laser_south_west_down_bullet_3.life = 1200;
+	laser_south_west_down_bullet_3.type = LASER_SHOT;
+
+	//west bullet
+	laser_west_bullet_3.anim.PushBack({ 981, 36, 24, 24 });
+	laser_west_bullet_3.speed.x = -8;
+	laser_west_bullet_3.life = 1200;
+	laser_west_bullet_3.type = LASER_SHOT;
 
 	//laser impact
 	laser_impact.anim.PushBack({ 216, 33, 20, 17 });

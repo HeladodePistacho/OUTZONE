@@ -120,6 +120,50 @@ public:
 	//west
 	Particle laser_west_bullet;
 
+	//Laser bullets lvl2
+	//north
+	Particle laser_north_bullet_2;
+	Particle laser_north_east_up_bullet_2;
+	Particle laser_north_east_bullet_2;
+	Particle laser_north_east_down_bullet_2;
+	Particle laser_north_west_up_bullet_2;
+	Particle laser_north_west_bullet_2;
+	Particle laser_north_west_down_bullet_2;
+	//east
+	Particle laser_east_bullet_2;
+	//south
+	Particle laser_south_bullet_2;
+	Particle laser_south_east_up_bullet_2;
+	Particle laser_south_east_bullet_2;
+	Particle laser_south_east_down_bullet_2;
+	Particle laser_south_west_up_bullet_2;
+	Particle laser_south_west_bullet_2;
+	Particle laser_south_west_down_bullet_2;
+	//west
+	Particle laser_west_bullet_2;
+
+	//Laser bullets lvl3
+	//north
+	Particle laser_north_bullet_3;
+	Particle laser_north_east_up_bullet_3;
+	Particle laser_north_east_bullet_3;
+	Particle laser_north_east_down_bullet_3;
+	Particle laser_north_west_up_bullet_3;
+	Particle laser_north_west_bullet_3;
+	Particle laser_north_west_down_bullet_3;
+	//east
+	Particle laser_east_bullet_3;
+	//south
+	Particle laser_south_bullet_3;
+	Particle laser_south_east_up_bullet_3;
+	Particle laser_south_east_bullet_3;
+	Particle laser_south_east_down_bullet_3;
+	Particle laser_south_west_up_bullet_3;
+	Particle laser_south_west_bullet_3;
+	Particle laser_south_west_down_bullet_3;
+	//west
+	Particle laser_west_bullet_3;
+
 	//laser impact
 	Particle laser_impact;
 	

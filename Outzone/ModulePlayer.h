@@ -110,6 +110,8 @@ public:
 	bool shotgun = false;
 	//Shotgun level
 	uint shotgun_lvl;
+	//Laser level
+	uint laser_lvl;
 	//Live state
 	bool destroyed = false;
 	//Live state 2

@@ -200,8 +200,11 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 				//Powerup
 				else if (objects[i]->type == UPGRADE)
 				{
-					if (App->player->shotgun_lvl < 3){
+					if (App->player->shotgun && App->player->shotgun_lvl < 3){
 						App->player->shotgun_lvl++;
+					}
+					else if (App->player->laser_lvl < 3){
+						App->player->laser_lvl++;
 					}
 					App->interfice->score += 100;
 				}
