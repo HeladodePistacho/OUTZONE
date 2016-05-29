@@ -81,6 +81,27 @@ ENEMY_Blue_Robot::ENEMY_Blue_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x,
 	mov_up_right.PushBack({ 749, 92, 26, 35 });
 	mov_up_right.speed = 0.17f;
 
+	hit_down.PushBack({ 1021, 3, 28, 35 });
+	hit_left.PushBack({ 1144, 47, 23, 33 });
+	hit_right.PushBack({ 1199, 1, 24, 35 });
+	hit_up.PushBack({ 1306, 45, 28, 35 });
+
+	hit_midle_down_right.PushBack({ 1102, 2, 27, 35 });
+	hit_midle_down_right_bot.PushBack({ 1061, 3, 29, 34 });
+	hit_midle_down_right_top.PushBack({ 1141, 2, 26, 35 });
+
+	hit_midle_down_left.PushBack({ 1066, 43, 27, 36 });
+	hit_midle_down_left_bot.PushBack({ 1025, 45, 26, 35 });
+	hit_midle_down_left_top.PushBack({ 1105, 45, 26, 35 });
+
+	hit_midle_up_right.PushBack({ 1269, 2, 25, 35 });
+	hit_midle_up_right_bot.PushBack({ 1235, 1, 22, 36 });
+	hit_midle_up_right_top.PushBack({ 1306, 2, 28, 36 });
+
+	hit_midle_up_left.PushBack({ 1232, 45, 27, 35 });
+	hit_midle_up_left_bot.PushBack({ 1197, 45, 24, 35 });
+	hit_midle_up_left_top.PushBack({ 1270, 45, 26, 35 });
+
 	original_position = position;
 
 	enemy_animation = &down;
@@ -102,6 +123,7 @@ ENEMY_Blue_Robot::ENEMY_Blue_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x,
 
 
 	//enemy type
+	delay = 150;
 	live = 2;
 	enemy_type = BLUE_ROBOT;
 }
@@ -183,121 +205,179 @@ void ENEMY_Blue_Robot::Attack()
 
 void ENEMY_Blue_Robot::Focus()
 {
-
-	if (path.current_speed.IsZero())
-	{
-
-		if (App->player->position.y < position.y)
+		if (path.current_speed.IsZero())
 		{
-			enemy_animation = &up;
 
-			if (position.x > App->player->position.x)
+			if (App->player->position.y < position.y)
 			{
-				if (App->player->position.x > position.x - 50 && App->player->position.x < position.x)
+				if (hit)
+					enemy_animation = &hit_up;
+				else enemy_animation = &up;
+
+				if (position.x > App->player->position.x)
 				{
-					enemy_animation = &midle_up_left_top;
+					if (App->player->position.x > position.x - 50 && App->player->position.x < position.x)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_up_left_top;
+						else enemy_animation = &midle_up_left_top;
+					}
+					if (App->player->position.x > position.x - 100 && App->player->position.x <= position.x - 50)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_up_left;
+						else enemy_animation = &midle_up_left;
+					}
+					if (App->player->position.x >= -2 && App->player->position.x <= position.x - 100)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_up_left_bot;
+						else enemy_animation = &midle_up_left_bot;
+					}
 				}
-				if (App->player->position.x > position.x - 100 && App->player->position.x <= position.x - 50)
+
+
+				if (position.x < App->player->position.x)
 				{
-					enemy_animation = &midle_up_left;
+					if (App->player->position.x > position.x + 50 && App->player->position.x < position.x + 100)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_up_right_top;
+						else enemy_animation = &midle_up_right_top;
+					}
+					if (App->player->position.x >= position.x + 100 && App->player->position.x < position.x + 120)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_up_right;
+						else enemy_animation = &midle_up_right;
+					}
+					if (App->player->position.x >= position.x + 120)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_up_right_bot;
+						else enemy_animation = &midle_up_right_bot;
+					}
 				}
-				if (App->player->position.x >= -2 && App->player->position.x <= position.x - 100)
+			}
+			if (App->player->position.y > position.y)
+			{
+				if (hit)
+					enemy_animation = &hit_down;
+				else enemy_animation = &down;
+
+				if (position.x > App->player->position.x)
 				{
-					enemy_animation = &midle_up_left_bot;
+					if (App->player->position.x > position.x - 50 && App->player->position.x < position.x)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_down_left_bot;
+						else enemy_animation = &midle_down_left_bot;
+					}
+					if (App->player->position.x > position.x - 100 && App->player->position.x <= position.x - 50)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_down_left;
+						else enemy_animation = &midle_down_left;
+					}
+					if (App->player->position.x >= -2 && App->player->position.x <= position.x - 100)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_down_left_top;
+						else enemy_animation = &midle_down_left_top;
+					}
+				}
+
+				if (position.x < App->player->position.x)
+				{
+					if (App->player->position.x > position.x + 50 && App->player->position.x < position.x + 100)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_down_right_bot;
+						else enemy_animation = &midle_down_right_bot;
+					}
+					if (App->player->position.x >= position.x + 100 && App->player->position.x < position.x + 120)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_down_right;
+						else enemy_animation = &midle_down_right;
+					}
+					if (App->player->position.x >= position.x + 120)
+					{
+						if (hit)
+							enemy_animation = &hit_midle_down_right_top;
+						else enemy_animation = &midle_down_right_top;
+					}
+				}
+
+			}
+			if (App->player->position.x < position.x && App->player->position.y < position.y + 5 && App->player->position.y > position.y - 5)
+			{
+				if (hit)
+					enemy_animation = &hit_left;
+				else enemy_animation = &left;
+			}
+			if (App->player->position.x > position.x + collider->rect.w && App->player->position.y < position.y + 5 && App->player->position.y > position.y - 5)
+			{
+				if (hit)
+					enemy_animation = &hit_right;
+				else enemy_animation = &right;
+			}
+		}
+		else
+		{
+			if (App->player->position.y < position.y)
+			{
+				if (hit)
+					enemy_animation = &hit_up;
+				else enemy_animation = &mov_up;
+				if (App->player->position.x <= position.x - 50)
+				{
+					if (hit)
+						enemy_animation = &hit_midle_up_left;
+					else enemy_animation = &mov_up_left;
+				}
+				if (App->player->position.x >= position.x + 50)
+				{
+					if (hit)
+						enemy_animation = &hit_midle_up_right;
+					else enemy_animation = &mov_up_right;
+				}
+
+			}
+
+			if (App->player->position.y > position.y)
+			{
+				if (hit)
+					enemy_animation = &hit_down;
+				else enemy_animation = &mov_down;
+				if (App->player->position.x <= position.x - 50)
+				{
+					if (hit)
+						enemy_animation = &hit_midle_down_left;
+					else enemy_animation = &mov_down_left;
+				}
+				if (App->player->position.x >= position.x + 50)
+				{
+					if (hit)
+						enemy_animation = &hit_midle_up_right;
+					else enemy_animation = &mov_down_right;
 				}
 			}
 
-
-			if (position.x < App->player->position.x)
+			if (App->player->position.x < position.x && App->player->position.y < position.y + 10 && App->player->position.y > position.y - 10)
 			{
-				if (App->player->position.x > position.x + 50 && App->player->position.x < position.x + 100)
-				{
-					enemy_animation = &midle_up_right_top;
-				}
-				if (App->player->position.x >= position.x + 100 && App->player->position.x < position.x + 120)
-				{
-					enemy_animation = &midle_up_right;
-				}
-				if (App->player->position.x >= position.x + 120)
-				{
-					enemy_animation = &midle_up_right_bot;
-				}
+				if (hit)
+					enemy_animation = &hit_left;
+				else enemy_animation = &mov_left;
+			}
+			if (App->player->position.x > position.x + collider->rect.w && App->player->position.y < position.y + 10 && App->player->position.y > position.y - 10)
+			{
+				if (hit)
+					enemy_animation = &hit_right;
+				else enemy_animation = &mov_right;
 			}
 		}
-		if (App->player->position.y > position.y)
-		{
-			enemy_animation = &down;
-
-			if (position.x > App->player->position.x)
-			{
-				if (App->player->position.x > position.x - 50 && App->player->position.x < position.x)
-				{
-					enemy_animation = &midle_down_left_bot;
-				}
-				if (App->player->position.x > position.x - 100 && App->player->position.x <= position.x - 50)
-				{
-					enemy_animation = &midle_down_left;
-				}
-				if (App->player->position.x >= -2 && App->player->position.x <= position.x - 100)
-				{
-					enemy_animation = &midle_down_left_top;
-				}
-			}
-
-			if (position.x < App->player->position.x)
-			{
-				if (App->player->position.x > position.x + 50 && App->player->position.x < position.x + 100)
-				{
-					enemy_animation = &midle_down_right_bot;
-				}
-				if (App->player->position.x >= position.x + 100 && App->player->position.x < position.x + 120)
-				{
-					enemy_animation = &midle_down_right;
-				}
-				if (App->player->position.x >= position.x + 120)
-				{
-					enemy_animation = &midle_down_right_top;
-				}
-			}
-
-		}
-		if (App->player->position.x < position.x && App->player->position.y < position.y + 5 && App->player->position.y > position.y - 5)
-		{
-			enemy_animation = &left;
-		}
-		if (App->player->position.x > position.x + collider->rect.w && App->player->position.y < position.y + 5 && App->player->position.y > position.y - 5)
-		{
-			enemy_animation = &right;
-		}
-	}
-	else
-	{
-		if (App->player->position.y < position.y)
-		{
-			enemy_animation = &mov_up;
-			if (App->player->position.x <= position.x - 50) enemy_animation = &mov_up_left;
-			if (App->player->position.x >= position.x + 50) enemy_animation = &mov_up_right;
-
-		}
-
-		if (App->player->position.y > position.y)
-		{
-			enemy_animation = &mov_down;
-			if (App->player->position.x <= position.x - 50) enemy_animation = &mov_down_left;
-			if (App->player->position.x >= position.x + 50) enemy_animation = &mov_down_right;
-		}
-
-		if (App->player->position.x < position.x && App->player->position.y < position.y + 10 && App->player->position.y > position.y - 10)
-		{
-			enemy_animation = &mov_left;
-		}
-		if (App->player->position.x > position.x + collider->rect.w && App->player->position.y < position.y + 10 && App->player->position.y > position.y - 10)
-		{
-			enemy_animation = &mov_right;
-		}
-
-
-	}
+	
 }
 
 bool ENEMY_Blue_Robot::Is_Dead()
@@ -309,4 +389,18 @@ bool ENEMY_Blue_Robot::Is_Dead()
 		return true;
 	}
 	return false;
+}
+
+void ENEMY_Blue_Robot::hitmarker()
+{
+	hit = true;
+}
+
+void ENEMY_Blue_Robot::return_from_hitmarker()
+{
+	if (current_time >= delay + return_idle)
+	{
+		hit = false;
+		return_idle = current_time;
+	}
 }
