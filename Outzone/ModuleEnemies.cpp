@@ -18,7 +18,7 @@
 #include "OBJECT_Upgrade.h"
 #include "ModulePlayer.h"
 #include "ModuleInterfice.h"
-#define SPAWN_MARGIN 150
+#define SPAWN_MARGIN 200
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -72,6 +72,8 @@ update_status ModuleEnemies::Update()
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	if (enemies[i] != nullptr) enemies[i]->Attack();
 
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->return_from_hitmarker();
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
@@ -86,8 +88,7 @@ update_status ModuleEnemies::Update()
 			
 	}
 
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-		if (enemies[i] != nullptr) enemies[i]->return_from_hitmarker();
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -163,14 +164,14 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 	{
 		switch (info.type)
 		{
+		case ENEMY_TYPES::CAR:
+			enemies[i] = new ENEMY_Car(info.x, info.y);
+			break;
 		case ENEMY_TYPES::BASIC_ROBOT:
 			enemies[i] = new ENEMY_Basic_Robot(info.x, info.y, info.movement_type);
 			break;
 		case ENEMY_TYPES::TINY_TURRET:
 			enemies[i] = new ENEMY_Tiny_Turret(info.x, info.y);
-			break;
-		case ENEMY_TYPES::CAR:
-			enemies[i] = new ENEMY_Car(info.x, info.y);
 			break;
 		case ENEMY_TYPES::BIG_TURRET_LEFT:
 			enemies[i] = new ENEMY_Big_Turret_Left(info.x, info.y);
@@ -208,7 +209,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				enemies[i] = nullptr;
 				break;
 			}
-			else if (c1->type == COLLIDER_ENEMY && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
+			else if (c1->type == COLLIDER_ENEMY  && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 			{
 				if (enemies[i]->live > 0)
 				{
@@ -220,9 +221,15 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					}
 					else enemies[i]->live -= 2;
 				    //enemies change to green
-					if (enemies[i]->enemy_type == CAR) enemies[i]->hitmarker();
+					if (enemies[i]->enemy_type == CAR)
+					{
+						enemies[i]->hitmarker();
+						App->interfice->score += 20;
+					}
 					if (enemies[i]->enemy_type == BIG_TURRET_RIGHT) enemies[i]->hitmarker();
 					if (enemies[i]->enemy_type == BIG_TURRET_LEFT) enemies[i]->hitmarker();
+					if (enemies[i]->enemy_type == BASIC_ROBOT) enemies[i]->hitmarker();
+					if (enemies[i]->enemy_type == BEATLE) enemies[i]->hitmarker();
 				
 				}
 			}

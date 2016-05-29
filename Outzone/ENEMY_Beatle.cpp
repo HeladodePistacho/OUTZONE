@@ -26,7 +26,7 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 
 	movement.speed = 0.32f;
 
-	
+	hit.PushBack({ 0, 816, 44, 41 });
 
 	enemy_animation = &movement;
 
@@ -123,6 +123,7 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 
 
 	//enemy type
+	delay = 170;
 	live = 10;
 	enemy_type = BEATLE;
 	
@@ -159,4 +160,22 @@ bool ENEMY_Beatle::Is_Dead()
 	}
 	return false;
 
+}
+
+void ENEMY_Beatle::hitmarker()
+{
+	if (enemy_animation != &hit)
+		enemy_animation = &hit;
+}
+
+void ENEMY_Beatle::return_from_hitmarker()
+{
+	if (enemy_animation != &movement)
+	{
+		if (current_time >= delay + return_idle)
+		{
+			enemy_animation = &movement;
+			return_idle = current_time;
+		}
+	}
 }

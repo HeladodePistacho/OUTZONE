@@ -11,7 +11,7 @@ private:
 
 	//statik animations
 	Animation movement;
-	Animation shoot;
+	Animation hit;
 
 	MOVEMENT_TYPES basic_robot_movement;
 
@@ -28,6 +28,11 @@ public:
 	void Move();
 	void Attack();
 	bool Is_Dead();
+	void hitmarker();
+	void return_from_hitmarker();
+
+	int delay;
+	int return_idle = 0;
 };
 
 #endif

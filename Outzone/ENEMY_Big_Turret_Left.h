@@ -23,7 +23,6 @@ public:
 
 	int return_idle = 0;
 	int delay;
-
 };
 
 #endif

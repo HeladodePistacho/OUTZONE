@@ -41,6 +41,7 @@ public:
 	virtual void return_from_hitmarker(){};
 
 	int live;
+	
 
 };
 
