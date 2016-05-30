@@ -44,8 +44,8 @@ ENEMY_Car::ENEMY_Car(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), car_movem
 
 	//DROP DATA
 	last_spawn = 0;
-	spawn_rate = 1000;
-	capacity = 5;
+	spawn_rate = 800;
+	capacity = 6;
 	//ROAD DATA
 	last_road = 0;
 	road_rate = 300;
@@ -61,9 +61,11 @@ ENEMY_Car::ENEMY_Car(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), car_movem
 void ENEMY_Car::Move()
 {
 	current_time = SDL_GetTicks();
-	if (path.current_speed.y == 0){
+	if (path.current_speed.y == 0)
+	{
 		App->volumes->AddVolume(App->volumes->car_cover, position.x + 4, position.y);
 		enemy_animation = &stoped;
+		
 	}
 	else{
 		App->volumes->AddVolume(App->volumes->car_cover, position.x + 4, position.y + 1);
@@ -80,13 +82,28 @@ void ENEMY_Car::Move()
 
 void ENEMY_Car::Drop(){
 	current_time = SDL_GetTicks();
-	if (current_time > last_spawn + spawn_rate && enemy_animation == &down){
-		if (capacity == 1){
-			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::NO_MOVEMENT); //Add red enemy
-		}
-		else{
-			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::NO_MOVEMENT);
-		}
+	if (current_time > last_spawn + spawn_rate && enemy_animation == &stoped)
+	{
+		if (car_movement == CAR_TYPE_1)
+		{
+		if (capacity == 1)
+			App->enemies->AddEnemy(ENEMY_TYPES::RED_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::GET_OUT_CAR_6); //Add red enemy
+	
+		if (capacity == 6)
+			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::GET_OUT_CAR_1);
+
+		if (capacity == 5)
+			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y , MOVEMENT_TYPES::GET_OUT_CAR_2);
+
+		if (capacity == 4)
+			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::GET_OUT_CAR_3);
+
+		if (capacity == 3)
+			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::GET_OUT_CAR_4);
+		
+		if (capacity == 2)
+			App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, position.x + 20, position.y, MOVEMENT_TYPES::GET_OUT_CAR_5);
+	}
 		last_spawn = current_time;
 		capacity--;
 	}

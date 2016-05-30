@@ -107,6 +107,10 @@ bool Module_lvl_1::Start()
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 8, -496, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 33, -472, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
 		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 68, -487, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
+
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 0, -710, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 25, -686, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
+		App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 60, -701, MOVEMENT_TYPES::TYPE_DOWN_RIGHT);
 	
 		//OBJECTS
 		//Energy
@@ -151,6 +155,7 @@ bool Module_lvl_1::Start()
 
 
 		//Car
+		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 35, -850, MOVEMENT_TYPES::CAR_TYPE_1);
 		//App->enemies->AddEnemy(ENEMY_TYPES::CAR, 150, -200);
 
 		//BIG TURRETS
@@ -208,7 +213,7 @@ bool Module_lvl_1::Start()
 		// App->enemies->AddEnemy(ENEMY_TYPES::BASIC_ROBOT, 150, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 		// App->enemies->AddEnemy(ENEMY_TYPES::GOLDEN_TURRET, 50, 100, MOVEMENT_TYPES::NO_MOVEMENT);
 
-		App->enemies->AddEnemy(ENEMY_TYPES::CAR, 35, -850, MOVEMENT_TYPES::CAR_TYPE_1);
+		
 
 	
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 50, 50);

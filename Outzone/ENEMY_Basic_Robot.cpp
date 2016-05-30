@@ -129,6 +129,36 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(
 		path.PushBack({ 0.0f, 0.0f }, 100, anim);
 		path.PushBack({ -0.5f, 0.75f }, 500, anim);
 	}
+	if (basic_robot_movement == GET_OUT_CAR_1)
+	{
+		
+		path.PushBack({ 0.8f, 0.0f }, 190, anim);
+		path.PushBack({ 0.0f, 0.0f }, 2000, anim);
+	}
+	if (basic_robot_movement == GET_OUT_CAR_2)
+	{
+		path.PushBack({ 0.0f, -0.8f }, 50, anim);
+		path.PushBack({ 0.8f, 0.0f }, 150, anim);
+		path.PushBack({ 0.0f, 0.0f }, 2000, anim);
+	}
+	if (basic_robot_movement == GET_OUT_CAR_3)
+	{
+		path.PushBack({ 0.0f, -0.8f }, 50, anim);
+		path.PushBack({ 0.8f, 0.0f }, 110, anim);
+		path.PushBack({ 0.0f, 0.0f }, 2000, anim);
+	}
+	if (basic_robot_movement == GET_OUT_CAR_4)
+	{
+		path.PushBack({ 0.0f, -0.8f }, 50, anim);
+		path.PushBack({ 0.8f, 0.0f }, 70, anim);
+		path.PushBack({ 0.0f, 0.0f }, 2000, anim);
+	}
+	if (basic_robot_movement == GET_OUT_CAR_5)
+	{
+		path.PushBack({ 0.0f, -0.8f }, 50, anim);
+		path.PushBack({ 0.8f, 0.0f }, 30, anim);
+		path.PushBack({ 0.0f, 0.0f }, 2000, anim);
+	}
 
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
@@ -137,7 +167,7 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(
 	
 
 	//enemy type
-	delay = 150;
+	delay = 100;
 	live = 2;
 	enemy_type = BASIC_ROBOT;
 }
