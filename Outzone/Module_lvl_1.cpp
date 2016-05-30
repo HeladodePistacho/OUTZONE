@@ -126,10 +126,7 @@ bool Module_lvl_1::Start()
 		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 200, -2095);
 		App->objects->AddObject(OBJECT_TYPES::CHANGE_BOX, 205, -3205);
 
-		
-
-
-		
+	
 		//App->objects->AddObject(OBJECT_TYPES::UPGRADE, 60, 150);
 
 		//Turret

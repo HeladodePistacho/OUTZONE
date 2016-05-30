@@ -162,12 +162,12 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(
 
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	fire_rate = 1000;
+	fire_rate = 2000;
 	last_time = 0;
 	
 
 	//enemy type
-	delay = 100;
+	delay = 50;
 	live = 2;
 	enemy_type = BASIC_ROBOT;
 }
@@ -188,7 +188,7 @@ void ENEMY_Basic_Robot::Attack()
 	int caos = -20 + rand() % 70;
 
 	current_time = SDL_GetTicks();
-	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y) && position.x > 0 && position.x < 240)
+	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y - 100) && position.x > 0 && position.x < 240)
 	{
 		//find angle
 		float angle = atan2((position.y - App->player->position.y), (position.x - App->player->position.x - caos));
