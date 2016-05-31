@@ -11,6 +11,7 @@ private:
 
 	//statik animations
 	Animation movement;
+	Animation shoot;
 	Animation hit;
 
 	MOVEMENT_TYPES basic_robot_movement;

@@ -12,17 +12,11 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 
 	movement.PushBack({ 0, 760, 44, 41 });
 	movement.PushBack({ 52, 760, 46, 47 });
-	movement.PushBack({ 0, 760, 44, 41 });
-	movement.PushBack({ 52, 760, 46, 47 });
-	movement.PushBack({ 0, 760, 44, 41 });
-	movement.PushBack({ 52, 760, 46, 47 });
-	movement.PushBack({ 0, 760, 44, 41 });
-	movement.PushBack({ 52, 760, 46, 47 });
-	movement.PushBack({ 0, 760, 44, 41 });
-	movement.PushBack({ 52, 760, 46, 47 });
-	movement.PushBack({ 106, 760, 46, 47 });
-	movement.PushBack({ 163, 760, 45, 46 });
-	movement.PushBack({ 219, 760, 46, 47 });
+	
+	shoot.PushBack({ 106, 760, 46, 47 });
+	shoot.PushBack({ 163, 760, 45, 46 });
+	shoot.PushBack({ 219, 760, 46, 47 });
+	shoot.speed = 0.32f;
 
 	movement.speed = 0.32f;
 
@@ -56,9 +50,189 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 	}
 		
 	//Path2
-	if (basic_robot_movement == TYPE_CIRCLE)
+	if (basic_robot_movement == TYPE_CIRCLE_1)
 	{
 		path.PushBack({ 2.0f, 0.0f }, 45, anim);
+		path.PushBack({ 1.975f, 0.312f }, 7, anim);
+		path.PushBack({ 1.902f, 0.618f }, 7, anim);
+		path.PushBack({ 1.782f, 0.907f }, 7, anim);
+		path.PushBack({ 1.618f, 1.175f }, 7, anim);
+		path.PushBack({ 1.414f, 1.414f }, 7, anim);
+		path.PushBack({ 1.175f, 1.618f }, 7, anim);
+		path.PushBack({ 0.907f, 1.782f }, 7, anim);
+		path.PushBack({ 0.312f, 1.975f }, 7, anim);
+
+		path.PushBack({ -0.312f, 1.975f }, 7, anim);
+		path.PushBack({ -0.618f, 1.902f }, 7, anim);
+		path.PushBack({ -1.175f, 1.618f }, 7, anim);
+		path.PushBack({ -1.414f, 1.414f }, 7, anim);
+		path.PushBack({ -1.618f, 1.175f }, 7, anim);
+		path.PushBack({ -1.782f, 0.907f }, 7, anim);
+		path.PushBack({ -1.902f, 0.618f }, 7, anim);
+		path.PushBack({ -1.975f, 0.312f }, 7, anim);
+
+		path.PushBack({ -1.975f, -0.312f }, 7, anim);
+		path.PushBack({ -1.902f, -0.618f }, 7, anim);
+		path.PushBack({ -1.782f, -0.907f }, 7, anim);
+		path.PushBack({ -1.618f, -1.175f }, 7, anim);
+		path.PushBack({ -1.414f, -1.414f }, 7, anim);
+		path.PushBack({ -1.175f, -1.618f }, 7, anim);
+		path.PushBack({ -0.907f, -1.782f }, 7, anim);
+		path.PushBack({ -0.312f, -1.975f }, 7, anim);
+
+		path.PushBack({ 0.312f, -1.975f }, 7, anim);
+		path.PushBack({ 0.618f, -1.902f }, 7, anim);
+		path.PushBack({ 1.175f, -1.618f }, 7, anim);
+		path.PushBack({ 1.414f, -1.414f }, 7, anim);
+		path.PushBack({ 1.618f, -1.175f }, 7, anim);
+		path.PushBack({ 1.782f, -0.907f }, 7, anim);
+		path.PushBack({ 1.902f, -0.618f }, 7, anim);
+		path.PushBack({ 1.975f, -0.312f }, 7, anim);
+
+		path.PushBack({ 1.975f, 0.312f }, 7, anim);
+		path.PushBack({ 1.902f, 0.618f }, 7, anim);
+		path.PushBack({ 1.782f, 0.907f }, 7, anim);
+		path.PushBack({ 1.618f, 1.175f }, 7, anim);
+		path.PushBack({ 1.414f, 1.414f }, 7, anim);
+		path.PushBack({ 1.175f, 1.618f }, 7, anim);
+		path.PushBack({ 0.907f, 1.782f }, 7, anim);
+		path.PushBack({ 0.312f, 1.975f }, 7, anim);
+
+		path.PushBack({ -0.312f, 1.975f }, 7, anim);
+		path.PushBack({ -0.618f, 1.902f }, 7, anim);
+		path.PushBack({ -1.175f, 1.618f }, 7, anim);
+		path.PushBack({ -1.414f, 1.414f }, 7, anim);
+		path.PushBack({ -1.618f, 1.175f }, 7, anim);
+		path.PushBack({ -1.782f, 0.907f }, 7, anim);
+		path.PushBack({ -1.902f, 0.618f }, 7, anim);
+		path.PushBack({ -1.975f, 0.312f }, 7, anim);
+
+		path.PushBack({ -2.0f, 0.0f }, 200, anim);
+	}
+
+	if (basic_robot_movement == TYPE_CIRCLE_2)
+	{
+		path.PushBack({ 2.0f, 0.0f }, 75, anim);
+		path.PushBack({ 1.975f, 0.312f }, 7, anim);
+		path.PushBack({ 1.902f, 0.618f }, 7, anim);
+		path.PushBack({ 1.782f, 0.907f }, 7, anim);
+		path.PushBack({ 1.618f, 1.175f }, 7, anim);
+		path.PushBack({ 1.414f, 1.414f }, 7, anim);
+		path.PushBack({ 1.175f, 1.618f }, 7, anim);
+		path.PushBack({ 0.907f, 1.782f }, 7, anim);
+		path.PushBack({ 0.312f, 1.975f }, 7, anim);
+
+		path.PushBack({ -0.312f, 1.975f }, 7, anim);
+		path.PushBack({ -0.618f, 1.902f }, 7, anim);
+		path.PushBack({ -1.175f, 1.618f }, 7, anim);
+		path.PushBack({ -1.414f, 1.414f }, 7, anim);
+		path.PushBack({ -1.618f, 1.175f }, 7, anim);
+		path.PushBack({ -1.782f, 0.907f }, 7, anim);
+		path.PushBack({ -1.902f, 0.618f }, 7, anim);
+		path.PushBack({ -1.975f, 0.312f }, 7, anim);
+
+		path.PushBack({ -1.975f, -0.312f }, 7, anim);
+		path.PushBack({ -1.902f, -0.618f }, 7, anim);
+		path.PushBack({ -1.782f, -0.907f }, 7, anim);
+		path.PushBack({ -1.618f, -1.175f }, 7, anim);
+		path.PushBack({ -1.414f, -1.414f }, 7, anim);
+		path.PushBack({ -1.175f, -1.618f }, 7, anim);
+		path.PushBack({ -0.907f, -1.782f }, 7, anim);
+		path.PushBack({ -0.312f, -1.975f }, 7, anim);
+
+		path.PushBack({ 0.312f, -1.975f }, 7, anim);
+		path.PushBack({ 0.618f, -1.902f }, 7, anim);
+		path.PushBack({ 1.175f, -1.618f }, 7, anim);
+		path.PushBack({ 1.414f, -1.414f }, 7, anim);
+		path.PushBack({ 1.618f, -1.175f }, 7, anim);
+		path.PushBack({ 1.782f, -0.907f }, 7, anim);
+		path.PushBack({ 1.902f, -0.618f }, 7, anim);
+		path.PushBack({ 1.975f, -0.312f }, 7, anim);
+
+		path.PushBack({ 1.975f, 0.312f }, 7, anim);
+		path.PushBack({ 1.902f, 0.618f }, 7, anim);
+		path.PushBack({ 1.782f, 0.907f }, 7, anim);
+		path.PushBack({ 1.618f, 1.175f }, 7, anim);
+		path.PushBack({ 1.414f, 1.414f }, 7, anim);
+		path.PushBack({ 1.175f, 1.618f }, 7, anim);
+		path.PushBack({ 0.907f, 1.782f }, 7, anim);
+		path.PushBack({ 0.312f, 1.975f }, 7, anim);
+
+		path.PushBack({ -0.312f, 1.975f }, 7, anim);
+		path.PushBack({ -0.618f, 1.902f }, 7, anim);
+		path.PushBack({ -1.175f, 1.618f }, 7, anim);
+		path.PushBack({ -1.414f, 1.414f }, 7, anim);
+		path.PushBack({ -1.618f, 1.175f }, 7, anim);
+		path.PushBack({ -1.782f, 0.907f }, 7, anim);
+		path.PushBack({ -1.902f, 0.618f }, 7, anim);
+		path.PushBack({ -1.975f, 0.312f }, 7, anim);
+
+		path.PushBack({ -2.0f, 0.0f }, 200, anim);
+	}
+
+	if (basic_robot_movement == TYPE_CIRCLE_3)
+	{
+		path.PushBack({ 2.0f, 0.0f }, 120, anim);
+		path.PushBack({ 1.975f, 0.312f }, 7, anim);
+		path.PushBack({ 1.902f, 0.618f }, 7, anim);
+		path.PushBack({ 1.782f, 0.907f }, 7, anim);
+		path.PushBack({ 1.618f, 1.175f }, 7, anim);
+		path.PushBack({ 1.414f, 1.414f }, 7, anim);
+		path.PushBack({ 1.175f, 1.618f }, 7, anim);
+		path.PushBack({ 0.907f, 1.782f }, 7, anim);
+		path.PushBack({ 0.312f, 1.975f }, 7, anim);
+
+		path.PushBack({ -0.312f, 1.975f }, 7, anim);
+		path.PushBack({ -0.618f, 1.902f }, 7, anim);
+		path.PushBack({ -1.175f, 1.618f }, 7, anim);
+		path.PushBack({ -1.414f, 1.414f }, 7, anim);
+		path.PushBack({ -1.618f, 1.175f }, 7, anim);
+		path.PushBack({ -1.782f, 0.907f }, 7, anim);
+		path.PushBack({ -1.902f, 0.618f }, 7, anim);
+		path.PushBack({ -1.975f, 0.312f }, 7, anim);
+
+		path.PushBack({ -1.975f, -0.312f }, 7, anim);
+		path.PushBack({ -1.902f, -0.618f }, 7, anim);
+		path.PushBack({ -1.782f, -0.907f }, 7, anim);
+		path.PushBack({ -1.618f, -1.175f }, 7, anim);
+		path.PushBack({ -1.414f, -1.414f }, 7, anim);
+		path.PushBack({ -1.175f, -1.618f }, 7, anim);
+		path.PushBack({ -0.907f, -1.782f }, 7, anim);
+		path.PushBack({ -0.312f, -1.975f }, 7, anim);
+
+		path.PushBack({ 0.312f, -1.975f }, 7, anim);
+		path.PushBack({ 0.618f, -1.902f }, 7, anim);
+		path.PushBack({ 1.175f, -1.618f }, 7, anim);
+		path.PushBack({ 1.414f, -1.414f }, 7, anim);
+		path.PushBack({ 1.618f, -1.175f }, 7, anim);
+		path.PushBack({ 1.782f, -0.907f }, 7, anim);
+		path.PushBack({ 1.902f, -0.618f }, 7, anim);
+		path.PushBack({ 1.975f, -0.312f }, 7, anim);
+
+		path.PushBack({ 1.975f, 0.312f }, 7, anim);
+		path.PushBack({ 1.902f, 0.618f }, 7, anim);
+		path.PushBack({ 1.782f, 0.907f }, 7, anim);
+		path.PushBack({ 1.618f, 1.175f }, 7, anim);
+		path.PushBack({ 1.414f, 1.414f }, 7, anim);
+		path.PushBack({ 1.175f, 1.618f }, 7, anim);
+		path.PushBack({ 0.907f, 1.782f }, 7, anim);
+		path.PushBack({ 0.312f, 1.975f }, 7, anim);
+
+		path.PushBack({ -0.312f, 1.975f }, 7, anim);
+		path.PushBack({ -0.618f, 1.902f }, 7, anim);
+		path.PushBack({ -1.175f, 1.618f }, 7, anim);
+		path.PushBack({ -1.414f, 1.414f }, 7, anim);
+		path.PushBack({ -1.618f, 1.175f }, 7, anim);
+		path.PushBack({ -1.782f, 0.907f }, 7, anim);
+		path.PushBack({ -1.902f, 0.618f }, 7, anim);
+		path.PushBack({ -1.975f, 0.312f }, 7, anim);
+
+		path.PushBack({ -2.0f, 0.0f }, 200, anim);
+	}
+
+	if (basic_robot_movement == TYPE_CIRCLE_4)
+	{
+		path.PushBack({ 2.0f, 0.0f }, 165, anim);
 		path.PushBack({ 1.975f, 0.312f }, 7, anim);
 		path.PushBack({ 1.902f, 0.618f }, 7, anim);
 		path.PushBack({ 1.782f, 0.907f }, 7, anim);
@@ -123,7 +297,7 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 
 
 	//enemy type
-	delay = 160;
+	delay = 100;
 	live = 10;
 	enemy_type = BEATLE;
 	
@@ -141,8 +315,13 @@ void ENEMY_Beatle::Attack()
 	
 	current_time = SDL_GetTicks();
 
+	if (current_time >= (last_time + (fire_rate - 100)))
+		enemy_animation = &shoot;
+
 	if (current_time >= last_time + fire_rate)
 	{
+		
+
 		App->particles->AddParticle(App->particles->missile_impact, position.x + 13, position.y + 25, COLLIDER_ENEMY_SHOT, ENEMY_MISSILE);
 		App->particles->AddParticle(App->particles->enemy_missile, position.x + 13, position.y + 20, COLLIDER_ENEMY_SHOT, ENEMY_MISSILE);
 		last_time = current_time;
@@ -170,7 +349,7 @@ void ENEMY_Beatle::hitmarker()
 
 void ENEMY_Beatle::return_from_hitmarker()
 {
-	if (enemy_animation != &movement)
+	if (enemy_animation != &movement || enemy_animation != &shoot)
 	{
 		if (current_time >= delay + return_idle)
 		{
