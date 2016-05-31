@@ -122,7 +122,7 @@ public:
 	int last_position = 220;
 	//God mode
 	bool god_mode = false;
-
+	bool count_mode = false;
 
 	//PLAYER FX
 	Mix_Chunk* laser_fx = nullptr;

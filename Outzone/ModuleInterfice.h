@@ -77,6 +77,47 @@ public:
 	//Counters
 	uint bombs_printed;
 	uint e_segments_printed;
+
+	//DEBUG COUNT MODE
+	//laser shots
+	char laser_text[14];
+	char* laser_shots = "LASER:";
+	char laser_count_text[6];
+	int laser_shots_count = 0;
+	//shotgun shots
+	char shotgun_text[16];
+	char* shotgun_shots = "SHOTGUN:";
+	char shotgun_count_text[6];
+	int shotgun_shots_count = 0;
+	//enemies defeated
+	char enemies_text[10];
+	char* enemies_defeated = "KILLS:";
+	char enemies_count_text[6];
+	int enemies_def_count = 0;
+	//enemies shots
+	char enemies_shots_text[12];
+	char* enemies_shots= "E.BULLETS:";
+	char enemies_shots_count_text[6];
+	int enemies_shots_count = 0;
+	//enemies spawns
+	char enemies_spawns_text[12];
+	char* enemies_spawns = "E.ALIVE:";
+	char enemies_spawns_count_text[6];
+	int enemies_init_spawns_count = 0;
+
+	//timing
+	char time_count_text[14];
+	char time_text[6];
+	char*time = "TIME";
+	int initial_time = 0;
+	int crone_time = 0;
+	int ratio = 1000;
+	int seconds = 0;
+	int decimes = 0;
+	int minutes = 0;
+
+	//debug used font
+	int debug_font = -1;
 };
 
 #endif

@@ -123,6 +123,7 @@ bool ENEMY_Golden_Turret::Is_Dead()
 	{
 		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x - 10, position.y - 2, COLLIDER_NONE, UNDEFINED);
 		App->interfice->score += 290;
+		App->interfice->enemies_def_count++;
 		return true;
 	}
 	return false;

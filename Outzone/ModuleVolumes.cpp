@@ -158,7 +158,7 @@ Volume::Volume()
 }
 
 Volume::Volume(const Volume& p):
-volume_sprite(p.volume_sprite), position(p.position)
+volume_sprite(p.volume_sprite), position(p.position), type(p.type)
 {}
 
 Volume::~Volume()

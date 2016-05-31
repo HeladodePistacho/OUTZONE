@@ -6,7 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
-
+#include "ModuleInterfice.h"
 #include "SDL/include/SDL_timer.h"
 
 ModuleParticles::ModuleParticles()
@@ -627,6 +627,9 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->position.x = x;
 			p->position.y = y;
 			p->type = particle_type;
+			if (particle_type == PARTICLE_TYPE::LASER_SHOT){ App->interfice->laser_shots_count++; }
+			if (particle_type == PARTICLE_TYPE::SHOTGUN_SHOT){ App->interfice->shotgun_shots_count++; }
+			if (particle_type == PARTICLE_TYPE::ENEMY_SHOT || particle_type == PARTICLE_TYPE::ENEMY_BIG_SHOT || particle_type == PARTICLE_TYPE::ENEMY_MISSILE){ App->interfice->enemies_shots_count++; }
 			if (collider_type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;

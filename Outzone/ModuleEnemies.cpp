@@ -150,7 +150,7 @@ bool ModuleEnemies::CleanUp()
 bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, MOVEMENT_TYPES m_type)
 {
 	bool ret = false;
-
+	App->interfice->enemies_init_spawns_count++;
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (queue[i].type == ENEMY_TYPES::NO_TYPE)

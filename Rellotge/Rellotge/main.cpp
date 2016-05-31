@@ -6,7 +6,7 @@ int main()
 {
 	
 	int initial_time = 0;
-	int current_time = 0;
+	int crone_time = 0;
 	int ratio = 1000;
 
 	int seconds = 0;
@@ -15,9 +15,9 @@ int main()
 
 	while (1)
 	{
-		int current_time = GetTickCount();
+		int crone_time = GetTickCount();
 
-		if (current_time >= (initial_time + ratio))
+		if (crone_time >= (initial_time + ratio))
 		{
 			
 			printf("%i:%i%i\n", minutes, decimes, seconds);
@@ -36,7 +36,7 @@ int main()
 			}
 
 			
-			initial_time = current_time;		
+			initial_time = crone_time;
 		}
 		
 	}

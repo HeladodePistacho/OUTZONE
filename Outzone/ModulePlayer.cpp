@@ -591,6 +591,7 @@ update_status ModulePlayer::Update()
 
 		//Update Player Collider Position-----------------------
 
+		//Debug Modes-------------------------------------------
 		if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN)
 		{
 			if (god_mode) god_mode = false;
@@ -603,6 +604,10 @@ update_status ModulePlayer::Update()
 		}
 		else body->SetPos(position.x + 5, position.y + 5);
 		
+		if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN){
+			if (count_mode) count_mode = false;
+			else count_mode = true;
+		}
 
 		//Update the energy of the player----------------------------
 		if (current_time > last_segment + energy_segment_live && App->interfice->energy > 0){

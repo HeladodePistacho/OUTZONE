@@ -309,7 +309,7 @@ bool Module_lvl_1::Start()
 		//App->objects->AddObject(OBJECT_TYPES::ENERGY_BOX, 150, 50);
 		
 
-
+		App->interfice->last_alert = App->player->current_time;
 
 	return true;
 }
@@ -334,6 +334,8 @@ update_status Module_lvl_1::Update()
 
 bool Module_lvl_1::CleanUp()
 {
+
+	App->player->count_mode = false;
 	LOG("Unloading lvl 1 stage");
 	//DisableMusic
 	Mix_FadeOutMusic(500);

@@ -401,6 +401,7 @@ bool ENEMY_Blue_Robot::Is_Dead()
 	{
 		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x, position.y, COLLIDER_NONE, UNDEFINED);
 		App->interfice->score += 390;
+		App->interfice->enemies_def_count++;
 		return true;
 	}
 	return false;

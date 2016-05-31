@@ -8,8 +8,10 @@
 #include "ModuleFonts.h"
 #include "Module_lvl_1.h"
 #include "Module_Welcome.h"
+#include "ModuleVolumes.h"
 #include <stdio.h>
-
+#include <Windows.h>
+//#include <stdlib.h>
 ModuleInterfice::ModuleInterfice()
 {
 	for (uint i = 0; i < MAX_ELEMENTS; ++i)
@@ -46,7 +48,7 @@ ModuleInterfice::ModuleInterfice()
 
 	//Alerts timming
 	last_alert = 0;
-	alert_rate = 1000;
+	alert_rate = 6500;
 	last_energy_alert = 0;
 	energy_alert_rate = 800;
 }
@@ -77,6 +79,16 @@ ModuleInterfice::~ModuleInterfice()
 
 bool ModuleInterfice::Start()
 {
+	seconds = 0;
+	decimes = 0;
+	minutes = 0;
+	initial_time = 0;
+	crone_time = 0;
+	enemies_init_spawns_count = 0;
+	enemies_shots_count = 0;
+	enemies_def_count = 0;
+	shotgun_shots_count = 0;
+	laser_shots_count = 0;
 	sprites = App->textures->Load("interfice.png");
 	if (App->lvl_1->IsEnabled()){
 		//Energy bar
@@ -96,6 +108,12 @@ bool ModuleInterfice::Start()
 		//Player 1 title
 		App->interfice->AddElement(25, 2, p1_title);
 	}
+	//score_font
+	score_font = App->fonts->Load("Interfice_font.png", "0123456789", 1);
+	//lives font
+	lives_font = App->fonts->Load("Lives_font.png", "012", 1);
+	//debug font
+	debug_font = App->fonts->Load("debug_font.png", "!*#$%&`()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[[]|`", 1);
 	return true;
 }
 
@@ -103,8 +121,39 @@ bool ModuleInterfice::Start()
 // Called before render is available
 update_status ModuleInterfice::Update()
 {
+	{
+		int crone_time = GetTickCount();
+
+		if (crone_time >= (initial_time + ratio))
+		{
+			seconds++;
+
+			if (seconds > 9)
+			{
+				seconds = 0;
+				++decimes;
+			}
+
+			if (decimes > 5)
+			{
+				decimes = 0;
+				++minutes;
+			}
+
+
+			initial_time = crone_time;
+		}
+	}
+
 	if (IsEnabled()){
 		if (App->lvl_1->IsEnabled()){
+
+			//DROP BOMB 
+			if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->interfice->bombs > 0){
+				App->volumes->AddVolume(App->volumes->bomb, 0, 0);
+				App->interfice->bombs--;
+			}
+
 			//Bombs data
 			bombs_printed = 0;
 			uint mark = 8;
@@ -168,6 +217,54 @@ update_status ModuleInterfice::Update()
 			//lives
 			sprintf_s(lives_text, 4, "%i", lives);
 			App->fonts->Blit(15, 2, lives_font, lives_text);
+
+			
+		}
+		if (App->player->count_mode){
+			//DEBUG------------------------------------------------------
+			//time title
+			sprintf_s(time_text, 6, "%s", time);
+			App->fonts->Blit(36, 50 + 190, debug_font, time_text);
+			//time number
+			sprintf_s(time_count_text, 14, "%i:%i%i", minutes, decimes, seconds);
+			App->fonts->Blit(120, 50 + 190, debug_font, time_count_text);
+
+			//laser shots title
+			sprintf_s(laser_text, 14, "%s", laser_shots);
+			App->fonts->Blit(54, 60 + 190, debug_font, laser_text);
+			//laser shots number
+			sprintf_s(laser_count_text, 6, "%i", laser_shots_count);
+			App->fonts->Blit(120, 60 + 190, debug_font, laser_count_text);
+
+			//shotgun shots title
+			sprintf_s(shotgun_text, 16, "%s", shotgun_shots);
+			App->fonts->Blit(72, 70 + 190, debug_font, shotgun_text);
+			//shotgun shots number
+			sprintf_s(shotgun_count_text, 6, "%i", shotgun_shots_count);
+			App->fonts->Blit(120, 70 + 190, debug_font, shotgun_count_text);
+
+			//kills title
+			sprintf_s(enemies_text, 10, "%s", enemies_defeated);
+			App->fonts->Blit(54, 80 + 190, debug_font, enemies_text);
+			//kills number
+			sprintf_s(enemies_count_text, 6, "%i", enemies_def_count);
+			App->fonts->Blit(120, 80 + 190, debug_font, enemies_count_text);
+
+			//e shots title
+			sprintf_s(enemies_shots_text, 12, "%s", enemies_shots);
+			App->fonts->Blit(90, 90 + 190, debug_font, enemies_shots_text);
+			//e shots number
+			sprintf_s(enemies_shots_count_text, 6, "%i", enemies_shots_count);
+			App->fonts->Blit(120, 90 + 190, debug_font, enemies_shots_count_text);
+
+			//e spawns title
+			sprintf_s(enemies_spawns_text, 12, "%s", enemies_spawns);
+			App->fonts->Blit(72, 100 + 190, debug_font, enemies_spawns_text);
+			//e shots number
+			sprintf_s(enemies_spawns_count_text, 6, "%i", enemies_init_spawns_count - enemies_def_count);
+			App->fonts->Blit(120, 100 + 190, debug_font, enemies_spawns_count_text);
+
+			
 		}
 	}
 	if (App->welcome->IsEnabled()){
@@ -216,6 +313,7 @@ bool ModuleInterfice::CleanUp()
 	//Unload all the fonts
 	App->fonts->UnLoad(score_font);
 	App->fonts->UnLoad(lives_font);
+	App->fonts->UnLoad(debug_font);
 	return true;
 }
 

@@ -262,6 +262,7 @@ bool ENEMY_Tiny_Turret::Is_Dead()
 	{
 		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x - 10, position.y, COLLIDER_NONE, UNDEFINED);
 		App->interfice->score += 410;
+		App->interfice->enemies_def_count++;
 		return true;
 	}
 	return false;

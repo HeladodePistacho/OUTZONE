@@ -398,6 +398,7 @@ bool ENEMY_Beatle::Is_Dead()
 	{
 		App->particles->AddParticle(App->particles->big_enemy_explosion, position.x - 50, position.y - 50, COLLIDER_NONE, UNDEFINED);
 		App->interfice->score += 1490;
+		App->interfice->enemies_def_count++;
 		return true;
 	}
 	return false;

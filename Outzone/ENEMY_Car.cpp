@@ -147,6 +147,7 @@ bool ENEMY_Car::Is_Dead()
 		App->particles->AddParticle(App->particles->car_hole, position.x - 5, position.y, COLLIDER_NONE, UNDEFINED);
 		App->particles->AddParticle(App->particles->big_enemy_explosion, position.x - 30, position.y - 5, COLLIDER_NONE, UNDEFINED);
 		App->interfice->score += 20;
+		App->interfice->enemies_def_count++;
 		return true;
 	}
 	return false;

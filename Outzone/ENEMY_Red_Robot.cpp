@@ -459,6 +459,7 @@ bool ENEMY_Red_Robot::Is_Dead()
 		{
 			App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x - 7, position.y - 5, COLLIDER_NONE, UNDEFINED);
 			App->interfice->score += 390;
+			App->interfice->enemies_def_count++;
 
 			if (App->player->shotgun_lvl != 3)
 			{
