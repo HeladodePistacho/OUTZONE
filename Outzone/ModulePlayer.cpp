@@ -580,14 +580,12 @@ update_status ModulePlayer::Update()
 
 
 		//WIN
-		if (App->render->camera.y > 7200){
+		if (position.y <= -3088){
 			if (App->lvl_1->IsEnabled()){
 				App->change_scene->ChangeScene(App->lvl_1, App->congrats, 1.0f);
 				result = true;
 			}
 		}
-
-
 
 		//Update Player Collider Position-----------------------
 
