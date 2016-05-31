@@ -131,6 +131,57 @@ ENEMY_Red_Robot::ENEMY_Red_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y
 		path.PushBack({ 0.0f, 0.0f }, 2000, anim);
 	}
 
+	if (basic_robot_movement == GO_LEFT)
+	{
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+	}
+
+	if (basic_robot_movement == RIGHT_LEFT)
+	{
+		path.PushBack({ 0.0f, 0.75f }, 50, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ 0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+		path.PushBack({ -0.75f, 0.0f }, 100, anim);
+		path.PushBack({ 0.0f, 0.0f }, 50, anim);
+	}
+
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	fire_rate = 2000;

@@ -25,18 +25,18 @@ ModuleParticles::ModuleParticles()
 	shotgun_left_1.anim.PushBack({ 18, 48, 8, 13 });
 	shotgun_left_1.speed.y -= 5;
 	shotgun_left_1.speed.x -= 2;
-	shotgun_left_1.life = 1200;
+	shotgun_left_1.life = 800;
 	shotgun_left_1.type = SHOTGUN_FIRE;
 	//mid
 	shotgun_mid_1.anim.PushBack({ 4, 48, 6, 14 });
 	shotgun_mid_1.speed.y -= 5;
-	shotgun_mid_1.life = 1200;
+	shotgun_mid_1.life = 800;
 	shotgun_mid_1.type = SHOTGUN_FIRE;
 	//right
 	shotgun_right_1.anim.PushBack({ 32, 48, 8, 13 });
 	shotgun_right_1.speed.y -= 5;
 	shotgun_right_1.speed.x += 2;
-	shotgun_right_1.life = 1200;
+	shotgun_right_1.life = 800;
 	shotgun_right_1.type = SHOTGUN_FIRE;
 	
 	//SHOTGUN LVL 2
@@ -44,18 +44,18 @@ ModuleParticles::ModuleParticles()
 	shotgun_left_2.anim.PushBack({ 16, 26, 12, 19 });
 	shotgun_left_2.speed.y -= 5;
 	shotgun_left_2.speed.x -= 2;
-	shotgun_left_2.life = 1200;
+	shotgun_left_2.life = 800;
 	shotgun_left_2.type = SHOTGUN_FIRE;
 	//mid
 	shotgun_mid_2.anim.PushBack({ 1, 26, 12, 19 });
 	shotgun_mid_2.speed.y -= 5;
-	shotgun_mid_2.life = 1200;
+	shotgun_mid_2.life = 800;
 	shotgun_mid_2.type = SHOTGUN_FIRE;
 	//right
 	shotgun_right_2.anim.PushBack({ 30, 26, 12, 19 });
 	shotgun_right_2.speed.y -= 5;
 	shotgun_right_2.speed.x += 2;
-	shotgun_right_2.life = 1200;
+	shotgun_right_2.life = 800;
 	shotgun_right_2.type = SHOTGUN_FIRE;
 	
 	//SHOTGUN LVL 3
@@ -63,18 +63,18 @@ ModuleParticles::ModuleParticles()
 	shotgun_left_3.anim.PushBack({ 15, 0, 15, 24 });
 	shotgun_left_3.speed.y -= 5;
 	shotgun_left_3.speed.x -= 2;
-	shotgun_left_3.life = 1200;
+	shotgun_left_3.life = 800;
 	shotgun_left_3.type = SHOTGUN_FIRE;
 	//mid
 	shotgun_mid_3.anim.PushBack({ 0, 0, 15, 24 });
 	shotgun_mid_3.speed.y -= 5;
-	shotgun_mid_3.life = 1200;
+	shotgun_mid_3.life = 800;
 	shotgun_mid_3.type = SHOTGUN_FIRE;
 	//right
 	shotgun_right_3.anim.PushBack({ 31, 0, 14, 23 });
 	shotgun_right_3.speed.y -= 5;
 	shotgun_right_3.speed.x += 2;
-	shotgun_right_3.life = 1200;
+	shotgun_right_3.life = 800;
 	shotgun_right_3.type = SHOTGUN_FIRE;
 
 	//SHOTGUN IMPACT
