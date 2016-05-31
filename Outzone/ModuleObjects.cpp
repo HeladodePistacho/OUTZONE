@@ -98,6 +98,8 @@ bool ModuleObjects::CleanUp()
 			delete objects[i];
 			objects[i] = nullptr;
 		}
+
+		queue[i].type = UNKNOWN;
 	}
 
 	return true;
