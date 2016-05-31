@@ -71,7 +71,7 @@ public:
 	uint bombs = 3;
 	uint bombs_limit = 10;
 	//Energy
-	int energy;
+	int energy = 900;
 	uint energy_limit = 36;
 
 	//Counters
