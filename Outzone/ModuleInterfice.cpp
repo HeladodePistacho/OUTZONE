@@ -89,7 +89,7 @@ bool ModuleInterfice::Start()
 	enemies_def_count = 0;
 	shotgun_shots_count = 0;
 	laser_shots_count = 0;
-	sprites = App->textures->Load("interfice.png");
+	sprites = App->textures->Load("Game/interfice.png");
 	if (App->lvl_1->IsEnabled()){
 		//Energy bar
 		App->interfice->AddElement(0, 17, energy_bar);

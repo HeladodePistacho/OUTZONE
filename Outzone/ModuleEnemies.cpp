@@ -37,8 +37,8 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	sprites = App->textures->Load("enemies_sprites.png");
-	enemy_die_fx = App->audio->Load_chunk("death_small_enemies.wav");
+	sprites = App->textures->Load("Game/enemies_sprites.png");
+	enemy_die_fx = App->audio->Load_chunk("Game/death_small_enemies.wav");
 	
 	return true;
 }

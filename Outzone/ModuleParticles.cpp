@@ -566,7 +566,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("Particles_sprites.png");
+	graphics = App->textures->Load("Game/Particles_sprites.png");
 
 	return true;
 }

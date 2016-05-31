@@ -35,11 +35,11 @@ bool Module_lvl_1::Start()
 	
 	LOG("Loading lvl 1 stage");
 		//Load Background
-		graphics = App->textures->Load("level1.png");
+		graphics = App->textures->Load("Game/level1.png");
 		//Enable Particles
 		App->particles->Enable();
 		//Init Audio
-		audio_lvl_1 = App->audio->Load("1st_Level_Theme.ogg");
+		audio_lvl_1 = App->audio->Load("Game/1st_Level_Theme.ogg");
 		Mix_FadeInMusicPos(audio_lvl_1, 1, 2000, 1);
 		Mix_PlayMusic(audio_lvl_1, -1);
 

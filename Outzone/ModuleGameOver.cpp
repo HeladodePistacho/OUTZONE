@@ -22,9 +22,9 @@ bool Module_GameOver::Start()
 {
 	LOG("Loading Game Over Scene");
 	//Load Background
-	graphics = App->textures->Load("Game_Over.png");
+	graphics = App->textures->Load("Game/Game_Over.png");
 	//Init Audio
-	audio_Game_Over = App->audio->Load("game_over.ogg");
+	audio_Game_Over = App->audio->Load("Game/game_over.ogg");
 	Mix_FadeInMusicPos(audio_Game_Over, 1, 2000, 1);
 	Mix_PlayMusic(audio_Game_Over, -1);
 	//Camera

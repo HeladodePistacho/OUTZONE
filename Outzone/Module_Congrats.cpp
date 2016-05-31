@@ -21,7 +21,7 @@ Module_Congrats::~Module_Congrats(){}
 bool Module_Congrats::Start()
 {
 	LOG("Loading background assets");
-	graphics = App->textures->Load("Congrats_Screen.png");
+	graphics = App->textures->Load("Game/Congrats_Screen.png");
 	App->render->camera.y = 0;
 
 	return true;

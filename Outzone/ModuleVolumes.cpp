@@ -87,7 +87,7 @@ ModuleVolumes::~ModuleVolumes()
 bool ModuleVolumes::Start()
 {
 	LOG("Loading volumes");
-	graphics = App->textures->Load("Volumes_sprites.png");
+	graphics = App->textures->Load("Game/Volumes_sprites.png");
 
 	return true;
 }

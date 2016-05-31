@@ -151,12 +151,12 @@ bool ModulePlayer::Start()
 	//Add collider
 	body = App->collision->AddCollider({ position.x, position.y, 20, 30 }, COLLIDER_PLAYER, this);
 	//Load character sprites
-	graphics = App->textures->Load("character_sprites.png");
+	graphics = App->textures->Load("Game/character_sprites.png");
 
 	//PLAYER FX
-	laser_fx = App->audio->Load_chunk("laser.wav");
-	shotgun_fx = App->audio->Load_chunk("shotgun.wav");
-	dead_fx = App->audio->Load_chunk("lose.wav");
+	laser_fx = App->audio->Load_chunk("Game/laser.wav");
+	shotgun_fx = App->audio->Load_chunk("Game/shotgun.wav");
+	dead_fx = App->audio->Load_chunk("Game/lose.wav");
 
 	current_animation = &idle_up;
 
@@ -164,11 +164,11 @@ bool ModulePlayer::Start()
 	//Numbers
 	//current score
 	App->interfice->score = 0;
-	App->interfice->score_font = App->fonts->Load("Interfice_font.png", "0123456789", 1);
+	App->interfice->score_font = App->fonts->Load("Game/Interfice_font.png", "0123456789", 1);
 	//top score
 
 	//lives
-	App->interfice->lives_font = App->fonts->Load("Lives_font.png", "012", 1);
+	App->interfice->lives_font = App->fonts->Load("Game/Lives_font.png", "012", 1);
 	if (fully_destroyed||result){
 		App->interfice->bombs = 3;
 		App->interfice->lives = 2;

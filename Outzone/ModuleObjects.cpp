@@ -31,9 +31,9 @@ ModuleObjects::~ModuleObjects()
 bool ModuleObjects::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
-	sprites = App->textures->Load("objects_sprites.png");
-	Power_up = App->audio->Load_chunk("power_up_weapon.wav");
-	Energy_fx = App->audio->Load_chunk("Energy.wav");
+	sprites = App->textures->Load("Game/objects_sprites.png");
+	Power_up = App->audio->Load_chunk("Game/power_up_weapon.wav");
+	Energy_fx = App->audio->Load_chunk("Game/Energy.wav");
 
 	return true;
 }

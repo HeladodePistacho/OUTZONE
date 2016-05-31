@@ -22,7 +22,7 @@ Module_Welcome::~Module_Welcome(){}
 bool Module_Welcome::Start()
 {
 	LOG("Loading background assets");
-	graphics = App->textures->Load("Welcome_Screen.png");
+	graphics = App->textures->Load("Game/Welcome_Screen.png");
 	App->render->escalated_screen = 0;
 	App->player->Reset();
 	App->interfice->Enable();
