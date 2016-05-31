@@ -609,7 +609,7 @@ update_status ModulePlayer::Update()
 
 		//Update the energy of the player----------------------------
 		if (current_time > last_segment + energy_segment_live && App->interfice->energy > 0){
-			//App->interfice->energy--;
+			App->interfice->energy--;
 			last_segment = current_time;
 		}
 
