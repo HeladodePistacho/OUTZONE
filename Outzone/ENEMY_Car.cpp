@@ -143,9 +143,10 @@ void ENEMY_Car::hitmarker()
 bool ENEMY_Car::Is_Dead()
 {
 	if (live <= 0)
-	{
-		App->particles->AddParticle(App->particles->car_hole, position.x - 5, position.y, COLLIDER_NONE, UNDEFINED);
+	{	
+		App->objects->AddObject(CAR_HOLE, position.x - 5, position.y);
 		App->particles->AddParticle(App->particles->big_enemy_explosion, position.x - 30, position.y - 5, COLLIDER_NONE, UNDEFINED);
+		
 		App->interfice->score += 20;
 		App->interfice->enemies_def_count++;
 		return true;

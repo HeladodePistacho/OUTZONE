@@ -104,6 +104,7 @@
     <ClInclude Include="Module_Welcome.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="OBJECT_Bomb.h" />
+    <ClInclude Include="OBJECT_Car_Hole.h" />
     <ClInclude Include="OBJECT_Car_Rail.h" />
     <ClInclude Include="OBJECT_Change_Box.h" />
     <ClInclude Include="OBJECT_Energy_Box.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="Module_Welcome.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="OBJECT_Bomb.cpp" />
+    <ClCompile Include="OBJECT_Car_Hole.cpp" />
     <ClCompile Include="OBJECT_Car_Rail.cpp" />
     <ClCompile Include="OBJECT_Change_Box.cpp" />
     <ClCompile Include="OBJECT_Energy_Box.cpp" />

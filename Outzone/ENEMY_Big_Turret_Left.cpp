@@ -29,7 +29,8 @@ ENEMY_Big_Turret_Left::ENEMY_Big_Turret_Left(int x, int y) :Enemy(x, y)
 void ENEMY_Big_Turret_Left::Attack()
 {
 	current_time = SDL_GetTicks();
-	if (current_time >= last_time + fire_rate)
+	
+	if (current_time >= last_time + fire_rate && (-position.y * 2) <= (App->render->camera.y ))
 	{
 	if (App->particles->enemy_big_shot.speed.x == -2 && App->particles->enemy_big_shot.speed.y == 2 && direction == LEFT){
 		App->particles->enemy_big_shot.speed.x = -1;
@@ -48,6 +49,7 @@ void ENEMY_Big_Turret_Left::Attack()
 		App->particles->AddParticle(App->particles->enemy_big_shot, position.x +18, position.y+ 42, COLLIDER_ENEMY_SHOT, ENEMY_BIG_SHOT);
 		last_time = current_time;
 	}
+
 }
 
 bool ENEMY_Big_Turret_Left::Is_Dead()

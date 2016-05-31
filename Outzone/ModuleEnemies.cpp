@@ -214,15 +214,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER && (c1->rect.y - 2 + c1->rect.h > c2->rect.y))
-			{
-				App->particles->AddParticle(App->particles->car_hole, App->enemies->enemies[i]->position.x - 5, App->enemies->enemies[i]->position.y, COLLIDER_NONE, UNDEFINED);
-				App->particles->AddParticle(App->particles->big_enemy_explosion, App->enemies->enemies[i]->position.x - 30, App->enemies->enemies[i]->position.y - 5, COLLIDER_NONE, UNDEFINED);
-				delete enemies[i];
-				enemies[i] = nullptr;
-				break;
-			}
-			else if (c1->type == COLLIDER_ENEMY  && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
+			 if (c1->type == COLLIDER_ENEMY  && (c2->type == COLLIDER_PLAYER || c2->type == COLLIDER_PLAYER_SHOT))
 			{
 				if (enemies[i]->live > 0)
 				{
@@ -232,13 +224,14 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						if (App->player->shotgun_lvl == 2) enemies[i]->live -= 2;
 						if (App->player->shotgun_lvl == 3) enemies[i]->live -= 4;
 					}
-					else enemies[i]->live -= 0;
-				    //enemies change to green
-					if (enemies[i]->enemy_type == CAR)
+					else 
 					{
-						enemies[i]->hitmarker();
-						App->interfice->score += 20;
+						if (App->player->shotgun_lvl == 1) enemies[i]->live -= 2;
+						if (App->player->shotgun_lvl == 2) enemies[i]->live -= 3;
+						if (App->player->shotgun_lvl == 3) enemies[i]->live -= 5;
 					}
+				    //enemies change to green
+
 					if (enemies[i]->enemy_type == BIG_TURRET_RIGHT) enemies[i]->hitmarker();
 					if (enemies[i]->enemy_type == BIG_TURRET_LEFT) enemies[i]->hitmarker();
 					if (enemies[i]->enemy_type == BASIC_ROBOT) enemies[i]->hitmarker();
@@ -250,6 +243,28 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				
 				}
 			}
+			 else  if (c1->type == COLLIDER_SHIELD && c2->type == COLLIDER_PLAYER_SHOT)
+			 {
+				 if (enemies[i]->live > 0)
+				 {
+					 if (App->player->shotgun == true)
+					 {
+						 if (App->player->shotgun_lvl == 1) enemies[i]->live--;
+						 if (App->player->shotgun_lvl == 2) enemies[i]->live -= 2;
+						 if (App->player->shotgun_lvl == 3) enemies[i]->live -= 4;
+					 }
+					 else
+					 {
+						 if (App->player->shotgun_lvl == 1) enemies[i]->live -= 2;
+						 if (App->player->shotgun_lvl == 2) enemies[i]->live -= 3;
+						 if (App->player->shotgun_lvl == 3) enemies[i]->live -= 5;
+					 }
+					 if (enemies[i]->enemy_type == CAR)
+					 {
+						 App->interfice->score += 20;
+					 }
+				 }
+			 }
 		}
 	}
 

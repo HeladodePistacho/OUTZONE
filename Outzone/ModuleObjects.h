@@ -13,6 +13,7 @@ enum OBJECT_TYPES
 	ENERGY_BOX,
 	CAR_RAIL,
 	BOMB,
+	CAR_HOLE
 };
 
 struct SDL_Texture;

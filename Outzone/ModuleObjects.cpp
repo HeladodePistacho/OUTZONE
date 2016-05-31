@@ -10,6 +10,7 @@
 #include "OBJECT_Upgrade.h"
 #include "OBJECT_Car_Rail.h"
 #include "OBJECT_Bomb.h"
+#include "OBJECT_Car_Hole.h"
 #include "ModulePlayer.h"
 #include "ModuleInterfice.h"
 
@@ -145,9 +146,14 @@ void ModuleObjects::SpawnObject(const ObjectInfo& info)
 		case OBJECT_TYPES::BOMB:
 			objects[i] = new Bomb(info.x, info.y);
 			break;
+
+		case OBJECT_TYPES::CAR_HOLE:
+			objects[i] = new Car_Hole(info.x, info.y);
+			break;
+
 		case OBJECT_TYPES::CAR_RAIL:
 			objects[i] = new Car_Rail(info.x, info.y);
-			
+			break;
 		}
 	}
 }
