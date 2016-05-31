@@ -106,14 +106,29 @@ ENEMY_Blue_Robot::ENEMY_Blue_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x,
 
 	enemy_animation = &down;
 
-	if (basic_robot_movement == TYPE_DOWN_RIGHT)
-	{
-		path.PushBack({ 0.0f, 0.75f }, 150, anim);
-		path.PushBack({ 0.75f, 0.5f }, 300, anim);
-	}
 	if (basic_robot_movement == TYPE_DOWN)
 	{
 		path.PushBack({ 0.0f, 0.75f }, 150, anim);
+	}
+
+	if (basic_robot_movement == GET_OUT_CAR_7)
+	{
+		path.PushBack({ 0.5f, -0.5f }, 50, anim);
+		path.PushBack({ 0.0f, 0.0f }, 10, anim);
+		path.PushBack({ 0.0f, 0.75f }, 15000, anim);
+	}
+	if (basic_robot_movement == GET_OUT_CAR_8)
+	{
+		path.PushBack({ -0.5f, -0.5f }, 50, anim);
+		path.PushBack({ 0.0f, 0.0f }, 10, anim);
+		path.PushBack({ 0.0f, 0.75f }, 15000, anim);
+	}
+
+	if (basic_robot_movement == GET_OUT_CAR_9)
+	{
+		path.PushBack({ 0.0f, -0.3f }, 50, anim);
+		path.PushBack({ 0.0f, 0.0f }, 10, anim);
+		path.PushBack({ 0.0f, 0.75f }, 15000, anim);
 	}
 
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);

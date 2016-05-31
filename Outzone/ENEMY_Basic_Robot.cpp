@@ -269,6 +269,53 @@ ENEMY_Basic_Robot::ENEMY_Basic_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(
 		path.PushBack({ 0.75f, 0.0f }, 1000, anim);
 	}
 
+	if (basic_robot_movement == DIAGONAL_CORNER_RIGHT_1)
+	{
+		path.PushBack({ -0.75f, 0.0f }, 70, anim);
+		path.PushBack({ -0.5f, 0.75f }, 50, anim);
+		path.PushBack({ 0.0f, 0.75f }, 100, anim);
+		path.PushBack({ 0.75f, 0.0f }, 1000, anim);
+	}
+
+	if (basic_robot_movement == DIAGONAL_CORNER_RIGHT_3)
+	{
+		path.PushBack({ -0.75f, 0.0f }, 70, anim);
+		path.PushBack({ -0.5f, 0.75f }, 50, anim);
+		path.PushBack({ 0.0f, 0.75f }, 175, anim);
+		path.PushBack({ 0.75f, 0.0f }, 1000, anim);
+	}
+
+	if (basic_robot_movement == DIAGONAL_CORNER_LEFT_1)
+	{
+		path.PushBack({ 0.75f, 0.0f }, 50, anim);
+		path.PushBack({ 0.5f, 0.75f }, 50, anim);
+		path.PushBack({ 0.0f, 0.75f }, 80, anim);
+		path.PushBack({ -0.75f, 0.0f }, 1000, anim);
+	}
+
+	if (basic_robot_movement == DIAGONAL_CORNER_LEFT_2)
+	{
+		path.PushBack({ 0.75f, 0.0f }, 50, anim);
+		path.PushBack({ 0.5f, 0.75f }, 50, anim);
+		path.PushBack({ 0.0f, 0.75f }, 120, anim);
+		path.PushBack({ -0.75f, 0.0f }, 1000, anim);
+	}
+
+	if (basic_robot_movement == DIAGONAL_CORNER_LEFT_3)
+	{
+		path.PushBack({ 0.75f, 0.0f }, 50, anim);
+		path.PushBack({ 0.5f, 0.75f }, 50, anim);
+		path.PushBack({ 0.0f, 0.75f }, 150, anim);
+		path.PushBack({ -0.75f, 0.0f }, 1000, anim);
+	}
+
+	if (basic_robot_movement == TYPE_DOWN_RIGHT_2)
+	{
+		path.PushBack({ 0.5f, 0.75f }, 100, anim);
+		path.PushBack({ 0.0f, 0.75f }, 2000, anim);
+	}
+
+
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	fire_rate = 2000;

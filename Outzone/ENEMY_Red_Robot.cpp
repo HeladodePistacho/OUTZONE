@@ -182,6 +182,14 @@ ENEMY_Red_Robot::ENEMY_Red_Robot(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y
 		path.PushBack({ 0.0f, 0.0f }, 50, anim);
 	}
 
+	if (basic_robot_movement == DIAGONAL_CORNER_RIGHT_2)
+	{
+		path.PushBack({ -0.75f, 0.0f }, 70, anim);
+		path.PushBack({ -0.5f, 0.75f }, 50, anim);
+		path.PushBack({ 0.0f, 0.75f }, 140, anim);
+		path.PushBack({ 0.75f, 0.0f }, 1000, anim);
+	}
+
 	collider = App->collision->AddCollider({ 0, 0, 27, 32 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	fire_rate = 2000;

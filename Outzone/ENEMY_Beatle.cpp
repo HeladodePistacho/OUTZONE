@@ -27,9 +27,9 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 	original_position = position;
 
 	//Path1
-	if (basic_robot_movement == TYPE_SEMI_CIRCLE)
+	if (basic_robot_movement == TYPE_SEMI_CIRCLE_1)
 	{
-		path.PushBack({ -2.0f, 0.0f }, 65, anim);
+		path.PushBack({ -2.0f, 0.0f }, 60, anim);
 		path.PushBack({ -1.975f, 0.312f }, 7, anim);
 		path.PushBack({ -1.902f, 0.618f }, 7, anim);
 		path.PushBack({ -1.782f, 0.907f }, 7, anim);
@@ -49,10 +49,73 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 		path.PushBack({ 2.0f, 0.0f }, 200, anim);
 	}
 		
+	if (basic_robot_movement == TYPE_SEMI_CIRCLE_2)
+	{
+		path.PushBack({ -2.0f, 0.0f }, 90, anim);
+		path.PushBack({ -1.975f, 0.312f }, 7, anim);
+		path.PushBack({ -1.902f, 0.618f }, 7, anim);
+		path.PushBack({ -1.782f, 0.907f }, 7, anim);
+		path.PushBack({ -1.618f, 1.175f }, 7, anim);
+		path.PushBack({ -1.414f, 1.414f }, 7, anim);
+		path.PushBack({ -1.175f, 1.618f }, 7, anim);
+		path.PushBack({ -0.907f, 1.782f }, 7, anim);
+		path.PushBack({ -0.312f, 1.975f }, 7, anim);
+		path.PushBack({ 0.312f, 1.975f }, 7, anim);
+		path.PushBack({ 0.618f, 1.902f }, 7, anim);
+		path.PushBack({ 1.175f, 1.618f }, 7, anim);
+		path.PushBack({ 1.414f, 1.414f }, 7, anim);
+		path.PushBack({ 1.618f, 1.175f }, 7, anim);
+		path.PushBack({ 1.782f, 0.907f }, 7, anim);
+		path.PushBack({ 1.902f, 0.618f }, 7, anim);
+		path.PushBack({ 1.975f, 0.312f }, 7, anim);
+		path.PushBack({ 2.0f, 0.0f }, 2000, anim);
+	}
+	if (basic_robot_movement == TYPE_SEMI_CIRCLE_3)
+	{
+		path.PushBack({ -2.0f, 0.0f }, 120, anim);
+		path.PushBack({ -1.975f, 0.312f }, 7, anim);
+		path.PushBack({ -1.902f, 0.618f }, 7, anim);
+		path.PushBack({ -1.782f, 0.907f }, 7, anim);
+		path.PushBack({ -1.618f, 1.175f }, 7, anim);
+		path.PushBack({ -1.414f, 1.414f }, 7, anim);
+		path.PushBack({ -1.175f, 1.618f }, 7, anim);
+		path.PushBack({ -0.907f, 1.782f }, 7, anim);
+		path.PushBack({ -0.312f, 1.975f }, 7, anim);
+		path.PushBack({ 0.312f, 1.975f }, 7, anim);
+		path.PushBack({ 0.618f, 1.902f }, 7, anim);
+		path.PushBack({ 1.175f, 1.618f }, 7, anim);
+		path.PushBack({ 1.414f, 1.414f }, 7, anim);
+		path.PushBack({ 1.618f, 1.175f }, 7, anim);
+		path.PushBack({ 1.782f, 0.907f }, 7, anim);
+		path.PushBack({ 1.902f, 0.618f }, 7, anim);
+		path.PushBack({ 1.975f, 0.312f }, 7, anim);
+		path.PushBack({ 2.0f, 0.0f }, 2000, anim);
+	}
+	if (basic_robot_movement == TYPE_SEMI_CIRCLE_4)
+	{
+		path.PushBack({ -2.0f, 0.0f }, 150, anim);
+		path.PushBack({ -1.975f, 0.312f }, 7, anim);
+		path.PushBack({ -1.902f, 0.618f }, 7, anim);
+		path.PushBack({ -1.782f, 0.907f }, 7, anim);
+		path.PushBack({ -1.618f, 1.175f }, 7, anim);
+		path.PushBack({ -1.414f, 1.414f }, 7, anim);
+		path.PushBack({ -1.175f, 1.618f }, 7, anim);
+		path.PushBack({ -0.907f, 1.782f }, 7, anim);
+		path.PushBack({ -0.312f, 1.975f }, 7, anim);
+		path.PushBack({ 0.312f, 1.975f }, 7, anim);
+		path.PushBack({ 0.618f, 1.902f }, 7, anim);
+		path.PushBack({ 1.175f, 1.618f }, 7, anim);
+		path.PushBack({ 1.414f, 1.414f }, 7, anim);
+		path.PushBack({ 1.618f, 1.175f }, 7, anim);
+		path.PushBack({ 1.782f, 0.907f }, 7, anim);
+		path.PushBack({ 1.902f, 0.618f }, 7, anim);
+		path.PushBack({ 1.975f, 0.312f }, 7, anim);
+		path.PushBack({ 2.0f, 0.0f }, 2000, anim);
+	}
 	//Path2
 	if (basic_robot_movement == TYPE_CIRCLE_1)
 	{
-		path.PushBack({ 2.0f, 0.0f }, 45, anim);
+		path.PushBack({ 2.0f, 0.0f }, 50, anim);
 		path.PushBack({ 1.975f, 0.312f }, 7, anim);
 		path.PushBack({ 1.902f, 0.618f }, 7, anim);
 		path.PushBack({ 1.782f, 0.907f }, 7, anim);
@@ -107,12 +170,12 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 		path.PushBack({ -1.902f, 0.618f }, 7, anim);
 		path.PushBack({ -1.975f, 0.312f }, 7, anim);
 
-		path.PushBack({ -2.0f, 0.0f }, 200, anim);
+		path.PushBack({ -2.0f, 0.0f }, 2000, anim);
 	}
 
 	if (basic_robot_movement == TYPE_CIRCLE_2)
 	{
-		path.PushBack({ 2.0f, 0.0f }, 75, anim);
+		path.PushBack({ 2.0f, 0.0f }, 80, anim);
 		path.PushBack({ 1.975f, 0.312f }, 7, anim);
 		path.PushBack({ 1.902f, 0.618f }, 7, anim);
 		path.PushBack({ 1.782f, 0.907f }, 7, anim);
@@ -167,12 +230,12 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 		path.PushBack({ -1.902f, 0.618f }, 7, anim);
 		path.PushBack({ -1.975f, 0.312f }, 7, anim);
 
-		path.PushBack({ -2.0f, 0.0f }, 200, anim);
+		path.PushBack({ -2.0f, 0.0f }, 2000, anim);
 	}
 
 	if (basic_robot_movement == TYPE_CIRCLE_3)
 	{
-		path.PushBack({ 2.0f, 0.0f }, 120, anim);
+		path.PushBack({ 2.0f, 0.0f }, 110, anim);
 		path.PushBack({ 1.975f, 0.312f }, 7, anim);
 		path.PushBack({ 1.902f, 0.618f }, 7, anim);
 		path.PushBack({ 1.782f, 0.907f }, 7, anim);
@@ -227,12 +290,12 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 		path.PushBack({ -1.902f, 0.618f }, 7, anim);
 		path.PushBack({ -1.975f, 0.312f }, 7, anim);
 
-		path.PushBack({ -2.0f, 0.0f }, 200, anim);
+		path.PushBack({ -2.0f, 0.0f }, 2000, anim);
 	}
 
 	if (basic_robot_movement == TYPE_CIRCLE_4)
 	{
-		path.PushBack({ 2.0f, 0.0f }, 165, anim);
+		path.PushBack({ 2.0f, 0.0f }, 140, anim);
 		path.PushBack({ 1.975f, 0.312f }, 7, anim);
 		path.PushBack({ 1.902f, 0.618f }, 7, anim);
 		path.PushBack({ 1.782f, 0.907f }, 7, anim);
@@ -287,7 +350,7 @@ ENEMY_Beatle::ENEMY_Beatle(int x, int y, MOVEMENT_TYPES type) : Enemy(x, y), bas
 		path.PushBack({ -1.902f, 0.618f }, 7, anim);
 		path.PushBack({ -1.975f, 0.312f }, 7, anim);
 
-		path.PushBack({ -2.0f, 0.0f }, 200, anim);
+		path.PushBack({ -2.0f, 0.0f }, 2000, anim);
 	}
 
 	collider = App->collision->AddCollider({ 0, 0, 46, 46 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
