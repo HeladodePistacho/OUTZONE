@@ -29,7 +29,7 @@ bool ModuleAudio::Init()
 	int flag = MIX_INIT_OGG;
 	int inited_flags = Mix_Init(flag);
 
-	//Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
+	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
 	
 	
 

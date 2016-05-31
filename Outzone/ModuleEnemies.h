@@ -2,6 +2,7 @@
 #define __ModuleEnemies_H__
 
 #include "Module.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 #define MAX_ENEMIES 150
 
@@ -102,6 +103,7 @@ private:
 	EnemyInfo queue[MAX_ENEMIES];
 	Enemy* enemies[MAX_ENEMIES];
 	SDL_Texture* sprites;
+	Mix_Chunk* enemy_die_fx = nullptr;
 };
 
 #endif

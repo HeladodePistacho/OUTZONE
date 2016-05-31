@@ -16,7 +16,8 @@
 #include "ENEMY_Beatle.h"
 #include "ModuleObjects.h"
 #include "OBJECT_Upgrade.h"
-#include "ModulePlayer.h"
+#include "ModulePlayer.h"ç
+#include "ModuleAudio.h"
 #include "ModuleInterfice.h"
 
 #define SPAWN_MARGIN 200
@@ -37,6 +38,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	sprites = App->textures->Load("enemies_sprites.png");
+	enemy_die_fx = App->audio->Load_chunk("death_small_enemies.wav");
 	
 	return true;
 }
@@ -94,6 +96,7 @@ update_status ModuleEnemies::Update()
 		{
  			if(enemies[i]->Is_Dead())
 			{
+				Mix_PlayChannel(-1, enemy_die_fx, 0);
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}

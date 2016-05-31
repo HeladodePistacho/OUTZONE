@@ -2,6 +2,7 @@
 #define __ModuleObjects__
 
 #include "Module.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 #define MAX_OBJECTS 50
 
@@ -51,6 +52,9 @@ private:
 	ObjectInfo queue[MAX_OBJECTS];
 	Object* objects[MAX_OBJECTS];
 	SDL_Texture* sprites;
+	Mix_Chunk* Power_up = nullptr;
+	Mix_Chunk* Energy_fx = nullptr;
+
 };
 
 #endif

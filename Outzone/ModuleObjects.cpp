@@ -13,6 +13,7 @@
 #include "OBJECT_Car_Hole.h"
 #include "ModulePlayer.h"
 #include "ModuleInterfice.h"
+#include "ModuleAudio.h"
 
 #define SPAWN_MARGIN 50
 
@@ -31,6 +32,8 @@ bool ModuleObjects::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
 	sprites = App->textures->Load("objects_sprites.png");
+	Power_up = App->audio->Load_chunk("power_up_weapon.wav");
+	Energy_fx = App->audio->Load_chunk("Energy.wav");
 
 	return true;
 }
@@ -192,17 +195,19 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 						App->player->shotgun = false;
 						
 					}
+					Mix_PlayChannel(-1, Power_up, 0);
 					App->interfice->score += 100;
 				}
 
 				//Energy box
-				else if (objects[i]->type == ENERGY_BOX){
+				else if (objects[i]->type == ENERGY_BOX)
+				{
 					for (int k = 0; k < 15; k++){
 						if (App->interfice->energy < App->interfice->energy_limit){
 							App->interfice->energy++;
 						}
 					}
-					
+					Mix_PlayChannel(-1, Energy_fx, 0);
 				}
 
 				//Powerup
@@ -215,6 +220,7 @@ void ModuleObjects::OnCollision(Collider* c1, Collider* c2)
 						App->player->shotgun_lvl++;
 					}
 					App->interfice->score += 100;
+					Mix_PlayChannel(-1, Power_up, 0);
 				}
 				//Bomb
 				else if (objects[i]->type == BOMB)
